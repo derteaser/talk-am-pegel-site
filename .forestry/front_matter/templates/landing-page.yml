@@ -79,4 +79,5 @@ fields:
   hidden: true
   default: home
 pages:
+- impressum.md
 - index.md
