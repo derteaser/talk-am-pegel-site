@@ -1,0 +1,12 @@
+---
+label: event
+hide_body: false
+display_field: title
+fields:
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+pages:
+- _events/talk-am-pegel-1.md

@@ -11,6 +11,13 @@ sections:
   create: all
   templates:
   - post
+- type: directory
+  path: _events
+  label: Events
+  create: documents
+  match: "*"
+  templates:
+  - event
 - type: jekyll-pages
   label: Pages
   create: all
