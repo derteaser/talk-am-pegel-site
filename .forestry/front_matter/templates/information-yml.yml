@@ -47,5 +47,10 @@ fields:
   type: text
   hidden: false
   default: ''
+- name: facebook
+  label: Facebook
+  type: text
+  hidden: false
+  default: ''
 pages:
 - _data/information.yml

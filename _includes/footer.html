@@ -1,40 +1,78 @@
-<footer class="site-footer">
-	<div class="container pure-g">
-        <div class="footer-col pure-u-1 pure-u-md-1-4">
-            <img src="{{ "/img/logo-white.png" | absolute_url }}" alt="" class="footer-logo">
+<!-- FOOTER -->
+<footer class="uk-section uk-section-secondary uk-padding-remove-bottom">
+    <div class="uk-container">
+        <div class="uk-grid uk-grid-large" data-uk-grid>
+            <div class="uk-width-1-2@m">
+                <h5>OUR COMPANY</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud cillum dolore eu fugiat nulla contact to: <a href="#" title="">info@company.com</a></p>
+                <div>
+                    <a href="" class="uk-icon-button" data-uk-icon="twitter"></a>
+                    <a href="" class="uk-icon-button" data-uk-icon="facebook"></a>
+                    <a href="" class="uk-icon-button" data-uk-icon="instagram"></a>
+                </div>
+            </div>
+            <div class="uk-width-1-6@m">
+                <h5>PRODUCTS</h5>
+                <ul class="uk-list">
+                    <li>Big Data</li>
+                    <li>Marketing</li>
+                    <li>Analytics</li>
+                    <li>AI Lab</li>
+                </ul>
+            </div>
+            <div class="uk-width-1-6@m">
+                <h5>OUR COMPANY</h5>
+                <ul class="uk-list">
+                    <li>Team</li>
+                    <li>Work</li>
+                    <li>Culture</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+            <div class="uk-width-1-6@m">
+                <h5>OUR OFFICES</h5>
+                <ul class="uk-list">
+                    <li>London</li>
+                    <li>Chicago</li>
+                    <li>Dubai</li>
+                    <li>Brussels</li>
+                </ul>
+            </div>
+            
         </div>
-        <div class="footer-col pure-u-1 pure-u-md-1-4">
-            <h3>About {{ site.short_title }}</h3>
-            <ul>
-            {% for item in site.menus.footer %}
-                <li><a href="{{ item.url | absolute_url }}">{{ item.title }}</a></li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="footer-col pure-u-1 pure-u-md-1-4">
-            <h3>Projects</h3>
-            <ul>
-            {% for project in site.projects limit:5 %}
-                <li><a href="{{ project.url | absolute_url }}">{{ project.title }}</a></li>
-            {% endfor %}
-            {% if site.projects | size > 5 %}
-                <li><a href="{{ "/projects/" | absolute_url }}">See all projects</a></li>
-            {% endif %}
-            </ul>
-        </div>
-        <div class="footer-col pure-u-1 pure-u-md-1-4">
-            <h3>Contact</h3>
-            {% include address.html %}
-        </div>
-	</div>
-	<div class="copyright">
-        <p>
-            &copy;{{ 'now' | date: "%Y" }} {{ site.title }} - All Rights Reserved<br>
-			<a href="{{ "/admin" | absolute_url }}">Site Admin</a>
-		</p>
-	</div>
+    </div>
+    
+    <div class="uk-text-center uk-padding uk-padding-remove-horizontal">
+        <span class="uk-text-small uk-text-muted">&copy;{{ site.time | date: '%Y' }} {{ site.short_title }} - <a href="https://github.com/zzseba78/Kick-Off">Created by KickOff</a> | Built with <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank" data-uk-tooltip><span data-uk-icon="uikit"></span></a></span>
+    </div>
 </footer>
-<!-- Javascript -->
-<script src="{{ "/js/main.js" | absolute_url }}" type="text/javascript"></script>
+<!-- /FOOTER -->
+<!-- OFFCANVAS -->
+<div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: false">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+        <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+        <ul class="uk-nav uk-nav-default">
+            <li class="uk-active"><a href="#">Active</a></li>
+            <li class="uk-parent">
+                <a href="#">Parent</a>
+                <ul class="uk-nav-sub">
+                    <li><a href="#">Sub item</a></li>
+                    <li><a href="#">Sub item</a></li>
+                </ul>
+            </li>
+            <li class="uk-nav-header">Header</li>
+            <li><a href="#js-options"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: table"></span> Item</a></li>
+            <li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: thumbnails"></span> Item</a></li>
+            <li class="uk-nav-divider"></li>
+            <li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: trash"></span> Item</a></li>
+        </ul>
+        <h3>Title</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+</div>
+<!-- /OFFCANVAS -->
+
+<!-- JS FILES -->
+<script src="{{ "/js/site.min.js" | absolute_url }}"></script>
 </body>
 </html>
