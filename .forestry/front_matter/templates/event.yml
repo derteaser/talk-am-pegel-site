@@ -8,5 +8,12 @@ fields:
   config:
     required: true
   label: Title
+- name: template
+  type: text
+  config:
+    required: false
+  label: Template
+  hidden: true
+  default: event
 pages:
 - _events/talk-am-pegel-1.md
