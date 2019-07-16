@@ -12,10 +12,10 @@ sections:
   templates:
   - post
 - type: directory
-  path: ''
+  path: _events
   label: Events
   create: documents
-  match: _events/*
+  match: "*"
   templates:
   - event
 - type: jekyll-pages
