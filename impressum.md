@@ -12,7 +12,6 @@ services: []
 show_news: false
 partners: []
 show_staff: false
-published: false
 
 ---
 ## Angaben gemäß § 5 TMG:
