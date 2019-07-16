@@ -1,18 +1,5 @@
 ---
-heading: ''
-sub_heading: ''
-layout: home
 title: Impressum
-banner_image: ''
-hero_button:
-  text: ''
-  href: ''
-textline: ''
-services: []
-show_news: false
-partners: []
-show_staff: false
-
 ---
 ## Angaben gemäß § 5 TMG:
 
