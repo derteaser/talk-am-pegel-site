@@ -80,6 +80,6 @@ fields:
   label: Layout
   type: text
   hidden: true
-  default: home
+  default: landing-page
 pages:
 - index.md
