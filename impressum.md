@@ -1,5 +1,10 @@
 ---
 title: Impressum
+layout: page
+menu:
+  footer:
+    identifier: _impressum
+    weight: 1
 ---
 ## Angaben gemäß § 5 TMG:
 
@@ -10,6 +15,7 @@ Platz des Landtags 1
 ## Kontakt
 
 Telefon: 0211/884-4051
+
 E-Mail: [info@talk-am-pegel.de](mailto:info@talk-am-pegel.de)
 
 ## Haftungsausschluss

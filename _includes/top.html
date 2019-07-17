@@ -1,15 +1,14 @@
 <!-- TOP -->
-<div class="top-wrap uk-position-relative uk-light uk-background-secondary">
-			
+<div class="top-wrap uk-position-relative uk-background-secondary">			
     {% include nav.html %}
     
     <div class="uk-cover-container uk-light uk-flex uk-flex-middle top-wrap-height">
         
         <!-- TOP CONTAINER -->
         <div class="uk-container uk-flex-auto top-container uk-position-relative uk-margin-medium-top" data-uk-parallax="y: 0,50; easing:0; opacity:0.2">
-            <div class="uk-width-1-2@s" data-uk-scrollspy="cls: uk-animation-slide-right-medium; target: > *; delay: 150">
+            <div class="uk-text-center" data-uk-scrollspy="cls: uk-animation-slide-right-medium; target: > *; delay: 150">
                 {% if page.sub_heading and page.sub_heading != "" %}<h6 class="uk-text-primary uk-margin-small-bottom">{{ page.sub_heading }}</h6>{% endif %}
-                <h1 class="uk-margin-remove-top">{{ page.heading | default: page.title }}</h1>
+                <h1 class="uk-margin-remove-top uk-heading-medium">{{ page.heading | default: page.title }}</h1>
                 {% if page.textline and page.textline != "" %}<p class="subtitle-text uk-visible@s">{{ page.textline }}</p>{% endif %}
                 {% if page.hero_button %}
                 <a href="{{ page.hero_button.href | absolute_url }}" title="{{ page.hero_button.text }}" class="uk-button uk-button-primary uk-border-pill" data-uk-scrollspy-class="uk-animation-fade">{{ page.hero_button.text }}</a>
@@ -25,7 +24,7 @@
         {% endif %}
     </div>
     <div class="uk-position-bottom-center uk-position-medium uk-position-z-index uk-text-center">
-        <a href="#content" class="uk-icon-button uk-text-primary" data-uk-scroll="duration: 500" data-uk-icon="icon: arrow-down; ratio: 2"></a>
+        <a href="#content" class="uk-icon-button uk-button-primary" data-uk-scroll="duration: 500" data-uk-icon="icon: arrow-down; ratio: 3"></a>
     </div>
 </div>
 <!-- /TOP -->

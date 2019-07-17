@@ -50,12 +50,12 @@ $global-small-font-size:                         0.875rem !default; // 14px
 // Colors
 //
 
-$global-color:                                   #484C50;
-$global-emphasis-color:                          #333 !default;
+$global-color:                                   #85919d;
+$global-emphasis-color:                          #484c50;
 $global-muted-color:                             #999 !default;
 
-//$global-link-color:                              $tap-primary-color;
-//$global-link-hover-color:                        $dw-violet-2;
+$global-link-color:                              $tap-primary-color;
+$global-link-hover-color:                        $tap-secondary-color;
 
 $global-inverse-color:                           #fff !default;
 
