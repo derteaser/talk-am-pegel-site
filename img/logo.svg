@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="212" height="40" viewBox="0 0 212 40">
+  <defs>
+    <style type="text/css">
+      @font-face {
+            font-family: 'Slabo 13px';
+            font-style: normal;
+            font-weight: 400;
+            src: url('../fonts/slabo-13px-v6-latin-regular.eot'); /* IE9 Compat Modes */
+            src: local('Slabo 13px'), local('Slabo13px-Regular'),
+                url('../fonts/slabo-13px-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+                url('../fonts/slabo-13px-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+                url('../fonts/slabo-13px-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+                url('../fonts/slabo-13px-v6-latin-regular.svg#Slabo13px') format('svg'); /* Legacy iOS */
+        }
+      text {
+        font-size: 32px;
+        font-family: "Slabo 13px";
+        fill: #FFF;
+      }
+
+      .talk {
+        fill: #FA5555;
+      }
+    </style>
+  </defs>
+  <title>Talk am Pegel Logo</title>
+  <text x="0" y="32"><tspan class="talk">Talk</tspan> am Pegel</text>
+</svg>

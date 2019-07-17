@@ -1,6 +1,6 @@
 ---
 title: 'Talk am Pegel #1'
-template: ''
+template: 'event'
 
 ---
 Unsere erste Veranstaltung

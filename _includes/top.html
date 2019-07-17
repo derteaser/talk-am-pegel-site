@@ -16,15 +16,14 @@
             </div>
         </div>
         <!-- /TOP CONTAINER -->
-        {% if page.banner_image and page.banner_image != "" %}
+        
         <!-- TOP IMAGE -->
-        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
-        data-src="{{ page.banner_image | absolute_url }}" alt="" data-uk-cover data-uk-img data-uk-parallax="opacity: 1,0.1; easing:0">
+        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ page.banner_image | absolute_url | default: "/img/pegelbar.jpg" | absolute_url }}" alt="" data-uk-cover data-uk-img data-uk-parallax="opacity: 1,0.1; easing:0">
         <!-- /TOP IMAGE -->
-        {% endif %}
+        
     </div>
     <div class="uk-position-bottom-center uk-position-medium uk-position-z-index uk-text-center">
-        <a href="#content" class="uk-icon-button uk-button-primary" data-uk-scroll="duration: 500" data-uk-icon="icon: arrow-down; ratio: 3"></a>
+        <a href="#content" class="uk-icon-button uk-button-primary" data-uk-scroll="duration: 500" data-uk-icon="icon: arrow-down; ratio: 2"></a>
     </div>
 </div>
 <!-- /TOP -->

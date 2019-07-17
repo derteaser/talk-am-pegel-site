@@ -66,6 +66,9 @@ fields:
   name: show_news
   label: Show News?
   description: Enables a news section with a twitter feed & latest posts
+- type: boolean
+  name: show_social_and_newsletter
+  label: Show Social and Newsletter?
 - type: image_gallery
   name: partners
   label: Partner Logos
@@ -79,5 +82,4 @@ fields:
   hidden: true
   default: home
 pages:
-- impressum.md
 - index.md
