@@ -82,4 +82,5 @@ fields:
   hidden: true
   default: landing-page
 pages:
+- impressum.md
 - index.md
