@@ -29,3 +29,8 @@ fields:
   config:
     required: false
   label: Ort
+- name: eventbrite_url
+  type: text
+  config:
+    required: false
+  label: Eventbrite URL
