@@ -15,5 +15,12 @@ fields:
   label: Template
   hidden: true
   default: event
-pages:
-- _events/talk-am-pegel-1.md
+- name: date
+  type: datetime
+  label: Datum
+  description: ''
+  config:
+    required: true
+    date_format: ''
+    time_format: 
+    display_utc: false
