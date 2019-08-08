@@ -1,0 +1,11 @@
+---
+title: 'Olympische Spiele vor der Haustür - Chance für unsere Region'
+textline: 'Talk am Pegel #1'
+template: 'event'
+date: 2019-09-03T19:00:00Z
+location: Pegelbar Neuss
+eventbrite_url: https://www.eventbrite.de/e/olympische-spiele-vor-der-haustur-chance-fur-unsere-region-tickets-68262612311
+---
+### Die Reihe "Talk am Pegel" startet! 
+
+Michael Mronz, Gründer der Rhein Ruhr City 2032 Initiative, diskutiert mit Dr. Hermann-Josef Baaken (Vorsitzender des Sportbundes Rhein-Kreis Neuss), Prof. Dr. Jan-Philipp Büchler (Wirtschaftsprofessor), Jürgen Steinmetz (Hauptgeschäftsführer der IHK Mittlerer Niederrhein) und Dr. Jörg Geerlings MdL über die Chancen von Olympischen Spielen in unserer Region.  

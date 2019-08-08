@@ -50,8 +50,15 @@
             </li>
             {% endfor %}
         </ul>
-        <h4>Der n&auml;chste Talk</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <h4>Der n&auml;chste Talk:</h4>
+        {% for event in site.events limit:1 %}
+        <a href="{{ event.url }}">
+            <div class="uk-tile uk-tile-primary uk-tile-small">
+                <h5 class="uk-margin-remove-bottom">{{ event.title }}</h5>
+                <span class="uk-text-meta">am {{ event.date | date: '%d.%m.%Y' }}</span>
+            </div>
+        </a>
+        {% endfor %}
     </div>
 </div>
 <!-- /OFFCANVAS -->

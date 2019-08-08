@@ -4,6 +4,38 @@ layout: default
 
 <section id="content" class="uk-section uk-section-default">
     <div class="uk-container">
-        {{ content }}
+        <div uk-grid>
+            <div class="uk-width-2-3@l">
+                <p>
+                    <span class="uk-label">{% assign m = page.date | date: "%-m" %}
+                            {{ page.date | date: "%-d" }}.
+                            {% case m %}
+                                {% when '1' %}Januar
+                                {% when '2' %}Februar
+                                {% when '3' %}M&auml;rz
+                                {% when '4' %}April
+                                {% when '5' %}Mai
+                                {% when '6' %}Juni
+                                {% when '7' %}Juli
+                                {% when '8' %}August
+                                {% when '9' %}September
+                                {% when '10' %}Oktober
+                                {% when '11' %}November
+                                {% when '12' %}Dezember
+                            {% endcase %}
+                            {{ page.date | date: "%Y" }}</span>
+                    <span class="uk-label">{{ page.date | date: '%R' }} Uhr</span>
+                    <span class="uk-label">{{ page.location }}</span>
+                </p>
+                {{ content }}
+            </div>
+            <div class="uk-width-expand">
+                <div class="uk-tile uk-tile-primary uk-tile-small">
+                    <h4>Anmeldung</h4>
+                    <p>Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren Partner Eventbrite!</p>
+                    <a href="{{ page.eventbrite_url }}" class="uk-button uk-button-primary uk-width-1-1" rel="noopener noreferrer">Kostenloses Ticket sichern</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

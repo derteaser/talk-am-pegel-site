@@ -13,12 +13,21 @@ defaults:
       type: posts
     values:
       layout: post
+  - scope:
+      path: ""
+      type: events
+    values:
+      layout: event
 collections:
   people:
     output: true
     permalink: "/about/:path/"
   posts:
     output: true
+  events:
+    output: true
+    permalink: "/talks/:path/"
+future: true
 # tag_page_layout: tag_page
 # tag_page_dir: tag
 jekyll-archives:
