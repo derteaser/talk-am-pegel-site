@@ -21,9 +21,10 @@ fields:
   description: ''
   config:
     required: true
-    date_format: ''
-    time_format: 
+    date_format: DD.MM.YYYY
+    time_format: HH:mm
     display_utc: false
+  default: now
 - name: location
   type: text
   config:
