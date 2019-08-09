@@ -45,4 +45,5 @@ fields:
   hidden: true
   default: person
 pages:
+- _people/hermann-josef-baaken.md
 - _people/michael-mronz.md
