@@ -6,7 +6,7 @@ thumbnail: "/uploads/2019/08/09/0.jpg"
 email: ''
 website: ''
 linkedin: https://www.linkedin.com/in/profbuechler/
-xing: ''
+xing: https://www.xing.com/profile/JanPhilipp_Buechler/
 wikipedia: ''
 
 ---
