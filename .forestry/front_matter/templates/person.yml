@@ -45,8 +45,8 @@ fields:
   hidden: true
   default: person
 pages:
-- _people/joerg-geerlings.md
-- _people/hermann-josef-baaken.md
-- _people/jan-philipp-buechler.md
 - _people/juergen-steinmetz.md
 - _people/michael-mronz.md
+- _people/jan-philipp-buechler.md
+- _people/hermann-josef-baaken.md
+- _people/joerg-geerlings.md
