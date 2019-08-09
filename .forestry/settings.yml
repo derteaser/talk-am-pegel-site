@@ -27,7 +27,7 @@ sections:
 - type: directory
   path: _people
   label: People
-  create: all
+  create: documents
   match: "*"
   templates:
   - person
