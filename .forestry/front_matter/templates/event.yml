@@ -15,6 +15,12 @@ fields:
   label: Template
   hidden: true
   default: event
+- type: file
+  name: banner_image
+  label: Hero Image
+  description: 'Dimensions: 1200px by 580px'
+  config:
+    maxSize: '2'
 - name: date
   type: datetime
   label: Datum
