@@ -1,6 +1,6 @@
 ---
 layout: person
-title: Joerg Geerlings
+title: Dr. Jörg Geerlings
 sub_heading: Mitglied des Landtags NRW
 thumbnail: "/uploads/2019/08/09/jörg-geerlings-foto.1024x1024.jpg"
 email: ''
