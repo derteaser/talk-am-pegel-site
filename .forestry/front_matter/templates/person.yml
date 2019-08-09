@@ -45,6 +45,7 @@ fields:
   hidden: true
   default: person
 pages:
+- _people/juergen-steinmetz.md
 - _people/jan-philipp-buechler.md
 - _people/michael-mronz.md
 - _people/hermann-josef-baaken.md
