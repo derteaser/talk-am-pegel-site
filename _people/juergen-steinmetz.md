@@ -1,6 +1,6 @@
 ---
 layout: person
-title: Juergen Steinmetz
+title: Jürgen Steinmetz
 sub_heading: Hauptgeschäftsführer der IHK Mittlerer Niederrhein
 thumbnail: ''
 email: ''
