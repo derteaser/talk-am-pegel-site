@@ -1,6 +1,7 @@
 ---
 title: Olympische Spiele vor der Haustür - Chance für unsere Region
 textline: 'Talk am Pegel #1'
+banner_image: '/uploads/2019/08/09/carry-71257.jpg'
 template: event
 date: 2019-09-03T17:00:00.000+00:00
 location: Pegelbar Neuss
