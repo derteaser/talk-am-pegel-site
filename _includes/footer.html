@@ -1,25 +1,18 @@
 <!-- FOOTER -->
 <footer class="uk-section uk-section-secondary uk-padding-remove-bottom">
     <div class="uk-container">
-        <nav class="uk-navbar uk-navbar-container uk-navbar-transparent" data-uk-navbar>
-            <div class="uk-navbar-left">
-                <div class="uk-navbar-item">
+        <nav class="" data-uk-grid>
+            <div class="uk-width-auto@m">
+                <div class="uk-text-center uk-text-left@m">
                     <a href="https://twitter.com/{{ site.data.information.twitter }}" class="uk-icon-button" data-uk-icon="twitter" target="_blank"></a>&nbsp;
                     <a href="https://www.facebook.com/{{ site.data.information.facebook }}" class="uk-icon-button" data-uk-icon="facebook" target="_blank"></a>
                 </div>
             </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
+            <div class="uk-width-expand">
+                <ul class="uk-subnav uk-flex-center uk-flex-right@m">
                     {% for link in site.menus.footer %}
                         <li class="{% if url == link.url %}uk-active{% endif %}">
                             <a href="{{ link.url | absolute_url }}"{% if link.target %} target="_blank" {% endif %}{% if link.childen %} data-uk-icon="chevron-down"{% endif %}>{{ link.title }}</a>
-                            {% if link.childen %}
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                {% for child in link.children %}
-                                <li><a href="{{ child.url | absolute_url }}"{% if child.target %} target="_blank" {% endif %}>{{ child.title }}</a></li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
