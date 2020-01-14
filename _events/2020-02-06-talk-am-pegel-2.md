@@ -6,8 +6,11 @@ banner_image: "/uploads/2020/01/14/brown-coal-4294657_1920.jpg"
 location: Pegelbar Neuss
 eventbrite_url: https://www.eventbrite.de/e/kohleausstieg-im-rheinischen-revier-strukturwandel-gestalten-tickets-89050549591
 attendants:
+- _people/nathanael-liminski.md
+- _people/volker-backs.md
+- _people/dirk-brügge.md
+- _people/patricia-voeltz.md
 - _people/joerg-geerlings.md
-published: false
 
 ---
 ## Die Reihe "Talk am Pegel" geht weiter! 
