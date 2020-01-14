@@ -2,7 +2,7 @@
 template: event
 date: 2020-02-06 19:00:52 +0100
 title: Kohleausstieg im Rheinischen Revier - Strukturwandel gestalten
-banner_image: ''
+banner_image: "/uploads/2020/01/14/brown-coal-4294657_1920.jpg"
 location: Pegelbar Neuss
 eventbrite_url: https://www.eventbrite.de/e/kohleausstieg-im-rheinischen-revier-strukturwandel-gestalten-tickets-89050549591
 attendants:
