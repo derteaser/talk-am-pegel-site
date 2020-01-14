@@ -5,7 +5,8 @@ title: Kohleausstieg im Rheinischen Revier - Strukturwandel gestalten
 banner_image: ''
 location: Pegelbar Neuss
 eventbrite_url: https://www.eventbrite.de/e/kohleausstieg-im-rheinischen-revier-strukturwandel-gestalten-tickets-89050549591
-attendants: []
+attendants:
+- _people/joerg-geerlings.md
 published: false
 
 ---
