@@ -10,3 +10,6 @@ attendants:
 published: false
 
 ---
+## Die Reihe "Talk am Pegel" geht weiter! 
+
+Nathanael Liminski, Chef der Staatskanzlei NRW, diskutiert mit Volker Backs (Hydro Aluminium), Dirk Brügge (Kreisdirektor des Rhein-Kreises Neuss), Patricia Voeltz (Fridays for Future) und Dr. Jörg Geerlings MdL über den Strukturwandel nach dem Kohleausstieg im Rheinischen Revier.
