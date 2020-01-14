@@ -8,6 +8,5 @@ website: ''
 linkedin: ''
 xing: https://www.xing.com/profile/Nathanael_Liminski
 wikipedia: https://de.wikipedia.org/wiki/Nathanael_Liminski
-published: false
 
 ---
