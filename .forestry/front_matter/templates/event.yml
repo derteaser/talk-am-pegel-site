@@ -51,3 +51,5 @@ fields:
       type: pages
       section: people
   label: Teilnehmer
+pages:
+- _events/2020-02-06-talk-am-pegel-2.md
