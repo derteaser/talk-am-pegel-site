@@ -1,6 +1,6 @@
 ---
 template: event
-date: 2020-06-15T18:00:00.000+00:00
+date: 2020-06-15 19:00:00 +0200
 title: Das Gesundheitssystem im Stresstest - krisenfest?!
 banner_image: "/uploads/2020/06/03/piron-guillaume-u4fycp3-kzy-unsplash.jpg"
 location: Online-Event
