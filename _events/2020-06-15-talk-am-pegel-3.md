@@ -7,6 +7,9 @@ location: Online-Event
 eventbrite_url: https://www.eventbrite.de/e/das-gesundheitssystem-im-stresstest-krisenfest-tickets-107536386226
 attendants:
 - _people/karl-josef-laumann.md
+- _people/dr.dilek-gursoy.md
+- _people/dr.hans-christian-wirtz.md
+- _people/dr.nicolas-kramer.md
 - _people/joerg-geerlings.md
 
 ---
