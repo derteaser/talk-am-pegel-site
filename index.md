@@ -2,7 +2,7 @@
 title: Home
 layout: landing-page
 heading: Die neue Talk-Reihe in Neuss ist da.
-textline: Am 6. Februar geht's weiter!
+textline: Am 15. Juni geht's weiter!
 show_social_and_newsletter: true
 show_news: false
 show_event_hero: true
