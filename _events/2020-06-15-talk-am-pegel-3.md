@@ -7,7 +7,6 @@ location: Online-Event
 eventbrite_url: https://www.eventbrite.de/e/das-gesundheitssystem-im-stresstest-krisenfest-tickets-107536386226
 attendants:
 - _people/joerg-geerlings.md
-published: false
 
 ---
 ## Vortrag und Diskussion mit Minister Karl-Josef Laumann
