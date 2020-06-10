@@ -41,5 +41,6 @@ Icon
 /site/config/.license
 
 /vendor/*
+/kirby/*
 /site/plugins/*
 node_modules/*
