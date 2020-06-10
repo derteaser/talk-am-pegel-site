@@ -1,0 +1,76 @@
+Title: Das Gesundheitssystem im Stresstest - krisenfest?!
+
+----
+
+Date: 2020-06-15 19:00
+
+----
+
+Is-virtual: true
+
+----
+
+Location-name: Zoom
+
+----
+
+Location-geo: 
+
+----
+
+Location-url: https://zoom.us
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/das-gesundheitssystem-im-stresstest-krisenfest-tickets-107536386226
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Vortrag und Diskussion mit Minister Karl-Josef Laumann",
+        "id": "_JBAmN6xnG",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Der nordrhein-westf\u00e4lische Gesundheitsminister Karl-Josef Laumann (CDU) diskutiert mit Dr. Dilek G\u00fcrsoy (Herzchirurgin), Dr. Hans-Christian Wirtz (Janssen Cilag), Dr. Nicolas Kr\u00e4mer (Krankenhausmanager) und dem Neusser Landtagsabgeordneten Dr. J\u00f6rg Geerlings \u00fcber die Zukunft des Gesundheitssystems.",
+        "id": "_h4MhjtCpr",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Wegen der Corona-Pandemie findet die Veranstaltung ausschlie\u00dflich als Online-Event \u00fcber den kostenlosen Anbieter Zoom statt. Wer an der Veranstaltung teilnehmen m\u00f6chte, muss sich mit Namen und E-Mail-Adresse anmelden und bekommt am Tag vor der Veranstaltung die Informationen zur Online-\u00dcbertragung zugeschickt.",
+        "id": "_kUdiWjhH9",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Dar\u00fcber hinaus wird die Veranstaltung auch in Facebook live \u00fcbertragen, und zwar auf der Seite <a href=\"https://www.facebook.com/talkampegel\">\u201eTalk am Pegel\u201c</a>. Wer die Veranstaltung auf diesem Wege mitverfolgen m\u00f6chte, muss sich nicht anmelden.",
+        "id": "_mevHArXXr",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Attendants:
+
+- persons/karl-josef-laumann
+- persons/dilek-guersoy
+- persons/hans-christian-wirtz
+- persons/nicolas-kraemer
+- persons/joerg-geerlings
+
+----
+
+Main-image:
+
+- piron-guillaume-u4fycp3-kzy-unsplash.jpg
+
+----
+
+Textline: Talk am Pegel #3

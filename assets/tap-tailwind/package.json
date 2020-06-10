@@ -1,0 +1,17 @@
+{
+  "name": "talk-am-pegel-tailwind-theme",
+  "version": "0.0.1",
+  "author": "Jens Kuesters",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "aos": "^2.3.4",
+    "autoprefixer": "^9.8.0",
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.4.6"
+  },
+  "scripts": {
+    "build": "postcss css/tap-tailwind.css -o dist/tap-tailwind.css",
+    "aos": "cp -R node_modules/aos/dist/* dist/"
+  }
+}

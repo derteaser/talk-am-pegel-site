@@ -1,0 +1,47 @@
+Title: Talk am Pegel
+
+----
+
+Address1: Dr. Jörg Geerlings MdL
+
+----
+
+Address2: Platz des Landtags 1
+
+----
+
+Postal-code: 40221
+
+----
+
+City: Düsseldorf
+
+----
+
+Phone: +49 211/884-4051
+
+----
+
+Email: info@talk-am-pegel.de
+
+----
+
+Facebook: talkampegel
+
+----
+
+Twitter: talkampegel
+
+----
+
+Main-image:
+
+- tap_banner.jpg
+
+----
+
+Footer-navigation:
+
+- kontakt
+- impressum
+- datenschutz

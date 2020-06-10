@@ -1,0 +1,12 @@
+title: Homepage
+
+fields:
+  herotitle:
+    type: text
+    label: Hero Titel
+    required: true
+  textline:
+    type: text
+    label: Kicker
+    required: true
+

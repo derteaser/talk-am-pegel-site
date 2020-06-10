@@ -1,0 +1,64 @@
+Title: Kohleausstieg im Rheinischen Revier - Strukturwandel gestalten
+
+----
+
+Date: 2020-02-06 19:00
+
+----
+
+Location-name: Pegelbar Neuss
+
+----
+
+Location-geo:
+
+lat: 51.1996335
+lon: 6.6958312
+number: "5"
+city: Neuss
+country: Deutschland
+postcode: "41460"
+address: Am Zollhafen
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/kohleausstieg-im-rheinischen-revier-strukturwandel-gestalten-tickets-89050549591
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Die Reihe \"Talk am Pegel\" geht weiter!",
+        "id": "_i8zbMNHxy",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Nathanael Liminski, Chef der Staatskanzlei NRW, diskutiert mit Volker Backs (Hydro Aluminium), Dirk Br\u00fcgge (Kreisdirektor des Rhein-Kreises Neuss), Patricia Voeltz (Fridays for Future) und Dr. J\u00f6rg Geerlings MdL \u00fcber den Strukturwandel nach dem Kohleausstieg im Rheinischen Revier.",
+        "id": "_9wsbLM6Pd",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Attendants:
+
+- persons/nathanael-liminski
+- persons/volker-backs
+- persons/dirk-bruegge
+- persons/patricia-voeltz
+- persons/joerg-geerlings
+
+----
+
+Main-image:
+
+- brown-coal-4294657_1920.jpg
+
+----
+
+Textline: Talk am Pegel #2

@@ -1,0 +1,37 @@
+title: Veranstaltungen
+icon: chat
+
+options:
+  changeSlug: false
+  changeStatus: false
+  create: false
+  duplicate: false
+  delete: false
+  hideOptions: true
+
+status:
+  listed: false
+  draft: false
+
+columns:
+  left:
+    width: 1/2
+    sections:
+      drafts:
+        extends: sections/events
+        headline: Unveröffentlichte Talks
+        status: draft
+      unlisted:
+        extends: sections/events
+        headline: Ungelistete Talks
+        status: unlisted
+  right:
+    width: 1/2
+    sections:
+      listed:
+        extends: sections/events
+        headline: Veröffentlichte Talks
+        status: listed
+        layout: cards
+        image:
+          cover: true
