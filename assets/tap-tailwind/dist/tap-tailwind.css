@@ -667,6 +667,10 @@ video {
   height: auto;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   --text-opacity: 1;
   color: #718096;

@@ -13,8 +13,8 @@ use Kirby\Cms\Page;
   <div class="container px-5 pt-6 pb-12 mx-auto flex flex-col">
     <div class="lg:w-4/6 mx-auto">
       <div class="flex flex-col sm:flex-row mt-10">
-        <div class="sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r border-gray-300 sm:border-b-0 border-b mb-4 pb-4 sm:mb-0 text-center sm:text-left">
-          <p class="leading-relaxed text-lg mb-4"><?= $page->text()->blocks() ?></p>
+        <div class="sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r border-gray-300 sm:border-b-0 border-b mb-4 pb-4 sm:mb-0">
+          <div class="mb-4"><?= $page->text()->blocks() ?></div>
         </div>
         <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
           <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -70,7 +70,7 @@ use Kirby\Cms\Page;
 </section>
 
 <section class="text-gray-700">
-  <div class="container px-5 pt-12 pb-24 mx-auto">
+  <div class="container px-20 sm: px-12 md:px-5 pt-12 pb-24 mx-auto">
     <div class="flex flex-wrap -m-4">
       <?php foreach ($page->attendants()->toPages() as $person): ?>
         <?php snippet('person', ['person' => $person]) ?>

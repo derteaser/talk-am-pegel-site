@@ -24,4 +24,11 @@ $imageUrl = $image ? $image->url() : "/assets/tap-tailwind/dist/img/pegelbar.jpg
       <p class="text-2xl text-gray-400 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
     <?php endif ?>
   </div>
+  <div class="absolute bottom-0 z-10 text-center w-full pb-10 md:hidden">
+    <a href="#content" class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-tap-red-500 hover:bg-tap-red-800 text-white flex-shrink-0">
+      <?php snippet('icon', ['name' => 'arrow-down', 'cssClasses' => 'fill-current w-6 h-6']) ?>
+    </a>
+  </div>
 </header>
+
+<span id="content"></span>
