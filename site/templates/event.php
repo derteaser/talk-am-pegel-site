@@ -78,4 +78,33 @@ use Kirby\Cms\Page;
     </div>
   </div>
 </section>
+
+<nav class="bg-gray-300 py-4 px-3 md:px-8">
+  <div class="grid grid-cols-2 divide-x divide-gray-400 items-center">
+    <?php if ($prev = $page->prev()): ?>
+      <div class="p-2">
+        <a href="<?= $prev->url() ?>" class="text-gray-600 hover:text-gray-700 flex flex-row items-center">
+          <?php snippet('icon', ['name' => 'angle-left', 'cssClasses' => 'fill-current w-12 h-12 float-right mr-4']) ?>
+          <div>
+            <p class="text-gray-500 text-sm uppercase font-medium"><?= $prev->textline() ?></p>
+            <p><?= $prev->title() ?></p>
+          </div>
+        </a>
+      </div>
+    <?php else: ?>
+      <div></div>
+    <?php endif ?>
+    <?php if ($next = $page->next()): ?>
+      <div class="p-2 text-right">
+        <a href="<?= $next->url() ?>" class="text-gray-600 hover:text-gray-700 flex flex-row-reverse items-center">
+          <?php snippet('icon', ['name' => 'angle-right', 'cssClasses' => 'fill-current w-12 h-12 float-right ml-4']) ?>
+          <div>
+            <p class="text-gray-500 text-sm uppercase font-medium"><?= $next->textline() ?></p>
+            <p><?= $next->title() ?></p>
+          </div>
+        </a>
+      </div>
+    <?php endif ?>
+  </div>
+</nav>
 <?php snippet('footer') ?>

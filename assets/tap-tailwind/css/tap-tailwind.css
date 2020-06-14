@@ -59,6 +59,7 @@ html {
 
 body {
   @apply text-gray-600;
+  @apply antialiased;
 }
 
 h1 {
@@ -105,20 +106,20 @@ h6 {
   @apply bg-tap-blue-500;
 }
 .btn-blue:hover, .btn-blue:focus {
-  @apply bg-tap-blue-800;
+  @apply bg-tap-blue-700;
 }
 .btn-blue:active {
-  @apply bg-tap-blue-200;
+  @apply bg-tap-blue-400;
 }
 
 .btn-red {
   @apply bg-tap-red-500;
 }
 .btn-red:hover, .btn-red:focus {
-  @apply bg-tap-red-800;
+  @apply bg-tap-red-600;
 }
 .btn-red:active {
-  @apply bg-tap-red-200;
+  @apply bg-tap-red-400;
 }
 
 @tailwind utilities;
