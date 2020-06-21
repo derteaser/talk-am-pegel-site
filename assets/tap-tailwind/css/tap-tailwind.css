@@ -119,6 +119,13 @@ h6 {
   @apply italic;
 }
 
+.editor-text blockquote {
+  @apply my-6;
+  @apply border-l-8;
+  @apply p-4;
+  @apply text-lg;
+}
+
 @tailwind components;
 
 .btn {
