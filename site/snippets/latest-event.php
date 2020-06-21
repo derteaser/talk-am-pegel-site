@@ -9,7 +9,7 @@ use Kirby\Toolkit\Str;
 $description = '';
 if ($text = $event->text() && $blocks = $event->text()->toBlocks()) {
   if ($block = $blocks->filterBy('type', 'paragraph')->first()) {
-    $description = Html::decode(Str::excerpt($block->content(), 300));
+    $description = Html::decode(Str::excerpt($block->content(), 400));
   }
 }
 ?>

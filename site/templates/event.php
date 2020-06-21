@@ -12,22 +12,26 @@ use Kirby\Cms\Page;
 <section class="text-gray-700">
   <div class="container px-5 pt-6 pb-12 mx-auto flex flex-col">
     <div class="lg:w-4/6 mx-auto">
-      <div class="flex flex-col sm:flex-row mt-10">
-        <div class="sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r border-gray-300 sm:border-b-0 border-b mb-4 pb-4 sm:mb-0">
-          <div class="mb-4"><?= $page->text()->blocks() ?></div>
-        </div>
-        <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
-          <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-            <?php snippet('icon', ['name' => 'ticket', 'cssClasses' => 'fill-current w-16 h-16']) ?>
+      <?php if ($page->date()->toDate() > time()): ?>
+        <div class="flex flex-col sm:flex-row mt-10">
+          <div class="sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r border-gray-300 sm:border-b-0 border-b mb-4 pb-4 sm:mb-0">
+            <div class="mb-4 editor-text"><?= $page->text()->blocks() ?></div>
           </div>
-          <div class="flex flex-col items-center text-center justify-center">
-            <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Anmeldung</h2>
-            <div class="w-12 h-1 bg-tap-blue-500 rounded mt-2 mb-4"></div>
-            <p class="text-base text-gray-600">Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren Partner Eventbrite!</p>
-            <a class="btn btn-red mt-8" href="<?= $page->eventbrite_url() ?>" target="_blank" rel="noopener noreferrer">Kostenloses Ticket sichern</a>
+          <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
+            <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
+              <?php snippet('icon', ['name' => 'ticket', 'cssClasses' => 'fill-current w-16 h-16']) ?>
+            </div>
+            <div class="flex flex-col items-center text-center justify-center">
+              <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Anmeldung</h2>
+              <div class="w-12 h-1 bg-tap-blue-500 rounded mt-2 mb-4"></div>
+              <p class="text-base text-gray-600">Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren Partner Eventbrite!</p>
+              <a class="btn btn-red mt-8" href="<?= $page->eventbrite_url() ?>" target="_blank" rel="noopener noreferrer">Kostenloses Ticket sichern</a>
+            </div>
           </div>
         </div>
-      </div>
+      <?php else: ?>
+        <div class="mb-4 editor-text"><?= $page->text()->blocks() ?></div>
+      <?php endif ?>
     </div>
   </div>
 </section>

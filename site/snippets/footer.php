@@ -11,7 +11,7 @@ use Kirby\Cms\Site;
         <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base py-2 px-4" placeholder="Ihre E-Mail" name="EMAIL" type="email" required>
         <button class="inline-flex btn btn-blue" type="submit">Anmelden</button>
         <p class="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">Informieren Sie sich in unserem Newsletter
-          <br class="lg:block hidden"> oder folgen Sie uns bei Facebook und auf Twitter.
+          <br class="lg:block hidden"> oder folgen Sie uns bei Facebook und Twitter.
         </p>
       </form>
       <span class="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">

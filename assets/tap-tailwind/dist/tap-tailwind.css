@@ -720,6 +720,51 @@ h6 {
   color: rgba(45, 55, 72, var(--text-opacity));
 }
 
+.editor-text h2, .editor-text h3, .editor-text h4, .editor-text h5 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.editor-text ul {
+  list-style-type: disc;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.editor-text ol {
+  list-style-type: decimal;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.editor-text p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.editor-text a {
+  font-weight: 600;
+  --text-opacity: 1;
+  color: #FA5555;
+  color: rgba(250, 85, 85, var(--text-opacity));
+}
+
+.editor-text a:hover {
+  --text-opacity: 1;
+  color: #712626;
+  color: rgba(113, 38, 38, var(--text-opacity));
+  text-decoration: underline;
+}
+
+.editor-text b, .editor-text strong {
+  font-weight: 700;
+}
+
+.editor-text i, .editor-text em {
+  font-style: italic;
+}
+
 .container {
   width: 100%;
 }

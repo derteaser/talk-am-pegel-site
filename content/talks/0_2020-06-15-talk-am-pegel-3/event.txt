@@ -31,26 +31,61 @@ Text:
 [
     {
         "attrs": [],
-        "content": "Vortrag und Diskussion mit Minister Karl-Josef Laumann",
-        "id": "_JBAmN6xnG",
+        "content": "J\u00f6rg Geerlings diskutiert beim Talk am Pegel mit Gesundheitsminister Laumann und Gesundheitsexperten",
+        "id": "_cptipnyvh",
         "type": "h2"
     },
     {
+        "attrs": {
+            "guid": "/pages/talks+2020-06-15-talk-am-pegel-3/files/geerlings_laumann-scaled-f6fa92c5.jpeg",
+            "id": "talks/2020-06-15-talk-am-pegel-3/geerlings_laumann-scaled-f6fa92c5.jpeg",
+            "ratio": 1.3897937024972855102333824106608517467975616455078125,
+            "caption": ""
+        },
+        "content": "",
+        "id": "_w4dhwcvae",
+        "type": "image"
+    },
+    {
         "attrs": [],
-        "content": "Der nordrhein-westf\u00e4lische Gesundheitsminister Karl-Josef Laumann (CDU) diskutiert mit Dr. Dilek G\u00fcrsoy (Herzchirurgin), Dr. Hans-Christian Wirtz (Janssen Cilag), Dr. Nicolas Kr\u00e4mer (Krankenhausmanager) und dem Neusser Landtagsabgeordneten Dr. J\u00f6rg Geerlings \u00fcber die Zukunft des Gesundheitssystems.",
-        "id": "_h4MhjtCpr",
+        "content": "Im vergangenen Oktober startete der Neusser Landtagsabgeordnete Dr. J\u00f6rg Geerlings (CDU) die Veranstaltungsreihe \u201eTalk am Pegel\u201c. Bereits nach der zweiten Auflage war klar, dass sich dieses Format erfolgreich in Neuss etabliert hatte. \u201eIch m\u00f6chte Ideen und Impulse f\u00fcr unsere Region geben und das gesellschaftliche Miteinander in Neuss bereichern\u201c, so das erkl\u00e4rte Ziel des Initiators Geerlings. \u201eDie aufgrund des Corona-Virus erfolgte Online-Premiere als Videokonferenz mit ca. 80 konstant zugeschalteten Teilnehmern sowie einem Videostreaming mit riesiger Reichweite (\u00fcber 4.000) und erstklassig besetztem Podium ist gelungen.\u201c Zum hochaktuellen Thema \u201eDas Gesundheitssystem im Stresstest \u2013 krisenfest?!\u201c diskutierte der nordrhein-westf\u00e4lische Gesundheitsminister Karl-Josef Laumann mit Dilek G\u00fcrsoy, Herzchirurgin, Dr. Christian Wirtz, Gesch\u00e4ftsf\u00fchrung Janssen Deutschland, Dr. Nicolas Kr\u00e4mer, Krankenhausmanager, und Dr. J\u00f6rg Geerlings MdL.",
+        "id": "_tqFpVTTCT",
         "type": "paragraph"
     },
     {
         "attrs": [],
-        "content": "Wegen der Corona-Pandemie findet die Veranstaltung ausschlie\u00dflich als Online-Event \u00fcber den kostenlosen Anbieter Zoom statt. Wer an der Veranstaltung teilnehmen m\u00f6chte, muss sich mit Namen und E-Mail-Adresse anmelden und bekommt am Tag vor der Veranstaltung die Informationen zur Online-\u00dcbertragung zugeschickt.",
-        "id": "_kUdiWjhH9",
+        "content": "Minister Laumann er\u00f6ffnete das Gespr\u00e4ch mit dem klaren Statement, dass unser Gesundheitssystem den Stresstest \u201eCorona\u201c bisher hervorragend bestanden hat. \u201eIn nur wenigen Tagen haben wir uns auf die Krisensituation eingestellt. Es wurden so viele Pl\u00e4tze auf Intensivstationen bereitgestellt, wie in keinem anderen Land\u201c, stellte Laumann die gro\u00dfe Leistung der Krankenh\u00e4user im Land heraus. Als Krankenhausmanager konnte Dr. Nicolas Kr\u00e4mer dieser Analyse nur zustimmen: \u201eDie Krankenh\u00e4user haben die Corona-Krise gemeistert, der Shutdown ist gelungen. In nur wenigen Tagen wurden in NRW ca. 1.700 Intensiv- und Beatmungskapazit\u00e4ten bereitgestellt. Das ist ein Drittel der Kapazit\u00e4t von ganz Italien.\u201c In Praxen und bei den kommunalen Gesundheitsdiensten wurde ebenso schnell alles auf die aktuellen Bed\u00fcrfnisse umger\u00fcstet.",
+        "id": "_pEdPvSJ3Z",
         "type": "paragraph"
     },
     {
         "attrs": [],
-        "content": "Dar\u00fcber hinaus wird die Veranstaltung auch in Facebook live \u00fcbertragen, und zwar auf der Seite <a href=\"https://www.facebook.com/talkampegel\">\u201eTalk am Pegel\u201c</a>. Wer die Veranstaltung auf diesem Wege mitverfolgen m\u00f6chte, muss sich nicht anmelden.",
-        "id": "_mevHArXXr",
+        "content": "\u201eWir sind optimistisch, einen Impfstoff herstellen zu k\u00f6nnen\u201c",
+        "id": "_ip0qx0a3c",
+        "type": "blockquote"
+    },
+    {
+        "attrs": [],
+        "content": "\u201eEine Hauptl\u00f6sung der Krise ist die Pr\u00e4vention und die Forschung an einem Impfstoff\u201c, so Dr. Christian Wirtz von der in Neuss ans\u00e4ssigen Gesch\u00e4ftsf\u00fchrung von Janssen Deutschland. \u201eWir sind optimistisch, einen Impfstoff herstellen zu k\u00f6nnen\u201c, so Wirtz. \u201eWir konnten den Forschungsprozess bei Johnson&amp;Johnson so weit beschleunigen, dass wir kommenden Monat die ersten klinischen Studien beginnen k\u00f6nnen.\u201c \u201eDer erste Impfstoff k\u00f6nnte zur Jahreswende zur Verf\u00fcgung stehen\u201c, zeigte sich Wirtz zuversichtlich. Um die Menschen weltweit mit einem Impfstoff zu versorgen, m\u00fcssten 5 bis 6 Milliarden Dosen zur Verf\u00fcgung stehen. Dies sind enorme Herausforderungen. Johnson&amp;Johnsen ist bereit, seinen Beitrag dazu zu leisten.",
+        "id": "_HH0KyWScC",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Die Krise hat aber auch gezeigt, wo es Verbesserungsbedarf gibt. Es war zu Beginn nicht klar, wie viele Intensivbetten oder Beatmungsger\u00e4te NRW zur Verf\u00fcgung hat. Heute liegen dem Ministerium konkrete Zahlen vor. Auch Schutzkleidung wurde zum Engpass. Praxen und Krankenh\u00e4user konnten ohne staatliche Hilfe den Bedarf nicht decken. \u201eWir haben uns auf Lieferketten verlassen, die Jahrzehnte funktioniert haben, in einer Pandemie aber eben nicht mehr funktionieren\u201c, so Laumann. \u201eDas Gesundheitssystem in Deutschland braucht in bestimmten Grundbed\u00fcrfnissen eine europ\u00e4ische Souver\u00e4nit\u00e4t. Dies gilt auch f\u00fcr wichtige Grundstoffe f\u00fcr Medikamente. Dass dies nicht schnell wieder vergessen wird, ist mein politischer Auftrag.\u201c",
+        "id": "_zXnNyPJOd",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Bisher gelten in den Bundesl\u00e4ndern zum Teil sehr unterschiedliche Auflagen zum Infektionsschutz. Ist der F\u00f6deralismus ein Hemmnis in der Krise? Die Bev\u00f6lkerung ist verunsichert. Warum m\u00fcssen sich die Menschen an Regeln halten, die im benachbarten Bundesland aber bereits aufgehoben sind? Minister Laumann ist sich mit dem Gastgeber Dr. Geerlings MdL einig, dass der F\u00f6deralismus daf\u00fcr sorgt, dass auf die unterschiedlich hohen Infektionszahlen auch unterschiedlich reagiert werden kann. \u201eOft wurden die Ma\u00dfnahmen in Bayern und NRW miteinander verglichen. Es ist richtig, dass beide L\u00e4nder teilweise unterschiedlich mit der Krise umgegangen sind. Die Infektionszahlen waren in Bayern auch deutlich h\u00f6her als in NRW\u201c, sieht Laumann die NRW-Politik best\u00e4tigt. \u201eIch gehe davon aus, dass eine m\u00f6gliche zweite Infektionswelle unser Land eher punktuell treffen wird. Ma\u00dfnahmen daher sehr regional getroffen werden m\u00fcssen\u201c, sch\u00e4tzt Laumann die Situation in Zukunft ein.",
+        "id": "_UIaBUxHor",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Alle Beteiligten waren sich einig: Das Gesundheitssystem braucht zur weiteren Verbesserung der Qualit\u00e4t der Versorgung von Patientinnen und Patienten Kompetenzzentren. Herausforderung ist es, eine Krankenhausplanung zu schaffen, die sich mehr an Strukturqualit\u00e4t und Fallzahlen orientiert als an Bettenzahlen. Zur Weiterentwicklung der Krankenhauslandschaft braucht es Absprachen der Krankenh\u00e4user, Zusammenf\u00fchrungen von Standorten und eine st\u00e4rkere Spezialisierung. \u201eStrukturver\u00e4nderungen brauchen finanzielle Mittel. Diese wird das Land zur Verf\u00fcgung stellen\u201c, stellt Laumann in Aussicht. Die Neusserin Dilek G\u00fcrsoy, als Herzchirurgin in einem hochspeziellen medizinischen Bereich zu Hause, begr\u00fc\u00dfte die Planungen des Ministers: \u201eSchwer \u2013 oft chronisch \u2013 herzkranke Patienten brauchen eine ganz besondere F\u00fcrsorge, besonders auch postoperativ. Es ist meine Leidenschaft daf\u00fcr zu k\u00e4mpfen, dass die Patienten die gr\u00f6\u00dftm\u00f6gliche Expertise erhalten und damit auch die besten Ergebnisse. Das Personal muss speziell ausgebildet sein, um die Patienten gut versorgen zu k\u00f6nnen. Eine gute Pflege ist mindestes genauso viel wert wie ein guter Arzt.\u201c",
+        "id": "_0d0eXgN9c",
         "type": "paragraph"
     }
 ]

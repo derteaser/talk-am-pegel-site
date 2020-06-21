@@ -6,5 +6,4 @@ Herotitle: Die Talk-Reihe in Neuss.
 
 ----
 
-Textline: Am 15. Juni geht's weiter!
-
+Textline: 

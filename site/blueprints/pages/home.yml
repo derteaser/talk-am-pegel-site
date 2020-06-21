@@ -8,5 +8,4 @@ fields:
   textline:
     type: text
     label: Kicker
-    required: true
 
