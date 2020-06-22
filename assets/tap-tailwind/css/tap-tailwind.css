@@ -91,7 +91,7 @@ h6 {
 .editor-text h2, .editor-text h3, .editor-text h4, .editor-text h5 {
   @apply mt-6;
   @apply mb-4;
-  @apply leading-tight;
+  @apply leading-snug;
 }
 .editor-text ul {
   @apply list-disc;
@@ -124,6 +124,8 @@ h6 {
   @apply border-l-8;
   @apply p-4;
   @apply text-lg;
+  @apply italic;
+  @apply max-w-screen-md;
 }
 
 @tailwind components;

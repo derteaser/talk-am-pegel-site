@@ -31,7 +31,7 @@ Text:
 [
     {
         "attrs": [],
-        "content": "J\u00f6rg Geerlings diskutiert beim Talk am Pegel mit Gesundheitsminister Laumann und Gesundheitsexperten",
+        "content": "J\u00f6rg Geerlings diskutierte beim Talk am Pegel mit Gesundheitsminister Laumann und Gesundheitsexperten",
         "id": "_cptipnyvh",
         "type": "h2"
     },
@@ -51,6 +51,12 @@ Text:
         "content": "Im vergangenen Oktober startete der Neusser Landtagsabgeordnete Dr. J\u00f6rg Geerlings (CDU) die Veranstaltungsreihe \u201eTalk am Pegel\u201c. Bereits nach der zweiten Auflage war klar, dass sich dieses Format erfolgreich in Neuss etabliert hatte. \u201eIch m\u00f6chte Ideen und Impulse f\u00fcr unsere Region geben und das gesellschaftliche Miteinander in Neuss bereichern\u201c, so das erkl\u00e4rte Ziel des Initiators Geerlings. \u201eDie aufgrund des Corona-Virus erfolgte Online-Premiere als Videokonferenz mit ca. 80 konstant zugeschalteten Teilnehmern sowie einem Videostreaming mit riesiger Reichweite (\u00fcber 4.000) und erstklassig besetztem Podium ist gelungen.\u201c Zum hochaktuellen Thema \u201eDas Gesundheitssystem im Stresstest \u2013 krisenfest?!\u201c diskutierte der nordrhein-westf\u00e4lische Gesundheitsminister Karl-Josef Laumann mit Dilek G\u00fcrsoy, Herzchirurgin, Dr. Christian Wirtz, Gesch\u00e4ftsf\u00fchrung Janssen Deutschland, Dr. Nicolas Kr\u00e4mer, Krankenhausmanager, und Dr. J\u00f6rg Geerlings MdL.",
         "id": "_tqFpVTTCT",
         "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "\u201eDie Krankenh\u00e4user haben die Corona-Krise gemeistert, der Shutdown ist gelungen.\u201c",
+        "id": "_9iriohoj8",
+        "type": "blockquote"
     },
     {
         "attrs": [],
@@ -78,9 +84,21 @@ Text:
     },
     {
         "attrs": [],
+        "content": "\u201eIch gehe davon aus, dass eine m\u00f6gliche zweite Infektionswelle unser Land eher punktuell treffen wird.\u201c",
+        "id": "_tgr6d3fx9",
+        "type": "blockquote"
+    },
+    {
+        "attrs": [],
         "content": "Bisher gelten in den Bundesl\u00e4ndern zum Teil sehr unterschiedliche Auflagen zum Infektionsschutz. Ist der F\u00f6deralismus ein Hemmnis in der Krise? Die Bev\u00f6lkerung ist verunsichert. Warum m\u00fcssen sich die Menschen an Regeln halten, die im benachbarten Bundesland aber bereits aufgehoben sind? Minister Laumann ist sich mit dem Gastgeber Dr. Geerlings MdL einig, dass der F\u00f6deralismus daf\u00fcr sorgt, dass auf die unterschiedlich hohen Infektionszahlen auch unterschiedlich reagiert werden kann. \u201eOft wurden die Ma\u00dfnahmen in Bayern und NRW miteinander verglichen. Es ist richtig, dass beide L\u00e4nder teilweise unterschiedlich mit der Krise umgegangen sind. Die Infektionszahlen waren in Bayern auch deutlich h\u00f6her als in NRW\u201c, sieht Laumann die NRW-Politik best\u00e4tigt. \u201eIch gehe davon aus, dass eine m\u00f6gliche zweite Infektionswelle unser Land eher punktuell treffen wird. Ma\u00dfnahmen daher sehr regional getroffen werden m\u00fcssen\u201c, sch\u00e4tzt Laumann die Situation in Zukunft ein.",
         "id": "_UIaBUxHor",
         "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "\u201eEine gute Pflege ist mindestes genauso viel wert wie ein guter Arzt.\u201c",
+        "id": "_zxejw1eq3",
+        "type": "blockquote"
     },
     {
         "attrs": [],

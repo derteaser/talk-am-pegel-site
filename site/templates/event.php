@@ -30,7 +30,7 @@ use Kirby\Cms\Page;
           </div>
         </div>
       <?php else: ?>
-        <div class="mb-4 editor-text"><?= $page->text()->blocks() ?></div>
+        <div class="mt-10 mb-4 editor-text"><?= $page->text()->blocks() ?></div>
       <?php endif ?>
     </div>
   </div>

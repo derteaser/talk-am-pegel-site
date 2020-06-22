@@ -723,7 +723,7 @@ h6 {
 .editor-text h2, .editor-text h3, .editor-text h4, .editor-text h5 {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-  line-height: 1.25;
+  line-height: 1.375;
 }
 
 .editor-text ul {
@@ -771,6 +771,8 @@ h6 {
   border-left-width: 8px;
   padding: 1rem;
   font-size: 1.125rem;
+  font-style: italic;
+  max-width: 768px;
 }
 
 .container {
