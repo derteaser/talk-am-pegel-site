@@ -2956,10 +2956,10 @@ uikit@^3.5.3:
   resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.5.3.tgz#e05dcfd291258c179e645d19210d0b356e35dff9"
   integrity sha512-p3F7ICtq0XNYbTcrbOotjmdOAf8D7F8kbnZOIHomUK0fCVn8BdFPscRWzO/9cerxGw4eY7R7//BZupoyEYg2Fg==
 
-umbrellajs@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/umbrellajs/-/umbrellajs-3.1.0.tgz#a4e6f0f6381f9d93110b5eee962e0e0864b10bd0"
-  integrity sha512-3qichMg1Q6EetLweBAT0L55O2W6CJe9qyiSt1RBnf+bcOqwJ4R7e2PDcoIUrCsg+uRo3DXOvurWdklBu0ia7fg==
+umbrellajs@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/umbrellajs/-/umbrellajs-3.2.2.tgz#3f6d7ab1638d37758ff821a02b2b2d49d46af283"
+  integrity sha512-Z/WVGlZp3znYo9nvQrcEJ+cd4gihGMw/ZA9UfHdJONFHPzvk+BtX5UmhK0KdRo/zYorOR+cmZBnaapROWjeZVw==
 
 unc-path-regex@^0.1.2:
   version "0.1.2"

@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "uikit": "^3.5.3",
-    "umbrellajs": "^3.1.0"
+    "umbrellajs": "^3.2.2"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
