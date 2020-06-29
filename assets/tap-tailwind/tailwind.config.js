@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    //enabled: true,
+    enabled: true,
     content: [
       '../../site/snippets/*.php',
       '../../site/templates/*.php',
