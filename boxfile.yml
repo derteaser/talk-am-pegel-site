@@ -1,0 +1,26 @@
+run.config:
+  engine: php
+  engine.config:
+    runtime: php-7.3
+    date_timezone: 'Europe/Berlin'
+    default_locale: 'de_DE'
+    upload_max_filesize: '8M'
+    extensions:
+      - ctype
+      - curl
+      - dom
+      - fileinfo
+      - gd
+      - iconv
+      - intl
+      - mbstring
+      - pdo
+      - pdo_sqlite
+      - session
+      - simplexml
+      - tokenizer
+      - xml
+      - zip
+      - zlib
+    apache_modules:
+      - headers

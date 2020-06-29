@@ -1,0 +1,116 @@
+Title: Datenschutz
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Die Betreiber dieser Seiten nehmen den Schutz Ihrer pers\u00f6nlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerkl\u00e4rung.",
+        "id": "_uG1cxPIoD",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten m\u00f6glich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit m\u00f6glich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdr\u00fcckliche Zustimmung nicht an Dritte weitergegeben.",
+        "id": "_caaFHK18P",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Wir weisen darauf hin, dass die Daten\u00fcbertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitsl\u00fccken aufweisen kann. Ein l\u00fcckenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht m\u00f6glich.",
+        "id": "_82H3YHEo5",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Auskunft, L\u00f6schung, Sperrung",
+        "id": "_BuJmBDrBX",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Sie haben jederzeit das Recht auf unentgeltliche Auskunft \u00fcber Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empf\u00e4nger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder L\u00f6schung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten k\u00f6nnen Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.",
+        "id": "_2xIBmCx18",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Server-Log-Files",
+        "id": "_quHEOXpEh",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log Files, die Ihr Browser automatisch an uns \u00fcbermittelt. Dies sind:",
+        "id": "_junI6U80e",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Browsertyp/ Browserversion",
+        "id": "_sKYuP8Pj6",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "verwendetes Betriebssystem",
+        "id": "_j4iVD3o17",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Referrer URL",
+        "id": "_RaHErQ6c8",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Hostname des zugreifenden Rechners",
+        "id": "_X2V5KEA3Y",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Uhrzeit der Serveranfrage",
+        "id": "_P6JgzK0M1",
+        "type": "ul"
+    },
+    {
+        "attrs": [],
+        "content": "Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenf\u00fchrung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Wir behalten uns vor, diese Daten nachtr\u00e4glich zu pr\u00fcfen, wenn uns konkrete Anhaltspunkte f\u00fcr eine rechtswidrige Nutzung bekannt werden.",
+        "id": "_HU97TPx37",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Kontaktformular",
+        "id": "_N9pq7h1Yy",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und f\u00fcr den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.",
+        "id": "_8edmD0iDB",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Newsletterdaten",
+        "id": "_uaH3DEerI",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Wenn Sie den auf der Webseite angebotenen Newsletter beziehen m\u00f6chten, ben\u00f6tigen wir von Ihnen eine E-Mail-Adresse sowie Informationen, welche uns die \u00dcberpr\u00fcfung gestatten, dass Sie der Inhaber der angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind. Weitere Daten werden nicht erhoben. Diese Daten verwenden wir ausschlie\u00dflich f\u00fcr den Versand der angeforderten Informationen und geben sie nicht an Dritte weiter.",
+        "id": "_opq4FLtm0",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Die erteilte Einwilligung zur Speicherung der Daten, der E-Mail-Adresse sowie deren Nutzung zum Versand des Newsletters k\u00f6nnen Sie jederzeit widerrufen, etwa \u00fcber den \u201eAustragen\u201c-Link im Newsletter.",
+        "id": "_YEXYZWBcl",
+        "type": "paragraph"
+    }
+]

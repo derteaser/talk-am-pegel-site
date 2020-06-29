@@ -1,0 +1,7 @@
+type: pages
+headline: Talks
+parent: site.find("talks")
+template: event
+empty: Noch keine Talks vorhanden
+sortBy: date desc
+info: "{{ page.date.toDate('%d.%m.%Y) }}"

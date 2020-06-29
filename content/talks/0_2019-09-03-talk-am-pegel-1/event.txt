@@ -1,0 +1,84 @@
+Title: Olympische Spiele vor der Haustür - Chance für unsere Region
+
+----
+
+Date: 2019-09-03 19:00
+
+----
+
+Is-virtual: false
+
+----
+
+Location-name: Pegelbar Neuss
+
+----
+
+Location-geo:
+
+lat: 51.1996335
+lon: 6.6958312
+number: "5"
+city: Neuss
+country: Deutschland
+postcode: "41460"
+address: Am Zollhafen
+
+----
+
+Location-url: 
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/olympische-spiele-vor-der-haustur-chance-fur-unsere-region-tickets-68262612311
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Die Reihe \"Talk am Pegel\" ist gestartet!",
+        "id": "_qdvw60ojs",
+        "type": "h2"
+    },
+    {
+        "attrs": [],
+        "content": "Michael Mronz, Gr\u00fcnder der Rhein Ruhr City 2032 Initiative, diskutiert mit Dr. Hermann-Josef Baaken (Vorsitzender des Sportbundes Rhein-Kreis Neuss), Prof. Dr. Jan-Philipp B\u00fcchler (Wirtschaftsprofessor), J\u00fcrgen Steinmetz (Hauptgesch\u00e4ftsf\u00fchrer der IHK Mittlerer Niederrhein) und Dr. J\u00f6rg Geerlings MdL diskutierten \u00fcber die Chancen von Olympischen Spielen in unserer Region.",
+        "id": "_wMd1lFEvY",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Einen ausf\u00fchrlichen Bericht finden Sie hier:",
+        "id": "_1xkz2mygt",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://rp-online.de/nrw/staedte/rhein-kreis/sport/michael-mronz-praesentiert-olympiaplaene-fuer-2032-in-neuss_aid-45603451\">https://rp-online.de/nrw/staedte/rhein-kreis/sport/michael-mronz-praesentiert-olympiaplaene-fuer-2032-in-neuss_aid-45603451</a>",
+        "id": "_2rqf2bezx",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Attendants:
+
+- persons/michael-mronz
+- persons/hermann-josef-baaken
+- persons/jan-philipp-buechler
+- persons/juergen-steinmetz
+- persons/joerg-geerlings
+
+----
+
+Main-image:
+
+- carry-71257.jpg
+
+----
+
+Textline: Talk am Pegel #1
