@@ -1,1 +1,1 @@
-<h<?= $level ?>><?= $content->widont() ?></h<?= $level ?>>
+<h<?= $level ?>><?= $content ?></h<?= $level ?>>
