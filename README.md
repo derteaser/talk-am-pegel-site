@@ -1,3 +1,4 @@
 # Talk am Pegel Website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/096d26e2-df42-4149-9668-5c857fec7419/deploy-status)](https://app.netlify.com/sites/talk-am-pegel/deploys)
+![PHP Composer](https://github.com/derteaser/talk-am-pegel-site/workflows/PHP%20Composer/badge.svg)
+![Deploy to Live](https://github.com/derteaser/talk-am-pegel-site/workflows/Deploy%20to%20Live/badge.svg)
