@@ -261,22 +261,22 @@
         },
         {
             "name": "getkirby/editor",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/editor.git",
-                "reference": "ab855dcb573ff211e8f77e70e11ae1161002d29a"
+                "reference": "5e6263a0e660932490133790af1c12e4d8d9e509"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/editor/zipball/ab855dcb573ff211e8f77e70e11ae1161002d29a",
-                "reference": "ab855dcb573ff211e8f77e70e11ae1161002d29a",
+                "url": "https://api.github.com/repos/getkirby/editor/zipball/5e6263a0e660932490133790af1c12e4d8d9e509",
+                "reference": "5e6263a0e660932490133790af1c12e4d8d9e509",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1.1",
                 "paquettg/php-html-parser": "^2.1",
-                "php": ">=7.1.0"
+                "php": ">=7.2.0"
             },
             "require-dev": {
                 "getkirby/cms": "^3.3"
@@ -301,7 +301,13 @@
                 "plugin",
                 "wysiwyg"
             ],
-            "time": "2020-02-18T09:22:09+00:00"
+            "funding": [
+                {
+                    "url": "https://getkirby.com/buy",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-07-08T12:12:09+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -401,12 +407,6 @@
                 "autoloading",
                 "laminas",
                 "zf"
-            ],
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
             ],
             "time": "2020-05-20T16:45:56+00:00"
         },
