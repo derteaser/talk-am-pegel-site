@@ -4,7 +4,7 @@ use Kirby\Cms\Html;
 use Kirby\Toolkit\Str;
 
 return [
-    'debug' => true,
+    'debug' => false,
     'slugs' => 'de',
     'locale' => 'de_DE.utf-8',
     'date'  => [
