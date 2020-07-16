@@ -22,7 +22,20 @@ module.exports = {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
-      ]
+      ],
+    },
+    typography: {
+      default: {
+        css: {
+          a: {
+            'font-weight': 600,
+            color: '#FA5555',
+            '&:hover': {
+              color: '#712626',
+            },
+          },
+        },
+      },
     },
     extend: {
       'colors': {
@@ -52,5 +65,7 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

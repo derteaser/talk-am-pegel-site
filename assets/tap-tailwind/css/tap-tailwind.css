@@ -88,46 +88,6 @@ h6 {
   @apply text-gray-800;
 }
 
-.editor-text h2, .editor-text h3, .editor-text h4, .editor-text h5 {
-  @apply mt-6;
-  @apply mb-4;
-  @apply leading-snug;
-}
-.editor-text ul {
-  @apply list-disc;
-  @apply my-4;
-}
-.editor-text ol {
-  @apply list-decimal;
-  @apply my-4;
-}
-.editor-text p {
-  @apply my-4;
-}
-.editor-text a {
-  @apply font-semibold;
-  @apply text-tap-red-500;
-}
-.editor-text a:hover {
-  @apply text-tap-red-800;
-  @apply underline;
-}
-.editor-text b, .editor-text strong {
-  @apply font-bold;
-}
-.editor-text i, .editor-text em {
-  @apply italic;
-}
-
-.editor-text blockquote {
-  @apply my-6;
-  @apply border-l-8;
-  @apply p-4;
-  @apply text-lg;
-  @apply italic;
-  @apply max-w-screen-md;
-}
-
 @tailwind components;
 
 .btn {

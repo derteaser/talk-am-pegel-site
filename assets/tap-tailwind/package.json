@@ -5,10 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "@tailwindcss/typography": "^0.2.0",
     "aos": "^2.3.4",
     "autoprefixer": "^9.8.0",
     "postcss-cli": "^7.1.1",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^1.5.0"
   },
   "scripts": {
     "build": "postcss css/tap-tailwind.css -o dist/tap-tailwind.css",
