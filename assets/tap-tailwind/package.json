@@ -9,7 +9,7 @@
     "aos": "^2.3.4",
     "autoprefixer": "^9.8.0",
     "postcss-cli": "^7.1.1",
-    "tailwindcss": "^1.5.0"
+    "tailwindcss": "^1.5.2"
   },
   "scripts": {
     "build": "postcss css/tap-tailwind.css -o dist/tap-tailwind.css",
