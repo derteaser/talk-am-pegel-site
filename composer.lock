@@ -261,16 +261,16 @@
         },
         {
             "name": "getkirby/editor",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/editor.git",
-                "reference": "5e6263a0e660932490133790af1c12e4d8d9e509"
+                "reference": "1d19e9c8acad5125ddb6208ba109f7e2f0510eb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/editor/zipball/5e6263a0e660932490133790af1c12e4d8d9e509",
-                "reference": "5e6263a0e660932490133790af1c12e4d8d9e509",
+                "url": "https://api.github.com/repos/getkirby/editor/zipball/1d19e9c8acad5125ddb6208ba109f7e2f0510eb9",
+                "reference": "1d19e9c8acad5125ddb6208ba109f7e2f0510eb9",
                 "shasum": ""
             },
             "require": {
@@ -307,7 +307,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-07-08T12:12:09+00:00"
+            "time": "2020-07-09T16:09:55+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -407,6 +407,12 @@
                 "autoloading",
                 "laminas",
                 "zf"
+            ],
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
             ],
             "time": "2020-05-20T16:45:56+00:00"
         },
