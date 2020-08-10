@@ -164,16 +164,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "3.4.0",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "dbd7fa7f303e7045626adb72c5f0b29c6ccadb44"
+                "reference": "29b36fffa6527804ac0fdea757c77878c3ccd1b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/dbd7fa7f303e7045626adb72c5f0b29c6ccadb44",
-                "reference": "dbd7fa7f303e7045626adb72c5f0b29c6ccadb44",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/29b36fffa6527804ac0fdea757c77878c3ccd1b8",
+                "reference": "29b36fffa6527804ac0fdea757c77878c3ccd1b8",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "core",
                 "kirby"
             ],
-            "time": "2020-07-07T10:37:11+00:00"
+            "time": "2020-08-07T11:09:54+00:00"
         },
         {
             "name": "getkirby/composer-installer",
@@ -1005,16 +1005,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.17.1",
+            "version": "v1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "7110338d81ce1cbc3e273136e4574663627037a7"
+                "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7110338d81ce1cbc3e273136e4574663627037a7",
-                "reference": "7110338d81ce1cbc3e273136e4574663627037a7",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a6977d63bf9a0ad4c65cd352709e230876f9904a",
+                "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a",
                 "shasum": ""
             },
             "require": {
@@ -1026,7 +1026,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-master": "1.18-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1078,7 +1078,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-06T08:46:27+00:00"
+            "time": "2020-07-14T12:35:20+00:00"
         },
         {
             "name": "true/punycode",
