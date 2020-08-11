@@ -8,7 +8,7 @@ use Kirby\Cms\Page;
 
 <?php snippet('header') ?>
 <?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->textline(), 'image' => $mainImage]) ?>
-<section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32">
+<section class="container mx-auto prose mt-16 px-6 lg:px-24 xl:px-32">
   <?= $page->text()->blocks() ?>
 </section>
 <?php snippet('footer') ?>
