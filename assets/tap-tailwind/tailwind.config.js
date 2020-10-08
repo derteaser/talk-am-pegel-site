@@ -1,10 +1,13 @@
 module.exports = {
   purge: {
-    enabled: true,
     content: [
       '../../site/snippets/*.php',
       '../../site/templates/*.php',
     ]
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
   theme: {
     fontFamily: {
@@ -24,7 +27,7 @@ module.exports = {
         '"Noto Color Emoji"',
       ],
     },
-    typography: {
+    typography: (theme) => ({
       default: {
         css: {
           a: {
@@ -34,9 +37,15 @@ module.exports = {
               color: '#712626',
             },
           },
+          blockquote: {
+            quotes: '"\\201E""\\201D""\\2018""\\2019"',
+            fontStyle: 'normal',
+            fontSize: theme('fontSize.xl'),
+            paddingRight: theme('padding.6')
+          }
         },
       },
-    },
+    }),
     extend: {
       'colors': {
         'tap-red': {
@@ -67,5 +76,6 @@ module.exports = {
   variants: {},
   plugins: [
     require('@tailwindcss/typography'),
+    require('tailwindcss-debug-screens'),
   ],
 }

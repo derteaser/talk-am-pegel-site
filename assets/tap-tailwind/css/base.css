@@ -1,0 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-gray-600 antialiased;
+}

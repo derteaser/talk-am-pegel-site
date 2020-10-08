@@ -1,18 +1,29 @@
 {
   "name": "talk-am-pegel-tailwind-theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Jens Kuesters",
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
     "@tailwindcss/typography": "^0.2.0",
     "aos": "^2.3.4",
     "autoprefixer": "^9.8.6",
+    "heroicons": "^0.4.2",
     "postcss-cli": "^7.1.2",
-    "tailwindcss": "^1.8.12"
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "simple-icons": "^3.11.0",
+    "tailwindcss": "^1.8.12",
+    "tailwindcss-debug-screens": "^1.1.0"
   },
-  "scripts": {
-    "build": "postcss css/tap-tailwind.css -o dist/tap-tailwind.css",
-    "aos": "cp -R node_modules/aos/dist/* dist/"
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cheerio": "^1.0.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-env": "^0.4.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-svgmin": "^3.0.0",
+    "gulp-uglify": "^3.0.2"
   }
 }

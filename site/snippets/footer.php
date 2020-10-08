@@ -9,7 +9,7 @@ use Kirby\Cms\Site;
     <div class="container px-5 pb-8 flex flex-wrap mx-auto items-center">
       <form action="https://talk-am-pegel.us3.list-manage.com/subscribe/post?u=1cc64b49bf50326bfb2796f37&amp;id=ee232411e9" method="post" class="flex md:flex-no-wrap flex-wrap justify-center md:justify-start">
         <input class="sm:w-64 w-40 bg-gray-100 rounded sm:mr-4 mr-2 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base py-2 px-4" placeholder="Ihre E-Mail" name="EMAIL" type="email" required>
-        <button class="inline-flex btn btn-blue" type="submit">Anmelden</button>
+        <button class="inline-flex items-center btn btn-blue" type="submit">Anmelden</button>
         <p class="text-gray-500 text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">Informieren Sie sich in unserem Newsletter
           <br class="lg:block hidden"> oder folgen Sie uns bei Facebook und Twitter.
         </p>

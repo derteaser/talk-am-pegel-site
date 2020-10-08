@@ -1,8 +1,11 @@
 <?php
+
+use Kirby\Cms\App;
 use Kirby\Cms\Page;
 
 /** @var string $titleTag */
 /** @var Page $page */
+/** @var App $kirby */
 ?>
 <!DOCTYPE html>
 <html lang="de_DE">
@@ -16,4 +19,4 @@ use Kirby\Cms\Page;
   <link rel="manifest" href="<?= url('/manifest.json') ?>">
   <?= $page->metaTags() ?>
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-200<?= $kirby->option('debug') ? ' debug-screens' : ''?>">

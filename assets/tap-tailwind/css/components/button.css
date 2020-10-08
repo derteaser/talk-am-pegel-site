@@ -1,0 +1,31 @@
+.btn {
+  @apply text-white border-0 py-2 px-6 rounded leading-tight;
+
+  &:focus {
+    @apply outline-none;
+  }
+
+  &-blue {
+    @apply bg-tap-blue-500;
+
+    &:hover, &:focus {
+      @apply bg-tap-blue-700;
+    }
+
+    &:active {
+      @apply bg-tap-blue-400;
+    }
+  }
+
+  &-red {
+    @apply bg-tap-red-500;
+
+    &:hover, &:focus {
+      @apply bg-tap-red-600;
+    }
+
+    &:active {
+      @apply bg-tap-red-400;
+    }
+  }
+}

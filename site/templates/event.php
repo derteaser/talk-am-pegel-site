@@ -15,7 +15,7 @@ use Kirby\Cms\Page;
       <?php if ($page->date()->toDate() > time()): ?>
         <div class="flex flex-col sm:flex-row mt-10">
           <div class="sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r border-gray-300 sm:border-b-0 border-b mb-4 pb-4 sm:mb-0">
-            <div class="mb-4 prose max-w-none"><?= $page->text()->blocks() ?></div>
+            <div class="mb-4 prose"><?= $page->text()->blocks() ?></div>
           </div>
           <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
             <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -30,7 +30,7 @@ use Kirby\Cms\Page;
           </div>
         </div>
       <?php else: ?>
-        <div class="mt-10 mb-4 prose max-w-none"><?= $page->text()->blocks() ?></div>
+        <div class="mt-10 mb-4 prose mx-auto"><?= $page->text()->blocks() ?></div>
       <?php endif ?>
     </div>
   </div>
@@ -63,7 +63,7 @@ use Kirby\Cms\Page;
         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
           <div class="flex items-center">
             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
-              <?php snippet('icon', ['name' => 'map-marker', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+              <?php snippet('icon', ['name' => $page->is_virtual()->toBool() ? 'video-camera' : 'location-marker', 'cssClasses' => 'fill-current w-5 h-5']) ?>
             </div>
             <p class="text-gray-900 text-lg font-medium"><?= $page->location_name() ?></p>
           </div>
@@ -88,7 +88,7 @@ use Kirby\Cms\Page;
     <?php if ($prev = $page->prev()): ?>
       <div class="p-2">
         <a href="<?= $prev->url() ?>" class="text-gray-600 hover:text-gray-700 flex flex-row items-center">
-          <?php snippet('icon', ['name' => 'angle-left', 'cssClasses' => 'fill-current w-12 h-12 float-right mr-4']) ?>
+          <?php snippet('icon', ['name' => 'chevron-left', 'cssClasses' => 'fill-current w-12 h-12 float-right mr-4']) ?>
           <div>
             <p class="text-gray-500 text-sm uppercase font-medium"><?= $prev->textline() ?></p>
             <p><?= $prev->title() ?></p>
@@ -101,7 +101,7 @@ use Kirby\Cms\Page;
     <?php if ($next = $page->next()): ?>
       <div class="p-2 text-right">
         <a href="<?= $next->url() ?>" class="text-gray-600 hover:text-gray-700 flex flex-row-reverse items-center">
-          <?php snippet('icon', ['name' => 'angle-right', 'cssClasses' => 'fill-current w-12 h-12 float-right ml-4']) ?>
+          <?php snippet('icon', ['name' => 'chevron-right', 'cssClasses' => 'fill-current w-12 h-12 float-right ml-4']) ?>
           <div>
             <p class="text-gray-500 text-sm uppercase font-medium"><?= $next->textline() ?></p>
             <p><?= $next->title() ?></p>
