@@ -13,7 +13,7 @@
     "postcss-nested": "^4.2.3",
     "simple-icons": "^3.13.0",
     "tailwindcss": "^1.9.6",
-    "tailwindcss-debug-screens": "^1.1.0"
+    "tailwindcss-debug-screens": "^2.0.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
