@@ -31,8 +31,14 @@ Text:
 [
     {
         "attrs": [],
-        "content": "Die Präsidentin des Verbands der Automobilindustrie (VDA), Hildegard Müller, ist der nächste Gast der Veranstaltungsreihe „Talk am Pegel“, die der Neusser Landtagsabgeordnete Dr. Jörg Geerlings ins Leben gerufen hat. Am Mittwoch, dem 2. Dezember 2020, spricht sie um 19 Uhr zum Thema „Mobilität der Zukunft“. Es schließt sich eine Diskussion mit Hermann Gröhe MdB, Dr. Christian Lange (NRW-Ministerium für Verkehr), Heribert Adamsky (ADFC Neuss) und dem Neusser Landtagsabgeordneten Dr. Jörg Geerlings an.",
-        "id": "_z187uc2v3",
+        "content": "Die Präsidentin des Verbands der Automobilindustrie (VDA), Hildegard Müller, ist der nächste Gast der Veranstaltungsreihe „Talk am Pegel“, die der Neusser Landtagsabgeordnete Dr. Jörg Geerlings ins Leben gerufen hat. Am Mittwoch, dem 2. Dezember 2020, spricht sie um 19 Uhr zum Thema „Mobilität der Zukunft“.",
+        "id": "_dmdmn05aq",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Es schließt sich eine Diskussion mit Hermann Gröhe MdB, Dr. Christian Lange (NRW-Ministerium für Verkehr), Dr. Heribert Adamsky (ADFC Neuss) und dem Neusser Landtagsabgeordneten Dr. Jörg Geerlings an.",
+        "id": "_smiu69hqn",
         "type": "paragraph"
     },
     {
