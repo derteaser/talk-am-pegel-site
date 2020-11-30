@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: {
     content: [
@@ -5,10 +7,7 @@ module.exports = {
       '../../site/templates/*.php',
     ]
   },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
+  darkMode: 'media',
   theme: {
     fontFamily: {
       'sans': [
@@ -27,27 +26,9 @@ module.exports = {
         '"Noto Color Emoji"',
       ],
     },
-    typography: (theme) => ({
-      default: {
-        css: {
-          a: {
-            'font-weight': 600,
-            color: '#FA5555',
-            '&:hover': {
-              color: '#712626',
-            },
-          },
-          blockquote: {
-            quotes: '"\\201E""\\201D""\\2018""\\2019"',
-            fontStyle: 'normal',
-            fontSize: theme('fontSize.xl'),
-            paddingRight: theme('padding.6')
-          }
-        },
-      },
-    }),
     extend: {
       'colors': {
+        gray: colors.blueGray,
         'tap-red': {
           100: '#FFEEEE',
           200: '#FED5D5',
@@ -70,10 +51,42 @@ module.exports = {
           800: '#242F41',
           900: '#18202B',
         },
-      }
+      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            a: {
+              'font-weight': 600,
+              color: theme('colors.tap-red.500'),
+              '&:hover': {
+                color: theme('colors.tap-red.600'),
+              },
+            },
+            blockquote: {
+              quotes: '"\\201E""\\201D""\\2018""\\2019"',
+              fontStyle: 'normal',
+              fontSize: theme('fontSize.xl'),
+              paddingRight: theme('padding.6')
+            }
+          },
+        },
+        dark: {
+          css: {
+            color: theme('colors.gray.200'),
+            'blockquote, strong, h2, h3, h4, h5, thead': {
+              color: theme('colors.gray.100'),
+            },
+            hr: {
+              borderColor: theme('colors.gray.600'),
+            }
+          },
+        }
+      }),
     },
   },
-  variants: {},
+  variants: {
+    typography: ["dark"],
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-debug-screens'),

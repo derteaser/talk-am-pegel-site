@@ -17,6 +17,7 @@ return [
     ],
     'bnomei.robots-txt.sitemap' => 'sitemap.xml',
     'omz13.xmlsitemap.includeUnlistedWhenTemplateIs' => ['events', 'event', 'contact', 'default'],
+    'tap.stylesheet' => 'assets/tap-tailwind/dist/app.min.css',
     'pedroborges.meta-tags.default' => function ($page, $site) {
         $image = $page->main_image()->toFile();
         if (!$image) {
@@ -38,7 +39,7 @@ return [
             ],
             'link' => [
                 'canonical' => $page->url(),
-                'stylesheet' => [url('assets/tap-tailwind/dist/app.min.css'), url('assets/tap-tailwind/dist/aos.css')],
+                'stylesheet' => [url(option('tap.stylesheet')), url('assets/tap-tailwind/dist/aos.css')],
             ],
             'og' => [
                 'title' => $page->title(),

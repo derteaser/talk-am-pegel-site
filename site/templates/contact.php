@@ -11,7 +11,7 @@ use Kirby\Cms\Site;
 
 <?php snippet('header') ?>
 <?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->textline(), 'image' => $mainImage]) ?>
-<section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32 text-center">
+<section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32 text-center dark:text-gray-200">
   <h2 class="text-xl mb-4 leading-relaxed"><?= $site->title() ?></h2>
   <p><?= $site->address1() ?></p>
   <p><?= $site->address2() ?></p>

@@ -19,4 +19,4 @@ use Kirby\Cms\Page;
   <link rel="manifest" href="<?= url('/manifest.json') ?>">
   <?= $page->metaTags() ?>
 </head>
-<body class="bg-gray-200<?= $kirby->option('debug') ? ' debug-screens' : ''?>">
+<body class="bg-gray-200 dark:bg-gray-900<?= $kirby->option('debug') ? ' debug-screens' : ''?>">
