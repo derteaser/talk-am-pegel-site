@@ -1,0 +1,70 @@
+Title: Mobilität der Zukunft
+
+----
+
+Date: 2020-12-02 19:00
+
+----
+
+Is-virtual: true
+
+----
+
+Location-name: Zoom-Konferenz
+
+----
+
+Location-geo: 
+
+----
+
+Location-url: 
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/mobilitat-der-zukunft-tickets-128622817309
+
+----
+
+Text:
+
+[
+    {
+        "attrs": [],
+        "content": "Die Präsidentin des Verbands der Automobilindustrie (VDA), Hildegard Müller, ist der nächste Gast der Veranstaltungsreihe „Talk am Pegel“, die der Neusser Landtagsabgeordnete Dr. Jörg Geerlings ins Leben gerufen hat. Am Mittwoch, dem 2. Dezember 2020, spricht sie um 19 Uhr zum Thema „Mobilität der Zukunft“. Es schließt sich eine Diskussion mit Hermann Gröhe MdB, Dr. Christian Lange (NRW-Ministerium für Verkehr), Heribert Adamsky (ADFC Neuss) und dem Neusser Landtagsabgeordneten Dr. Jörg Geerlings an.",
+        "id": "_z187uc2v3",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "Mit der Reihe „Talk am Pegel“ hat Geerlings im Herbst des vergangenen Jahres ein neues Veranstaltungsformat geschaffen. „So wie im Hafen Güter aus aller Welt verladen werden, so möchte ich mit dieser Veranstaltungsreihe im Hafen neue Ideen und Impulse für Neuss heranholen“, sagt der Abgeordnete. „Dadurch soll das gesellschaftliche Leben in unserer Stadt bereichert werden.“",
+        "id": "_qz8e42gov",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>Die Veranstaltung findet wegen der Corona-Pandemie und der Beschränkungen für Veranstaltungen als Online-Event statt.</strong>",
+        "id": "_ak9toq2f8",
+        "type": "paragraph"
+    }
+]
+
+----
+
+Attendants:
+
+- persons/hildegard-mueller
+- persons/hermann-groehe
+- persons/christian-lange
+- persons/heribert-adamsky
+- persons/joerg-geerlings
+
+----
+
+Main-image:
+
+- mobilitaet.jpg
+
+----
+
+Textline: Talk am Pegel #4
