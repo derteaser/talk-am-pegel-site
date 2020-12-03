@@ -10,7 +10,7 @@ Is-virtual: true
 
 ----
 
-Location-name: Zoom-Konferenz
+Location-name: Zoom / Facebook
 
 ----
 
@@ -18,7 +18,7 @@ Location-geo:
 
 ----
 
-Location-url: 
+Location-url: https://fb.watch/28LxDmBxUi/
 
 ----
 
