@@ -66,7 +66,8 @@ module.exports = {
               quotes: '"\\201E""\\201D""\\2018""\\2019"',
               fontStyle: 'normal',
               fontSize: theme('fontSize.xl'),
-              paddingRight: theme('padding.6')
+              paddingRight: theme('padding.6'),
+              borderColor: theme('colors.tap-blue.600')
             }
           },
         },

@@ -31,26 +31,62 @@ Text:
 [
     {
         "attrs": [],
-        "content": "Die Präsidentin des Verbands der Automobilindustrie (VDA), Hildegard Müller, ist der nächste Gast der Veranstaltungsreihe „Talk am Pegel“, die der Neusser Landtagsabgeordnete Dr. Jörg Geerlings ins Leben gerufen hat. Am Mittwoch, dem 2. Dezember 2020, spricht sie um 19 Uhr zum Thema „Mobilität der Zukunft“.",
-        "id": "_dmdmn05aq",
+        "content": "Ein erstklassig besetztes Podium diskutierte beim vierten „Talk am Pegel“ des Neusser Landtagsabgeordneten Dr. Jörg Geerlings (CDU) über Herausforderungen, Chancen und Visionen der Mobilität der Zukunft. Gesprächspartner des Gastgebers Geerlings waren Hildegard Müller, Präsidentin des Verbandes der Automobilindustrie, der Neusser Bundestagsabgeordnete Hermann Gröhe (CDU), Dr. Christian Lange (Verkehrsministerium NRW) und Dr. Heribert Adamsky (ADFC Neuss). Gut 90 Teilnehmer hatten sich der Videokonferenz zugeschaltet, viele weitere verfolgten die Diskussion im sozialen Netzwerk Facebook.",
+        "id": "_ezFCqxJuz",
+        "type": "paragraph"
+    },
+    {
+        "attrs": {
+            "guid": "/pages/talks+talk-am-pegel-4-mobilitaet-der-zukunft/files/talk_am_pegel_dez2020.jpg",
+            "id": "talks/talk-am-pegel-4-mobilitaet-der-zukunft/talk_am_pegel_dez2020.jpg",
+            "filename": "talk_am_pegel_dez2020.jpg",
+            "ratio": 1.2900597501357958,
+            "caption": ""
+        },
+        "content": "",
+        "id": "_mwkc7omhp",
+        "type": "image"
+    },
+    {
+        "attrs": [],
+        "content": "Mobilität ist stark im Wandel, wird klimafreundlicher, vernetzter und digitaler. „Ein großer Umwandlungsprozess ist im Gange, der die Automobilindustrie, den öffentlichen Nahverkehr, den Rad- und Fußverkehr, die Politik und schließlich jeden Einzelnen von uns betrifft“, so der Neusser CDU-Landtagsabgeordnete. „Großartige Entwicklungen wie die Planung des eTarifs für NRW treiben die Mobilitätswende voran.“",
+        "id": "_aVW35lk6B",
         "type": "paragraph"
     },
     {
         "attrs": [],
-        "content": "Es schließt sich eine Diskussion mit Hermann Gröhe MdB, Dr. Christian Lange (NRW-Ministerium für Verkehr), Dr. Heribert Adamsky (ADFC Neuss) und dem Neusser Landtagsabgeordneten Dr. Jörg Geerlings an.",
-        "id": "_smiu69hqn",
+        "content": "100 Millionen Euro stellt das Land für die Einführung des Tickets zur Verfügung. Tarifgrenzen innerhalb NRWs spielen dann keine Rolle mehr, Fahren mit dem öffentlichen Nahverkehr wird grenzenlos einfach. Das Rätseln vor dem Ticketautomaten gehört dann der Vergangenheit an“, stellte Dr. Christian Lange das neueste Projekt für NRW vor. Er ist davon überzeugt, dass die Mobilitätswende nicht durch einen kostenlosen oder stark preisreduzierten ÖPNV gelingen wird, sondern durch den Ausbau des Angebots. Mobilität muss besser, sauberer und sicherer werden und sich am individuellen Bedarf orientieren. Hierzu zählt er unter anderem eine einfache und transparente Tarifstruktur, die bessere Vernetzung der Verkehrsmittel und den Ausbau des Verkehrsnetzes.",
+        "id": "_R931KEAiv",
         "type": "paragraph"
     },
     {
         "attrs": [],
-        "content": "Mit der Reihe „Talk am Pegel“ hat Geerlings im Herbst des vergangenen Jahres ein neues Veranstaltungsformat geschaffen. „So wie im Hafen Güter aus aller Welt verladen werden, so möchte ich mit dieser Veranstaltungsreihe im Hafen neue Ideen und Impulse für Neuss heranholen“, sagt der Abgeordnete. „Dadurch soll das gesellschaftliche Leben in unserer Stadt bereichert werden.“",
-        "id": "_qz8e42gov",
+        "content": "<strong>„</strong>Im PKW-Bereich wird sich der Elektroantrieb durchsetzen<strong>“</strong>",
+        "id": "_bely6b5zb",
+        "type": "blockquote"
+    },
+    {
+        "attrs": [],
+        "content": "Aber auch das Auto spielt in der Zukunft der Mobilität eine große Rolle. Dass die Automobilindustrie die Herausforderungen des größten Umwandlungsprozesses ihrer Geschichte annimmt unterstrich Hildegard Müller: „Zukunftsstrategien, Klimaschutz und moderne Industriepolitik gehen zusammen. Die Automobilindustrie übernimmt dabei Verantwortung und geht den Weg der Mobilitätswende mit.“ Alternative Antriebsentwicklung, Digitalisierung, moderne Verkehrslenkung und Effizienzsteigerung sind nur einige Schlagworte der Entwicklung. „Im PKW-Bereich wird sich der Elektroantrieb durchsetzen“, ist sich Müller sicher. Damit die Bürgerinnen und Bürger aber Vertrauen in die Elektromobilität gewinnen, müsse die Ladeinfrastruktur dringend ausgebaut werden. „Diese Aufgaben können die Kommunen aber nicht allein stemmen“, ist Müller überzeugt.",
+        "id": "_aAOCKyoRt",
         "type": "paragraph"
     },
     {
         "attrs": [],
-        "content": "<strong>Die Veranstaltung findet wegen der Corona-Pandemie und der Beschränkungen für Veranstaltungen als Online-Event statt.</strong>",
-        "id": "_ak9toq2f8",
+        "content": "Hermann Gröhe MdB legte Wert darauf, dass Mobilität herausragendes menschliches Bedürfnis ist und daher nicht mit sozialen Barrieren oder Vorschriften verbunden sein darf. Jeder müsse die individuelle Freiheit haben, über seine Mobilität zu entscheiden. „Ich finde es aber richtig, dass die Anschaffung von Elektroautos gefördert und die Umrüstung des Bestandes bei Lastkraftwagen unterstützt wird“, so Gröhe.",
+        "id": "_3WuwjB35U",
+        "type": "paragraph"
+    },
+    {
+        "attrs": [],
+        "content": "<strong>„</strong>Radwege müssen weiter ausgebaut werden<strong>“</strong>",
+        "id": "_951crkb35",
+        "type": "blockquote"
+    },
+    {
+        "attrs": [],
+        "content": "Während die Corona-Pandemie der Autoindustrie schwer zu schaffen macht, sieht Dr. Heribert Adamsky auch die positiven Auswirkungen der Krise. Die Beschleunigung der Digitalisierung hat die Verkehrsströme verringert, Wege werden eingespart. Damit aber nicht genug. Er sieht noch weitere Handlungsfelder: „Radwege müssen weiter ausgebaut, Einbahnstraßen für Fahrradfahrer geöffnet und die Vernetzung der Verkehrsmittel verbessert werden. Für den Ausbau der Fahrradwege und die Sicherheit der Fahrradfahrer stellt insbesondere der ruhende Verkehr eine Gefahr dar.“ Er plädiert zum Beispiel für intelligente Lösungen, die Städte von parkenden Autos zu entlasten.",
+        "id": "_PFVK1Ez0f",
         "type": "paragraph"
     }
 ]
