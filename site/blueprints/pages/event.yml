@@ -38,7 +38,7 @@ columns:
         label: Link zur Anmeldung bei Eventbrite
         required: true
       text:
-        type: editor
+        type: blocks
       attendants:
         type: pages
         label: Teilnehmer

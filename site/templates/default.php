@@ -9,6 +9,6 @@ use Kirby\Cms\Page;
 <?php snippet('header') ?>
 <?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->textline(), 'image' => $mainImage]) ?>
 <section class="container mx-auto prose dark:prose-dark mt-16 px-6">
-  <?= $page->text()->blocks() ?>
+  <?= $page->text()->toBlocks() ?>
 </section>
 <?php snippet('footer') ?>

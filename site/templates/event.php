@@ -30,7 +30,7 @@ use Kirby\Cms\Page;
           </div>
         </div>
       <?php else: ?>
-        <div class="mt-10 mb-4 prose dark:prose-dark mx-auto"><?= $page->text()->blocks() ?></div>
+        <div class="mt-10 mb-4 prose dark:prose-dark mx-auto"><?= $page->text()->toBlocks() ?></div>
       <?php endif ?>
     </div>
   </div>

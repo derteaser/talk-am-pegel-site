@@ -3,5 +3,5 @@ preset: page
 fields:
   text:
     label: Text
-    type: editor
+    type: blocks
 
