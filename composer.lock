@@ -906,16 +906,16 @@
         },
         {
             "name": "sylvainjule/locator",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sylvainjule/kirby-locator.git",
-                "reference": "32b5f33ca56b824e6aee3bb207f2e3e5076cf087"
+                "reference": "07f6cad4f6bd09489ee378e318b387c803392faa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/32b5f33ca56b824e6aee3bb207f2e3e5076cf087",
-                "reference": "32b5f33ca56b824e6aee3bb207f2e3e5076cf087",
+                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/07f6cad4f6bd09489ee378e318b387c803392faa",
+                "reference": "07f6cad4f6bd09489ee378e318b387c803392faa",
                 "shasum": ""
             },
             "require": {
@@ -938,9 +938,9 @@
             "description": "A map & geolocation field, built on top of open-source services / Mapbox",
             "support": {
                 "issues": "https://github.com/sylvainjule/kirby-locator/issues",
-                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.0.7"
+                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.0.8"
             },
-            "time": "2020-11-06T07:59:26+00:00"
+            "time": "2020-12-26T22:06:42+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
