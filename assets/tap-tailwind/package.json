@@ -6,7 +6,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.3.1",
     "aos": "^2.3.4",
-    "autoprefixer": "^10.2.0",
+    "autoprefixer": "^10.2.1",
     "heroicons": "^0.4.2",
     "postcss": "^8.2.3",
     "postcss-cli": "^8.3.1",
