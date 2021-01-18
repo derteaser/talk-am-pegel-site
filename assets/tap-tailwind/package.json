@@ -4,7 +4,7 @@
   "author": "Jens Kuesters",
   "license": "MIT",
   "dependencies": {
-    "@tailwindcss/typography": "^0.3.1",
+    "@tailwindcss/typography": "^0.4.0",
     "aos": "^2.3.4",
     "autoprefixer": "^10.2.1",
     "heroicons": "^0.4.2",
