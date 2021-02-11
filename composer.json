@@ -7,7 +7,7 @@
     "require": {
         "php": ">=7.1.0",
         "getkirby/cms": "^3.0",
-        "mullema/k3-panel-view-extended": "^2.2",
+        "mullema/k3-panel-view-extended": "^3.0",
         "pedroborges/kirby-meta-tags": "^2.0",
         "sylvainjule/locator": "^1.0",
         "bnomei/kirby3-robots-txt": "^1.4",
