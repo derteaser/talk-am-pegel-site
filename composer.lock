@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "553affe9473358200a39b1b38745f04a",
+    "content-hash": "15b168d9c0e00be5b719a57eff382b30",
     "packages": [
         {
             "name": "bnomei/kirby3-robots-txt",
@@ -536,16 +536,16 @@
         },
         {
             "name": "mullema/k3-panel-view-extended",
-            "version": "v2.2.4",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mullema/k3-panel-view-extended.git",
-                "reference": "441403766c8c4af92ff0bdab284852cec171b2fc"
+                "reference": "87cf8f23a9a88c7e9b40f65de9b1b2585c7c2e45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mullema/k3-panel-view-extended/zipball/441403766c8c4af92ff0bdab284852cec171b2fc",
-                "reference": "441403766c8c4af92ff0bdab284852cec171b2fc",
+                "url": "https://api.github.com/repos/mullema/k3-panel-view-extended/zipball/87cf8f23a9a88c7e9b40f65de9b1b2585c7c2e45",
+                "reference": "87cf8f23a9a88c7e9b40f65de9b1b2585c7c2e45",
                 "shasum": ""
             },
             "require": {
@@ -565,9 +565,9 @@
             "description": "Allow single language pages/site/users in a multi language setup, hide buttons in topbar and sections.",
             "support": {
                 "issues": "https://github.com/mullema/k3-panel-view-extended/issues",
-                "source": "https://github.com/mullema/k3-panel-view-extended/tree/v2.2.4"
+                "source": "https://github.com/mullema/k3-panel-view-extended/tree/v3.0.0"
             },
-            "time": "2020-07-19T15:32:23+00:00"
+            "time": "2021-02-10T19:21:12+00:00"
         },
         {
             "name": "mustangostang/spyc",
