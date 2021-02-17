@@ -67,7 +67,10 @@ module.exports = {
               fontStyle: 'normal',
               fontSize: theme('fontSize.xl'),
               paddingRight: theme('padding.6'),
-              borderColor: theme('colors.tap-blue.600')
+              borderColor: theme('colors.tap-blue.600'),
+              footer: {
+                fontSize: theme('fontSize.sm')
+              }
             }
           },
         },
