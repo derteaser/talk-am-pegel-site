@@ -39,6 +39,12 @@ columns:
         required: true
       text:
         type: blocks
+        fieldsets:
+          - heading
+          - text
+          - list
+          - image
+          - video
       attendants:
         type: pages
         label: Teilnehmer
