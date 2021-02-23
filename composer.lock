@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bnomei/kirby3-robots-txt",
-            "version": "1.4.7",
+            "version": "1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-robots-txt.git",
-                "reference": "0ef3374efc5abd6589498668cb0258fee45a918a"
+                "reference": "78cd050e3ea5d9c793fa63d61dea2f342ef1b425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-robots-txt/zipball/0ef3374efc5abd6589498668cb0258fee45a918a",
-                "reference": "0ef3374efc5abd6589498668cb0258fee45a918a",
+                "url": "https://api.github.com/repos/bnomei/kirby3-robots-txt/zipball/78cd050e3ea5d9c793fa63d61dea2f342ef1b425",
+                "reference": "78cd050e3ea5d9c793fa63d61dea2f342ef1b425",
                 "shasum": ""
             },
             "require": {
@@ -62,9 +62,15 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-robots-txt/issues",
-                "source": "https://github.com/bnomei/kirby3-robots-txt/tree/master"
+                "source": "https://github.com/bnomei/kirby3-robots-txt/tree/v1.4.8"
             },
-            "time": "2020-02-26T13:21:56+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/bnomei",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-22T18:08:17+00:00"
         },
         {
             "name": "claviska/simpleimage",
