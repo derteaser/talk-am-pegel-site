@@ -43,6 +43,7 @@ columns:
           - heading
           - text
           - list
+          - quote
           - image
           - video
       attendants:
