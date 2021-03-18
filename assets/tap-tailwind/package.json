@@ -13,7 +13,7 @@
     "postcss-import": "^14.0.0",
     "postcss-nested": "^5.0.5",
     "simple-icons": "^4.15.0",
-    "tailwindcss": "^2.0.3",
+    "tailwindcss": "^2.0.4",
     "tailwindcss-debug-screens": "^2.0.0"
   },
   "devDependencies": {
