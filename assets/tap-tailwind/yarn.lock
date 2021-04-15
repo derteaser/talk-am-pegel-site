@@ -2067,10 +2067,10 @@ he@1.1.1:
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
   integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
 
-heroicons@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/heroicons/-/heroicons-1.0.0.tgz#aeb9e795d330999e4df7bbfe3fb8f570876019ed"
-  integrity sha512-APdX3PsNWCaT08osUV0oIFOS0ly8jT+fFsqvriQcMsSjbhd3TZqVh/Wy1XuYaCDd8GzKdkjbfzuCJJMIP/Z88w==
+heroicons@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/heroicons/-/heroicons-1.0.1.tgz#b40f487e2e7139bab58194e5ec610fe5f46ba079"
+  integrity sha512-vPUhWJQlpNOwNzn0WZ1JBzvsU/Gj9cBSgULPp6pF+Ckihk4+yY4JeOcZQn8XirA7S+OkVz2jNqWP7O+r5xapyA==
 
 homedir-polyfill@^1.0.1:
   version "1.0.3"
