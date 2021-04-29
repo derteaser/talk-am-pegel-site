@@ -43,3 +43,5 @@ Icon
 /vendor/*
 /kirby/*
 /site/plugins/*
+/storage/*
+/public/media/*
