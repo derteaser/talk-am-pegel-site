@@ -6,6 +6,9 @@ use Kirby\Cms\Page;
 /** @var string $titleTag */
 /** @var Page $page */
 /** @var App $kirby */
+
+//$template = $page->template();
+//$entry = "templates/$template/index.js";
 ?>
 <!DOCTYPE html>
 <html lang="de_DE">
@@ -18,5 +21,9 @@ use Kirby\Cms\Page;
   <link rel="apple-touch-icon" href="<?= url('/apple-touch-icon.png') ?>">
   <link rel="manifest" href="<?= url('/manifest.json') ?>">
   <?= $page->metaTags() ?>
+  <?= vite()->client() ?>
+  <?= vite()->css() ?>
+  <?php //vite()->css($entry) ?>
+
 </head>
 <body class="bg-gray-200 dark:bg-gray-900<?= $kirby->option('debug') ? ' debug-screens' : ''?>">

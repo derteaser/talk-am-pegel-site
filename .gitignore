@@ -41,7 +41,10 @@ Icon
 /site/config/.license
 
 /vendor/*
+/node_modules/*
 /kirby/*
 /site/plugins/*
 /storage/*
 /public/media/*
+/public/assets/*
+/public/assets

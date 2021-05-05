@@ -33,15 +33,8 @@ use Kirby\Cms\Site;
     </nav>
   </div>
 </footer>
-<?= js('assets/tap-tailwind/dist/aos.js') ?>
-<script>
-  // AOS.init();
-  AOS.init({
-    delay: 200, // values from 0 to 3000, with step 50ms
-    duration: 1000, // values from 0 to 3000, with step 50ms
-    once: true, // whether animation should happen only once - while scrolling down
-    mirror: false, // whether elements should animate out while scrolling past them
-  });
-</script>
+
+<?= vite()->js() ?>
+<?php // vite()->js($entry) ?>
 </body>
 </html>
