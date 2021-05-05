@@ -5,7 +5,7 @@
     "keywords": ["kirby", "cms", "event"],
     "homepage": "https://www.talk-am-pegel.de",
     "require": {
-        "php": ">=7.3.0",
+        "php": ">=7.4.0|>=8.0",
         "getkirby/cms": "^3.5",
         "mullema/k3-panel-view-extended": "^3.0",
         "pedroborges/kirby-meta-tags": "^2.0",
