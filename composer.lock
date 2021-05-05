@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1993ed70f20a0a18f833cc725b2dbe8",
+    "content-hash": "d2bca4741e2aa235229ef4cbccc7ae1c",
     "packages": [
         {
             "name": "bnomei/kirby3-robots-txt",
@@ -1094,7 +1094,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4.0"
+        "php": ">=7.3.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
