@@ -9,14 +9,14 @@ use Kirby\Cms\Site;
 /** @var File $image */
 /** @var Site $site */
 
-$imageUrl = $image ? $image->url() : "/assets/tap-tailwind/dist/img/pegelbar.jpg";
+$imageUrl = $image ? $image->url() : url('/img/pegelbar.jpg');
 ?>
 
 <header class="bg-gray-900 flex-nowrap relative h-screen md:h-auto">
   <img class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" src="<?= $imageUrl ?>" alt="">
 
   <div class="relative z-10 pt-10 text-center w-full">
-    <a href="<?= $site->url() ?>"><img class="inline-block" src="/assets/tap-tailwind/dist/img/logo.svg" alt="<?= $site->title() ?>"></a>
+    <a href="<?= $site->url() ?>"><img class="inline-block" src="<?= url('/img/logo.svg') ?>" alt="<?= $site->title() ?>"></a>
   </div>
   <div class="relative text-center z-10 py-40 mx-auto container">
     <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?></h1>

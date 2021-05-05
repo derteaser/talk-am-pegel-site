@@ -1,0 +1,31 @@
+{
+  "name": "talk-am-pegel-tailwind-theme",
+  "version": "1.1.0",
+  "author": "Jens Kuesters",
+  "license": "MIT",
+  "scripts": {
+    "vite": "vite",
+    "dev": "shx touch src/.lock && concurrently \"npm:server\" \"npm:vite\"",
+    "server": "php -S localhost:8888 -t public server.php",
+    "build": "shx rm -f src/.lock && vite build",
+    "icons": "node icons.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.4.0",
+    "aos": "^2.3.4",
+    "autoprefixer": "^10.2.4",
+    "concurrently": "^6.0.2",
+    "heroicons": "^1.0.1",
+    "postcss": "^8.2.13",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.1",
+    "postcss-nested": "^5.0.5",
+    "shx": "^0.3.3",
+    "simple-icons": "^4.22.0",
+    "svg-mixer": "^2.3.14",
+    "tailwindcss": "^2.1.2",
+    "tailwindcss-debug-screens": "^2.0.0",
+    "vite": "^2.2.4",
+    "vite-plugin-live-reload": "^2.1.0"
+  }
+}
