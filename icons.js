@@ -32,4 +32,4 @@ mixer([
   'node_modules/heroicons/outline/ticket.svg',
   'node_modules/heroicons/solid/video-camera.svg',
 ], { spriteConfig: { usages: false }, spriteClass: MySprite } )
-    .then(result => result.write('src/assets/img/icons.svg'));
+    .then(result => result.write('public/img/icons.svg'));

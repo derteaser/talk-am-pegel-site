@@ -88,7 +88,7 @@ use Kirby\Cms\Page;
     <?php if ($prev = $page->prev()): ?>
       <div class="p-2">
         <a href="<?= $prev->url() ?>" class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row items-center">
-          <?php snippet('icon', ['name' => 'chevron-left', 'cssClasses' => 'fill-current w-12 h-12 float-right mr-4']) ?>
+          <?php snippet('icon', ['name' => 'chevron-left', 'cssClasses' => 'stroke-current w-12 h-12 float-right mr-4']) ?>
           <div>
             <p class="text-gray-500 dark:text-gray-400 text-sm uppercase font-medium"><?= $prev->textline() ?></p>
             <p><?= $prev->title() ?></p>
@@ -101,7 +101,7 @@ use Kirby\Cms\Page;
     <?php if ($next = $page->next()): ?>
       <div class="p-2 text-right">
         <a href="<?= $next->url() ?>" class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row-reverse items-center">
-          <?php snippet('icon', ['name' => 'chevron-right', 'cssClasses' => 'fill-current w-12 h-12 float-right ml-4']) ?>
+          <?php snippet('icon', ['name' => 'chevron-right', 'cssClasses' => 'stroke-current w-12 h-12 float-right ml-4']) ?>
           <div>
             <p class="text-gray-500 dark:text-gray-400 text-sm uppercase font-medium"><?= $next->textline() ?></p>
             <p><?= $next->title() ?></p>
