@@ -21,7 +21,7 @@
     "postcss-import": "^14.0.1",
     "postcss-nested": "^5.0.5",
     "shx": "^0.3.3",
-    "simple-icons": "^4.22.0",
+    "simple-icons": "^4.23.0",
     "svg-mixer": "^2.3.14",
     "tailwindcss": "^2.1.2",
     "tailwindcss-debug-screens": "^2.0.0",
