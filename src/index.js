@@ -1,4 +1,3 @@
-import 'vite/dynamic-import-polyfill'
 import './index.css'
 
 import AOS from 'aos'
