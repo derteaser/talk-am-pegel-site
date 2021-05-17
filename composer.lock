@@ -41,27 +41,26 @@
         },
         {
             "name": "bnomei/kirby3-robots-txt",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-robots-txt.git",
-                "reference": "78cd050e3ea5d9c793fa63d61dea2f342ef1b425"
+                "reference": "2f2a51b16b99788a0095ddf5b28de5d48cae493a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-robots-txt/zipball/78cd050e3ea5d9c793fa63d61dea2f342ef1b425",
-                "reference": "78cd050e3ea5d9c793fa63d61dea2f342ef1b425",
+                "url": "https://api.github.com/repos/bnomei/kirby3-robots-txt/zipball/2f2a51b16b99788a0095ddf5b28de5d48cae493a",
+                "reference": "2f2a51b16b99788a0095ddf5b28de5d48cae493a",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1.1",
-                "php": ">=7.2.0"
+                "php": ">=7.3.0"
             },
             "require-dev": {
-                "getkirby/cms": "^3.2",
-                "nunomaduro/phpinsights": "^1.8",
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^8.3"
+                "getkirby/cms": "^3.5",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^9.5"
             },
             "suggest": {
                 "omz13/kirby3-xmlsitemap": "Adds a xml sitemap which will be automatically be included in the robots.txt"
@@ -95,7 +94,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-robots-txt/issues",
-                "source": "https://github.com/bnomei/kirby3-robots-txt/tree/v1.4.8"
+                "source": "https://github.com/bnomei/kirby3-robots-txt/tree/v1.4.9"
             },
             "funding": [
                 {
@@ -103,7 +102,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-22T18:08:17+00:00"
+            "time": "2021-05-16T15:25:19+00:00"
         },
         {
             "name": "claviska/simpleimage",
