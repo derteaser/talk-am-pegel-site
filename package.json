@@ -11,7 +11,7 @@
     "icons": "node icons.js"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.4.0",
+    "@tailwindcss/typography": "^0.4.1",
     "aos": "^2.3.4",
     "autoprefixer": "^10.2.4",
     "concurrently": "^6.1.0",
