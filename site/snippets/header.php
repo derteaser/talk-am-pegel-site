@@ -19,7 +19,7 @@ use Kirby\Cms\Page;
   <link rel="icon" href="<?= url('/favicon.svg') ?>">
   <link rel="mask-icon" href="<?= url('/mask-icon.svg') ?>" color="#3b5883">
   <link rel="apple-touch-icon" href="<?= url('/apple-touch-icon.png') ?>">
-  <link rel="manifest" href="<?= url('/manifest.json') ?>">
+  <link rel="manifest" href="<?= url('/site.webmanifest') ?>">
   <?= $page->metaTags() ?>
   <?= vite()->client() ?>
   <?= vite()->css() ?>
