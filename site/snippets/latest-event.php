@@ -20,7 +20,7 @@ if ($text = $event->text() && $blocks = $event->text()->toBlocks()) {
         <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 dark:text-gray-100"><?= $event->title()->widont() ?>
         </h1>
         <p class="mb-8 leading-relaxed max-w-screen-sm"><?= $description ?></p>
-        <button class="inline-flex text-white bg-tap-red-500 border-0 py-2 px-6 focus:outline-none group-hover:bg-tap-red-800 rounded text-lg">Mehr erfahren</button>
+        <button type="button" class="inline-flex text-white bg-tap-red-500 border-0 py-2 px-6 focus:outline-none group-hover:bg-tap-red-800 rounded text-lg">Mehr erfahren</button>
       </div>
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" data-aos="flip-right" data-aos-delay="400">
         <img class="object-cover object-center rounded" alt="<?= $event->title() ?>" src="<?= $event->main_image()->toFile()->url() ?>">

@@ -16,10 +16,10 @@ use Kirby\Cms\Site;
       </form>
       <span class="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
         <a class="text-gray-500 hover:text-gray-600 dark:hover:text-gray-200" href="https://facebook.com/<?= $site->facebook() ?>" target="_blank" rel="noopener noreferrer">
-          <?php snippet('icon', ['name' => 'facebook', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+          <?php snippet('icon', ['name' => 'facebook', 'cssClasses' => 'fill-current w-5 h-5']) ?><span class="sr-only">Facebook</span>
         </a>
         <a class="ml-3 text-gray-500 hover:text-gray-600 dark:hover:text-gray-200" href="https://twitter.com/<?= $site->twitter() ?>" target="_blank" rel="noopener noreferrer">
-          <?php snippet('icon', ['name' => 'twitter', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+          <?php snippet('icon', ['name' => 'twitter', 'cssClasses' => 'fill-current w-5 h-5']) ?><span class="sr-only">Twitter</span>
         </a>
       </span>
     </div>
