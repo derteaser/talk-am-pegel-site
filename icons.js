@@ -5,8 +5,6 @@ class MySprite extends mixer.Sprite {
         // Call parent `generate` method and then transform the tree
         return super.generate().then(svg => {
             svg.each('symbol', node => node.attrs.class = null);
-            svg.each('symbol', node => node.attrs.fill = null);
-            svg.each('symbol', node => node.attrs.stroke = null);
             svg.each('title', node => node = null);
             return svg;
         });
