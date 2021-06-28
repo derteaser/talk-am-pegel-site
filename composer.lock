@@ -8,7 +8,7 @@
     "packages": [
         {
             "name": "arnoson/kirby-vite",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/arnoson/kirby-vite.git",
@@ -35,7 +35,7 @@
             "description": "Vite helper for Kirby CMS",
             "support": {
                 "issues": "https://github.com/arnoson/kirby-vite/issues",
-                "source": "https://github.com/arnoson/kirby-vite/tree/v2.2.1"
+                "source": "https://github.com/arnoson/kirby-vite/tree/v2.3.0"
             },
             "time": "2021-04-19T11:09:47+00:00"
         },
