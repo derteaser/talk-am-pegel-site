@@ -726,16 +726,16 @@
         },
         {
             "name": "pedroborges/kirby-meta-tags",
-            "version": "v2.0.2",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pedroborges/kirby-meta-tags.git",
-                "reference": "0d20d2ce60e207def3a90dd1aac9eb13be1d2823"
+                "reference": "e88cea13966d5affd04f98e0c51835bb8db14707"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pedroborges/kirby-meta-tags/zipball/0d20d2ce60e207def3a90dd1aac9eb13be1d2823",
-                "reference": "0d20d2ce60e207def3a90dd1aac9eb13be1d2823",
+                "url": "https://api.github.com/repos/pedroborges/kirby-meta-tags/zipball/e88cea13966d5affd04f98e0c51835bb8db14707",
+                "reference": "e88cea13966d5affd04f98e0c51835bb8db14707",
                 "shasum": ""
             },
             "require": {
@@ -776,9 +776,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pedroborges/kirby-meta-tags/issues",
-                "source": "https://github.com/pedroborges/kirby-meta-tags/tree/master"
+                "source": "https://github.com/pedroborges/kirby-meta-tags/tree/v2.1.0"
             },
-            "time": "2019-02-22T13:24:16+00:00"
+            "time": "2021-07-19T11:23:41+00:00"
         },
         {
             "name": "pedroborges/meta-tags",
