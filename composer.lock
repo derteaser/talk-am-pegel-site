@@ -582,16 +582,16 @@
         },
         {
             "name": "mullema/k3-panel-view-extended",
-            "version": "v3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mullema/k3-panel-view-extended.git",
-                "reference": "87cf8f23a9a88c7e9b40f65de9b1b2585c7c2e45"
+                "reference": "d4f43eb6c6658085d43476c2684cf001332da0cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mullema/k3-panel-view-extended/zipball/87cf8f23a9a88c7e9b40f65de9b1b2585c7c2e45",
-                "reference": "87cf8f23a9a88c7e9b40f65de9b1b2585c7c2e45",
+                "url": "https://api.github.com/repos/mullema/k3-panel-view-extended/zipball/d4f43eb6c6658085d43476c2684cf001332da0cd",
+                "reference": "d4f43eb6c6658085d43476c2684cf001332da0cd",
                 "shasum": ""
             },
             "require": {
@@ -611,9 +611,9 @@
             "description": "Allow single language pages/site/users in a multi language setup, hide buttons in topbar and sections.",
             "support": {
                 "issues": "https://github.com/mullema/k3-panel-view-extended/issues",
-                "source": "https://github.com/mullema/k3-panel-view-extended/tree/v3.0.0"
+                "source": "https://github.com/mullema/k3-panel-view-extended/tree/3.1.0"
             },
-            "time": "2021-02-10T19:21:12+00:00"
+            "time": "2021-07-28T13:14:39+00:00"
         },
         {
             "name": "mustangostang/spyc",
