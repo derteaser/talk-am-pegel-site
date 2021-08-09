@@ -41,16 +41,16 @@
         },
         {
             "name": "bnomei/kirby3-robots-txt",
-            "version": "1.4.9",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-robots-txt.git",
-                "reference": "2f2a51b16b99788a0095ddf5b28de5d48cae493a"
+                "reference": "375ca49b428df3e22ec4756610032552329d19c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-robots-txt/zipball/2f2a51b16b99788a0095ddf5b28de5d48cae493a",
-                "reference": "2f2a51b16b99788a0095ddf5b28de5d48cae493a",
+                "url": "https://api.github.com/repos/bnomei/kirby3-robots-txt/zipball/375ca49b428df3e22ec4756610032552329d19c9",
+                "reference": "375ca49b428df3e22ec4756610032552329d19c9",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "phpunit/phpunit": "^9.5"
             },
             "suggest": {
-                "omz13/kirby3-xmlsitemap": "Adds a xml sitemap which will be automatically be included in the robots.txt"
+                "bnomei/kirby3-feeds": "Adds a xml sitemap which will be automatically be included in the robots.txt"
             },
             "type": "kirby-plugin",
             "extra": {
@@ -94,15 +94,27 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-robots-txt/issues",
-                "source": "https://github.com/bnomei/kirby3-robots-txt/tree/v1.4.9"
+                "source": "https://github.com/bnomei/kirby3-robots-txt/tree/v1.5.0"
             },
             "funding": [
                 {
+                    "url": "https://buymeacoff.ee/bnomei",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://paypal.me/bnomei",
+                    "type": "custom"
+                },
+                {
                     "url": "https://github.com/bnomei",
                     "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/bnomei",
+                    "type": "patreon"
                 }
             ],
-            "time": "2021-05-16T15:25:19+00:00"
+            "time": "2021-08-06T13:21:27+00:00"
         },
         {
             "name": "claviska/simpleimage",
