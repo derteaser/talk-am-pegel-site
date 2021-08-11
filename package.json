@@ -24,7 +24,7 @@
     "simple-icons": "^5.8.1",
     "svg-mixer": "^2.3.14",
     "tailwindcss": "^2.2.7",
-    "tailwindcss-debug-screens": "^2.0.0",
+    "tailwindcss-debug-screens": "^2.1.0",
     "vite": "^2.4.4",
     "vite-plugin-live-reload": "^2.1.0"
   }
