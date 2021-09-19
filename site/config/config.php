@@ -159,7 +159,7 @@ return [
             ],
             'events' => [
                 'meta' => [
-                    'robots' => 'noindex,follow,noodp'
+                    'robots' => 'index,follow,noodp'
                 ]
             ],
             'person' => [
