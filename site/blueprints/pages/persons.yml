@@ -25,3 +25,4 @@ sections:
     layout: cards
     image:
       cover: true
+      ratio: 1/1

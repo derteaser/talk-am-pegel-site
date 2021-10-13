@@ -46,15 +46,6 @@ columns:
           - quote
           - image
           - video
-      attendants:
-        type: pages
-        label: Teilnehmer
-        query: site.find('persons')
-        layout: cards
-        info: '{{ page.sub_heading }}'
-        image:
-          cover: true
-          ratio: 1/1
   right:
     width: 1/3
     fields:
@@ -69,3 +60,15 @@ columns:
         type: text
         label: Kicker
         required: true
+  bottom:
+    width: 1/1
+    fields:
+      attendants:
+        type: pages
+        label: Teilnehmer
+        query: site.find('persons')
+        layout: cards
+        info: '{{ page.sub_heading }}'
+        image:
+          cover: true
+          ratio: 1/1

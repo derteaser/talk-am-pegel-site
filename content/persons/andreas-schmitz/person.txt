@@ -20,4 +20,4 @@ Xing:
 
 Main-image:
 
-- api-2.png
+- schmitz.jpg

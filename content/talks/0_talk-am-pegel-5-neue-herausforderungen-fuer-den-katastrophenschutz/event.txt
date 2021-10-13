@@ -10,7 +10,7 @@ Is-virtual: false
 
 ----
 
-Location-name: Pegelbar
+Location-name: Pegelbar Neuss
 
 ----
 
@@ -38,15 +38,6 @@ Text: [{"content":{"level":"h2","text":"<strong>Staatssekret\u00e4r Krings Gast 
 
 ----
 
-Attendants:
-
-- persons/guenter-krings
-- persons/kurt-koenemann
-- persons/andreas-schmitz
-- persons/joerg-geerlings
-
-----
-
 Main-image:
 
 - >
@@ -55,3 +46,12 @@ Main-image:
 ----
 
 Textline: Talk am Pegel #5
+
+----
+
+Attendants:
+
+- persons/guenter-krings
+- persons/kurt-koenemann
+- persons/andreas-schmitz
+- persons/joerg-geerlings
