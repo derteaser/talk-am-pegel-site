@@ -15,6 +15,13 @@ return [
             'person' => ['width' => 500, 'height' => 500, 'crop' => true]
         ]
     ],
+    'thathoff' => [
+        'git-content' => [
+            'push' => true,
+            'cronHooksEnabled' => false,
+            'displayErrors' => true
+        ],
+    ],
     'bnomei.robots-txt.sitemap' => 'sitemap.xml',
     'omz13.xmlsitemap.includeUnlistedWhenTemplateIs' => ['events', 'event', 'contact', 'default'],
     'pedroborges.meta-tags.default' => function ($page, $site) {
