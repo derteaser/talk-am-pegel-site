@@ -12,7 +12,8 @@
         "sylvainjule/locator": "^1.0",
         "bnomei/kirby3-robots-txt": "^1.4",
         "omz13/kirby3-xmlsitemap": "^1.2",
-        "arnoson/kirby-vite": "^2.2"
+        "arnoson/kirby-vite": "^2.2",
+        "thathoff/kirby-git-content": "^4.1"
     },
     "config": {
         "optimize-autoloader": true
