@@ -20,4 +20,4 @@ Xing:
 
 Main-image:
 
-- api.png
+- koenemann.jpg
