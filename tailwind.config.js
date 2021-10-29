@@ -4,8 +4,8 @@ module.exports = {
   mode: 'jit',
   purge: {
     content: [
-      'site/snippets/*.php',
-      'site/templates/*.php',
+      'site/snippets/**/*.php',
+      'site/templates/**/*.php',
     ]
   },
   darkMode: 'media',
@@ -95,5 +95,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-debug-screens'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }

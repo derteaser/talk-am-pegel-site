@@ -45,6 +45,7 @@ columns:
           - list
           - quote
           - image
+          - gallery
           - video
   right:
     width: 1/3

@@ -75,7 +75,7 @@ use Kirby\Cms\Page;
 
 <section class="text-gray-700">
   <div class="container px-20 sm: px-12 md:px-5 pt-12 pb-24 mx-auto">
-    <div class="flex flex-wrap -m-4">
+    <div class="flex flex-wrap justify-center -m-4">
       <?php foreach ($page->attendants()->toPages() as $person): ?>
         <?php snippet('person', ['person' => $person]) ?>
       <?php endforeach ?>
