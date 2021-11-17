@@ -10,6 +10,9 @@ return [
     'date'  => [
         'handler' => 'strftime'
     ],
+    'panel' => [
+        'language' => 'de'
+    ],
     'thumbs' => [
         'presets' => [
             'person' => ['width' => 500, 'height' => 500, 'crop' => true]
