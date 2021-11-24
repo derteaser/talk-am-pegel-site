@@ -16,7 +16,11 @@ $imageUrl = $image ? $image->url() : url('/img/pegelbar.jpg');
   <img class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" src="<?= $imageUrl ?>" alt="">
 
   <div class="relative z-10 pt-10 text-center w-full">
-    <a href="<?= $site->url() ?>"><img class="inline-block" src="<?= url('/img/logo.svg') ?>" alt="<?= $site->title() ?>"></a>
+    <a href="<?= $site->url() ?>" class="flex justify-center">
+      <?=
+      svg('/img/logo.svg');
+      ?>
+    </a>
   </div>
   <div class="relative text-center z-10 py-40 mx-auto container">
     <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?></h1>
