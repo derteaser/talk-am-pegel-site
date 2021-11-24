@@ -22,7 +22,7 @@ sections:
     extends: sections/persons
     headline: Veröffentlichte Personen
     status: unlisted
-    layout: cards
+    layout: cardlets
     image:
       cover: true
       ratio: 1/1
