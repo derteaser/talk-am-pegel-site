@@ -6,11 +6,9 @@ use Kirby\Cms\Site;
 
 /** @var Page $page */
 /** @var Site $site */
-/** @var File $mainImage */
 ?>
 
-<?php snippet('header') ?>
-<?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->textline(), 'image' => $mainImage]) ?>
+<?php layout() ?>
 <section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32 text-center dark:text-gray-200">
   <h2 class="text-xl mb-4 leading-relaxed"><?= $site->title() ?></h2>
   <p><?= $site->address1() ?></p>
@@ -25,4 +23,3 @@ use Kirby\Cms\Site;
     <?php endforeach ?>
   </div>
 </section>
-<?php snippet('footer') ?>

@@ -5,9 +5,7 @@ use Kirby\Cms\File;
 /** @var File $mainImage */
 ?>
 
-<?php snippet('header') ?>
-<?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => '', 'image' => $mainImage]) ?>
+<?php layout() ?>
 <section class="container mx-auto prose dark:prose-dark mt-16 px-6">
   <?= $page->text()->toBlocks() ?>
 </section>
-<?php snippet('footer') ?>

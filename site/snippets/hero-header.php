@@ -2,14 +2,16 @@
 
 use Kirby\Cms\Field;
 use Kirby\Cms\File;
+use Kirby\Cms\Page;
 use Kirby\Cms\Site;
 
-/** @var Field $title */
-/** @var Field $subTitle */
-/** @var File $image */
+/** @var Page $page */
+/** @var ?File $mainImage */
 /** @var Site $site */
 
-$image = $image ?: asset('/img/pegelbar.jpg');
+$image = $mainImage ?: asset('/img/pegelbar.jpg');
+$title = $page->herotitle() && $page->herotitle()->isNotEmpty() ? $page->herotitle() : $page->title();
+$subTitle = $page->textline() ?: null;
 ?>
 
 <header class="bg-gray-900 flex-nowrap relative h-screen md:h-auto">
@@ -28,7 +30,7 @@ $image = $image ?: asset('/img/pegelbar.jpg');
   </div>
   <div class="relative text-center z-10 py-40 mx-auto container">
     <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?></h1>
-    <?php if ($subTitle->isNotEmpty()): ?>
+    <?php if ($subTitle && $subTitle->isNotEmpty()): ?>
       <p class="text-2xl text-gray-300 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
     <?php endif ?>
   </div>

@@ -4,11 +4,9 @@ use Kirby\Cms\Page;
 use Kirby\Toolkit\Str;
 
 /** @var Page $page */
-/** @var File $mainImage */
 ?>
 
-<?php snippet('header') ?>
-<?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->textline(), 'image' => $mainImage]) ?>
+<?php layout() ?>
 
 <section class="text-gray-700 dark:text-gray-400 overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
@@ -31,5 +29,3 @@ use Kirby\Toolkit\Str;
     <?php endforeach ?>
   </div>
 </section>
-
-<?php snippet('footer') ?>

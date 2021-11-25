@@ -3,12 +3,9 @@ use Kirby\Cms\File;
 use Kirby\Cms\Page;
 
 /** @var Page $page */
-/** @var File $mainImage */
 ?>
 
-<?php snippet('header') ?>
-<?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->sub_heading(), 'image' => $mainImage]) ?>
+<?php layout() ?>
 <section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32">
   <?php snippet('person', ['person' => $page]) ?>
 </section>
-<?php snippet('footer') ?>

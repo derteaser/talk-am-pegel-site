@@ -3,11 +3,9 @@ use Kirby\Cms\File;
 use Kirby\Cms\Page;
 
 /** @var Page $page */
-/** @var File $mainImage */
 ?>
 
-<?php snippet('header') ?>
-<?php snippet('hero-header', ['title' => $page->title(), 'subTitle' => $page->textline(), 'image' => $mainImage]) ?>
+<?php layout() ?>
 
 <section class="text-gray-700">
   <div class="container px-5 pt-6 pb-12 mx-auto flex flex-col">
@@ -111,4 +109,3 @@ use Kirby\Cms\Page;
     <?php endif ?>
   </div>
 </nav>
-<?php snippet('footer') ?>

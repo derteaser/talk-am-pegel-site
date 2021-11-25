@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0822f7eb57396b9cb71f353938a2f69",
+    "content-hash": "17607d7ab764c5b0042806ca9f66d36a",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -401,6 +401,42 @@
                 }
             ],
             "time": "2020-12-28T12:54:39+00:00"
+        },
+        {
+            "name": "getkirby/layouts",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getkirby/layouts.git",
+                "reference": "50532597497eb466718448b356dcf396d4e3b8ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getkirby/layouts/zipball/50532597497eb466718448b356dcf396d4e3b8ea",
+                "reference": "50532597497eb466718448b356dcf396d4e3b8ea",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.2"
+            },
+            "type": "kirby-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bastian Allgeier",
+                    "email": "bastian@getkirby.com"
+                }
+            ],
+            "description": "Kirby Layouts Plugin",
+            "homepage": "https://github.com/getkirby/layouts",
+            "support": {
+                "issues": "https://github.com/getkirby/layouts/issues",
+                "source": "https://github.com/getkirby/layouts/tree/1.0.0"
+            },
+            "time": "2021-11-18T12:07:48+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -1136,5 +1172,5 @@
         "php": ">=7.4.0|>=8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
