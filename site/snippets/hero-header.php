@@ -9,11 +9,15 @@ use Kirby\Cms\Site;
 /** @var File $image */
 /** @var Site $site */
 
-$imageUrl = $image ? $image->url() : url('/img/pegelbar.jpg');
+$image = $image ?: asset('/img/pegelbar.jpg');
 ?>
 
 <header class="bg-gray-900 flex-nowrap relative h-screen md:h-auto">
-  <img class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" src="<?= $imageUrl ?>" alt="">
+  <picture>
+    <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">
+    <source srcset="<?= $image->thumb(['format' => 'webp'])->url() ?>" type="image/webp">
+    <img src="<?= $image->thumb(['format' => 'jpg'])->url() ?>" class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" alt="">
+  </picture>
 
   <div class="relative z-10 pt-10 text-center w-full">
     <a href="<?= $site->url() ?>" class="flex justify-center">
