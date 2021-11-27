@@ -1,10 +1,11 @@
 <?php
 
 use Kirby\Cms\Html;
-use Kirby\Cms\Page;
 use Kirby\Toolkit\Str;
 
-/** @var Page $event */
+/** @var EventPage $event */
+
+$image = $event->main_image()->toFile();
 
 $description = '';
 if ($text = $event->text() && $blocks = $event->text()->toBlocks()) {
@@ -15,15 +16,18 @@ if ($text = $event->text() && $blocks = $event->text()->toBlocks()) {
 ?>
 <section class="text-gray-700 dark:text-gray-300">
   <a href="<?= $event->url() ?>" class="group">
-    <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-      <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center" data-aos="fade-in">
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 dark:text-gray-100"><?= $event->title()->widont() ?>
-        </h1>
+    <div class="container mx-auto flex px-5 py-24 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      <h1 class="title-font sm:text-4xl text-3xl font-medium text-gray-900 dark:text-gray-100 lg:col-span-2 xl:col-span-3"><?= $event->title()->widont() ?></h1>
+      <div class="lg:row-span-2 xl:col-span-2 lg:order-last" data-aos="flip-right" data-aos-delay="400">
+        <picture>
+          <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">
+          <source srcset="<?= $image->thumb(['format' => 'webp'])->url() ?>" type="image/webp">
+          <img class="object-cover object-center rounded w-full" alt="<?= $event->title() ?>" src="<?= $image->thumb(['format' => 'jpg'])->url() ?>">
+        </picture>
+      </div>
+      <div class="lg:col-span-2 xl:col-span-3 flex flex-col items-start" data-aos="fade-in">
         <p class="mb-8 leading-relaxed max-w-screen-sm"><?= $description ?></p>
         <button type="button" class="inline-flex text-white bg-tap-red-500 border-0 py-2 px-6 focus:outline-none group-hover:bg-tap-red-800 rounded text-lg">Mehr erfahren</button>
-      </div>
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" data-aos="flip-right" data-aos-delay="400">
-        <img class="object-cover object-center rounded" alt="<?= $event->title() ?>" src="<?= $event->main_image()->toFile()->url() ?>">
       </div>
     </div>
   </a>
