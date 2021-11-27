@@ -1,8 +1,5 @@
 <?php
-use Kirby\Cms\File;
-use Kirby\Cms\Page;
-
-/** @var Page $page */
+/** @var PersonPage $page */
 ?>
 
 <?php layout() ?>

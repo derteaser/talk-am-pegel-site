@@ -1,8 +1,5 @@
 <?php
-/** @var Page $person */
-
-use Kirby\Cms\Page;
-
+/** @var PersonPage $person */
 ?>
 <article class="p-4 lg:w-1/5 md:w-1/3 sm:w-1/2 relative" data-aos="flip-right">
   <div class="h-full flex flex-col items-center text-center pb-2">
