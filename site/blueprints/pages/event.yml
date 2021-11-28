@@ -2,6 +2,9 @@ title: Veranstaltung
 
 num: '{{ page.date.toDate("Ymd") }}'
 
+image:
+  query: page.main_image.toFile
+
 columns:
   left:
     width: 2/3
