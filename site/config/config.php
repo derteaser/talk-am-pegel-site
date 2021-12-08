@@ -13,6 +13,16 @@ return [
     'panel' => [
         'language' => 'de'
     ],
+    'hooks' => [
+        'system.exception' => function ($exception) {
+            $dsn = option('sentry.dsn');
+
+            if ($dsn) {
+                \Sentry\init(['dsn' => $dsn]);
+                \Sentry\captureException($exception);
+            }
+        }
+    ],
     'thumbs' => [
         'presets' => [
             'person' => ['width' => 500, 'height' => 500, 'crop' => true]
@@ -179,4 +189,5 @@ return [
             ]
         ];
     },
+    'sentry.dsn' => null
 ];
