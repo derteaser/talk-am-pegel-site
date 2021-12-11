@@ -1,13 +1,10 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  mode: 'jit',
-  purge: {
-    content: [
-      'site/snippets/**/*.php',
-      'site/templates/**/*.php',
-    ]
-  },
+  content: [
+    'site/snippets/**/*.php',
+    'site/templates/**/*.php',
+  ],
   darkMode: 'media',
   theme: {
     fontFamily: {
@@ -29,7 +26,7 @@ module.exports = {
     },
     extend: {
       'colors': {
-        gray: colors.blueGray,
+        gray: colors.slate,
         'tap-red': {
           100: '#FFEEEE',
           200: '#FED5D5',
@@ -58,10 +55,10 @@ module.exports = {
           css: {
             a: {
               'font-weight': 600,
-              color: theme('colors.tap-red.500'),
-              '&:hover': {
-                color: theme('colors.tap-red.600'),
-              },
+              textDecorationColor: theme('colors.tap-red.500'),
+            },
+            'a:hover': {
+              color: theme('colors.tap-red.600'),
             },
             blockquote: {
               quotes: '"\\201E""\\201D""\\2018""\\2019"',
