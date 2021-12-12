@@ -5,7 +5,6 @@ module.exports = {
     'site/snippets/**/*.php',
     'site/templates/**/*.php',
   ],
-  darkMode: 'media',
   theme: {
     fontFamily: {
       'sans': [
@@ -75,6 +74,12 @@ module.exports = {
         dark: {
           css: {
             color: theme('colors.gray.200'),
+            a: {
+              color: theme('colors.gray.200'),
+            },
+            'a:hover': {
+              color: theme('colors.tap-red.500'),
+            },
             'blockquote, strong, h2, h3, h4, h5, thead': {
               color: theme('colors.gray.100'),
             },
