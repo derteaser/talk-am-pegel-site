@@ -6,6 +6,6 @@ use Kirby\Cms\File;
 ?>
 
 <?php layout() ?>
-<section class="container mx-auto prose dark:prose-dark mt-16 px-6">
+<section class="container mx-auto blocks mt-16 px-6">
   <?= $page->text()->toBlocks() ?>
 </section>

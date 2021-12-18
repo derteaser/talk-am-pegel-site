@@ -1,8 +1,5 @@
 <?php
-use Kirby\Cms\File;
-use Kirby\Cms\Page;
-
-/** @var Page $page */
+/** @var EventPage $page */
 ?>
 
 <?php layout() ?>
@@ -13,7 +10,7 @@ use Kirby\Cms\Page;
       <?php if ($page->date()->toDate() > time()): ?>
         <div class="flex flex-col sm:flex-row mt-10">
           <div class="sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r border-gray-300 sm:border-b-0 border-b mb-4 pb-4 sm:mb-0">
-            <div class="mb-4 prose dark:prose-dark"><?= $page->text()->toBlocks() ?></div>
+            <div class="mb-4 blocks"><?= $page->text()->toBlocks() ?></div>
           </div>
           <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
             <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-400">
@@ -28,7 +25,7 @@ use Kirby\Cms\Page;
           </div>
         </div>
       <?php else: ?>
-        <div class="mt-10 mb-4 prose dark:prose-dark mx-auto"><?= $page->text()->toBlocks() ?></div>
+        <div class="mt-10 mb-4 blocks mx-auto"><?= $page->text()->toBlocks() ?></div>
       <?php endif ?>
     </div>
   </div>

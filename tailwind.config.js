@@ -49,50 +49,7 @@ module.exports = {
           900: '#18202B',
         },
       },
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            a: {
-              'font-weight': 600,
-              textDecorationColor: theme('colors.tap-red.500'),
-            },
-            'a:hover': {
-              color: theme('colors.tap-red.600'),
-            },
-            blockquote: {
-              quotes: '"\\201E""\\201D""\\2018""\\2019"',
-              fontStyle: 'normal',
-              fontSize: theme('fontSize.xl'),
-              paddingRight: theme('padding.6'),
-              borderColor: theme('colors.tap-blue.600'),
-              footer: {
-                fontSize: theme('fontSize.sm')
-              }
-            }
-          },
-        },
-        dark: {
-          css: {
-            color: theme('colors.gray.200'),
-            a: {
-              color: theme('colors.gray.200'),
-            },
-            'a:hover': {
-              color: theme('colors.tap-red.500'),
-            },
-            'blockquote, strong, h2, h3, h4, h5, thead': {
-              color: theme('colors.gray.100'),
-            },
-            hr: {
-              borderColor: theme('colors.gray.600'),
-            }
-          },
-        }
-      }),
     },
-  },
-  variants: {
-    typography: ["dark"],
   },
   plugins: [
     require('@tailwindcss/typography'),
