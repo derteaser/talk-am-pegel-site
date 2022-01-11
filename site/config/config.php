@@ -13,6 +13,9 @@ return [
     'panel' => [
         'language' => 'de'
     ],
+    'auth' => [
+        'methods' => ['code']
+    ],
     'hooks' => [
         'system.exception' => function ($exception) {
             $dsn = option('sentry.dsn');
