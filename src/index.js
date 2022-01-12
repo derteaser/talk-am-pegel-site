@@ -5,6 +5,14 @@ import 'aos/dist/aos.css'
 
 import BigPicture from "bigpicture/src/BigPicture"
 
+import Alpine from 'alpinejs'
+import intersect from '@alpinejs/intersect'
+
+Alpine.plugin(intersect)
+
+window.Alpine = Alpine
+Alpine.start()
+
 AOS.init({
   delay: 200, // values from 0 to 3000, with step 50ms
   duration: 1000, // values from 0 to 3000, with step 50ms
