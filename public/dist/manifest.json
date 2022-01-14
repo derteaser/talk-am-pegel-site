@@ -1,10 +1,10 @@
 {
   "index.js": {
-    "file": "assets/shared.4b8af274.js",
+    "file": "assets/shared.b2dfb312.js",
     "src": "index.js",
     "isEntry": true,
     "imports": [
-      "_vendor.3188080b.js"
+      "_vendor.b2876caf.js"
     ],
     "css": [
       "assets/shared.a1b7d65d.css"
@@ -32,7 +32,7 @@
       "assets/roboto-v19-latin-italic.75c12901.svg"
     ]
   },
-  "_vendor.3188080b.js": {
-    "file": "assets/vendor.3188080b.js"
+  "_vendor.b2876caf.js": {
+    "file": "assets/vendor.b2876caf.js"
   }
 }
