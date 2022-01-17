@@ -12,10 +12,10 @@
     "icons": "node icons.js"
   },
   "devDependencies": {
-    "@alpinejs/intersect": "^3.8.0",
+    "@alpinejs/intersect": "^3.8.1",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
-    "alpinejs": "^3.8.0",
+    "alpinejs": "^3.8.1",
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.2",
     "bigpicture": "^2.6.1",
@@ -28,7 +28,7 @@
     "shx": "^0.3.4",
     "simple-icons": "^6.5.0",
     "svg-mixer": "^2.3.14",
-    "tailwindcss": "^3.0.13",
+    "tailwindcss": "^3.0.15",
     "tailwindcss-debug-screens": "^2.2.1",
     "vite": "^2.7.12",
     "vite-plugin-live-reload": "^2.1.0"
