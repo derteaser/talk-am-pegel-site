@@ -23,7 +23,8 @@ $logo = asset('/img/logo.svg');
        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
        x-transition:leave="transition ease-in duration-300 origin-top"
        x-transition:leave-start="opacity-100 translate-y-0"
-       x-transition:leave-end="opacity-0 -translate-y-12">
+       x-transition:leave-end="opacity-0 -translate-y-12"
+       x-cloak>
     <a href="<?= $site->url() ?>" class="flex justify-center">
       <img src="<?= $logo->url() ?>" class="h-8">
     </a>
