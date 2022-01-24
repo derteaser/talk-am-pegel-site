@@ -14,7 +14,8 @@
         "arnoson/kirby-vite": "^2.2",
         "thathoff/kirby-git-content": "^4.1",
         "getkirby/layouts": "^1.0",
-        "sentry/sdk": "^3.1"
+        "sentry/sdk": "^3.1",
+        "paulmorel/fathom-analytics": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,

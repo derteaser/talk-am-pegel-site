@@ -24,7 +24,7 @@ use Kirby\Cms\Page;
     <?= vite()->client() ?>
     <?= vite()->css() ?>
     <?php //vite()->css($entry) ?>
-
+    <?php snippet('fathom-analytics-embed') ?>
 </head>
 <body class="bg-gray-200 dark:bg-gray-900<?= $kirby->option('debug') ? ' debug-screens' : ''?>">
 <?php snippet('hero-header') ?>

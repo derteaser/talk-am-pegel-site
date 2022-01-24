@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44eb348f120de5cfdc2ac28402e98156",
+    "content-hash": "16819ceb0345e06883796bfe13ff3d88",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -1111,6 +1111,41 @@
                 "source": "https://github.com/omz13/kirby3-xmlsitemap/tree/master"
             },
             "time": "2019-04-24T20:37:51+00:00"
+        },
+        {
+            "name": "paulmorel/fathom-analytics",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PaulMorel/kirby3-fathom-analytics.git",
+                "reference": "91bb02aecfb936cd326d325fe4bdf4deac5b47d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PaulMorel/kirby3-fathom-analytics/zipball/91bb02aecfb936cd326d325fe4bdf4deac5b47d6",
+                "reference": "91bb02aecfb936cd326d325fe4bdf4deac5b47d6",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1"
+            },
+            "type": "kirby-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Morel",
+                    "email": "paul@paulmorel.com"
+                }
+            ],
+            "description": "A Kirby 3 plugin for integrating the Fathom Analytics service to your site.",
+            "support": {
+                "issues": "https://github.com/PaulMorel/kirby3-fathom-analytics/issues",
+                "source": "https://github.com/PaulMorel/kirby3-fathom-analytics/tree/v1.0.0"
+            },
+            "time": "2021-10-22T02:44:41+00:00"
         },
         {
             "name": "pedroborges/kirby-meta-tags",
@@ -3031,5 +3066,5 @@
         "php": ">=7.4.0|>=8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }

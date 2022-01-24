@@ -192,5 +192,9 @@ return [
             ]
         ];
     },
-    'sentry.dsn' => null
+    'sentry.dsn' => null,
+    'paulmorel.fathom-analytics' => [
+        'siteId' => 'ZUNMTQNH',
+        'customDomain' => 'https://teacher-kind.talk-am-pegel.de'
+    ]
 ];
