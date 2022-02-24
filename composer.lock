@@ -2139,16 +2139,16 @@
         },
         {
             "name": "sylvainjule/locator",
-            "version": "1.0.9",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sylvainjule/kirby-locator.git",
-                "reference": "73553ece28d6c92e6075a240917de8c1cb5a368a"
+                "reference": "05b57528b9a280010c71c52e8a080150e63a8e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/73553ece28d6c92e6075a240917de8c1cb5a368a",
-                "reference": "73553ece28d6c92e6075a240917de8c1cb5a368a",
+                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/05b57528b9a280010c71c52e8a080150e63a8e0c",
+                "reference": "05b57528b9a280010c71c52e8a080150e63a8e0c",
                 "shasum": ""
             },
             "require": {
@@ -2171,9 +2171,9 @@
             "description": "A map & geolocation field, built on top of open-source services / Mapbox",
             "support": {
                 "issues": "https://github.com/sylvainjule/kirby-locator/issues",
-                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.0.9"
+                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.1.1"
             },
-            "time": "2021-11-24T12:51:12+00:00"
+            "time": "2022-02-23T18:38:59+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
