@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alpinejs/intersect@^3.9.2":
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.9.2.tgz#a0a97d410369aee9058fde6a1632ef2a78be5a4a"
-  integrity sha512-0Pt2OHE4LuKkGZHbj9vvkxokWtuGMSBcrM+oHBOb5ntMFrOz5nmuHaN26SilwlV3mrwGS9J83kskUrF5mcHZkg==
+"@alpinejs/intersect@^3.9.3":
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.9.3.tgz#7135a205a717f8eb3382048edcdc2ee705671b1d"
+  integrity sha512-NEXqgSMYUZSPndqizuLNtwk9KnSd6Plw89IkxNoGGmlTnOn/tM7vzFtV7S9Xd54CZoRw2NecFkTJmKSZ18C9aQ==
 
 "@babel/code-frame@^7.0.0":
   version "7.16.7"
@@ -114,10 +114,10 @@ ajv@^6.5.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alpinejs@^3.9.2:
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.9.2.tgz#d8b191a5f9d695400b99a0343b9743d9960bc58c"
-  integrity sha512-RoqGiEbOCCYr3yxhobJiuTsiD2NfnIe3dzbP/ll2hlSti675nP07n8994fw7CWq5p0xVpbRfAIyt2EjCzZhM6g==
+alpinejs@^3.9.3:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.9.3.tgz#107c5d643c0ab86a368a8158597e9a5f46bae773"
+  integrity sha512-yEG++yl1VOVHjJ9Fx8ibf+24zFdz/82n+FszWl2FVS8QqSvB5uwTdyzDg28r/JQZIlvYHxipoYgwD4HTUqH1ag==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
