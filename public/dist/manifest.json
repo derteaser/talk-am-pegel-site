@@ -1,13 +1,10 @@
 {
   "index.js": {
-    "file": "assets/shared.db2c54c2.js",
+    "file": "assets/shared.328f472e.js",
     "src": "index.js",
     "isEntry": true,
-    "imports": [
-      "_vendor.d03de409.js"
-    ],
     "css": [
-      "assets/shared.a1b7d65d.css"
+      "assets/shared.e1b33020.css"
     ],
     "assets": [
       "assets/roboto-v19-latin-100.77db1ab3.eot",
@@ -31,8 +28,5 @@
       "assets/roboto-v19-latin-italic.0dfa4684.ttf",
       "assets/roboto-v19-latin-italic.75c12901.svg"
     ]
-  },
-  "_vendor.d03de409.js": {
-    "file": "assets/vendor.d03de409.js"
   }
 }
