@@ -20,7 +20,7 @@
               <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Anmeldung</h2>
               <div class="w-12 h-1 bg-tap-blue-500 rounded mt-2 mb-4"></div>
               <p class="text-base text-gray-600 dark:text-gray-300">Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren Partner Eventbrite!</p>
-              <a class="btn btn-red mt-8" href="<?= $page->eventbrite_url() ?>" target="_blank" rel="noopener noreferrer">Kostenloses Ticket sichern</a>
+              <a class="btn btn-red mt-8" href="<?= $page->eventbrite_url() ?>" target="_blank" rel="noopener noreferrer" onclick="fathom.trackGoal('DZC4R54V', 0);">Kostenloses Ticket sichern</a>
             </div>
           </div>
         </div>
