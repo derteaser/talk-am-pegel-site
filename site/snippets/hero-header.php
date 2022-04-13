@@ -26,7 +26,7 @@ $logo = asset('/img/logo.svg');
        x-transition:leave-end="opacity-0 -translate-y-12"
        x-cloak>
     <a href="<?= $site->url() ?>" class="flex justify-center">
-      <img src="<?= $logo->url() ?>" class="h-8">
+      <img src="<?= $logo->url() ?>" class="h-8" alt="">
     </a>
   </div>
   <picture>
