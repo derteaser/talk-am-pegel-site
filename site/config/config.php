@@ -141,11 +141,11 @@ return [
                         'eventStatus' => [
                             '@type' => 'EventScheduled'
                         ],
-                        'eventAttendanceMode' => $page->is_virtual()->toBool() ? [
-                            '@type' => 'OnlineEventAttendanceMode'
-                        ] : [
-                            '@type' => 'OfflineEventAttendanceMode'
-                        ],
+                        'eventAttendanceMode' => $page->is_virtual()->toBool() ?
+                            'https://schema.org/OnlineEventAttendanceMode'
+                            :
+                            'https://schema.org/OfflineEventAttendanceMode'
+                        ,
                         'location' => $page->is_virtual()->toBool() ? [
                             '@type' => 'VirtualLocation',
                             'name' => $page->location_name()->value(),
