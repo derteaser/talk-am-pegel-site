@@ -17,7 +17,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "alpinejs": "^3.10.2",
     "aos": "^2.3.4",
-    "autoprefixer": "^10.4.5",
+    "autoprefixer": "^10.4.7",
     "bigpicture": "^2.6.2",
     "concurrently": "^7.1.0",
     "heroicons": "^1.0.5",
