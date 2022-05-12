@@ -18,6 +18,9 @@ tabs:
         sections:
           pages:
             headline: Seiten
+          listPagesModifiedByUser:
+            type: recentlymodified
+            headline: Zuletzt geändert
   contact:
     label: Kontakt/Social
     columns:

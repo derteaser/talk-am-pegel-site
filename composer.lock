@@ -4,27 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fec5a287903c33c4eb33c313714891e1",
+    "content-hash": "91216877761faf47d96547b9cea5f66c",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
-            "version": "v2.4.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/arnoson/kirby-vite.git",
-                "reference": "fcf9a6199a5c6d32f6940a6267dd1274394b546a"
+                "reference": "d516f5c1af3af58d7ccf3a00cb502af78d4f63dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arnoson/kirby-vite/zipball/fcf9a6199a5c6d32f6940a6267dd1274394b546a",
-                "reference": "fcf9a6199a5c6d32f6940a6267dd1274394b546a",
+                "url": "https://api.github.com/repos/arnoson/kirby-vite/zipball/d516f5c1af3af58d7ccf3a00cb502af78d4f63dc",
+                "reference": "d516f5c1af3af58d7ccf3a00cb502af78d4f63dc",
                 "shasum": ""
             },
             "require": {
-                "getkirby/composer-installer": "^1.1"
+                "getkirby/composer-installer": "^1.2"
             },
             "require-dev": {
-                "getkirby/cms": "^3",
+                "getkirby/cms": "^3.6",
                 "phpunit/phpunit": "^9.5"
             },
             "type": "kirby-plugin",
@@ -35,9 +35,75 @@
             "description": "Vite helper for Kirby CMS",
             "support": {
                 "issues": "https://github.com/arnoson/kirby-vite/issues",
-                "source": "https://github.com/arnoson/kirby-vite/tree/v2.4.0"
+                "source": "https://github.com/arnoson/kirby-vite/tree/v2.5.1"
             },
-            "time": "2021-07-05T16:38:01+00:00"
+            "time": "2022-05-11T09:23:31+00:00"
+        },
+        {
+            "name": "bnomei/kirby3-recently-modified",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bnomei/kirby3-recently-modified.git",
+                "reference": "cb8cb2a74bc17382885ddc6552e121057dcb6f06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/cb8cb2a74bc17382885ddc6552e121057dcb6f06",
+                "reference": "cb8cb2a74bc17382885ddc6552e121057dcb6f06",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.2"
+            },
+            "type": "kirby-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Meilick",
+                    "email": "b@bnomei.com"
+                }
+            ],
+            "description": "Kirby 3 Section to display recently modified content pages",
+            "keywords": [
+                "collection",
+                "kirby3",
+                "kirby3-cms",
+                "kirby3-plugin",
+                "list",
+                "modified",
+                "page",
+                "pages",
+                "section",
+                "user",
+                "widget"
+            ],
+            "support": {
+                "issues": "https://github.com/bnomei/kirby3-recently-modified/issues",
+                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://buymeacoff.ee/bnomei",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://paypal.me/bnomei",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/bnomei",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/bnomei",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-04-19T23:07:15+00:00"
         },
         {
             "name": "bnomei/kirby3-robots-txt",
@@ -3022,5 +3088,5 @@
         "php": ">=8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
