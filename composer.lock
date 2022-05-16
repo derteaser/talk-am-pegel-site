@@ -41,16 +41,16 @@
         },
         {
             "name": "bnomei/kirby3-recently-modified",
-            "version": "1.2.0",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-recently-modified.git",
-                "reference": "cb8cb2a74bc17382885ddc6552e121057dcb6f06"
+                "reference": "78f8b8df22637e3b16129799b2effa6c37d30b92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/cb8cb2a74bc17382885ddc6552e121057dcb6f06",
-                "reference": "cb8cb2a74bc17382885ddc6552e121057dcb6f06",
+                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/78f8b8df22637e3b16129799b2effa6c37d30b92",
+                "reference": "78f8b8df22637e3b16129799b2effa6c37d30b92",
                 "shasum": ""
             },
             "require": {
@@ -83,7 +83,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-recently-modified/issues",
-                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.0"
+                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.2"
             },
             "funding": [
                 {
@@ -103,7 +103,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-04-19T23:07:15+00:00"
+            "time": "2022-05-14T11:30:18+00:00"
         },
         {
             "name": "bnomei/kirby3-robots-txt",
@@ -3088,5 +3088,5 @@
         "php": ">=8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
