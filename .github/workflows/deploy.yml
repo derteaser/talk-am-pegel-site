@@ -30,7 +30,7 @@ jobs:
         script: |
           cd talk-am-pegel
           git pull
-          php80 /usr/bin/composer install --no-dev -d ${PWD}
+          php81 /usr/bin/composer install --no-dev -d ${PWD}
     - uses: actions/checkout@v2
     - name: Create Sentry release
       uses: getsentry/action-release@v1
