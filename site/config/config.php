@@ -11,7 +11,8 @@ return [
         'handler' => 'strftime'
     ],
     'panel' => [
-        'language' => 'de'
+        'language' => 'de',
+        'css' => 'custom-panel/styles.css'
     ],
     'auth' => [
         'methods' => ['code']
@@ -137,7 +138,7 @@ return [
                 'json-ld' => [
                     'Event' => [
                         'name' => $page->title()->value(),
-                        'description' => strip_tags($page->text()->toBlocks()->filterBy('type', 'paragraph')->html()),
+                        'description' => strip_tags($page->text()->toBlocks()->filterBy('type', 'paragraph')->html() ?? ''),
                         'eventStatus' => [
                             '@type' => 'EventScheduled'
                         ],
