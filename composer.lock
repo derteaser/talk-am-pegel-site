@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51102a4ab824d0c528bdf32e5ccf16a2",
+    "content-hash": "daf4d38d971cf3d22e635758df94e3c5",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -41,16 +41,16 @@
         },
         {
             "name": "bnomei/kirby3-recently-modified",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-recently-modified.git",
-                "reference": "78f8b8df22637e3b16129799b2effa6c37d30b92"
+                "reference": "a4905f773aee5150d31ca73bc7642aa5b31737f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/78f8b8df22637e3b16129799b2effa6c37d30b92",
-                "reference": "78f8b8df22637e3b16129799b2effa6c37d30b92",
+                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/a4905f773aee5150d31ca73bc7642aa5b31737f3",
+                "reference": "a4905f773aee5150d31ca73bc7642aa5b31737f3",
                 "shasum": ""
             },
             "require": {
@@ -83,7 +83,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-recently-modified/issues",
-                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.2"
+                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.3"
             },
             "funding": [
                 {
@@ -103,7 +103,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-14T11:30:18+00:00"
+            "time": "2022-06-24T10:32:49+00:00"
         },
         {
             "name": "bnomei/kirby3-robots-txt",
