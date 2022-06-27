@@ -18,11 +18,12 @@ sections:
     extends: sections/persons
     headline: Unveröffentlichte Personen
     status: draft
+    layout: table
   listed:
     extends: sections/persons
     headline: Veröffentlichte Personen
     status: unlisted
-    layout: cardlets
+    layout: table
     image:
       cover: true
       ratio: 1/1

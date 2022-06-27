@@ -21,9 +21,6 @@ tabs:
             image:
               back: blue
               color: blue-100
-          listPagesModifiedByUser:
-            type: recentlymodified
-            headline: Zuletzt geändert
   contact:
     label: Kontakt/Social
     columns:
