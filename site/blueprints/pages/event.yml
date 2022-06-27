@@ -39,6 +39,7 @@ columns:
       eventbrite_url:
         type: url
         label: Link zur Anmeldung bei Eventbrite
+        icon: ticket
         required: true
       text:
         type: blocks

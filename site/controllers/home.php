@@ -9,7 +9,7 @@ use Kirby\Toolkit\A;
 return function (Page $page, Pages $pages, Site $site, App $kirby) {
     $shared = $kirby->controller('site' , compact('page', 'pages', 'site', 'kirby'));
 
-    $latestEvent = $site->find('talks')->children()->last();
+    $latestEvent = $kirby->collection('events')->first();
 
     return A::merge($shared , compact('latestEvent'));
 };

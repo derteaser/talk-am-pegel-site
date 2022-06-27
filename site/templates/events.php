@@ -1,16 +1,18 @@
 <?php
-use Kirby\Cms\File;
+
+use Kirby\Cms\App;
 use Kirby\Cms\Page;
 use Kirby\Toolkit\Str;
 
 /** @var Page $page */
+/** @var App $kirby */
 ?>
 
 <?php layout() ?>
 
 <section class="text-gray-700 dark:text-gray-400 overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
-    <?php foreach ($page->children()->flip() as $event): ?>
+    <?php foreach ($kirby->collection('events') as $event): ?>
       <div class="-my-8">
         <div class="py-8 flex flex-wrap md:flex-nowrap">
           <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">

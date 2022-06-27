@@ -20,6 +20,7 @@ columns:
       linkedin:
         type: url
         label: LinkedIn
+        icon: linkedin
         width: 1/2
       xing:
         type: url
