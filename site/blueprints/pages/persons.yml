@@ -24,6 +24,7 @@ sections:
     headline: Veröffentlichte Personen
     status: unlisted
     layout: table
+    search: true
     image:
       cover: true
       ratio: 1/1
