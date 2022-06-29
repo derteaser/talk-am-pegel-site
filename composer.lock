@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb2cc592eb23f1cbc9889b997172bf73",
+    "content-hash": "75bb330753439916005e9265925f9bef",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -416,16 +416,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "3.7.0",
+            "version": "3.7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "d210f26602cf72c926d8ccf8befd61d7831888da"
+                "reference": "eccee2a0929b42a4f7996d7424aa61abd885cabc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/d210f26602cf72c926d8ccf8befd61d7831888da",
-                "reference": "d210f26602cf72c926d8ccf8befd61d7831888da",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/eccee2a0929b42a4f7996d7424aa61abd885cabc",
+                "reference": "eccee2a0929b42a4f7996d7424aa61abd885cabc",
                 "shasum": ""
             },
             "require": {
@@ -511,7 +511,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-06-27T09:49:28+00:00"
+            "time": "2022-06-28T09:37:18+00:00"
         },
         {
             "name": "getkirby/composer-installer",
