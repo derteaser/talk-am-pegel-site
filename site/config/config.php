@@ -32,6 +32,21 @@ return [
             'person' => ['width' => 500, 'height' => 500, 'crop' => true]
         ]
     ],
+    'routes' => [
+        [
+            'pattern' => 'sitemap.xml',
+            'method' => 'GET',
+            'action'  => function () {
+                $options = [
+                    'images'       => false,
+                    'videos'       => false,
+                    'xsl' => false
+                ];
+
+                return site()->index()->published()->sitemap($options);
+            }
+        ]
+    ],
     'thathoff' => [
         'git-content' => [
             'push' => true,
@@ -40,7 +55,6 @@ return [
         ],
     ],
     'bnomei.robots-txt.sitemap' => 'sitemap.xml',
-    'omz13.xmlsitemap.includeUnlistedWhenTemplateIs' => ['events', 'event', 'contact', 'default'],
     'pedroborges.meta-tags.default' => function ($page, $site) {
         $image = $page->main_image()->toFile();
         if (!$image) {
