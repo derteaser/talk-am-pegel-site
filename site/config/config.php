@@ -202,7 +202,7 @@ return [
             ],
             'person' => [
                 'meta' => [
-                    'robots' => 'noindex,nofollow,noodp'
+                    'robots' => 'index,follow,noodp'
                 ]
             ]
         ];
