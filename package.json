@@ -12,7 +12,7 @@
     "icons": "node icons.js"
   },
   "devDependencies": {
-    "@alpinejs/intersect": "3.10.2",
+    "@alpinejs/intersect": "3.10.3",
     "@tailwindcss/aspect-ratio": "0.4.0",
     "@tailwindcss/typography": "0.5.4",
     "alpinejs": "3.10.2",
