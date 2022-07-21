@@ -1,5 +1,14 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchSourceUrlPrefixes": [
+        "https://github.com/alpinejs/alpine"
+      ],
+      "groupName": "alpinejs packages",
+      "groupSlug": "alpinejs"
+    }
   ]
 }
