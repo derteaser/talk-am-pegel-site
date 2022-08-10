@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "437e1659c2294e9afce79c18ba2b76e8",
+    "content-hash": "7f45de6f2be8d6300b24730b97a2ce50",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -380,50 +380,56 @@
             "time": "2022-02-21T13:15:14+00:00"
         },
         {
-            "name": "coyl/git",
-            "version": "0.1.7",
+            "name": "czproject/git-php",
+            "version": "v4.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/coyl/git.git",
-                "reference": "bc9893d096fab1bdd0fac8ee2f30b8b1dcbf8d63"
+                "url": "https://github.com/czproject/git-php.git",
+                "reference": "24f4e51cc536a723b7838686284d1c21c6de088b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/coyl/git/zipball/bc9893d096fab1bdd0fac8ee2f30b8b1dcbf8d63",
-                "reference": "bc9893d096fab1bdd0fac8ee2f30b8b1dcbf8d63",
+                "url": "https://api.github.com/repos/czproject/git-php/zipball/24f4e51cc536a723b7838686284d1c21c6de088b",
+                "reference": "24f4e51cc536a723b7838686284d1c21c6de088b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
+                "php": ">=5.6.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.0"
+                "nette/tester": "^2.0"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "": "src/"
-                }
+                "classmap": [
+                    "src/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
             "authors": [
                 {
-                    "name": "Vasil coylOne Kulakov",
-                    "email": "iam@vasiliy.pro",
-                    "homepage": "http://github.com/coyl"
+                    "name": "Jan Pecha",
+                    "email": "janpecha@email.cz"
                 }
             ],
-            "description": "PHP library for manipulations on git repository. Based on kbjr/Git.php and it's forks",
-            "homepage": "https://github.com/coyl/Git.php",
+            "description": "Library for work with Git repository in PHP.",
             "keywords": [
-                "git",
-                "git-client",
-                "php-git"
+                "git"
             ],
             "support": {
-                "source": "https://github.com/coyl/git/tree/master"
+                "issues": "https://github.com/czproject/git-php/issues",
+                "source": "https://github.com/czproject/git-php/tree/v4.0.5"
             },
-            "time": "2017-09-12T08:37:07+00:00"
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate?hosted_button_id=EPSKR7MGVV7KC",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-04-27T12:20:53+00:00"
         },
         {
             "name": "filp/whoops",
@@ -3088,20 +3094,21 @@
         },
         {
             "name": "thathoff/kirby-git-content",
-            "version": "v4.1.0",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thathoff/kirby-git-content.git",
-                "reference": "72e079438e0af861a75074d95c7ee24643bff5f9"
+                "reference": "85d1c3b51e80c3994868be0c4b76c7b3013bbf79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thathoff/kirby-git-content/zipball/72e079438e0af861a75074d95c7ee24643bff5f9",
-                "reference": "72e079438e0af861a75074d95c7ee24643bff5f9",
+                "url": "https://api.github.com/repos/thathoff/kirby-git-content/zipball/85d1c3b51e80c3994868be0c4b76c7b3013bbf79",
+                "reference": "85d1c3b51e80c3994868be0c4b76c7b3013bbf79",
                 "shasum": ""
             },
             "require": {
-                "coyl/git": "^0.1.7",
+                "czproject/git-php": "^4.0.1",
+                "getkirby/cms": "^3.6.0",
                 "getkirby/composer-installer": "^1.1"
             },
             "type": "kirby-plugin",
@@ -3117,12 +3124,18 @@
             "license": [
                 "MIT"
             ],
+            "authors": [
+                {
+                    "name": "Markus Denhoff",
+                    "email": "markus@denhoff.com"
+                }
+            ],
             "description": "Plugin to track changes to content in a git repository.",
             "support": {
                 "issues": "https://github.com/thathoff/kirby-git-content/issues",
-                "source": "https://github.com/thathoff/kirby-git-content/tree/v4.1.0"
+                "source": "https://github.com/thathoff/kirby-git-content"
             },
-            "time": "2021-02-19T12:55:16+00:00"
+            "time": "2022-08-10T07:01:17+00:00"
         }
     ],
     "packages-dev": [],
