@@ -11,7 +11,7 @@
         "sylvainjule/locator": "1.1.2",
         "bnomei/kirby3-robots-txt": "1.5.0",
         "arnoson/kirby-vite": "2.5.2",
-        "thathoff/kirby-git-content": "4.1.0",
+        "thathoff/kirby-git-content": "5.0.1",
         "getkirby/layouts": "1.0.1",
         "sentry/sdk": "3.2.0",
         "paulmorel/fathom-analytics": "1.0.0",
