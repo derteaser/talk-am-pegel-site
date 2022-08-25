@@ -13,21 +13,21 @@ class MySprite extends mixer.Sprite {
 
 mixer([
   // Directions
-  'node_modules/heroicons/outline/chevron-left.svg',
-  'node_modules/heroicons/outline/chevron-right.svg',
-  'node_modules/heroicons/outline/arrow-down.svg',
-  'node_modules/heroicons/outline/arrow-right.svg',
+  'node_modules/heroicons/24/outline/chevron-left.svg',
+  'node_modules/heroicons/24/outline/chevron-right.svg',
+  'node_modules/heroicons/24/outline/arrow-down.svg',
+  'node_modules/heroicons/24/outline/arrow-right.svg',
   // Brands
   'node_modules/simple-icons/icons/facebook.svg',
   'node_modules/simple-icons/icons/linkedin.svg',
   'node_modules/simple-icons/icons/twitter.svg',
   'node_modules/simple-icons/icons/xing.svg',
   // Misc
-  'node_modules/heroicons/solid/calendar.svg',
-  'node_modules/heroicons/solid/clock.svg',
-  'node_modules/heroicons/outline/globe-alt.svg',
-  'node_modules/heroicons/solid/location-marker.svg',
-  'node_modules/heroicons/outline/ticket.svg',
-  'node_modules/heroicons/solid/video-camera.svg',
+  'node_modules/heroicons/20/solid/calendar.svg',
+  'node_modules/heroicons/20/solid/clock.svg',
+  'node_modules/heroicons/24/outline/globe-alt.svg',
+  'node_modules/heroicons/20/solid/map-pin.svg',
+  'node_modules/heroicons/24/outline/ticket.svg',
+  'node_modules/heroicons/20/solid/video-camera.svg',
 ], { spriteConfig: { usages: false }, spriteClass: MySprite } )
     .then(result => result.write('public/img/icons.svg'));

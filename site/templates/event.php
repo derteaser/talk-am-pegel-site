@@ -58,7 +58,7 @@
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
-              <?php snippet('icon', ['name' => $page->is_virtual()->toBool() ? 'video-camera' : 'location-marker', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+              <?php snippet('icon', ['name' => $page->is_virtual()->toBool() ? 'video-camera' : 'map-pin', 'cssClasses' => 'fill-current w-5 h-5']) ?>
             </div>
             <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page->location_name() ?></p>
           </div>
