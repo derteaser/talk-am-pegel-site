@@ -4,27 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b916f2ab17b782e3b3d1b0daf2f395ee",
+    "content-hash": "f23173c1c718ffd47212943d166a2119",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
-            "version": "v3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/arnoson/kirby-vite.git",
-                "reference": "818c92f138e4a7bd7a9c4c451364a10854deb415"
+                "reference": "e59dfd34b109ff54ef1078751738234be83d7f6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arnoson/kirby-vite/zipball/818c92f138e4a7bd7a9c4c451364a10854deb415",
-                "reference": "818c92f138e4a7bd7a9c4c451364a10854deb415",
+                "url": "https://api.github.com/repos/arnoson/kirby-vite/zipball/e59dfd34b109ff54ef1078751738234be83d7f6b",
+                "reference": "e59dfd34b109ff54ef1078751738234be83d7f6b",
                 "shasum": ""
             },
             "require": {
                 "getkirby/composer-installer": "^1.2"
             },
             "require-dev": {
-                "getkirby/cms": "^3.7",
+                "getkirby/cms": "^3.8",
                 "phpunit/phpunit": "^9.5"
             },
             "type": "kirby-plugin",
@@ -32,12 +32,17 @@
             "license": [
                 "MIT"
             ],
+            "authors": [
+                {
+                    "name": "Arno Schlipf"
+                }
+            ],
             "description": "Vite helper for Kirby CMS",
             "support": {
                 "issues": "https://github.com/arnoson/kirby-vite/issues",
-                "source": "https://github.com/arnoson/kirby-vite/tree/v3.0.0"
+                "source": "https://github.com/arnoson/kirby-vite/tree/v3.0.1"
             },
-            "time": "2022-09-20T12:07:42+00:00"
+            "time": "2022-10-06T14:48:49+00:00"
         },
         {
             "name": "bnomei/kirby3-feed",
@@ -380,6 +385,87 @@
             "time": "2022-02-21T13:15:14+00:00"
         },
         {
+            "name": "composer/semver",
+            "version": "3.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/semver.git",
+                "reference": "3953f23262f2bff1919fc82183ad9acb13ff62c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/semver/zipball/3953f23262f2bff1919fc82183ad9acb13ff62c9",
+                "reference": "3953f23262f2bff1919fc82183ad9acb13ff62c9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.4",
+                "symfony/phpunit-bridge": "^4.2 || ^5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Semver\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                },
+                {
+                    "name": "Rob Bast",
+                    "email": "rob.bast@gmail.com",
+                    "homepage": "http://robbast.nl"
+                }
+            ],
+            "description": "Semver library that offers utilities, version constraint parsing and validation.",
+            "keywords": [
+                "semantic",
+                "semver",
+                "validation",
+                "versioning"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/semver/issues",
+                "source": "https://github.com/composer/semver/tree/3.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-04-01T19:23:25+00:00"
+        },
+        {
             "name": "czproject/git-php",
             "version": "v4.0.5",
             "source": {
@@ -504,20 +590,21 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "3.7.5",
+            "version": "3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "021561f7444896fc9917eccb52768a6e715e9a74"
+                "reference": "3e5899b628a2b59c1833a8d79eda292a7fe06843"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/021561f7444896fc9917eccb52768a6e715e9a74",
-                "reference": "021561f7444896fc9917eccb52768a6e715e9a74",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/3e5899b628a2b59c1833a8d79eda292a7fe06843",
+                "reference": "3e5899b628a2b59c1833a8d79eda292a7fe06843",
                 "shasum": ""
             },
             "require": {
                 "claviska/simpleimage": "3.7.0",
+                "composer/semver": "3.3.2",
                 "ext-ctype": "*",
                 "ext-curl": "*",
                 "ext-dom": "*",
@@ -533,7 +620,7 @@
                 "getkirby/composer-installer": "^1.2.1",
                 "laminas/laminas-escaper": "2.10.0",
                 "michelf/php-smartypants": "1.8.1",
-                "php": ">=7.4.0 <8.2.0",
+                "php": ">=8.0.0 <8.2.0",
                 "phpmailer/phpmailer": "6.6.4",
                 "symfony/polyfill-intl-idn": "1.26.0",
                 "symfony/polyfill-mbstring": "1.26.0"
@@ -599,7 +686,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-08-30T18:27:48+00:00"
+            "time": "2022-10-06T09:42:24+00:00"
         },
         {
             "name": "getkirby/composer-installer",
@@ -2152,16 +2239,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "3.8.1",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "5150776a0a9835c4ea56ff0ecd94e0a109b6c163"
+                "reference": "0d162e2516f8254e821a1376018e1e021f910bff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/5150776a0a9835c4ea56ff0ecd94e0a109b6c163",
-                "reference": "5150776a0a9835c4ea56ff0ecd94e0a109b6c163",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/0d162e2516f8254e821a1376018e1e021f910bff",
+                "reference": "0d162e2516f8254e821a1376018e1e021f910bff",
                 "shasum": ""
             },
             "require": {
@@ -2206,7 +2293,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8.x-dev"
+                    "dev-master": "3.9.x-dev"
                 }
             },
             "autoload": {
@@ -2240,7 +2327,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/3.8.1"
+                "source": "https://github.com/getsentry/sentry-php/tree/3.9.0"
             },
             "funding": [
                 {
@@ -2252,7 +2339,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-09-21T11:01:17+00:00"
+            "time": "2022-10-05T09:35:42+00:00"
         },
         {
             "name": "sylvainjule/locator",
@@ -2361,16 +2448,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v6.1.4",
+            "version": "v6.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "06dc27cbdcee26d6796c226db5266a0d58359739"
+                "reference": "565b0f2ce2c5882e89b3ef5e255d7e0478b9c675"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/06dc27cbdcee26d6796c226db5266a0d58359739",
-                "reference": "06dc27cbdcee26d6796c226db5266a0d58359739",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/565b0f2ce2c5882e89b3ef5e255d7e0478b9c675",
+                "reference": "565b0f2ce2c5882e89b3ef5e255d7e0478b9c675",
                 "shasum": ""
             },
             "require": {
@@ -2425,7 +2512,7 @@
             "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v6.1.4"
+                "source": "https://github.com/symfony/http-client/tree/v6.1.5"
             },
             "funding": [
                 {
@@ -2441,7 +2528,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-02T16:17:38+00:00"
+            "time": "2022-09-09T09:34:27+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
