@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alpinejs/intersect@3.10.3":
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.10.3.tgz#9aebf43b40e02b0f53e244229472cc3f1d1ed304"
-  integrity sha512-vMRvhbMJzS1tupb2a/3GF5H+gLxxWaXJpcxJlfSHrV2JTb+RFWOJIkL/63JpPPGibtpaNBDrx3hsRN0CJ4d5mw==
+"@alpinejs/intersect@3.10.4":
+  version "3.10.4"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.10.4.tgz#89cf496819536b0d413c597775ac640009d33bd3"
+  integrity sha512-1yZ+QxUDMdDn+Y7FJFkMUSCZO7M18oIO2IAN8LNabggU23GH4gwOGdW1CoXLzh6B9K6RXNyVT5Rmf07jNz0ZXg==
 
 "@esbuild/android-arm@0.15.10":
   version "0.15.10"
@@ -200,10 +200,10 @@ ajv@^6.5.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alpinejs@3.10.3:
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.10.3.tgz#4072c5ec01adf58b31a0e8e13e4ccb1382c1d112"
-  integrity sha512-nt/w4hLq9pPaexCsHmO5zV5Alvq4yu9n0Iclti6aV0HmiqLWH/axUb0pn8z3XVuVNcj8EOXOQw+WpwPzMzLBWg==
+alpinejs@3.10.4:
+  version "3.10.4"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.10.4.tgz#61bbadb2275796f545c4f53743f0bcbefa4661d0"
+  integrity sha512-AC6Xchlb/xURO7F93OSMItooClpzGNZRM5+rDa6/3Y20mPxQs1TQ/wfiwiH4mtcVt8yTxdkOW5dOl8CBCK095A==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
@@ -1755,6 +1755,13 @@ postcss-nested@5.0.6:
   integrity sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==
   dependencies:
     postcss-selector-parser "^6.0.6"
+
+postcss-nested@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-6.0.0.tgz#1572f1984736578f360cffc7eb7dca69e30d1735"
+  integrity sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==
+  dependencies:
+    postcss-selector-parser "^6.0.10"
 
 postcss-prefix-selector@^1.6.0:
   version "1.15.0"

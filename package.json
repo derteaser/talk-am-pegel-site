@@ -9,10 +9,10 @@
     "icons": "node icons.js"
   },
   "devDependencies": {
-    "@alpinejs/intersect": "3.10.3",
+    "@alpinejs/intersect": "3.10.4",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.7",
-    "alpinejs": "3.10.3",
+    "alpinejs": "3.10.4",
     "aos": "2.3.4",
     "autoprefixer": "10.4.12",
     "bigpicture": "2.6.2",
@@ -20,7 +20,7 @@
     "postcss": "8.4.17",
     "postcss-cli": "10.0.0",
     "postcss-import": "15.0.0",
-    "postcss-nested": "5.0.6",
+    "postcss-nested": "6.0.0",
     "simple-icons": "7.15.0",
     "svg-mixer": "2.3.14",
     "tailwindcss": "3.1.8",
