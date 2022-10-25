@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alpinejs/intersect@3.10.4":
-  version "3.10.4"
-  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.10.4.tgz#89cf496819536b0d413c597775ac640009d33bd3"
-  integrity sha512-1yZ+QxUDMdDn+Y7FJFkMUSCZO7M18oIO2IAN8LNabggU23GH4gwOGdW1CoXLzh6B9K6RXNyVT5Rmf07jNz0ZXg==
+"@alpinejs/intersect@3.10.5":
+  version "3.10.5"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.10.5.tgz#4a37b6633f8e4ce87aa4efa5fc3c545250ef9d2f"
+  integrity sha512-4i9zrQ5mZJXtLf2ZRI5Fc4t8kBlierIsNZzwG38BWzduD4dLhBvU3+mFiLl/rgIwvFuJ080duIb4S9/XW81nBQ==
 
 "@esbuild/android-arm@0.15.10":
   version "0.15.10"
