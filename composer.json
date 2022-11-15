@@ -6,7 +6,7 @@
     "homepage": "https://www.talk-am-pegel.de",
     "require": {
         "php": ">=8.0",
-        "getkirby/cms": "3.8.1",
+        "getkirby/cms": "3.8.2",
         "pedroborges/kirby-meta-tags": "2.1.0",
         "sylvainjule/locator": "1.1.2",
         "bnomei/kirby3-robots-txt": "1.5.0",
