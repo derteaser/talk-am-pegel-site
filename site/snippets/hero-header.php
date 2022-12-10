@@ -1,6 +1,5 @@
 <?php
 
-use Kirby\Cms\Field;
 use Kirby\Cms\File;
 use Kirby\Cms\Page;
 use Kirby\Cms\Site;
@@ -16,7 +15,7 @@ $logo = asset('/img/logo.svg');
 ?>
 
 <header class="bg-gray-900 flex-nowrap relative h-screen md:h-auto" x-data="{ scrolledAway: false }">
-  <div class="fixed bg-tap-blue-600 bg-opacity-80 backdrop-blur-md w-full p-2 z-50"
+  <div class="fixed bg-tap-alpha-blue-light dark:bg-tap-alpha-blue-dark bg-opacity-80 backdrop-blur-md w-full p-2 z-50"
        x-show="scrolledAway"
        x-transition:enter="transition ease-out duration-300 origin-top"
        x-transition:enter-start="opacity-0 -translate-y-12"
