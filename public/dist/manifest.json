@@ -80,15 +80,15 @@
     "src": "assets/fonts/roboto-v19-latin-italic.svg"
   },
   "index.css": {
-    "file": "assets/index-7de37cb2.css",
+    "file": "assets/index-f055d8a8.css",
     "src": "index.css"
   },
   "index.js": {
-    "file": "assets/index-0db4f7a8.js",
+    "file": "assets/index-a36cd884.js",
     "src": "index.js",
     "isEntry": true,
     "css": [
-      "assets/index-7de37cb2.css"
+      "assets/index-f055d8a8.css"
     ],
     "assets": [
       "assets/roboto-v19-latin-100-77db1ab3.eot",
