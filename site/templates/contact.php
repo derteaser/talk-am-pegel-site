@@ -8,7 +8,7 @@ use Kirby\Cms\Site;
 /** @var Site $site */
 ?>
 
-<?php layout() ?>
+<?php snippet('layout', slots: true); ?>
 <section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32 text-center dark:text-gray-200">
   <h2 class="text-xl mb-4 leading-relaxed"><?= $site->title() ?></h2>
   <p><?= $site->address1() ?></p>
@@ -19,7 +19,7 @@ use Kirby\Cms\Site;
 
   <div class="flex justify-center mt-6">
     <?php foreach ($page->contact_persons()->toPages() as $person): ?>
-      <?php snippet('person', ['person' => $person]) ?>
-    <?php endforeach ?>
+      <?php snippet('person', ['person' => $person]); ?>
+    <?php endforeach; ?>
   </div>
 </section>

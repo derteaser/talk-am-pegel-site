@@ -2,7 +2,7 @@
 /** @var EventPage $page */
 ?>
 
-<?php layout() ?>
+<?php snippet('layout', slots: true); ?>
 
 <section class="text-gray-700">
   <div class="container px-5 pt-6 pb-12 mx-auto flex flex-col">
@@ -14,7 +14,7 @@
           </div>
           <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
             <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-400">
-              <?php snippet('icon', ['name' => 'ticket', 'cssClasses' => 'fill-current w-16 h-16']) ?>
+              <?php snippet('icon', ['name' => 'ticket', 'cssClasses' => 'fill-current w-16 h-16']); ?>
             </div>
             <div class="flex flex-col items-center text-center justify-center">
               <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Anmeldung</h2>
@@ -26,7 +26,7 @@
         </div>
       <?php else: ?>
         <div class="mt-10 mb-4 blocks mx-auto"><?= $page->text()->toBlocks() ?></div>
-      <?php endif ?>
+      <?php endif; ?>
     </div>
   </div>
 </section>
@@ -38,9 +38,11 @@
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
-              <?php snippet('icon', ['name' => 'calendar', 'cssClasses' => 'fill-current w-5 h-5 m-2']) ?>
+              <?php snippet('icon', ['name' => 'calendar', 'cssClasses' => 'fill-current w-5 h-5 m-2']); ?>
             </div>
-            <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page->date()->toDate('%e. %B %Y') ?></p>
+            <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page
+              ->date()
+              ->toDate('%e. %B %Y') ?></p>
           </div>
         </div>
       </div>
@@ -48,9 +50,11 @@
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
-              <?php snippet('icon', ['name' => 'clock', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+              <?php snippet('icon', ['name' => 'clock', 'cssClasses' => 'fill-current w-5 h-5']); ?>
             </div>
-            <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page->date()->toDate('%H:%M') ?> Uhr</p>
+            <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page
+              ->date()
+              ->toDate('%H:%M') ?> Uhr</p>
           </div>
         </div>
       </div>
@@ -58,7 +62,10 @@
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
-              <?php snippet('icon', ['name' => $page->is_virtual()->toBool() ? 'video-camera' : 'map-pin', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+              <?php snippet('icon', [
+                'name' => $page->is_virtual()->toBool() ? 'video-camera' : 'map-pin',
+                'cssClasses' => 'fill-current w-5 h-5',
+              ]); ?>
             </div>
             <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page->location_name() ?></p>
           </div>
@@ -72,8 +79,8 @@
   <div class="container px-20 sm: px-12 md:px-5 pt-12 pb-24 mx-auto">
     <div class="flex flex-wrap justify-center -m-4">
       <?php foreach ($page->attendants()->toPages() as $person): ?>
-        <?php snippet('person', ['person' => $person]) ?>
-      <?php endforeach ?>
+        <?php snippet('person', ['person' => $person]); ?>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
@@ -83,7 +90,10 @@
     <?php if ($prev = $page->prev()): ?>
       <div class="p-2">
         <a href="<?= $prev->url() ?>" class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row items-center">
-          <?php snippet('icon', ['name' => 'chevron-left', 'cssClasses' => 'stroke-current w-12 h-12 float-right mr-4']) ?>
+          <?php snippet('icon', [
+            'name' => 'chevron-left',
+            'cssClasses' => 'stroke-current w-12 h-12 float-right mr-4',
+          ]); ?>
           <div>
             <p class="text-gray-500 dark:text-gray-400 text-sm uppercase font-medium"><?= $prev->textline() ?></p>
             <p><?= $prev->title() ?></p>
@@ -92,17 +102,20 @@
       </div>
     <?php else: ?>
       <div></div>
-    <?php endif ?>
+    <?php endif; ?>
     <?php if ($next = $page->next()): ?>
       <div class="p-2 text-right">
         <a href="<?= $next->url() ?>" class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row-reverse items-center">
-          <?php snippet('icon', ['name' => 'chevron-right', 'cssClasses' => 'stroke-current w-12 h-12 float-right ml-4']) ?>
+          <?php snippet('icon', [
+            'name' => 'chevron-right',
+            'cssClasses' => 'stroke-current w-12 h-12 float-right ml-4',
+          ]); ?>
           <div>
             <p class="text-gray-500 dark:text-gray-400 text-sm uppercase font-medium"><?= $next->textline() ?></p>
             <p><?= $next->title() ?></p>
           </div>
         </a>
       </div>
-    <?php endif ?>
+    <?php endif; ?>
   </div>
 </nav>

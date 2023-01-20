@@ -6,6 +6,6 @@ use Kirby\Cms\Page;
 /** @var Page $latestEvent */
 ?>
 
-<?php layout() ?>
+<?php snippet('layout', slots: true); ?>
 
-<?php snippet('latest-event', ['event' => $latestEvent]) ?>
+<?php snippet('latest-event', ['event' => $latestEvent]); ?>
