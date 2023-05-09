@@ -7,15 +7,15 @@ return [
     'debug' => false,
     'slugs' => 'de',
     'locale' => 'de_DE.utf-8',
-    'date'  => [
-        'handler' => 'strftime'
+    'date' => [
+        'handler' => 'strftime',
     ],
     'panel' => [
         'language' => 'de',
-        'css' => 'custom-panel/styles.css'
+        'css' => 'custom-panel/styles.css',
     ],
     'auth' => [
-        'methods' => ['code']
+        'methods' => ['code'],
     ],
     'hooks' => [
         'system.exception' => function ($exception) {
@@ -25,33 +25,36 @@ return [
                 \Sentry\init(['dsn' => $dsn]);
                 \Sentry\captureException($exception);
             }
-        }
+        },
     ],
     'thumbs' => [
         'presets' => [
-            'person' => ['width' => 500, 'height' => 500, 'crop' => true]
-        ]
+            'person' => ['width' => 500, 'height' => 500, 'crop' => true],
+        ],
     ],
     'routes' => [
         [
             'pattern' => 'sitemap.xml',
             'method' => 'GET',
-            'action'  => function () {
+            'action' => function () {
                 $options = [
-                    'images'       => false,
-                    'videos'       => false,
-                    'xsl' => false
+                    'images' => false,
+                    'videos' => false,
+                    'xsl' => false,
                 ];
 
-                return site()->index()->published()->sitemap($options);
-            }
-        ]
+                return site()
+                    ->index()
+                    ->published()
+                    ->sitemap($options);
+            },
+        ],
     ],
     'thathoff' => [
         'git-content' => [
             'push' => true,
             'cronHooksEnabled' => false,
-            'displayErrors' => true
+            'displayErrors' => true,
         ],
     ],
     'bnomei.robots-txt.sitemap' => 'sitemap.xml',
@@ -62,17 +65,17 @@ return [
         }
 
         $description = null;
-        if ($text = $page->text() && $blocks = $page->text()->toBlocks()) {
+        if ($text = $page->text() && ($blocks = $page->text()->toBlocks())) {
             if ($block = $blocks->filterBy('type', 'paragraph')->first()) {
                 $description = Html::decode(Str::excerpt($block->content(), 155));
             }
         }
 
         return [
-            'title' => $page->title() . " | " . $site->title(),
+            'title' => $page->title() . ' | ' . $site->title(),
             'meta' => [
                 'description' => $description,
-                'robots' => 'index,follow,noodp'
+                'robots' => 'index,follow,noodp',
             ],
             'link' => [
                 'canonical' => $page->url(),
@@ -84,22 +87,22 @@ return [
                 'url' => $page->url(),
                 'description' => $description,
                 'locale' => 'de_DE',
-                'namespace:image' => function() use ($image) {
+                'namespace:image' => function () use ($image) {
                     $thumb = $image->crop(1200, 630);
                     return [
                         'image' => $thumb->url(),
                         'height' => $thumb->height(),
                         'width' => $thumb->width(),
-                        'type' => $thumb->mime()
+                        'type' => $thumb->mime(),
                     ];
-                }
+                },
             ],
             'twitter' => [
                 'card' => 'summary_large_image',
                 'site' => $site->twitter(),
                 'title' => $page->title(),
-                'image' => $image->url()
-            ]
+                'image' => $image->url(),
+            ],
         ];
     },
     'pedroborges.meta-tags.templates' => function ($page, $site) {
@@ -116,8 +119,8 @@ return [
                         'url' => $page->url(),
                         'inLanguage' => 'de_DE',
                         'image' => $image->url(),
-                    ]
-                ]
+                    ],
+                ],
             ],
             'home' => [
                 'title' => $site->title(),
@@ -134,9 +137,12 @@ return [
                         'url' => $site->url(),
                         'inLanguage' => 'de_DE',
                         'image' => $image->url(),
-                        'sameAs' => ['https://www.facebook.com/' . $site->facebook()->value(), 'https://twitter.com' . $site->twitter()->value()],
-                    ]
-                ]
+                        'sameAs' => [
+                            'https://www.facebook.com/' . $site->facebook()->value(),
+                            'https://twitter.com' . $site->twitter()->value(),
+                        ],
+                    ],
+                ],
             ],
             'contact' => [
                 'json-ld' => [
@@ -145,42 +151,51 @@ return [
                         'url' => $page->url(),
                         'inLanguage' => 'de_DE',
                         'image' => $image->url(),
-                    ]
-                ]
+                    ],
+                ],
             ],
             'event' => [
                 'json-ld' => [
                     'Event' => [
                         'name' => $page->title()->value(),
-                        'description' => strip_tags($page->text()->toBlocks()->filterBy('type', 'paragraph')->html() ?? ''),
+                        'description' => strip_tags(
+                            $page
+                                ->text()
+                                ->toBlocks()
+                                ->filterBy('type', 'paragraph')
+                                ->html() ?? '',
+                        ),
                         'eventStatus' => [
-                            '@type' => 'EventScheduled'
+                            '@type' => 'EventScheduled',
                         ],
-                        'eventAttendanceMode' => $page->is_virtual()->toBool() ?
-                            'https://schema.org/OnlineEventAttendanceMode'
-                            :
-                            'https://schema.org/OfflineEventAttendanceMode'
-                        ,
-                        'location' => $page->is_virtual()->toBool() ? [
-                            '@type' => 'VirtualLocation',
-                            'name' => $page->location_name()->value(),
-                            'url' => $page->location_url()->value()
-                        ] : [
-                            '@type' => 'Place',
-                            'name' => $page->location_name()->value(),
-                            'address' => [
-                                '@type' => 'PostalAddress',
-                                'addressCountry' => 'de',
-                                'addressLocality' => $page->location_geo()->yaml()['city'] ?? '',
-                                'postalCode' => $page->location_geo()->yaml()['postcode'] ?? '',
-                                'streetAddress' => ($page->location_geo()->yaml()['address'] ?? '') . ' ' . ($page->location_geo()->yaml()['number'] ?? ''),
-                            ],
-                            'geo' => [
-                                '@type' => 'GeoCoordinates',
-                                'latitude' => $page->location_geo()->yaml()['lat'] ?? '',
-                                'longitude' => $page->location_geo()->yaml()['lon'] ?? '',
+                        'eventAttendanceMode' => $page->is_virtual()->toBool()
+                            ? 'https://schema.org/OnlineEventAttendanceMode'
+                            : 'https://schema.org/OfflineEventAttendanceMode',
+                        'location' => $page->is_virtual()->toBool()
+                            ? [
+                                '@type' => 'VirtualLocation',
+                                'name' => $page->location_name()->value(),
+                                'url' => $page->location_url()->value(),
                             ]
-                        ],
+                            : [
+                                '@type' => 'Place',
+                                'name' => $page->location_name()->value(),
+                                'address' => [
+                                    '@type' => 'PostalAddress',
+                                    'addressCountry' => 'de',
+                                    'addressLocality' => $page->location_geo()->yaml()['city'] ?? '',
+                                    'postalCode' => $page->location_geo()->yaml()['postcode'] ?? '',
+                                    'streetAddress' =>
+                                        ($page->location_geo()->yaml()['address'] ?? '') .
+                                        ' ' .
+                                        ($page->location_geo()->yaml()['number'] ?? ''),
+                                ],
+                                'geo' => [
+                                    '@type' => 'GeoCoordinates',
+                                    'latitude' => $page->location_geo()->yaml()['lat'] ?? '',
+                                    'longitude' => $page->location_geo()->yaml()['lon'] ?? '',
+                                ],
+                            ],
                         'url' => $page->url(),
                         'sameAs' => $page->eventbrite_url()->value(),
                         'image' => $image->url(),
@@ -190,26 +205,25 @@ return [
                         'organizer' => [
                             '@type' => 'Person',
                             'name' => 'Dr. Jörg Geerlings MdL',
-                            'url' => 'https://www.geerlings.de'
-                        ]
-                    ]
-                ]
+                            'url' => 'https://www.geerlings.de',
+                        ],
+                    ],
+                ],
             ],
             'events' => [
                 'meta' => [
-                    'robots' => 'index,follow,noodp'
-                ]
+                    'robots' => 'index,follow,noodp',
+                ],
             ],
             'person' => [
                 'meta' => [
-                    'robots' => 'index,follow,noodp'
-                ]
-            ]
+                    'robots' => 'index,follow,noodp',
+                ],
+            ],
         ];
     },
     'sentry.dsn' => null,
     'paulmorel.fathom-analytics' => [
         'siteId' => 'ZUNMTQNH',
-        'customDomain' => 'https://teacher-kind.talk-am-pegel.de'
-    ]
+    ],
 ];
