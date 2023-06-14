@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@alpinejs/intersect": "3.12.2",
-    "@prettier/plugin-php": "0.19.5",
+    "@prettier/plugin-php": "0.19.6",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
     "alpinejs": "3.12.2",
