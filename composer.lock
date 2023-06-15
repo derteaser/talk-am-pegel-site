@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af7d0f5242915e96d63f2b9a5324969c",
+    "content-hash": "4851117db8d42cb3c3accef4f4800420",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -3228,16 +3228,16 @@
         },
         {
             "name": "thathoff/kirby-git-content",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thathoff/kirby-git-content.git",
-                "reference": "85d1c3b51e80c3994868be0c4b76c7b3013bbf79"
+                "reference": "e71890641c5edebc689343bc784fd53a721e47fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thathoff/kirby-git-content/zipball/85d1c3b51e80c3994868be0c4b76c7b3013bbf79",
-                "reference": "85d1c3b51e80c3994868be0c4b76c7b3013bbf79",
+                "url": "https://api.github.com/repos/thathoff/kirby-git-content/zipball/e71890641c5edebc689343bc784fd53a721e47fc",
+                "reference": "e71890641c5edebc689343bc784fd53a721e47fc",
                 "shasum": ""
             },
             "require": {
@@ -3269,7 +3269,7 @@
                 "issues": "https://github.com/thathoff/kirby-git-content/issues",
                 "source": "https://github.com/thathoff/kirby-git-content"
             },
-            "time": "2022-08-10T07:01:17+00:00"
+            "time": "2023-06-13T18:38:38+00:00"
         }
     ],
     "packages-dev": [],
