@@ -10,7 +10,7 @@
         "pedroborges/kirby-meta-tags": "2.1.0",
         "sylvainjule/locator": "1.1.2",
         "bnomei/kirby3-robots-txt": "1.5.0",
-        "arnoson/kirby-vite": "3.0.7",
+        "arnoson/kirby-vite": "3.1.0",
         "thathoff/kirby-git-content": "5.0.2",
         "sentry/sdk": "3.5.0",
         "paulmorel/fathom-analytics": "1.0.0",
