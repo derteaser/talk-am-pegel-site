@@ -80,7 +80,7 @@
     "src": "assets/fonts/roboto-v19-latin-regular.woff2"
   },
   "index.css": {
-    "file": "assets/index-92e6b9bc.css",
+    "file": "assets/index-ae8aefe3.css",
     "src": "index.css"
   },
   "index.js": {
@@ -107,9 +107,9 @@
       "assets/roboto-v19-latin-italic-75c12901.svg"
     ],
     "css": [
-      "assets/index-92e6b9bc.css"
+      "assets/index-ae8aefe3.css"
     ],
-    "file": "assets/index-1e1f5e9f.js",
+    "file": "assets/index-160923e1.js",
     "isEntry": true,
     "src": "index.js"
   }
