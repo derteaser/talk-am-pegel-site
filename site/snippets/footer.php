@@ -34,7 +34,6 @@ use Kirby\Cms\Site;
   </div>
 </footer>
 
-<?= vite()->js() ?>
-<?php // vite()->js($entry) ?>
+<?= vite()->js('index.js') ?>
 </body>
 </html>

@@ -21,9 +21,7 @@ use Kirby\Cms\Page;
   <link rel="apple-touch-icon" href="<?= url('/apple-touch-icon.png') ?>">
   <link rel="manifest" href="<?= url('/site.webmanifest') ?>">
   <?= $page->metaTags() ?>
-  <?= vite()->client() ?>
-  <?= vite()->css() ?>
-  <?php //vite()->css($entry) ?>
+  <?= vite()->css('index.css') ?>
 
 </head>
 <body class="bg-gray-200 dark:bg-gray-900<?= $kirby->option('debug') ? ' debug-screens' : ''?>">
