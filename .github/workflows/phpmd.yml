@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@321f8d7d9abb7844b48c02c691274a99d2367205
+        uses: shivammathur/setup-php@5aa416d77b0ac6a16af87d8bfc23819288844fd0
         with:
           coverage: none
           tools: phpmd
