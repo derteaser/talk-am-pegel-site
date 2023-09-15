@@ -50,7 +50,7 @@ use Kirby\Template\Slot;
             <a class="ml-3 text-gray-500 hover:text-gray-600 dark:hover:text-gray-200"
                href="https://twitter.com/<?= $site->twitter() ?>" target="_blank" rel="noopener noreferrer">
               <?php snippet('icon', [
-                'name' => 'twitter',
+                'name' => 'x',
                 'cssClasses' => 'fill-current w-5 h-5',
               ]); ?><span class="sr-only">Twitter</span>
             </a>
