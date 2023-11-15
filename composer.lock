@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c51e230140cd9f614728e88893cdf6cb",
+    "content-hash": "a47c4451f3ec91634d2e5c179adb0284",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -124,16 +124,16 @@
         },
         {
             "name": "bnomei/kirby3-recently-modified",
-            "version": "1.2.10",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-recently-modified.git",
-                "reference": "07faedc21914546e5d59968ffaf25db01dc1d220"
+                "reference": "3d83035195d84e084fc233a9c06b1c292ffb1d7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/07faedc21914546e5d59968ffaf25db01dc1d220",
-                "reference": "07faedc21914546e5d59968ffaf25db01dc1d220",
+                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/3d83035195d84e084fc233a9c06b1c292ffb1d7f",
+                "reference": "3d83035195d84e084fc233a9c06b1c292ffb1d7f",
                 "shasum": ""
             },
             "require": {
@@ -152,21 +152,23 @@
             ],
             "description": "Kirby 3 Section to display recently modified content pages",
             "keywords": [
+                "changes",
                 "collection",
-                "kirby3",
-                "kirby3-cms",
-                "kirby3-plugin",
+                "kirby",
+                "kirby-cms",
+                "kirby-plugin",
                 "list",
                 "modified",
                 "page",
                 "pages",
+                "recently",
                 "section",
                 "user",
                 "widget"
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-recently-modified/issues",
-                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.10"
+                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v4.0.0"
             },
             "funding": [
                 {
@@ -186,7 +188,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-12-15T12:37:31+00:00"
+            "time": "2023-11-08T11:09:10+00:00"
         },
         {
             "name": "bnomei/kirby3-robots-txt",
