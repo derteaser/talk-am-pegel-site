@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@alpinejs/intersect@3.13.2":
-  version "3.13.2"
-  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.13.2.tgz#1fa6ad2975153e686152fdbe007fffaf6ae19d09"
-  integrity sha512-nApQ9Da6ZbFxWShaQCRbqlp+UTTCTo2hc/Gbj1AmNA32wmoGOH+BdLrB3rf8T8pF5EbE+m7zBvh+62i8oDRT8w==
+"@alpinejs/intersect@3.13.3":
+  version "3.13.3"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.13.3.tgz#b587604af241b97ca603264e712e8e4401baf2db"
+  integrity sha512-4iwomnp4VXP1OmFfyol0sEgWdMFmX1WBlc8/gxRt6tO8PeeJjnZMdGjJeY6gNeRWS4g6I9aTUycdsyl6OQNv7w==
 
 "@esbuild/android-arm64@0.18.11":
   version "0.18.11"
@@ -344,10 +344,10 @@ ajv@^6.5.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alpinejs@3.13.2:
-  version "3.13.2"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.13.2.tgz#19723278b14bd9d1cc46859b5ac6225fcce2c228"
-  integrity sha512-WzojeeN082kLZznGI1HAuP8yFJSWqJ1fGdz2mUjj45H4y0XwToE7fFqtI3mCPRR+BpcSbxT/NL+FyPnYAWSltw==
+alpinejs@3.13.3:
+  version "3.13.3"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.13.3.tgz#92eb7e869b99ff548e7a55044e45660597cf530b"
+  integrity sha512-WZ6WQjkAOl+WdW/jukzNHq9zHFDNKmkk/x6WF7WdyNDD6woinrfXCVsZXm0galjbco+pEpYmJLtwlZwcOfIVdg==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
