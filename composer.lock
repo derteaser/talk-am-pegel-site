@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c51e230140cd9f614728e88893cdf6cb",
+    "content-hash": "7629d2015df0b8ebbbc23e6afed06f9f",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -121,72 +121,6 @@
                 }
             ],
             "time": "2023-03-02T10:55:31+00:00"
-        },
-        {
-            "name": "bnomei/kirby3-recently-modified",
-            "version": "1.2.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bnomei/kirby3-recently-modified.git",
-                "reference": "07faedc21914546e5d59968ffaf25db01dc1d220"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-recently-modified/zipball/07faedc21914546e5d59968ffaf25db01dc1d220",
-                "reference": "07faedc21914546e5d59968ffaf25db01dc1d220",
-                "shasum": ""
-            },
-            "require": {
-                "getkirby/composer-installer": "^1.2"
-            },
-            "type": "kirby-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bruno Meilick",
-                    "email": "b@bnomei.com"
-                }
-            ],
-            "description": "Kirby 3 Section to display recently modified content pages",
-            "keywords": [
-                "collection",
-                "kirby3",
-                "kirby3-cms",
-                "kirby3-plugin",
-                "list",
-                "modified",
-                "page",
-                "pages",
-                "section",
-                "user",
-                "widget"
-            ],
-            "support": {
-                "issues": "https://github.com/bnomei/kirby3-recently-modified/issues",
-                "source": "https://github.com/bnomei/kirby3-recently-modified/tree/v1.2.10"
-            },
-            "funding": [
-                {
-                    "url": "https://buymeacoff.ee/bnomei",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://paypal.me/bnomei",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/bnomei",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/bnomei",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2022-12-15T12:37:31+00:00"
         },
         {
             "name": "bnomei/kirby3-robots-txt",
@@ -2244,5 +2178,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

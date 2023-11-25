@@ -14,7 +14,6 @@
         "thathoff/kirby-git-content": "5.1.0",
         "sentry/sdk": "4.0.0",
         "paulmorel/fathom-analytics": "1.0.0",
-        "bnomei/kirby3-recently-modified": "1.2.10",
         "bnomei/kirby3-feed": "1.5.8"
     },
     "config": {
