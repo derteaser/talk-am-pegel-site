@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7629d2015df0b8ebbbc23e6afed06f9f",
+    "content-hash": "4e6d0b4d54433fe261005a20e77e63e5",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
-            "version": "4.0.9",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/arnoson/kirby-vite.git",
-                "reference": "ddae37dee59eed384145efeb1e7a79157d324b41"
+                "reference": "94c1cd33594273e4cfd7818143d4b545440c50d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arnoson/kirby-vite/zipball/ddae37dee59eed384145efeb1e7a79157d324b41",
-                "reference": "ddae37dee59eed384145efeb1e7a79157d324b41",
+                "url": "https://api.github.com/repos/arnoson/kirby-vite/zipball/94c1cd33594273e4cfd7818143d4b545440c50d0",
+                "reference": "94c1cd33594273e4cfd7818143d4b545440c50d0",
                 "shasum": ""
             },
             "require": {
@@ -36,9 +36,9 @@
             "description": "Vite helper for Kirby CMS",
             "support": {
                 "issues": "https://github.com/arnoson/kirby-vite/issues",
-                "source": "https://github.com/arnoson/kirby-vite/tree/v4.0.9"
+                "source": "https://github.com/arnoson/kirby-vite/tree/v5.0.1"
             },
-            "time": "2023-10-25T09:31:17+00:00"
+            "time": "2023-11-17T09:26:20+00:00"
         },
         {
             "name": "bnomei/kirby3-feed",
@@ -1437,16 +1437,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "7e10bf3fd0bee2f2eee6981e509522ab0c523d5e"
+                "reference": "fa41522f1fe5ff77a33a9db749c0ca7ec332f50a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/7e10bf3fd0bee2f2eee6981e509522ab0c523d5e",
-                "reference": "7e10bf3fd0bee2f2eee6981e509522ab0c523d5e",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/fa41522f1fe5ff77a33a9db749c0ca7ec332f50a",
+                "reference": "fa41522f1fe5ff77a33a9db749c0ca7ec332f50a",
                 "shasum": ""
             },
             "require": {
@@ -1508,7 +1508,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.0.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.0.1"
             },
             "funding": [
                 {
@@ -1520,7 +1520,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2023-11-06T10:16:08+00:00"
+            "time": "2023-11-13T13:00:41+00:00"
         },
         {
             "name": "sylvainjule/locator",
@@ -1572,7 +1572,7 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.3.0",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -1619,7 +1619,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.3.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
             },
             "funding": [
                 {
