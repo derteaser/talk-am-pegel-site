@@ -79,6 +79,11 @@
     "file": "assets/roboto-v19-latin-regular-hBIvlm0H.woff2",
     "src": "assets/fonts/roboto-v19-latin-regular.woff2"
   },
+  "index.css": {
+    "file": "assets/index-8Y9s0bk3.css",
+    "isEntry": true,
+    "src": "index.css"
+  },
   "index.js": {
     "assets": [
       "assets/roboto-v19-latin-100-6Y_8VwDb.eot",
@@ -103,9 +108,10 @@
       "assets/roboto-v19-latin-italic-NP5vZ38I.svg"
     ],
     "css": [
-      "assets/index-XrhMlav1.css"
+      "assets/index-dGvTjJ5y.css",
+      "assets/index-8Y9s0bk3.css"
     ],
-    "file": "assets/index-upO3Wq2Y.js",
+    "file": "assets/index-wtbfhr2n.js",
     "isEntry": true,
     "src": "index.js"
   }
