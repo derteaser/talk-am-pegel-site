@@ -80,7 +80,7 @@
     "src": "assets/fonts/roboto-v19-latin-regular.woff2"
   },
   "index.css": {
-    "file": "assets/index-8Y9s0bk3.css",
+    "file": "assets/index-aNMyn8-o.css",
     "isEntry": true,
     "src": "index.css"
   },
@@ -109,9 +109,9 @@
     ],
     "css": [
       "assets/index-dGvTjJ5y.css",
-      "assets/index-8Y9s0bk3.css"
+      "assets/index-aNMyn8-o.css"
     ],
-    "file": "assets/index-wtbfhr2n.js",
+    "file": "assets/index-wdJedU_I.js",
     "isEntry": true,
     "src": "index.js"
   }
