@@ -81,10 +81,17 @@
   },
   "index.css": {
     "file": "assets/index-jkca6G0d.css",
-    "isEntry": true,
-    "src": "index.css"
+    "src": "index.css",
+    "isEntry": true
   },
   "index.js": {
+    "file": "assets/index-vLGJNklb.js",
+    "src": "index.js",
+    "isEntry": true,
+    "css": [
+      "assets/index-dGvTjJ5y.css",
+      "assets/index-jkca6G0d.css"
+    ],
     "assets": [
       "assets/roboto-v19-latin-100-6Y_8VwDb.eot",
       "assets/roboto-v19-latin-100-STcfQO-0.woff2",
@@ -106,13 +113,6 @@
       "assets/roboto-v19-latin-italic-e1luh3Sc.woff",
       "assets/roboto-v19-latin-italic-Q9DX5f3h.ttf",
       "assets/roboto-v19-latin-italic-NP5vZ38I.svg"
-    ],
-    "css": [
-      "assets/index-dGvTjJ5y.css",
-      "assets/index-jkca6G0d.css"
-    ],
-    "file": "assets/index-vLGJNklb.js",
-    "isEntry": true,
-    "src": "index.js"
+    ]
   }
 }
