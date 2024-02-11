@@ -4,5 +4,6 @@
 return [
   'outDir' => 'public/dist',
   'assetsDir' => 'assets',
-  'legacy' => false
+  'legacy' => false,
+  'manifest' => '.vite/manifest.json'
 ];
