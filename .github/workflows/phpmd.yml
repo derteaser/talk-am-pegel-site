@@ -2,9 +2,9 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# PHPMD is a spin-off project of PHP Depend and 
+# PHPMD is a spin-off project of PHP Depend and
 # aims to be a PHP equivalent of the well known Java tool PMD.
-# What PHPMD does is: It takes a given PHP source code base 
+# What PHPMD does is: It takes a given PHP source code base
 # and look for several potential problems within that source.
 # These problems can be things like:
 #   Possible bugs
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@6d7209f44a25a59e904b1ee9f3b0c33ab2cd888d
+        uses: shivammathur/setup-php@v2
         with:
           coverage: none
           tools: phpmd

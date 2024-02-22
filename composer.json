@@ -6,11 +6,11 @@
     "homepage": "https://www.talk-am-pegel.de",
     "require": {
         "php": "^8.1",
-        "getkirby/cms": "3.9.8",
+        "getkirby/cms": "3.10.0",
         "pedroborges/kirby-meta-tags": "2.1.0",
         "sylvainjule/locator": "1.1.4",
         "bnomei/kirby3-robots-txt": "1.8.0",
-        "arnoson/kirby-vite": "5.1.0",
+        "arnoson/kirby-vite": "5.3.0",
         "thathoff/kirby-git-content": "5.2.0",
         "sentry/sdk": "4.0.0",
         "paulmorel/fathom-analytics": "1.0.0",
