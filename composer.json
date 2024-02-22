@@ -5,7 +5,7 @@
     "keywords": ["kirby", "cms", "event"],
     "homepage": "https://www.talk-am-pegel.de",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "getkirby/cms": "3.10.0",
         "pedroborges/kirby-meta-tags": "2.1.0",
         "sylvainjule/locator": "1.1.4",
