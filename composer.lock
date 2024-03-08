@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b4c38b294f5193a8013aa865b4bf572",
+    "content-hash": "a6ef8ff2fa29f0484149d1f982132e6e",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -723,16 +723,16 @@
         },
         {
             "name": "jean85/pretty-package-versions",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jean85/pretty-package-versions.git",
-                "reference": "ae547e455a3d8babd07b96966b17d7fd21d9c6af"
+                "reference": "f9fdd29ad8e6d024f52678b570e5593759b550b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/ae547e455a3d8babd07b96966b17d7fd21d9c6af",
-                "reference": "ae547e455a3d8babd07b96966b17d7fd21d9c6af",
+                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/f9fdd29ad8e6d024f52678b570e5593759b550b4",
+                "reference": "f9fdd29ad8e6d024f52678b570e5593759b550b4",
                 "shasum": ""
             },
             "require": {
@@ -740,9 +740,9 @@
                 "php": "^7.1|^8.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.17",
+                "friendsofphp/php-cs-fixer": "^3.2",
                 "jean85/composer-provided-replaced-stub-package": "^1.0",
-                "phpstan/phpstan": "^0.12.66",
+                "phpstan/phpstan": "^1.4",
                 "phpunit/phpunit": "^7.5|^8.5|^9.4",
                 "vimeo/psalm": "^4.3"
             },
@@ -776,9 +776,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Jean85/pretty-package-versions/issues",
-                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.5"
+                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.6"
             },
-            "time": "2021-10-08T21:21:46+00:00"
+            "time": "2024-03-08T09:58:59+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -991,112 +991,6 @@
                 "source": "https://github.com/PaulMorel/kirby3-fathom-analytics/tree/v1.0.0"
             },
             "time": "2021-10-22T02:44:41+00:00"
-        },
-        {
-            "name": "pedroborges/kirby-meta-tags",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pedroborges/kirby-meta-tags.git",
-                "reference": "e88cea13966d5affd04f98e0c51835bb8db14707"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pedroborges/kirby-meta-tags/zipball/e88cea13966d5affd04f98e0c51835bb8db14707",
-                "reference": "e88cea13966d5affd04f98e0c51835bb8db14707",
-                "shasum": ""
-            },
-            "require": {
-                "getkirby/composer-installer": "^1.1",
-                "pedroborges/meta-tags": "^0.0.2",
-                "php": ">=7.1.0"
-            },
-            "type": "kirby-plugin",
-            "extra": {
-                "installer-name": "meta-tags"
-            },
-            "autoload": {
-                "files": [
-                    "helpers.php"
-                ],
-                "psr-4": {
-                    "PedroBorges\\KirbyMetaTags\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pedro Borges",
-                    "email": "oi@pedroborg.es"
-                }
-            ],
-            "description": "HTML meta tags generator for Kirby 3.",
-            "homepage": "https://github.com/pedroborges/kirby-meta-tags",
-            "keywords": [
-                "JSON-LD",
-                "kirby-plugin",
-                "meta-tags",
-                "open-graph",
-                "twitter-cards"
-            ],
-            "support": {
-                "issues": "https://github.com/pedroborges/kirby-meta-tags/issues",
-                "source": "https://github.com/pedroborges/kirby-meta-tags/tree/v2.1.0"
-            },
-            "time": "2021-07-19T11:23:41+00:00"
-        },
-        {
-            "name": "pedroborges/meta-tags",
-            "version": "v0.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pedroborges/meta-tags.git",
-                "reference": "e6259f598019ab44f12c0e15d4b465d00b4d39cb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pedroborges/meta-tags/zipball/e6259f598019ab44f12c0e15d4b465d00b4d39cb",
-                "reference": "e6259f598019ab44f12c0e15d4b465d00b4d39cb",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PedroBorges\\MetaTags\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pedro Borges",
-                    "email": "oi@pedroborg.es"
-                }
-            ],
-            "description": "HTML meta tags generator for PHP.",
-            "homepage": "https://github.com/pedroborges/meta-tags",
-            "keywords": [
-                "facebook",
-                "head",
-                "meta",
-                "meta tags",
-                "open graph",
-                "seo",
-                "twitter cards"
-            ],
-            "support": {
-                "issues": "https://github.com/pedroborges/meta-tags/issues",
-                "source": "https://github.com/pedroborges/meta-tags/tree/v0.0.2"
-            },
-            "time": "2018-07-07T18:21:26+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -1437,16 +1331,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.6.0",
+            "version": "4.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "30d98a460ab10f7b7032d76c62da5b1ce6c0765d"
+                "reference": "5a94184175e5830b589bf923da8c9c3af2c0f409"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/30d98a460ab10f7b7032d76c62da5b1ce6c0765d",
-                "reference": "30d98a460ab10f7b7032d76c62da5b1ce6c0765d",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/5a94184175e5830b589bf923da8c9c3af2c0f409",
+                "reference": "5a94184175e5830b589bf923da8c9c3af2c0f409",
                 "shasum": ""
             },
             "require": {
@@ -1510,7 +1404,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.6.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.6.1"
             },
             "funding": [
                 {
@@ -1522,7 +1416,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-02-13T11:32:56+00:00"
+            "time": "2024-03-08T08:18:09+00:00"
         },
         {
             "name": "sylvainjule/locator",
@@ -2162,6 +2056,69 @@
                 "source": "https://github.com/thathoff/kirby-git-content"
             },
             "time": "2023-12-09T15:53:09+00:00"
+        },
+        {
+            "name": "wearejust/kirby-meta-tags",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wearejust/kirby-meta-tags.git",
+                "reference": "3d68875118b61442cf13db32bdf637888421428e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wearejust/kirby-meta-tags/zipball/3d68875118b61442cf13db32bdf637888421428e",
+                "reference": "3d68875118b61442cf13db32bdf637888421428e",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1",
+                "php": ">=8.0"
+            },
+            "type": "kirby-plugin",
+            "extra": {
+                "installer-name": "kirby-meta-tags",
+                "kirby-cms-path": false
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "Wearejust\\KirbyMetaTags\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cees van Egmond",
+                    "email": "cees.vanegmond@wearejust.com"
+                },
+                {
+                    "name": "Sietse Veenman",
+                    "email": "sietse.veenman@wearejust.com"
+                },
+                {
+                    "name": "Duncan Pronk",
+                    "email": "duncan.pronk@wearejust.com"
+                }
+            ],
+            "description": "HTML meta tags generator for Kirby 3.",
+            "homepage": "https://github.com/wearejust/kirby-meta-tags",
+            "keywords": [
+                "JSON-LD",
+                "kirby-plugin",
+                "meta-tags",
+                "open-graph",
+                "twitter-cards"
+            ],
+            "support": {
+                "source": "https://github.com/wearejust/kirby-meta-tags/tree/3.0.1"
+            },
+            "time": "2023-03-13T15:15:17+00:00"
         }
     ],
     "packages-dev": [],

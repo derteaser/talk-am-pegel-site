@@ -58,7 +58,7 @@ return [
         ],
     ],
     'bnomei.robots-txt.sitemap' => 'sitemap.xml',
-    'pedroborges.meta-tags.default' => function ($page, $site) {
+    'wearejust.meta-tags.default' => function ($page, $site) {
         $image = $page->main_image()->toFile();
         if (!$image) {
             $image = $site->main_image()->toFile();
@@ -105,7 +105,7 @@ return [
             ],
         ];
     },
-    'pedroborges.meta-tags.templates' => function ($page, $site) {
+    'wearejust.meta-tags.templates' => function ($page, $site) {
         $image = $page->main_image()->toFile();
         if (!$image) {
             $image = $site->main_image()->toFile();
