@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@alpinejs/intersect@3.13.7":
-  version "3.13.7"
-  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.13.7.tgz#9ef3df6593a0767a63f05f9f91d55665f3996d3e"
-  integrity sha512-McX0TsjVRAFejxQc/e29cm0NfkgTXsAVnRj35iJ5aeDbm085jhr1R00DYp5nmgDO+gBMG0pfFh1TNyOxYdlsiA==
+"@alpinejs/intersect@3.13.8":
+  version "3.13.8"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.13.8.tgz#f0c905b904198c9c7dec90b78fbbbab048d005ee"
+  integrity sha512-f4z6owi/2+wIl2mgJzmwg6FXM4cY0Uhd4GVaDaCUJ14OsgXLGcdNeUWW17mAyspVPW7uhEXqLPNpK3a3UNwF/w==
 
 "@esbuild/aix-ppc64@0.20.2":
   version "0.20.2"
@@ -405,10 +405,10 @@ ajv@^6.5.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alpinejs@3.13.7:
-  version "3.13.7"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.13.7.tgz#74ab35c69c33a0cf4c467a3339f4487ac846a04a"
-  integrity sha512-rcTyjTANbsePq1hb7eSekt3qjI94HLGeO6JaRjCssCVbIIc+qBrc7pO5S/+2JB6oojIibjM6FA+xRI3zhGPZIg==
+alpinejs@3.13.8:
+  version "3.13.8"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.13.8.tgz#23f280a886af296e16302a79e01ba51c0d86f67e"
+  integrity sha512-XolbBJryCndomtaHd/KHQjQeD/L72FJxy/YhLLFD4Lr7zzGcpcbg+UgXteMR2pYg1KhRUr6V4O3GfN1zJAmRWw==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
