@@ -32,7 +32,7 @@ use Kirby\Toolkit\Str;
               true,
             ) ?></p>
             <a href="<?= $event->url() ?>" class="text-tap-red-500 hover:text-tap-red-400 inline-flex items-center mt-4">Mehr erfahren
-              <?php snippet('icon', ['name' => 'arrow-right', 'cssClasses' => 'fill-current w-4 h-4 ml-2']); ?>
+              <?php snippet('icons/arrow-right-line', ['class' => 'size-5 ml-2']); ?>
             </a>
           </div>
         </div>

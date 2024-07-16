@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "icons": "node icons.js"
+    "copy-icons": "node copy-icons.cjs",
+    "postinstall": "npm run copy-icons"
   },
   "devDependencies": {
     "@alpinejs/intersect": "3.14.1",
@@ -24,8 +25,8 @@
     "postcss-nested": "6.0.1",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "0.6.5",
+    "remixicon": "4.3.0",
     "simple-icons": "13.1.0",
-    "svg-mixer": "2.3.14",
     "tailwindcss": "3.4.5",
     "tailwindcss-debug-screens": "2.2.1",
     "vite": "5.3.3",

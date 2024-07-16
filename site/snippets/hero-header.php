@@ -49,7 +49,7 @@ $logo = asset('/img/logo.svg');
   </div>
   <div class="absolute bottom-0 z-10 text-center w-full pb-32 md:hidden">
     <a href="#content" class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-tap-red-500 hover:bg-tap-red-800 text-white flex-shrink-0">
-      <?php snippet('icon', ['name' => 'arrow-down', 'cssClasses' => 'stroke-current w-6 h-6']) ?>
+      <?php snippet('icons/arrow-down-line', ['class' => 'size-6']) ?>
     </a>
   </div>
 </header>

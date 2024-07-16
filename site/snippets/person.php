@@ -12,17 +12,17 @@
       <span class="inline-flex">
         <?php if ($person->website()->isNotEmpty()): ?>
           <a class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-200" href="<?= $person->website() ?>">
-            <?php snippet('icon', ['name' => 'globe-alt', 'cssClasses' => 'stroke-current w-5 h-5']) ?>
+            <?php snippet('icons/global-line', ['class' => 'size-5']) ?>
           </a>
         <?php endif ?>
         <?php if ($person->linkedin()->isNotEmpty()): ?>
           <a class="ml-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-200" href="<?= $person->linkedin() ?>">
-            <?php snippet('icon', ['name' => 'linkedin', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+            <?php snippet('icons/linkedin-box-fill', ['class' => 'size-5']) ?>
           </a>
         <?php endif ?>
         <?php if ($person->xing()->isNotEmpty()): ?>
           <a class="ml-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-200" href="<?= $person->xing() ?>">
-            <?php snippet('icon', ['name' => 'xing', 'cssClasses' => 'fill-current w-5 h-5']) ?>
+            <?php snippet('icons/xing-fill', ['class' => 'size-5']) ?>
           </a>
         <?php endif ?>
       </span>
