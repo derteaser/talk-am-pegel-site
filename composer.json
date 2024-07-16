@@ -8,7 +8,7 @@
         "php": "^8.2",
         "getkirby/cms": "3.10.1",
         "wearejust/kirby-meta-tags": "3.0.1",
-        "sylvainjule/locator": "1.1.4",
+        "sylvainjule/locator": "2.0.0",
         "bnomei/kirby3-robots-txt": "1.8.0",
         "arnoson/kirby-vite": "5.3.1",
         "thathoff/kirby-git-content": "5.2.0",

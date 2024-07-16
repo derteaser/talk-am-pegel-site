@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d3400b398730c6944d1a586fb10746a",
+    "content-hash": "799e07ec58e72ec32c5baeb991f7875d",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -1421,16 +1421,16 @@
         },
         {
             "name": "sylvainjule/locator",
-            "version": "1.1.4",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sylvainjule/kirby-locator.git",
-                "reference": "2e0d626efd0964466ff4a667bfe9a3d10a3c0271"
+                "reference": "af6e3fa24d6f333660a3fb6c26d1296158e6347a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/2e0d626efd0964466ff4a667bfe9a3d10a3c0271",
-                "reference": "2e0d626efd0964466ff4a667bfe9a3d10a3c0271",
+                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/af6e3fa24d6f333660a3fb6c26d1296158e6347a",
+                "reference": "af6e3fa24d6f333660a3fb6c26d1296158e6347a",
                 "shasum": ""
             },
             "require": {
@@ -1453,7 +1453,7 @@
             "description": "A map & geolocation field, built on top of open-source services / Mapbox",
             "support": {
                 "issues": "https://github.com/sylvainjule/kirby-locator/issues",
-                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.1.4"
+                "source": "https://github.com/sylvainjule/kirby-locator/tree/2.0.0"
             },
             "funding": [
                 {
@@ -1465,7 +1465,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-14T16:23:01+00:00"
+            "time": "2024-03-08T20:23:19+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
