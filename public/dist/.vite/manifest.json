@@ -80,18 +80,18 @@
     "src": "assets/fonts/roboto-v19-latin-regular.woff2"
   },
   "index.css": {
-    "file": "assets/index-CN4wqYZS.css",
+    "file": "assets/index-eOBoN5wZ.css",
     "src": "index.css",
     "isEntry": true
   },
   "index.js": {
-    "file": "assets/index-CiyWUwN2.js",
+    "file": "assets/index-C5vokPJC.js",
     "name": "index",
     "src": "index.js",
     "isEntry": true,
     "css": [
       "assets/index-B0a9OMnn.css",
-      "assets/index-CN4wqYZS.css"
+      "assets/index-eOBoN5wZ.css"
     ],
     "assets": [
       "assets/roboto-v19-latin-100-Dpj_xXAN.eot",
