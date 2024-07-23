@@ -11,7 +11,6 @@ const iconsToCopy = [
     'Finance/ticket-2-line.svg',
     'Logos/facebook-circle-fill.svg',
     'Logos/linkedin-box-fill.svg',
-    'Logos/twitter-x-fill.svg',
     'Logos/xing-fill.svg',
     'Map/map-pin-2-fill.svg',
     'Media/live-fill.svg',

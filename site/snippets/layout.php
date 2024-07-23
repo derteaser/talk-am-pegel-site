@@ -7,7 +7,8 @@ use Kirby\Template\Slot;
 /** @var string $titleTag */
 /** @var Page $page */
 /** @var App $kirby */
-/**@var Slot $slot  */
+/** @var Slot $slot  */
+/** @var Kirby\Cms\Site|Page $site */
 
 //$template = $page->template();
 //$entry = "templates/$template/index.js";
@@ -44,13 +45,7 @@ use Kirby\Template\Slot;
                href="https://facebook.com/<?= $site->facebook() ?>" target="_blank" rel="noopener noreferrer">
               <?php snippet('icons/facebook-circle-fill', [
                 'class' => 'fill-current size-5',
-              ]); ?><span class="sr-only">Facebook</span>
-            </a>
-            <a class="ml-3 text-gray-500 hover:text-gray-600 dark:hover:text-gray-200"
-               href="https://twitter.com/<?= $site->twitter() ?>" target="_blank" rel="noopener noreferrer">
-              <?php snippet('icons/twitter-x-fill', [
-                'class' => 'fill-current size-5',
-              ]); ?><span class="sr-only">Twitter</span>
+              ]); ?><span class="sr-only">Facebook (Link öffnet in neuem Fenster)</span>
             </a>
         </span>
     </div>
