@@ -13,11 +13,17 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 20
-    - name: Create local changes
-      run: |
-        yarn install
-        yarn run build
-    - name: Commit and push local changes
+    - name: Enable Corepack
+      run: corepack enable
+    - name: Install Yarn dependencies
+      uses: borales/actions-yarn@v5
+      with:
+        cmd: install
+    - name: Build production bundle
+      uses: borales/actions-yarn@v5
+      with:
+        cmd: build
+    - name: Commit and push changes
       uses: stefanzweifel/git-auto-commit-action@v5.0.1
       with:
         commit_message: Apply theme changes
