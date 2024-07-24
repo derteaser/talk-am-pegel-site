@@ -1,13 +1,17 @@
 <?php
 
-use Kirby\Cms\Collection;
+use Kirby\Cms\Field;
 use Kirby\Cms\Page;
+use Kirby\Toolkit\Collection;
 
 /**
- * @mixin bp_person
+ * @method Field sub_heading()
+ * @method Field website()
+ * @method Field linkedin()
+ * @method Field xing()
+ * @method Field main_image()
  */
 class PersonPage extends Page {
-
     public function events(): Collection {
         $page = $this;
 

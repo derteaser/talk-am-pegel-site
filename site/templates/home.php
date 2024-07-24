@@ -1,9 +1,7 @@
 <?php
-use Kirby\Cms\File;
-use Kirby\Cms\Page;
 
-/** @var Page $page */
-/** @var Page $latestEvent */
+/** @var HomePage $page */
+/** @var EventPage $latestEvent */
 ?>
 
 <?php snippet('layout', slots: true); ?>

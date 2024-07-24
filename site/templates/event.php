@@ -13,14 +13,18 @@
             <div class="mb-4 blocks"><?= $page->text()->toBlocks() ?></div>
           </div>
           <div class="sm:w-1/3 text-center sm:pl-8 sm:py-12">
-            <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-400">
+            <div
+              class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-400">
               <?php snippet('icons/ticket-2-line', ['class' => 'fill-current size-16']); ?>
             </div>
             <div class="flex flex-col items-center text-center justify-center">
               <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Anmeldung</h2>
               <div class="w-12 h-1 bg-tap-blue-500 rounded mt-2 mb-4"></div>
-              <p class="text-base text-gray-600 dark:text-gray-300">Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren Partner Eventbrite!</p>
-              <a class="btn btn-red mt-8" href="<?= $page->eventbrite_url() ?>" target="_blank" rel="noopener noreferrer" onclick="fathom.trackGoal('DZC4R54V', 0);">Kostenloses Ticket sichern</a>
+              <p class="text-base text-gray-600 dark:text-gray-300">Für die Teilnahme an unserer Veranstaltung ist eine
+                Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren
+                Partner Eventbrite!</p>
+              <a class="btn btn-red mt-8" href="<?= $page->eventbrite_url() ?>" target="_blank"
+                 rel="noopener noreferrer" onclick="fathom.trackGoal('DZC4R54V', 0);">Kostenloses Ticket sichern</a>
             </div>
           </div>
         </div>
@@ -37,31 +41,34 @@
       <div class="p-4 w-full md:w-1/2 lg:w-1/3" data-aos="zoom-in" data-aos-delay="100">
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
-            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
+            <div
+              class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
               <?php snippet('icons/calendar-event-fill', ['class' => 'size-5']); ?>
             </div>
             <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page
-              ->date()
-              ->toDate('%e. %B %Y') ?></p>
+                ->date()
+                ->toDate('%e. %B %Y') ?></p>
           </div>
         </div>
       </div>
       <div class="p-4 w-full md:w-1/2 lg:w-1/3" data-aos="zoom-in" data-aos-delay="300">
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
-            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
+            <div
+              class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
               <?php snippet('icons/time-fill', ['class' => 'size-5']); ?>
             </div>
             <p class="text-gray-900 dark:text-gray-200 text-lg font-medium"><?= $page
-              ->date()
-              ->toDate('%H:%M') ?> Uhr</p>
+                ->date()
+                ->toDate('%H:%M') ?> Uhr</p>
           </div>
         </div>
       </div>
       <div class="p-4 w-full lg:w-1/3" data-aos="zoom-in" data-aos-delay="500">
         <div class="flex rounded-lg h-full bg-gray-100 dark:bg-gray-800 p-8 flex-col">
           <div class="flex items-center">
-            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
+            <div
+              class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-tap-blue-500 text-white flex-shrink-0">
               <?php if ($page->is_virtual()->toBool()): ?>
                 <?php snippet('icons/live-fill', ['class' => 'size-5']); ?>
               <?php else: ?>
@@ -90,8 +97,9 @@
   <div class="grid grid-cols-2 divide-x divide-gray-400 dark:divide-gray-700 items-center">
     <?php if ($prev = $page->prev()): ?>
       <div class="p-2">
-        <a href="<?= $prev->url() ?>" class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row items-center">
-          <?php snippet('icons/arrow-left-s-line', ['class' => 'size-16 float-right mr-4',]); ?>
+        <a href="<?= $prev->url() ?>"
+           class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row items-center">
+          <?php snippet('icons/arrow-left-s-line', ['class' => 'size-16 float-right mr-4']); ?>
           <div>
             <p class="text-gray-500 dark:text-gray-400 text-sm uppercase font-medium"><?= $prev->textline() ?></p>
             <p><?= $prev->title() ?></p>
@@ -103,8 +111,9 @@
     <?php endif; ?>
     <?php if ($next = $page->next()): ?>
       <div class="p-2 text-right">
-        <a href="<?= $next->url() ?>" class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row-reverse items-center">
-          <?php snippet('icons/arrow-right-s-line', ['class' => 'size-16 float-right ml-4',]); ?>
+        <a href="<?= $next->url() ?>"
+           class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 flex flex-row-reverse items-center">
+          <?php snippet('icons/arrow-right-s-line', ['class' => 'size-16 float-right ml-4']); ?>
           <div>
             <p class="text-gray-500 dark:text-gray-400 text-sm uppercase font-medium"><?= $next->textline() ?></p>
             <p><?= $next->title() ?></p>

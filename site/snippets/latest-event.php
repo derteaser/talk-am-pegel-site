@@ -8,15 +8,18 @@ use Kirby\Toolkit\Str;
 $image = $event->main_image()->toFile();
 
 $description = '';
-if ($text = $event->text() && $blocks = $event->text()->toBlocks()) {
-  if ($block = $blocks->filterBy('type', 'text')->first()) {
+$text = $event->text();
+$blocks = $event->text()->toBlocks();
+if ($text && $blocks) {
+  $block = $blocks->filterBy('type', 'text')->first();
+  if ($block) {
     $description = Html::decode(Str::excerpt($block, 400));
   }
 }
 ?>
 <section class="text-gray-700 dark:text-gray-300">
   <a href="<?= $event->url() ?>" class="group">
-    <div class="container mx-auto flex px-5 py-24 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+    <div class="container mx-auto px-5 py-24 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6">
       <div class="lg:row-span-2 xl:col-span-2 lg:order-last" data-aos="fade-up" data-aos-delay="100">
         <picture>
           <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">

@@ -1,10 +1,10 @@
 <?php
 
+use Kirby\Cms\Field;
 use Kirby\Cms\Page;
 
 /**
- * @mixin bp_default
+ * @method Field text()
  */
 class DefaultPage extends Page {
-
 }
