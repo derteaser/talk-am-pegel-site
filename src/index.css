@@ -11,6 +11,10 @@
   body {
     @apply text-gray-600 antialiased;
   }
+
+  [x-cloak] {
+    display: none !important;
+  }
 }
 
 @layer components {
