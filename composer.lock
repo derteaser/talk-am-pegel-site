@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1f8d8b63f06047bdc2fba68738f14a8",
+    "content-hash": "7b2491d250c411efa9c3eedada54efd6",
     "packages": [
         {
             "name": "arnoson/kirby-vite",
@@ -42,16 +42,16 @@
         },
         {
             "name": "bnomei/kirby3-feed",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-feed.git",
-                "reference": "522e4318b02fe9efd35c02e4799aed2f8961feb6"
+                "reference": "1bb0078638f75395e3dbb64d010c6ae1aa252349"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-feed/zipball/522e4318b02fe9efd35c02e4799aed2f8961feb6",
-                "reference": "522e4318b02fe9efd35c02e4799aed2f8961feb6",
+                "url": "https://api.github.com/repos/bnomei/kirby3-feed/zipball/1bb0078638f75395e3dbb64d010c6ae1aa252349",
+                "reference": "1bb0078638f75395e3dbb64d010c6ae1aa252349",
                 "shasum": ""
             },
             "require": {
@@ -100,7 +100,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-feed/issues",
-                "source": "https://github.com/bnomei/kirby3-feed/tree/v1.6.1"
+                "source": "https://github.com/bnomei/kirby3-feed/tree/v1.7.0"
             },
             "funding": [
                 {
@@ -120,7 +120,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-05-28T14:44:17+00:00"
+            "time": "2024-08-19T08:18:07+00:00"
         },
         {
             "name": "bnomei/kirby3-robots-txt",
@@ -5430,5 +5430,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
