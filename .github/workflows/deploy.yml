@@ -9,22 +9,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+    - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4
       with:
         node-version: 20
     - name: Enable Corepack
       run: corepack enable
     - name: Install Yarn dependencies
-      uses: borales/actions-yarn@v5
+      uses: borales/actions-yarn@3766bb1335b98fb13c60eaf358fe20811b730a88 # v5
       with:
         cmd: install
     - name: Build production bundle
-      uses: borales/actions-yarn@v5
+      uses: borales/actions-yarn@3766bb1335b98fb13c60eaf358fe20811b730a88 # v5
       with:
         cmd: build
     - name: Commit and push changes
-      uses: stefanzweifel/git-auto-commit-action@v5.0.1
+      uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
       with:
         commit_message: Apply theme changes
   deploy:
@@ -42,9 +42,9 @@ jobs:
           cd talk-am-pegel
           git pull
           php82 /usr/bin/composer install --no-dev -d ${PWD}
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
     - name: Create Sentry release
-      uses: getsentry/action-release@v1
+      uses: getsentry/action-release@586b62368d564f25d694ce05fcb9cf53de65ac4f # v1
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
