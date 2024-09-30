@@ -1,15 +1,6 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    "gitmoji"
-  ],
-  "packageRules": [
-    {
-      "matchSourceUrlPrefixes": [
-        "https://github.com/alpinejs/alpine"
-      ],
-      "groupName": "alpinejs packages",
-      "groupSlug": "alpinejs"
-    }
+    "github>derteaser/renovate-presets"
   ]
 }
