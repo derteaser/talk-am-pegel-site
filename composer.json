@@ -9,7 +9,7 @@
         "getkirby/cms": "3.10.1.1",
         "wearejust/kirby-meta-tags": "3.0.1",
         "sylvainjule/locator": "1.1.4",
-        "bnomei/kirby3-robots-txt": "1.8.0",
+        "bnomei/kirby3-robots-txt": "5.0.0",
         "arnoson/kirby-vite": "5.3.1",
         "thathoff/kirby-git-content": "5.2.0",
         "sentry/sdk": "4.0.0",
