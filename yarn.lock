@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@alpinejs/intersect@3.14.3":
-  version "3.14.3"
-  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.14.3.tgz#1532eb23855a455f503667e989662e5c062ff86e"
-  integrity sha512-6lyDfvHnZSNfLYVW3zLkbBlGR2EY408HX2SMHVXLoGPqmV/Om1V74W5+UbtfkqQX7xQmk6sqAX57bIKUqqoR5A==
+"@alpinejs/intersect@3.14.4":
+  version "3.14.4"
+  resolved "https://registry.yarnpkg.com/@alpinejs/intersect/-/intersect-3.14.4.tgz#73e39f9901042171a681e70ac0c7be6658cbb361"
+  integrity sha512-meQaRXZ8QrfsDJkdm/9c2e0wyeeMgzbDYDek4KCEQ830fP0UOPYnbJtk15YOh4lGbkth/o/pXZJJOT4t1wKldg==
 
 "@esbuild/aix-ppc64@0.21.5":
   version "0.21.5"
@@ -427,10 +427,10 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.1.5.tgz#74ee3aad995d0a3996a6bb9533d4d280514ede03"
   integrity sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==
 
-alpinejs@3.14.3:
-  version "3.14.3"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.14.3.tgz#86aba185304d42f310b010c612d8bca8dc4f2d78"
-  integrity sha512-cL8JBEDAm4UeVjTN5QnFl8QgMGUwxFn1GvQvu3RtfAHUrAPRahGihrsWpKnEK9L0QMqsAPk/R8MylMWKHaK33A==
+alpinejs@3.14.4:
+  version "3.14.4"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.14.4.tgz#d6bba57a581a32a9eb6ba8dd3166370bb155333b"
+  integrity sha512-fRRQaNO/CbY2jmMsu3xV38XmUlltxfoOZug7UwhX6Q6FcjloFcKdjzepeGhH2YC7LDbY6Nk1SMPOmnbZW2rOLA==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
