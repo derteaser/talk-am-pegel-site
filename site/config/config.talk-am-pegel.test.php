@@ -1,7 +1,7 @@
 <?php
 return [
     'debug' => true,
-    'url' => null,
+    'url' => 'https://talk-am-pegel.test',
     'auth' => [
         'methods' => ['password', 'password-reset']
     ],

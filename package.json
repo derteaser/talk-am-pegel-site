@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "author": "Jens Kuesters",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,6 +12,7 @@
   },
   "devDependencies": {
     "@alpinejs/intersect": "3.14.5",
+    "@fontsource/roboto": "5.1.0",
     "@prettier/plugin-php": "0.22.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.15",
@@ -18,6 +20,7 @@
     "aos": "2.3.4",
     "autoprefixer": "10.4.20",
     "bigpicture": "2.6.3",
+    "laravel-vite-plugin": "1.1.1",
     "postcss": "8.4.49",
     "postcss-cli": "11.0.0",
     "postcss-import": "16.1.0",
@@ -27,10 +30,7 @@
     "remixicon": "4.5.0",
     "tailwindcss": "3.4.15",
     "tailwindcss-debug-screens": "2.2.1",
-    "vite": "5.4.11",
-    "vite-plugin-kirby": "5.3.1",
-    "vite-plugin-live-reload": "3.0.3",
-    "vite-plugin-mkcert": "1.17.6"
+    "vite": "6.0.2"
   },
   "packageManager": "pnpm@9.14.4"
 }

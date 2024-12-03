@@ -9,9 +9,6 @@ use Kirby\Template\Slot;
 /** @var App $kirby */
 /** @var Slot $slot */
 /** @var Kirby\Cms\Site|Page $site */
-
-//$template = $page->template();
-//$entry = "templates/$template/index.js";
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -24,7 +21,7 @@ use Kirby\Template\Slot;
   <link rel="apple-touch-icon" href="<?= url('/apple-touch-icon.png') ?>">
   <link rel="manifest" href="<?= url('/site.webmanifest') ?>">
   <?= $page->metaTags() ?>
-  <?= vite()->css('index.css') ?>
+  <?= vite(['resources/js/fonts.js', 'resources/css/site.css']) ?>
   <?php snippet('fathom-analytics-embed'); ?>
 </head>
 <body class="bg-gray-200 dark:bg-gray-900<?= $kirby->option('debug') ? ' debug-screens' : '' ?>">
@@ -51,6 +48,6 @@ use Kirby\Template\Slot;
   </div>
 </footer>
 
-<?= vite()->js('index.js') ?>
+<?= vite(['resources/js/site.js']) ?>
 </body>
 </html>

@@ -226,4 +226,8 @@ return [
     'paulmorel.fathom-analytics' => [
         'siteId' => 'ZUNMTQNH',
     ],
+    'lukaskleinschmidt.laravel-vite' => [
+        'hotFile' => '../storage/vite.hot',
+        'buildDirectory' => 'build',
+    ],
 ];
