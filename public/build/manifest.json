@@ -47,88 +47,8 @@
     "file": "assets/roboto-latin-900-normal-BnsusLPY.woff2",
     "src": "node_modules/.pnpm/@fontsource+roboto@5.1.0/node_modules/@fontsource/roboto/files/roboto-latin-900-normal.woff2"
   },
-  "resources/assets/fonts/roboto-v19-latin-100.eot": {
-    "file": "assets/roboto-v19-latin-100-Dpj_xXAN.eot",
-    "src": "resources/assets/fonts/roboto-v19-latin-100.eot"
-  },
-  "resources/assets/fonts/roboto-v19-latin-100.svg": {
-    "file": "assets/roboto-v19-latin-100-XJSM55im.svg",
-    "src": "resources/assets/fonts/roboto-v19-latin-100.svg"
-  },
-  "resources/assets/fonts/roboto-v19-latin-100.ttf": {
-    "file": "assets/roboto-v19-latin-100-2Rhs5Npv.ttf",
-    "src": "resources/assets/fonts/roboto-v19-latin-100.ttf"
-  },
-  "resources/assets/fonts/roboto-v19-latin-100.woff": {
-    "file": "assets/roboto-v19-latin-100-B3mHgoOJ.woff",
-    "src": "resources/assets/fonts/roboto-v19-latin-100.woff"
-  },
-  "resources/assets/fonts/roboto-v19-latin-100.woff2": {
-    "file": "assets/roboto-v19-latin-100-BJNx9A77.woff2",
-    "src": "resources/assets/fonts/roboto-v19-latin-100.woff2"
-  },
-  "resources/assets/fonts/roboto-v19-latin-300.eot": {
-    "file": "assets/roboto-v19-latin-300-D1QHaaRz.eot",
-    "src": "resources/assets/fonts/roboto-v19-latin-300.eot"
-  },
-  "resources/assets/fonts/roboto-v19-latin-300.svg": {
-    "file": "assets/roboto-v19-latin-300-DfKhDSca.svg",
-    "src": "resources/assets/fonts/roboto-v19-latin-300.svg"
-  },
-  "resources/assets/fonts/roboto-v19-latin-300.ttf": {
-    "file": "assets/roboto-v19-latin-300-migZmwqT.ttf",
-    "src": "resources/assets/fonts/roboto-v19-latin-300.ttf"
-  },
-  "resources/assets/fonts/roboto-v19-latin-300.woff": {
-    "file": "assets/roboto-v19-latin-300-Cx9SeV6m.woff",
-    "src": "resources/assets/fonts/roboto-v19-latin-300.woff"
-  },
-  "resources/assets/fonts/roboto-v19-latin-300.woff2": {
-    "file": "assets/roboto-v19-latin-300-EvKWBL9d.woff2",
-    "src": "resources/assets/fonts/roboto-v19-latin-300.woff2"
-  },
-  "resources/assets/fonts/roboto-v19-latin-italic.eot": {
-    "file": "assets/roboto-v19-latin-italic-BVgA8Exj.eot",
-    "src": "resources/assets/fonts/roboto-v19-latin-italic.eot"
-  },
-  "resources/assets/fonts/roboto-v19-latin-italic.svg": {
-    "file": "assets/roboto-v19-latin-italic-0_m9nfwg.svg",
-    "src": "resources/assets/fonts/roboto-v19-latin-italic.svg"
-  },
-  "resources/assets/fonts/roboto-v19-latin-italic.ttf": {
-    "file": "assets/roboto-v19-latin-italic-BD0Nfl_e.ttf",
-    "src": "resources/assets/fonts/roboto-v19-latin-italic.ttf"
-  },
-  "resources/assets/fonts/roboto-v19-latin-italic.woff": {
-    "file": "assets/roboto-v19-latin-italic-B7WW6HdJ.woff",
-    "src": "resources/assets/fonts/roboto-v19-latin-italic.woff"
-  },
-  "resources/assets/fonts/roboto-v19-latin-italic.woff2": {
-    "file": "assets/roboto-v19-latin-italic-DRWWNyaf.woff2",
-    "src": "resources/assets/fonts/roboto-v19-latin-italic.woff2"
-  },
-  "resources/assets/fonts/roboto-v19-latin-regular.eot": {
-    "file": "assets/roboto-v19-latin-regular-B1VBY1Fg.eot",
-    "src": "resources/assets/fonts/roboto-v19-latin-regular.eot"
-  },
-  "resources/assets/fonts/roboto-v19-latin-regular.svg": {
-    "file": "assets/roboto-v19-latin-regular-BtaLw5qP.svg",
-    "src": "resources/assets/fonts/roboto-v19-latin-regular.svg"
-  },
-  "resources/assets/fonts/roboto-v19-latin-regular.ttf": {
-    "file": "assets/roboto-v19-latin-regular-BcThF2jr.ttf",
-    "src": "resources/assets/fonts/roboto-v19-latin-regular.ttf"
-  },
-  "resources/assets/fonts/roboto-v19-latin-regular.woff": {
-    "file": "assets/roboto-v19-latin-regular-CKhRtUFO.woff",
-    "src": "resources/assets/fonts/roboto-v19-latin-regular.woff"
-  },
-  "resources/assets/fonts/roboto-v19-latin-regular.woff2": {
-    "file": "assets/roboto-v19-latin-regular-CEEi-WbQ.woff2",
-    "src": "resources/assets/fonts/roboto-v19-latin-regular.woff2"
-  },
   "resources/css/site.css": {
-    "file": "assets/site-5exMW3NU.css",
+    "file": "assets/site-EnYN6GJY.css",
     "src": "resources/css/site.css",
     "isEntry": true
   },
@@ -156,35 +76,13 @@
     ]
   },
   "resources/js/site.js": {
-    "file": "assets/site-wHbJT5UY.js",
+    "file": "assets/site-BsFTxr0o.js",
     "name": "site",
     "src": "resources/js/site.js",
     "isEntry": true,
     "css": [
       "assets/site-DvB2Xm2x.css",
-      "assets/site-5exMW3NU.css"
-    ],
-    "assets": [
-      "assets/roboto-v19-latin-100-Dpj_xXAN.eot",
-      "assets/roboto-v19-latin-100-BJNx9A77.woff2",
-      "assets/roboto-v19-latin-100-B3mHgoOJ.woff",
-      "assets/roboto-v19-latin-100-2Rhs5Npv.ttf",
-      "assets/roboto-v19-latin-100-XJSM55im.svg",
-      "assets/roboto-v19-latin-300-D1QHaaRz.eot",
-      "assets/roboto-v19-latin-300-EvKWBL9d.woff2",
-      "assets/roboto-v19-latin-300-Cx9SeV6m.woff",
-      "assets/roboto-v19-latin-300-migZmwqT.ttf",
-      "assets/roboto-v19-latin-300-DfKhDSca.svg",
-      "assets/roboto-v19-latin-regular-B1VBY1Fg.eot",
-      "assets/roboto-v19-latin-regular-CEEi-WbQ.woff2",
-      "assets/roboto-v19-latin-regular-CKhRtUFO.woff",
-      "assets/roboto-v19-latin-regular-BcThF2jr.ttf",
-      "assets/roboto-v19-latin-regular-BtaLw5qP.svg",
-      "assets/roboto-v19-latin-italic-BVgA8Exj.eot",
-      "assets/roboto-v19-latin-italic-DRWWNyaf.woff2",
-      "assets/roboto-v19-latin-italic-B7WW6HdJ.woff",
-      "assets/roboto-v19-latin-italic-BD0Nfl_e.ttf",
-      "assets/roboto-v19-latin-italic-0_m9nfwg.svg"
+      "assets/site-EnYN6GJY.css"
     ]
   }
 }
