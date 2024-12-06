@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@alpinejs/intersect':
-        specifier: 3.14.6
-        version: 3.14.6
+        specifier: 3.14.7
+        version: 3.14.7
       '@fontsource/roboto':
         specifier: 5.1.0
         version: 5.1.0
@@ -24,8 +24,8 @@ importers:
         specifier: 0.5.15
         version: 0.5.15(tailwindcss@3.4.16)
       alpinejs:
-        specifier: 3.14.6
-        version: 3.14.6
+        specifier: 3.14.7
+        version: 3.14.7
       aos:
         specifier: 2.3.4
         version: 2.3.4
@@ -75,8 +75,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@alpinejs/intersect@3.14.6':
-    resolution: {integrity: sha512-xopcLKaLreLT4TyIQM9Yzw4mTH8bttHOYG0o1hzjBBMf/HFIO5aqrArO2HH3mfxxPMH7n2Izeu456cf8bdUvCQ==}
+  '@alpinejs/intersect@3.14.7':
+    resolution: {integrity: sha512-EX3HKR0bUWm7mwBAInprPBwYCxOoCRJi2JovBLD6d5Lb+BvbgVqJb2a95o81rXrRPXEOL1HY4efCtSKU1JwDRQ==}
 
   '@esbuild/aix-ppc64@0.24.0':
     resolution: {integrity: sha512-WtKdFM7ls47zkKHFVzMz8opM7LkcsIp9amDUBIAWirg70RM71WRSjdILPsY5Uv1D42ZpUfaPILDlfactHgsRkw==}
@@ -381,8 +381,8 @@ packages:
   '@vue/shared@3.1.5':
     resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
 
-  alpinejs@3.14.6:
-    resolution: {integrity: sha512-8Abdd6u8oVurOChPqWCHS2Lr3C9g4+zb/kL1vNPykK/2dVkb3giTcpQ1wykzzWmX7wbTvWLnHX3I3CPPnnAMCA==}
+  alpinejs@3.14.7:
+    resolution: {integrity: sha512-ScnbydNBcWVnCiVupD3wWUvoMPm8244xkvDNMxVCspgmap9m4QuJ7pjc+77UtByU+1+Ejg0wzYkP4mQaOMcvng==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1083,7 +1083,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@alpinejs/intersect@3.14.6': {}
+  '@alpinejs/intersect@3.14.7': {}
 
   '@esbuild/aix-ppc64@0.24.0':
     optional: true
@@ -1282,7 +1282,7 @@ snapshots:
 
   '@vue/shared@3.1.5': {}
 
-  alpinejs@3.14.6:
+  alpinejs@3.14.7:
     dependencies:
       '@vue/reactivity': 3.1.5
 
