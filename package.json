@@ -11,12 +11,12 @@
     "postinstall": "npm run copy-icons"
   },
   "devDependencies": {
-    "@alpinejs/intersect": "3.14.6",
+    "@alpinejs/intersect": "3.14.7",
     "@fontsource/roboto": "5.1.0",
     "@prettier/plugin-php": "0.22.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.15",
-    "alpinejs": "3.14.6",
+    "alpinejs": "3.14.7",
     "aos": "2.3.4",
     "autoprefixer": "10.4.20",
     "bigpicture": "2.6.3",
