@@ -15,7 +15,7 @@
     "@fontsource/roboto": "5.1.1",
     "@prettier/plugin-php": "0.22.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
-    "@tailwindcss/typography": "0.5.15",
+    "@tailwindcss/typography": "0.5.16",
     "alpinejs": "3.14.8",
     "aos": "2.3.4",
     "autoprefixer": "10.4.20",
