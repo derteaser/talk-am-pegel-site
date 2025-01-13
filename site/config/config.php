@@ -234,6 +234,11 @@ return [
                     'robots' => 'index,follow,noodp',
                 ],
             ],
+            'persons' => [
+                'meta' => [
+                    'robots' => 'index,follow,noodp',
+                ],
+            ],
         ];
     },
     'sentry.dsn' => null,
