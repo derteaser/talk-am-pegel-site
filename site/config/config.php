@@ -1,6 +1,8 @@
 <?php
 
 use Kirby\Cms\Html;
+use Kirby\Cms\Page;
+use Kirby\Cms\Site;
 use Kirby\Toolkit\Str;
 
 return [
@@ -43,10 +45,7 @@ return [
                     'xsl' => false,
                 ];
 
-                return site()
-                    ->index()
-                    ->published()
-                    ->sitemap($options);
+                return site()->index()->published()->sitemap($options);
             },
         ],
     ],
@@ -105,7 +104,7 @@ return [
             ],
         ];
     },
-    'wearejust.meta-tags.templates' => function ($page, $site) {
+    'wearejust.meta-tags.templates' => function (Page $page, Site $site) {
         $image = $page->main_image()->toFile();
         if (!$image) {
             $image = $site->main_image()->toFile();
@@ -159,11 +158,7 @@ return [
                     'Event' => [
                         'name' => $page->title()->value(),
                         'description' => strip_tags(
-                            $page
-                                ->text()
-                                ->toBlocks()
-                                ->filterBy('type', 'paragraph')
-                                ->html() ?? '',
+                            $page->text()->toBlocks()->filterBy('type', 'paragraph')->html() ?? '',
                         ),
                         'eventStatus' => [
                             '@type' => 'EventScheduled',
@@ -197,7 +192,6 @@ return [
                                 ],
                             ],
                         'url' => $page->url(),
-                        'sameAs' => $page->eventbrite_url()->value(),
                         'image' => $image->url(),
                         'isAccessibleForFree' => true,
                         'inLanguage' => 'de_DE',
@@ -207,6 +201,28 @@ return [
                             'name' => 'Dr. Jörg Geerlings MdL',
                             'url' => 'https://www.geerlings.de',
                         ],
+                        'offers' => [
+                            '@type' => 'Offer',
+                            'url' => $page->eventbrite_url()->value(),
+                            'price' => '0',
+                            'priceCurrency' => 'EUR',
+                            'availability' => 'https://schema.org/InStock',
+                        ],
+                        'performers' => $page
+                            ->attendants()
+                            ->toPages()
+                            ->map(function ($attendant) {
+                                return [
+                                    '@type' => 'Person',
+                                    'name' => $attendant->title()->value(),
+                                    'jobTitle' => $attendant->sub_heading()->value(),
+                                    'url' => $attendant->website()->isNotEmpty()
+                                        ? $attendant->website()->value()
+                                        : null,
+                                    'image' => $attendant->main_image()->toFile()->url(),
+                                ];
+                            })
+                            ->values(),
                     ],
                 ],
             ],
