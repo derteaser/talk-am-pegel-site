@@ -24,7 +24,7 @@ use Kirby\Template\Slot;
   <?= vite(['resources/js/fonts.js', 'resources/css/site.css']) ?>
   <?php snippet('fathom-analytics-embed'); ?>
 </head>
-<body class="bg-gray-200 dark:bg-gray-900<?= $kirby->option('debug') ? ' debug-screens' : '' ?>">
+<body class="bg-gray-200 dark:bg-gray-900">
 <?php snippet('hero-header'); ?>
 <?= $slot ?>
 <footer class="my-20 text-gray-500 body-font">
