@@ -19,7 +19,7 @@
             </div>
             <div class="flex flex-col items-center justify-center text-center">
               <h2 class="mt-4 text-lg font-medium text-gray-900 title-font">Anmeldung</h2>
-              <div class="w-12 h-1 mt-2 mb-4 rounded bg-tap-blue-500"></div>
+              <div class="w-12 h-1 mt-2 mb-4 rounded-sm bg-tap-blue-500"></div>
               <p class="text-base text-gray-600 dark:text-gray-300">Für die Teilnahme an unserer Veranstaltung ist eine
                 Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren
                 Partner Eventbrite!</p>
@@ -42,7 +42,7 @@
         <div class="flex flex-col h-full p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
           <div class="flex items-center">
             <div
-              class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
+              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
               <?php snippet('icons/calendar-event-fill', ['class' => 'size-5']); ?>
             </div>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-200"><?= $page
@@ -55,7 +55,7 @@
         <div class="flex flex-col h-full p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
           <div class="flex items-center">
             <div
-              class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
+              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
               <?php snippet('icons/time-fill', ['class' => 'size-5']); ?>
             </div>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-200"><?= $page
@@ -68,7 +68,7 @@
         <div class="flex flex-col h-full p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
           <div class="flex items-center">
             <div
-              class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
+              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
               <?php if ($page->is_virtual()->toBool()): ?>
                 <?php snippet('icons/live-fill', ['class' => 'size-5']); ?>
               <?php else: ?>

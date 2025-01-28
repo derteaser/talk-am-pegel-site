@@ -22,7 +22,7 @@ if ($count == 1) {
 <figure>
   <div class="grid <?= $cols ?> gap-2 image-gallery not-prose">
     <?php /** @var File $image */ foreach ($images as $image): ?>
-      <a href="<?= $image->thumb()->url() ?>" class="aspect-[3/2]">
+      <a href="<?= $image->thumb()->url() ?>" class="aspect-3/2">
         <img class="w-full h-full object-center object-cover m-0" src="<?= $image->thumb('gallery')->url() ?>" data-bp="<?= $image->thumb()->url() ?>" alt="">
       </a>
     <?php endforeach ?>

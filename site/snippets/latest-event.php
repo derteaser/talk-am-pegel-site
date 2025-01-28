@@ -24,13 +24,13 @@ if ($text && $blocks) {
         <picture>
           <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">
           <source srcset="<?= $image->thumb(['format' => 'webp'])->url() ?>" type="image/webp">
-          <img class="object-cover object-center rounded w-full" alt="<?= $event->title() ?>" src="<?= $image->thumb(['format' => 'jpg'])->url() ?>">
+          <img class="object-cover object-center rounded-sm w-full" alt="<?= $event->title() ?>" src="<?= $image->thumb(['format' => 'jpg'])->url() ?>">
         </picture>
       </div>
       <div class="lg:col-span-2 xl:col-span-3 flex flex-col items-start" data-aos="fade-in">
         <h1 class="title-font sm:text-4xl text-3xl font-medium text-gray-900 dark:text-gray-100 mb-8"><?= $event->title()->widont() ?></h1>
-        <p class="mb-8 leading-relaxed max-w-screen-sm"><?= $description ?></p>
-        <button type="button" class="inline-flex text-white bg-tap-red-500 border-0 py-2 px-6 focus:outline-none group-hover:bg-tap-red-800 rounded text-lg">Mehr erfahren</button>
+        <p class="mb-8 leading-relaxed max-w-(--breakpoint-sm)"><?= $description ?></p>
+        <button type="button" class="inline-flex text-white bg-tap-red-500 border-0 py-2 px-6 focus:outline-hidden group-hover:bg-tap-red-800 rounded-sm text-lg">Mehr erfahren</button>
       </div>
     </div>
   </a>
