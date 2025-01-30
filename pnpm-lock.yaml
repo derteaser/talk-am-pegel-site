@@ -22,7 +22,7 @@ importers:
         version: 4.0.1
       '@tailwindcss/typography':
         specifier: 0.5.16
-        version: 0.5.16(tailwindcss@4.0.0)
+        version: 0.5.16(tailwindcss@4.0.1)
       alpinejs:
         specifier: 3.14.8
         version: 3.14.8
@@ -48,8 +48,8 @@ importers:
         specifier: 4.6.0
         version: 4.6.0
       tailwindcss:
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.0.1
+        version: 4.0.1
       vite:
         specifier: 6.0.11
         version: 6.0.11(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.7.0)
@@ -633,9 +633,6 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
-  tailwindcss@4.0.0:
-    resolution: {integrity: sha512-ULRPI3A+e39T7pSaf1xoi58AqqJxVCLg8F/uM5A3FadUbnyDTgltVnXJvdkTjwCOGA6NazqHVcwPJC5h2vRYVQ==}
-
   tailwindcss@4.0.1:
     resolution: {integrity: sha512-UK5Biiit/e+r3i0O223bisoS5+y7ZT1PM8Ojn0MxRHzXN1VPZ2KY6Lo6fhu1dOfCfyUAlK7Lt6wSxowRabATBw==}
 
@@ -902,13 +899,13 @@ snapshots:
       postcss: 8.5.1
       tailwindcss: 4.0.1
 
-  '@tailwindcss/typography@0.5.16(tailwindcss@4.0.0)':
+  '@tailwindcss/typography@0.5.16(tailwindcss@4.0.1)':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 4.0.0
+      tailwindcss: 4.0.1
 
   '@types/estree@1.0.6': {}
 
@@ -1092,8 +1089,6 @@ snapshots:
       fsevents: 2.3.3
 
   source-map-js@1.2.1: {}
-
-  tailwindcss@4.0.0: {}
 
   tailwindcss@4.0.1: {}
 
