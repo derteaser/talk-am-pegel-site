@@ -1,12 +1,13 @@
 @import 'tailwindcss';
+@source '../../site/templates';
+@source '../../site/snippets';
 
 @plugin '@tailwindcss/typography';
 
 @theme {
   --font-*: initial;
-  --font-sans: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --color-gray-50: #f8fafc;
   --color-gray-100: #f1f5f9;
@@ -44,26 +45,8 @@
   --color-tap-alpha-blue-dark: hsla(213, 96%, 78%, 0.42);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
 @utility btn {
-  @apply text-white border-0 py-2 px-6 rounded-sm leading-tight;
+  @apply rounded-sm border-0 px-6 py-2 leading-tight text-white;
 
   &:focus {
     @apply outline-hidden;
@@ -97,13 +80,10 @@
 }
 
 @utility blocks {
-  @apply prose dark:prose-invert
-    prose-headings:text-tap-blue-700 dark:prose-headings:text-tap-blue-300
-    prose-a:font-bold prose-a:decoration-tap-red-500 prose-a:hover:text-tap-red-600
-    prose-blockquote:border-tap-blue-600 prose-blockquote:not-italic prose-blockquote:text-xl;
+  @apply prose dark:prose-invert prose-headings:text-tap-blue-700 dark:prose-headings:text-tap-blue-300 prose-a:font-bold prose-a:decoration-tap-red-500 prose-a:hover:text-tap-red-600 prose-blockquote:border-tap-blue-600 prose-blockquote:not-italic prose-blockquote:text-xl;
 
   blockquote footer {
-    @apply text-sm italic mt-1;
+    @apply mt-1 text-sm italic;
   }
 }
 
