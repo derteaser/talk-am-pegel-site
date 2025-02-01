@@ -15,7 +15,7 @@
     "@fontsource/roboto": "5.1.1",
     "@prettier/plugin-php": "0.22.4",
     "@tailwindcss/typography": "0.5.16",
-    "@tailwindcss/vite": "4.0.1",
+    "@tailwindcss/vite": "4.0.3",
     "alpinejs": "3.14.8",
     "aos": "2.3.4",
     "bigpicture": "2.6.3",
@@ -23,7 +23,7 @@
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.11",
     "remixicon": "4.6.0",
-    "tailwindcss": "4.0.1",
+    "tailwindcss": "4.0.3",
     "vite": "6.0.11"
   },
   "packageManager": "pnpm@9.15.4"
