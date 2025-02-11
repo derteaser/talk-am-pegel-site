@@ -42,7 +42,7 @@ jobs:
           php82 /usr/bin/composer install --no-dev -d ${PWD}
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
     - name: 📢 Create Sentry release
-      uses: getsentry/action-release@50f4a1a3799e059c182a73c30bbebc89739af2db # v1
+      uses: getsentry/action-release@b5b5a8ce7540bd7f67594177d52464a9bb543fb8 # v1
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
