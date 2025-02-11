@@ -48,7 +48,7 @@
     "src": "node_modules/.pnpm/@fontsource+roboto@5.1.1/node_modules/@fontsource/roboto/files/roboto-latin-900-normal.woff2"
   },
   "resources/css/site.css": {
-    "file": "assets/site-iShzc3Tv.css",
+    "file": "assets/site-K6qcLaao.css",
     "src": "resources/css/site.css",
     "isEntry": true
   },
@@ -76,13 +76,13 @@
     ]
   },
   "resources/js/site.js": {
-    "file": "assets/site-BSF-wwM1.js",
+    "file": "assets/site-CEXoN5lf.js",
     "name": "site",
     "src": "resources/js/site.js",
     "isEntry": true,
     "css": [
       "assets/site-DvB2Xm2x.css",
-      "assets/site-iShzc3Tv.css"
+      "assets/site-K6qcLaao.css"
     ]
   }
 }
