@@ -20,11 +20,7 @@
         "optimize-autoloader": true,
         "allow-plugins": {
             "getkirby/composer-installer": true,
-            "php-http/discovery": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "php-http/discovery": true
         }
-    },
-    "require-dev": {
-        "nunomaduro/phpinsights": "^2.11"
     }
 }
