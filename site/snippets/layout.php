@@ -16,8 +16,8 @@ use Kirby\Template\Slot;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#3b5883">
-  <link rel="icon" href="<?= url('/favicon.svg') ?>">
-  <link rel="mask-icon" href="<?= url('/mask-icon.svg') ?>" color="#3b5883">
+  <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon">
+  <link rel="icon" href="<?= url('/favicon.svg') ?>" type="image/svg+xml">
   <link rel="apple-touch-icon" href="<?= url('/apple-touch-icon.png') ?>">
   <link rel="manifest" href="<?= url('/site.webmanifest') ?>">
   <?= $page->metaTags() ?>
