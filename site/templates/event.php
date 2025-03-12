@@ -84,7 +84,7 @@
 </section>
 
 <section class="text-gray-700">
-  <div class="container px-12 px-20 pt-12 pb-24 mx-auto sm: md:px-5">
+  <div class="container px-12 pt-12 pb-24 mx-auto sm: md:px-5">
     <div class="flex flex-wrap justify-center -m-4">
       <?php foreach ($page->attendants()->toPages() as $person): ?>
         <?php snippet('person', ['person' => $person]); ?>

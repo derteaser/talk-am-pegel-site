@@ -6,8 +6,9 @@
 
 @theme {
   --font-*: initial;
-  --font-sans: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans:
+    Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --color-gray-50: #f8fafc;
   --color-gray-100: #f1f5f9;
@@ -51,31 +52,31 @@
   &:focus {
     @apply outline-hidden;
   }
+}
 
-  &-blue {
-    @apply bg-tap-blue-500;
+@utility btn-blue {
+  @apply bg-tap-blue-500;
 
-    &:hover,
-    &:focus {
-      @apply bg-tap-blue-700;
-    }
-
-    &:active {
-      @apply bg-tap-blue-400;
-    }
+  &:hover,
+  &:focus {
+    @apply bg-tap-blue-700;
   }
 
-  &-red {
-    @apply bg-tap-red-500;
+  &:active {
+    @apply bg-tap-blue-400;
+  }
+}
 
-    &:hover,
-    &:focus {
-      @apply bg-tap-red-600;
-    }
+@utility btn-red {
+  @apply bg-tap-red-500;
 
-    &:active {
-      @apply bg-tap-red-400;
-    }
+  &:hover,
+  &:focus {
+    @apply bg-tap-red-600;
+  }
+
+  &:active {
+    @apply bg-tap-red-400;
   }
 }
 
