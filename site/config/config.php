@@ -17,7 +17,7 @@ return [
         'css' => 'custom-panel/styles.css',
     ],
     'auth' => [
-        'methods' => ['code'],
+        'methods' => ['password', 'code'],
     ],
     'hooks' => [
         'system.exception' => function ($exception) {
