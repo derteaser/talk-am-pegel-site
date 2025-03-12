@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@alpinejs/intersect':
-        specifier: 3.14.8
-        version: 3.14.8
+        specifier: 3.14.9
+        version: 3.14.9
       '@fontsource/roboto':
         specifier: 5.2.5
         version: 5.2.5
@@ -24,8 +24,8 @@ importers:
         specifier: 4.0.13
         version: 4.0.13(vite@6.2.1(jiti@2.4.2)(lightningcss@1.29.2))
       alpinejs:
-        specifier: 3.14.8
-        version: 3.14.8
+        specifier: 3.14.9
+        version: 3.14.9
       aos:
         specifier: 2.3.4
         version: 2.3.4
@@ -53,8 +53,8 @@ importers:
 
 packages:
 
-  '@alpinejs/intersect@3.14.8':
-    resolution: {integrity: sha512-C1Nbl8n8xq5xDO3sEHFMrIkUQLQZNKb5ucV42JMTo7LakPIh+hQjT9lRErnUz65uJfU5sBZVwQwMZlWKO3bIjw==}
+  '@alpinejs/intersect@3.14.9':
+    resolution: {integrity: sha512-6LLIqrESA5kxuTbDJshtItfHmZoiiDOpf8lOeRrNtYjSj/FkggDpnjD+ZFGF5btEOVSpWic2VmG2BejR/aMxDw==}
 
   '@esbuild/aix-ppc64@0.25.0':
     resolution: {integrity: sha512-O7vun9Sf8DFjH2UtqK8Ku3LkquL9SZL8OLY1T5NZkA34+wG3OQF7cl4Ql8vdNzM6fzBbYfLaiRLIOZ+2FOCgBQ==}
@@ -401,8 +401,8 @@ packages:
   '@vue/shared@3.1.5':
     resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
 
-  alpinejs@3.14.8:
-    resolution: {integrity: sha512-wT2fuP2DXpGk/jKaglwy7S/IJpm1FD+b7U6zUrhwErjoq5h27S4dxkJEXVvhbdwyPv9U+3OkUuNLkZT4h2Kfrg==}
+  alpinejs@3.14.9:
+    resolution: {integrity: sha512-gqSOhTEyryU9FhviNqiHBHzgjkvtukq9tevew29fTj+ofZtfsYriw4zPirHHOAy9bw8QoL3WGhyk7QqCh5AYlw==}
 
   aos@2.3.4:
     resolution: {integrity: sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw==}
@@ -682,7 +682,7 @@ packages:
 
 snapshots:
 
-  '@alpinejs/intersect@3.14.8': {}
+  '@alpinejs/intersect@3.14.9': {}
 
   '@esbuild/aix-ppc64@0.25.0':
     optional: true
@@ -901,7 +901,7 @@ snapshots:
 
   '@vue/shared@3.1.5': {}
 
-  alpinejs@3.14.8:
+  alpinejs@3.14.9:
     dependencies:
       '@vue/reactivity': 3.1.5
 
