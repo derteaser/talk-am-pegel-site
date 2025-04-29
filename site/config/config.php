@@ -29,11 +29,7 @@ return [
             }
         },
     ],
-    'thumbs' => [
-        'presets' => [
-            'person' => ['width' => 500, 'height' => 500, 'crop' => true],
-        ],
-    ],
+    'thumbs' => require __DIR__ . '/thumbs.php',
     'routes' => [
         [
             'pattern' => 'sitemap.xml',
@@ -214,9 +210,7 @@ return [
                                     '@type' => 'Person',
                                     'name' => $attendant->title()->value(),
                                     'jobTitle' => $attendant->sub_heading()->value(),
-                                    'url' => $attendant->website()->isNotEmpty()
-                                        ? $attendant->website()->value()
-                                        : null,
+                                    'url' => $attendant->website()->isNotEmpty() ? $attendant->website()->value() : null,
                                     'image' => $attendant->main_image()->toFile()->url(),
                                 ];
                             })
@@ -245,8 +239,5 @@ return [
     'paulmorel.fathom-analytics' => [
         'siteId' => 'ZUNMTQNH',
     ],
-    'lukaskleinschmidt.laravel-vite' => [
-        'hotFile' => '../storage/vite.hot',
-        'buildDirectory' => 'build',
-    ],
+    'lukaskleinschmidt.laravel-vite' => require __DIR__ . '/vite.php',
 ];

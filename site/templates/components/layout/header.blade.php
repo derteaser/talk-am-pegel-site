@@ -1,0 +1,51 @@
+@php
+
+    use Kirby\Cms\Page;
+    use Kirby\Cms\Site;
+
+    /** @var Page $page */
+    /** @var Site $site */
+
+    $image = asset('/img/pegelbar.jpg');
+    if ($page instanceof \App\Interfaces\MainImageHolder && $page->mainImage()) {
+        $image = $page->mainImage();
+    }
+    $title = $page->herotitle() && $page->herotitle()->isNotEmpty() ? $page->herotitle() : $page->title();
+    $subTitle = $page->textline() ?: null;
+    $logo = asset('/img/logo.svg');
+@endphp
+
+<header class="bg-gray-900 flex-nowrap relative h-screen md:h-auto" x-data="{ scrolledAway: false }">
+    <div class="fixed bg-tap-alpha-blue-light dark:bg-tap-alpha-blue-dark bg-opacity-80 backdrop-blur-md w-full p-2 z-50"
+        x-show="scrolledAway" x-transition:enter="transition ease-out duration-300 origin-top"
+        x-transition:enter-start="opacity-0 -translate-y-12" x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-300 origin-top" x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-12" x-cloak>
+        <a href="<?= $site->url() ?>" class="flex justify-center">
+            <img src="<?= $logo->url() ?>" class="h-8" alt="">
+        </a>
+    </div>
+    @if ($image)
+        <x-thumbnail :image="$image" class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" alt="" />
+    @endif
+
+    <div class="relative z-10 pt-10 text-center w-full" x-intersect:leave="scrolledAway = true" x-intersect:enter="scrolledAway = false">
+        <a href="<?= $site->url() ?>" class="flex justify-center">
+            <?= svg('/img/logo.svg') ?>
+        </a>
+    </div>
+    <div class="relative text-center z-10 py-40 mx-auto container">
+        <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?>
+        </h1>
+        <?php if ($subTitle && $subTitle->isNotEmpty()): ?>
+        <p class="text-2xl text-gray-300 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
+        <?php endif; ?>
+    </div>
+    <div class="absolute bottom-0 z-10 text-center w-full pb-32 md:hidden">
+        <a href="#content" class="btn btn-accent btn-circle btn-lg">
+            <x-icons.arrow-down-line class="size-6 shrink-0" />
+        </a>
+    </div>
+</header>
+
+<span id="content"></span>
