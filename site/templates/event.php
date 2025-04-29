@@ -9,7 +9,7 @@
     <div class="mx-auto lg:w-4/6">
       <?php if ($page->date()->toDate() > time()): ?>
         <div class="flex flex-col mt-10 sm:flex-row">
-          <div class="pb-4 mb-4 border-b border-gray-300 sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r sm:border-b-0 sm:mb-0">
+          <div class="pb-4 mb-4 border-b border-base-100 sm:w-2/3 sm:pr-8 sm:py-8 sm:border-r sm:border-b-0 sm:mb-0">
             <div class="mb-4 blocks"><?= $page->text()->toBlocks() ?></div>
           </div>
           <div class="text-center sm:w-1/3 sm:pl-8 sm:py-12">
@@ -19,7 +19,7 @@
             </div>
             <div class="flex flex-col items-center justify-center text-center">
               <h2 class="mt-4 text-lg font-medium text-gray-900 title-font">Anmeldung</h2>
-              <div class="w-12 h-1 mt-2 mb-4 rounded-sm bg-tap-blue-500"></div>
+              <div class="w-12 h-1 mt-2 mb-4 rounded-sm bg-primary"></div>
               <p class="text-base text-gray-600 dark:text-gray-300">Für die Teilnahme an unserer Veranstaltung ist eine
                 Anmeldung zwingend erforderlich. Bitte bestellen Sie nachfolgend Ihr kostenloses Ticket über unseren
                 Partner Eventbrite!</p>
@@ -39,10 +39,10 @@
   <div class="container px-5 py-12 mx-auto">
     <div class="flex flex-wrap -m-4">
       <div class="w-full p-4 md:w-1/2 lg:w-1/3" data-aos="zoom-in" data-aos-delay="100">
-        <div class="flex flex-col h-full p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+        <div class="flex flex-col h-full p-8 bg-base-300 rounded-lg dark:bg-gray-800">
           <div class="flex items-center">
             <div
-              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
+              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-primary">
               <?php snippet('icons/calendar-event-fill', ['class' => 'size-5']); ?>
             </div>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-200"><?= $page
@@ -52,10 +52,10 @@
         </div>
       </div>
       <div class="w-full p-4 md:w-1/2 lg:w-1/3" data-aos="zoom-in" data-aos-delay="300">
-        <div class="flex flex-col h-full p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+        <div class="flex flex-col h-full p-8 bg-base-300 rounded-lg dark:bg-gray-800">
           <div class="flex items-center">
             <div
-              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
+              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-primary">
               <?php snippet('icons/time-fill', ['class' => 'size-5']); ?>
             </div>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-200"><?= $page
@@ -65,10 +65,10 @@
         </div>
       </div>
       <div class="w-full p-4 lg:w-1/3" data-aos="zoom-in" data-aos-delay="500">
-        <div class="flex flex-col h-full p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+        <div class="flex flex-col h-full p-8 bg-base-300 rounded-lg dark:bg-gray-800">
           <div class="flex items-center">
             <div
-              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-tap-blue-500">
+              class="inline-flex items-center justify-center shrink-0 w-8 h-8 mr-3 text-white rounded-full bg-primary">
               <?php if ($page->is_virtual()->toBool()): ?>
                 <?php snippet('icons/live-fill', ['class' => 'size-5']); ?>
               <?php else: ?>

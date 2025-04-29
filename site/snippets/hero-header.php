@@ -31,25 +31,25 @@ $logo = asset('/img/logo.svg');
   <picture>
     <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">
     <source srcset="<?= $image->thumb(['format' => 'webp'])->url() ?>" type="image/webp">
-    <img src="<?= $image->thumb(['format' => 'jpg'])->url() ?>" class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" alt="">
+    <img src="<?= $image
+      ->thumb(['format' => 'jpg'])
+      ->url() ?>" class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" alt="">
   </picture>
 
   <div class="relative z-10 pt-10 text-center w-full" x-intersect:leave="scrolledAway = true" x-intersect:enter="scrolledAway = false">
     <a href="<?= $site->url() ?>" class="flex justify-center">
-      <?=
-      svg('/img/logo.svg');
-      ?>
+      <?= svg('/img/logo.svg') ?>
     </a>
   </div>
   <div class="relative text-center z-10 py-40 mx-auto container">
     <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?></h1>
     <?php if ($subTitle && $subTitle->isNotEmpty()): ?>
       <p class="text-2xl text-gray-300 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
-    <?php endif ?>
+    <?php endif; ?>
   </div>
   <div class="absolute bottom-0 z-10 text-center w-full pb-32 md:hidden">
-    <a href="#content" class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-tap-red-500 hover:bg-tap-red-800 text-white shrink-0">
-      <?php snippet('icons/arrow-down-line', ['class' => 'size-6']) ?>
+    <a href="#content" class="btn btn-accent btn-circle btn-lg">
+      <?php snippet('icons/arrow-down-line', ['class' => 'size-6 shrink-0']); ?>
     </a>
   </div>
 </header>

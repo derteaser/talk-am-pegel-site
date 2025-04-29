@@ -17,21 +17,21 @@ if ($text && $blocks) {
   }
 }
 ?>
-<section class="text-gray-700 dark:text-gray-300">
-  <a href="<?= $event->url() ?>" class="group">
-    <div class="container mx-auto px-5 py-24 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-      <div class="lg:row-span-2 xl:col-span-2 lg:order-last" data-aos="fade-up" data-aos-delay="100">
-        <picture>
-          <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">
-          <source srcset="<?= $image->thumb(['format' => 'webp'])->url() ?>" type="image/webp">
-          <img class="object-cover object-center rounded-sm w-full" alt="<?= $event->title() ?>" src="<?= $image->thumb(['format' => 'jpg'])->url() ?>">
-        </picture>
-      </div>
-      <div class="lg:col-span-2 xl:col-span-3 flex flex-col items-start" data-aos="fade-in">
-        <h1 class="title-font sm:text-4xl text-3xl font-medium text-gray-900 dark:text-gray-100 mb-8"><?= $event->title()->widont() ?></h1>
-        <p class="mb-8 leading-relaxed max-w-(--breakpoint-sm)"><?= $description ?></p>
-        <button type="button" class="inline-flex text-white bg-tap-red-500 border-0 py-2 px-6 focus:outline-hidden group-hover:bg-tap-red-800 rounded-sm text-lg">Mehr erfahren</button>
-      </div>
+<section>
+  <div class="container mx-auto px-5 py-24 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+    <div class="lg:row-span-2 xl:col-span-2 lg:order-last" data-aos="fade-up" data-aos-delay="100">
+      <picture>
+        <source srcset="<?= $image->thumb(['format' => 'avif'])->url() ?>" type="image/avif">
+        <source srcset="<?= $image->thumb(['format' => 'webp'])->url() ?>" type="image/webp">
+        <img class="object-cover object-center rounded-sm w-full" alt="<?= $event->title() ?>" src="<?= $image
+  ->thumb(['format' => 'jpg'])
+  ->url() ?>">
+      </picture>
     </div>
-  </a>
+    <div class="lg:col-span-2 xl:col-span-3 flex flex-col items-start space-y-8" data-aos="fade-in">
+      <h1 class="sm:text-4xl text-3xl font-semibold text-base-content"><?= $event->title()->widont() ?></h1>
+      <p class="text-base-content leading-relaxed max-w-xl"><?= $description ?></p>
+      <a href="<?= $event->url() ?>" class="btn btn-accent">Mehr erfahren</a>
+    </div>
+  </div>
 </section>

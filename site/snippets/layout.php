@@ -24,28 +24,27 @@ use Kirby\Template\Slot;
   <?= vite(['resources/js/fonts.js', 'resources/css/site.css']) ?>
   <?php snippet('fathom-analytics-embed'); ?>
 </head>
-<body class="bg-gray-200 dark:bg-gray-900">
+<body>
 <?php snippet('hero-header'); ?>
+
 <?= $slot ?>
-<footer class="my-20 text-gray-500 body-font">
-  <div class="border-t border-gray-400 dark:border-gray-700"></div>
-  <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-    <p class="text-gray-500 text-sm text-center sm:text-left">&copy;<?= date('Y') ?> <?= $site->title() ?></p>
-    <nav class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-sm">
-      <?php foreach ($site->footer_navigation()->toPages() as $nav): ?>
-        <a href="<?= $nav->url() ?>"
-           class="text-gray-600 hover:text-gray-800 dark:hover:text-gray-200 ml-4"><?= $nav->title() ?></a>
-      <?php endforeach; ?>
-    </nav>
-    <span class="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
-            <a class="text-gray-500 hover:text-gray-600 dark:hover:text-gray-200"
-               href="https://facebook.com/<?= $site->facebook() ?>" target="_blank" rel="noopener noreferrer">
-              <?php snippet('icons/facebook-circle-fill', [
-                'class' => 'fill-current size-5',
-              ]); ?><span class="sr-only">Facebook (Link öffnet in neuem Fenster)</span>
-            </a>
-        </span>
-  </div>
+
+<footer class="footer footer-center bg-base-300/60 p-12 mt-12">
+  <nav class="grid grid-flow-col gap-4 text-base-content">
+    <?php foreach ($site->footer_navigation()->toPages() as $nav): ?>
+      <a href="<?= $nav->url() ?>" class="link link-hover"><?= $nav->title() ?></a>
+    <?php endforeach; ?>
+  </nav>
+  <nav>
+    <div class="flex gap-4">
+      <a href="https://facebook.com/<?= $site->facebook() ?>" class="link link-animated" aria-label="Facebook (Link öffnet in neuem Fenster)" rel="noopener noreferrer">
+        <?php snippet('icons/facebook-circle-fill', ['class' => 'fill-current size-6']); ?>
+      </a>
+    </div>
+  </nav>
+  <aside>
+    <p>&copy;<?= date('Y') ?> <?= $site->title() ?></p>
+  </aside>
 </footer>
 
 <?= vite(['resources/js/site.js']) ?>

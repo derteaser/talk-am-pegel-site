@@ -14,8 +14,8 @@ use Kirby\Cms\Site;
   <p><?= $site->address1() ?></p>
   <p><?= $site->address2() ?></p>
   <p><?= $site->postal_code() ?> <?= $site->city() ?></p>
-  <p class="mt-3"><?= Html::tel($site->phone(), null, ['class' => 'text-tap-red-500 hover:text-tap-red-600']) ?></p>
-  <p><?= Html::email($site->email(), null, ['class' => 'text-tap-red-500 hover:text-tap-red-600']) ?></p>
+  <p class="mt-3"><?= Html::tel($site->phone(), null, ['class' => 'link link-primary']) ?></p>
+  <p><?= Html::email($site->email(), null, ['class' => 'link link-primary']) ?></p>
 
   <div class="flex justify-center mt-6">
     <?php foreach ($page->contact_persons()->toPages() as $person): ?>

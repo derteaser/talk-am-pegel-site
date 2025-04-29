@@ -10,7 +10,7 @@
     <?php foreach ($page->events() as $event): ?>
       <li>
         <p class="font-medium text-sm text-gray-600"><?= $event->date()->toDate('%e. %B %Y') ?></p>
-        <a href="<?= $event->url() ?>" class="text-tap-red-500 hover:text-tap-red-400 inline-flex items-center">
+        <a href="<?= $event->url() ?>" class="link link-accent inline-flex items-center">
           <?= $event->title() ?>
           <?php snippet('icon', ['name' => 'arrow-right', 'cssClasses' => 'fill-current w-4 h-4 ml-2']); ?>
         </a>

@@ -1,17 +1,19 @@
-import '../css/site.css'
+import '../css/site.css';
 
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-import BigPicture from "bigpicture/src/BigPicture"
+import BigPicture from 'bigpicture/src/BigPicture';
 
-import Alpine from 'alpinejs'
-import intersect from '@alpinejs/intersect'
+import 'flyonui/flyonui';
 
-Alpine.plugin(intersect)
+import Alpine from 'alpinejs';
+import intersect from '@alpinejs/intersect';
 
-window.Alpine = Alpine
-Alpine.start()
+Alpine.plugin(intersect);
+
+window.Alpine = Alpine;
+Alpine.start();
 
 AOS.init({
   delay: 200, // values from 0 to 3000, with step 50ms
@@ -20,19 +22,19 @@ AOS.init({
   mirror: false, // whether elements should animate out while scrolling past them
 });
 
-(function() {
+(function () {
   // image gallery
   const imageLinks = document.querySelectorAll('.image-gallery a');
   for (let i = 0; i < imageLinks.length; i++) {
     imageLinks[i].addEventListener('click', function (e) {
-      e.preventDefault()
-      console.log(e.currentTarget.parentNode)
+      e.preventDefault();
+      console.log(e.currentTarget.parentNode);
       BigPicture({
         el: e.target,
         imgSrc: e.currentTarget.getAttribute('href'),
         gallery: '.image-gallery',
         //galleryAttribute: 'href'
-      })
-    })
+      });
+    });
   }
 })();

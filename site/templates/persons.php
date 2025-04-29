@@ -11,7 +11,7 @@
           <li>
             <h2 class="mb-2 text-2xl font-medium text-gray-900 dark:text-gray-100"><?= $person->title() ?></h2>
             <a href="<?= $person->url() ?>"
-               class="inline-flex items-center text-tap-red-500 hover:text-tap-red-400">
+               class="inline-flex items-center link link-accent">
               Mehr erfahren
               <?php snippet('icons/arrow-right-line', [
                 'class' => 'size-5 ml-2',
