@@ -1,4 +1,6 @@
-<article class="p-4 lg:w-1/5 md:w-1/3 sm:w-1/2 relative" data-aos="fade-up">
+<article class="p-4 lg:w-1/5 md:w-1/3 sm:w-1/2 relative {{ $animate ? 'aos aos-fade-up' : '' }}"
+    @if ($animate) x-data="{ visible: false }"
+    x-intersect.once="setTimeout(function() { visible = true }, {{ $animationDelay }})" :class="visible && 'visible'" @endif>
     <div class="h-full flex flex-col items-center text-center pb-2">
         <x-thumbnail :image="$person->mainImage()" srcset="square" class="shrink-0 rounded-full object-cover object-center aspect-square mb-4"
             alt="" />

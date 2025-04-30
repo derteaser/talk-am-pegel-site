@@ -1,18 +1,20 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin '@tailwindcss/typography';
 @plugin "flyonui" {
   themes: tap --default;
 }
 
-@import '../../node_modules/flyonui/variants.css';
+@import "./aos.css";
+
+@import "../../node_modules/flyonui/variants.css";
 @source '../../site/templates';
 @source '../../site/snippets';
 
 @plugin "flyonui/theme" {
-  name: 'tap';
+  name: "tap";
   default: true;
   prefersdark: false;
-  color-scheme: 'light';
+  color-scheme: "light";
   --color-base-100: oklch(0.98 0.0034 247.86);
   --color-base-200: oklch(0.97 0.0069 247.9);
   --color-base-300: oklch(0.93 0.0126 255.51);
@@ -46,8 +48,8 @@
 @theme {
   --font-*: initial;
   --font-sans:
-    Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-tap-alpha-blue-light: hsla(216, 98%, 16%, 0.69);
   --color-tap-alpha-blue-dark: hsla(213, 96%, 78%, 0.42);
@@ -67,7 +69,7 @@
   }
 
   body {
-    @apply bg-base-200 antialiased;
+    @apply bg-base-200 overflow-x-hidden antialiased;
   }
 
   [x-cloak] {

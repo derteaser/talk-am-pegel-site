@@ -1,0 +1,49 @@
+@layer components {
+  .aos {
+    @apply transform opacity-0 duration-1000 motion-safe:transition-all;
+
+    &.visible {
+      @apply opacity-100;
+    }
+  }
+
+  .aos-fade-up {
+    @apply translate-y-1/2;
+
+    &.visible {
+      @apply translate-y-0;
+    }
+  }
+
+  .aos-fade-down {
+    @apply -translate-y-1/2;
+
+    &.visible {
+      @apply translate-y-0;
+    }
+  }
+
+  .aos-fade-left {
+    @apply translate-x-4/5;
+
+    &.visible {
+      @apply translate-x-0;
+    }
+  }
+
+  .aos-fade-right {
+    @apply -translate-x-4/5;
+
+    &.visible {
+      @apply translate-x-0;
+    }
+  }
+
+  .aos-zoom-in {
+    @apply scale-0;
+
+    &.visible {
+      @apply scale-100;
+    }
+  }
+}

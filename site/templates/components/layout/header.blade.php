@@ -12,7 +12,6 @@
     }
     $title = $page->herotitle() && $page->herotitle()->isNotEmpty() ? $page->herotitle() : $page->title();
     $subTitle = $page->textline() ?: null;
-    $logo = asset('/img/logo.svg');
 @endphp
 
 <header class="bg-gray-900 flex-nowrap relative h-screen md:h-auto" x-data="{ scrolledAway: false }">
@@ -22,23 +21,29 @@
         x-transition:leave="transition ease-in duration-300 origin-top" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-12" x-cloak>
         <a href="<?= $site->url() ?>" class="flex justify-center">
-            <img src="<?= $logo->url() ?>" class="h-8" alt="">
+            <img src="{{ asset('/img/logo.svg')->url() }}" class="h-8" alt="">
         </a>
     </div>
     @if ($image)
-        <x-thumbnail :image="$image" class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute" alt="" />
+        <x-thumbnail :image="$image" sizes="100vw" class="w-full h-full object-cover object-center block opacity-25 inset-0 absolute"
+            alt="" />
     @endif
 
     <div class="relative z-10 pt-10 text-center w-full" x-intersect:leave="scrolledAway = true" x-intersect:enter="scrolledAway = false">
         <a href="<?= $site->url() ?>" class="flex justify-center">
-            <?= svg('/img/logo.svg') ?>
+            @svg('/img/logo.svg')
         </a>
     </div>
     <div class="relative text-center z-10 py-40 mx-auto container">
-        <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?>
+        <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl aos aos-fade-left"
+            x-data="{ visible: false }" x-intersect.once="visible = true" :class="visible && 'visible'">
+            {{ $title }}
         </h1>
         @if ($subTitle && $subTitle->isNotEmpty())
-            <p class="text-2xl text-gray-300 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
+            <p class="text-2xl text-gray-300 font-light aos aos-fade-left" x-data="{ visible: false }"
+                x-intersect.once="setTimeout(function() { visible = true }, 500)" :class="visible && 'visible'">
+                {{ $subTitle }}
+            </p>
         @endif
     </div>
     <div class="absolute bottom-0 z-10 text-center w-full pb-32 md:hidden">

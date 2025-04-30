@@ -18,7 +18,6 @@
     "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "4.1.4",
     "alpinejs": "3.14.9",
-    "aos": "2.3.4",
     "bigpicture": "2.6.3",
     "flyonui": "2.1.0",
     "laravel-vite-plugin": "1.2.0",

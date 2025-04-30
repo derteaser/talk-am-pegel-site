@@ -8,9 +8,13 @@ use PersonPage;
 
 class Person extends Component {
     public PersonPage $person;
+    public bool $animate = false;
+    public int $animationDelay = 0;
 
-    public function __construct(PersonPage $person) {
+    public function __construct(PersonPage $person, bool $animate = false, int $animationDelay = 0) {
         $this->person = $person;
+        $this->animate = $animate;
+        $this->animationDelay = $animationDelay;
     }
 
     /**
