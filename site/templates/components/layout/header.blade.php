@@ -37,9 +37,9 @@
     <div class="relative text-center z-10 py-40 mx-auto container">
         <h1 class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl" data-aos="fade-left"><?= $title ?>
         </h1>
-        <?php if ($subTitle && $subTitle->isNotEmpty()): ?>
-        <p class="text-2xl text-gray-300 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
-        <?php endif; ?>
+        @if ($subTitle && $subTitle->isNotEmpty())
+            <p class="text-2xl text-gray-300 font-light" data-aos="fade-left" data-aos-delay="500"><?= $subTitle ?></p>
+        @endif
     </div>
     <div class="absolute bottom-0 z-10 text-center w-full pb-32 md:hidden">
         <a href="#content" class="btn btn-accent btn-circle btn-lg">
