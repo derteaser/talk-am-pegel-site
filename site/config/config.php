@@ -1,12 +1,13 @@
 <?php
+require_once __DIR__ . '/../plugins/kirby3-dotenv/global.php';
 
-use Kirby\Cms\Html;
-use Kirby\Cms\Page;
-use Kirby\Cms\Site;
-use Kirby\Toolkit\Str;
+loadenv([
+    'dir' => realpath(__DIR__ . '/../../'),
+    'file' => '.env',
+]);
 
 return [
-    'debug' => false,
+    'debug' => env('APP_DEBUG', false),
     'slugs' => 'de',
     'locale' => 'de_DE.utf-8',
     'date' => [
@@ -29,11 +30,7 @@ return [
             }
         },
     ],
-    'thumbs' => [
-        'presets' => [
-            'person' => ['width' => 500, 'height' => 500, 'crop' => true],
-        ],
-    ],
+    'thumbs' => require __DIR__ . '/thumbs.php',
     'routes' => [
         [
             'pattern' => 'sitemap.xml',
@@ -49,13 +46,7 @@ return [
             },
         ],
     ],
-    'thathoff' => [
-        'git-content' => [
-            'push' => true,
-            'cronHooksEnabled' => false,
-            'displayErrors' => true,
-        ],
-    ],
+    'thathoff.git-content' => require __DIR__ . '/git-content.php',
     'bnomei.robots-txt.sitemap' => 'sitemap.xml',
     'wearejust.meta-tags.default' => function ($page, $site) {
         $image = $page->main_image()->toFile();
@@ -104,7 +95,7 @@ return [
             ],
         ];
     },
-    'wearejust.meta-tags.templates' => function (Page $page, Site $site) {
+    'wearejust.meta-tags.templates' => function (\Kirby\Cms\Page $page, \Kirby\Cms\Site $site) {
         $image = $page->main_image()->toFile();
         if (!$image) {
             $image = $site->main_image()->toFile();
@@ -214,9 +205,7 @@ return [
                                     '@type' => 'Person',
                                     'name' => $attendant->title()->value(),
                                     'jobTitle' => $attendant->sub_heading()->value(),
-                                    'url' => $attendant->website()->isNotEmpty()
-                                        ? $attendant->website()->value()
-                                        : null,
+                                    'url' => $attendant->website()->isNotEmpty() ? $attendant->website()->value() : null,
                                     'image' => $attendant->main_image()->toFile()->url(),
                                 ];
                             })
@@ -245,8 +234,5 @@ return [
     'paulmorel.fathom-analytics' => [
         'siteId' => 'ZUNMTQNH',
     ],
-    'lukaskleinschmidt.laravel-vite' => [
-        'hotFile' => '../storage/vite.hot',
-        'buildDirectory' => 'build',
-    ],
+    'lukaskleinschmidt.laravel-vite' => require __DIR__ . '/vite.php',
 ];

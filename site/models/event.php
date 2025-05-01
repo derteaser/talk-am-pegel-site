@@ -1,19 +1,23 @@
 <?php
 
-use Kirby\Cms\Field;
+use App\Interfaces\MainImageHolder;
+use App\Traits\HasMainImage;
+use Illuminate\Support\Carbon;
 use Kirby\Cms\Page;
 
-/**
- * @method Field date()
- * @method Field is_virtual()
- * @method Field location_name()
- * @method Field location_geo()
- * @method Field location_url()
- * @method Field eventbrite_url()
- * @method Field text()
- * @method Field main_image()
- * @method Field textline()
- * @method Field attendants()
- */
-class EventPage extends Page {
+class EventPage extends Page implements MainImageHolder {
+    use HasMainImage;
+
+    public function startDateTime(): Carbon {
+        $date = new Carbon();
+
+        $date->setDate($this->date()->toDate('Y'), $this->date()->toDate('M'), $this->date()->toDate('d'));
+        $date->setTime($this->startTime()->toDate('H'), $this->startTime()->toDate('m'));
+
+        return $date;
+    }
+
+    public function past(): bool {
+        return $this->startDateTime()->isPast();
+    }
 }

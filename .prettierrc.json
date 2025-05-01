@@ -1,8 +1,31 @@
 {
-    "plugins": ["@prettier/plugin-php", "prettier-plugin-tailwindcss"],
-    "phpVersion": "8.2",
-    "singleQuote": true,
-    "trailingCommaPHP": true,
-    "braceStyle": "1tbs",
-    "printWidth": 120
+  "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade", "prettier-plugin-tailwindcss"],
+  "phpVersion": "8.3",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 140,
+  "braceStyle": "1tbs",
+  "tabWidth": 4,
+  "endOfLine": "lf",
+  "trailingCommaPHP": true,
+  "overrides": [
+    {
+      "files": "*.blade.php",
+      "options": {
+        "parser": "blade"
+      }
+    },
+    {
+      "files": ["**/*.css", "**/*.html"],
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["**/*.css", "**/*.js", "**/*.json", "**/*.yml"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
 }
