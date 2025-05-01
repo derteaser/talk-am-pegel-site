@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1697f7a53bb01f7f140643dc568cf92e",
+    "content-hash": "fd5e89354044be6f2badf1629d88845b",
     "packages": [
         {
             "name": "bnomei/kirby3-dotenv",
@@ -4446,16 +4446,16 @@
         },
         {
             "name": "lukaskleinschmidt/kirby-types",
-            "version": "1.1.2",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lukaskleinschmidt/kirby-types.git",
-                "reference": "909fe88061b0c1bcdbfedf54e0f4a02ecd6a8e84"
+                "reference": "d5f6bb7230e532db56e9f7db8ed63106d6f0b730"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lukaskleinschmidt/kirby-types/zipball/909fe88061b0c1bcdbfedf54e0f4a02ecd6a8e84",
-                "reference": "909fe88061b0c1bcdbfedf54e0f4a02ecd6a8e84",
+                "url": "https://api.github.com/repos/lukaskleinschmidt/kirby-types/zipball/d5f6bb7230e532db56e9f7db8ed63106d6f0b730",
+                "reference": "d5f6bb7230e532db56e9f7db8ed63106d6f0b730",
                 "shasum": ""
             },
             "require": {
@@ -4486,9 +4486,9 @@
             "description": "Kirby Types",
             "support": {
                 "issues": "https://github.com/lukaskleinschmidt/kirby-types/issues",
-                "source": "https://github.com/lukaskleinschmidt/kirby-types/tree/1.1.2"
+                "source": "https://github.com/lukaskleinschmidt/kirby-types/tree/2.0.2"
             },
-            "time": "2023-09-13T15:20:16+00:00"
+            "time": "2025-02-12T13:29:21+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
