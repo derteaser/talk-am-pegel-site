@@ -148,7 +148,7 @@ return [
                 'json-ld' => [
                     'Event' => [
                         'name' => $page->title()->value(),
-                        'description' => strip_tags($page->text()->toBlocks()->excerpt() ?? ''),
+                        'description' => strip_tags($page->excerpt() ?? ''),
                         'eventStatus' => [
                             '@type' => 'EventScheduled',
                         ],
