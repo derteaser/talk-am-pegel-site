@@ -6,9 +6,12 @@
     </nav>
     <nav>
         <div class="flex gap-4">
-            <a href="https://facebook.com/<?= $site->facebook() ?>" class="link link-animated"
+            <a href="https://facebook.com/<?= $site->facebook() ?>" class="link link-animated tooltip"
                 aria-label="Facebook (Link öffnet in neuem Fenster)" rel="noopener noreferrer">
-                <?php snippet('icons/facebook-circle-fill', ['class' => 'fill-current size-6']); ?>
+                <x-icons.facebook-circle-fill class="size-6 tooltip-toggle" />
+                <span class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
+                    <span class="tooltip-body">{{ $site->title() }} bei Facebook</span>
+                </span>
             </a>
         </div>
     </nav>

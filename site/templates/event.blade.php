@@ -92,8 +92,9 @@
                     <a href="{{ $prev->url() }}" rel="prev" class="btn btn-neutral/80 btn-text btn-xl text-left">
                         <x-icons.arrow-left-s-line class="size-12 shrink-0" />
                         <div>
-                            <p class="text-sm font-medium text-neutral/50 uppercase">{{ $prev->textline() }}</p>
-                            <p>{{ $prev->title() }}</p>
+                            <span class="block text-sm font-medium text-neutral/50 uppercase">{{ $prev->textline() }}</span>
+                            <span class="sr-only">:</span>
+                            <span>{{ $prev->title() }}</span>
                         </div>
                     </a>
                 </div>
@@ -102,10 +103,11 @@
             @endif
             @if ($next = $page->next())
                 <div class="p-2 text-right">
-                    <a href="{{ $next->url() }}" rel="prev" class="btn btn-neutral/80 btn-text btn-xl text-right">
+                    <a href="{{ $next->url() }}" rel="next" class="btn btn-neutral/80 btn-text btn-xl text-right">
                         <div>
-                            <p class="text-sm font-medium text-neutral/50 uppercase">{{ $next->textline() }}</p>
-                            <p>{{ $next->title() }}</p>
+                            <span class="text-sm font-medium text-neutral/50 uppercase">{{ $next->textline() }}</span>
+                            <span class="sr-only">:</span>
+                            <span>{{ $next->title() }}</span>
                         </div>
                         <x-icons.arrow-right-s-line class="size-12 shrink-0" />
                     </a>
