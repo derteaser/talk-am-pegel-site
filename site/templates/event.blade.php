@@ -26,7 +26,7 @@
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-accent" href="<?= $page->eventbrite_url() ?>" target="_blank" rel="noopener noreferrer"
+                                <a class="btn btn-accent" href="{{ $page->eventbrite_url() }}" target="_blank" rel="noopener noreferrer"
                                     onclick="fathom.trackGoal('DZC4R54V', 0);">
                                     Ticket sichern
                                 </a>
