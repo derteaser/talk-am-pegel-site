@@ -12,7 +12,7 @@
     "php": "~8.2.0 || ~8.3.0",
     "getkirby/cms": "3.10.1.1",
     "getkirby/cli": "1.6.0",
-    "leitsch/kirby-blade": "2.3.5",
+    "leitsch/kirby-blade": "3.0.4",
     "wearejust/kirby-meta-tags": "3.0.1",
     "sylvainjule/locator": "1.1.4",
     "bnomei/kirby3-dotenv": "2.2.0",
