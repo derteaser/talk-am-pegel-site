@@ -15,7 +15,7 @@
     "leitsch/kirby-blade": "2.3.5",
     "wearejust/kirby-meta-tags": "3.0.1",
     "sylvainjule/locator": "1.1.4",
-    "bnomei/kirby3-dotenv": "2.2.0",
+    "bnomei/kirby3-dotenv": "5.0.0",
     "bnomei/kirby3-robots-txt": "1.8.0",
     "thathoff/kirby-git-content": "5.2.0",
     "sentry/sdk": "4.0.0",
