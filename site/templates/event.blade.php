@@ -105,7 +105,7 @@
                 <div class="p-2 text-right">
                     <a href="{{ $next->url() }}" rel="next" class="btn btn-neutral/80 btn-text btn-xl text-right">
                         <div>
-                            <span class="text-sm font-medium text-neutral/50 uppercase">{{ $next->textline() }}</span>
+                            <span class="block text-sm font-medium text-neutral/50 uppercase">{{ $next->textline() }}</span>
                             <span class="sr-only">:</span>
                             <span>{{ $next->title() }}</span>
                         </div>
