@@ -200,13 +200,13 @@ return [
                         'performers' => $page
                             ->attendants()
                             ->toPages()
-                            ->map(function ($attendant) {
+                            ->map(function (PersonPage $attendant) {
                                 return [
                                     '@type' => 'Person',
                                     'name' => $attendant->title()->value(),
                                     'jobTitle' => $attendant->sub_heading()->value(),
                                     'url' => $attendant->website()->isNotEmpty() ? $attendant->website()->value() : null,
-                                    'image' => $attendant->main_image()->toFile()->url(),
+                                    'image' => $attendant->mainImage()?->url() ?? null,
                                 ];
                             })
                             ->values(),

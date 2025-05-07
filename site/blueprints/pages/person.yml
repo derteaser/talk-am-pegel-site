@@ -31,7 +31,6 @@ columns:
       main_image:
         extends: fields/main-image
         label: Portrait
-        required: true
         image:
           cover: true
           ratio: 1/1
