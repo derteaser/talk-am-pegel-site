@@ -3,7 +3,7 @@
     x-intersect.once="setTimeout(function() { visible = true }, {{ $animationDelay }})" :class="visible && 'visible'" @endif>
     <div class="h-full flex flex-col items-center text-center pb-2">
         @if ($person->mainImage())
-            <figure class="avatar">
+            <figure class="avatar w-full">
                 <div class="size-full rounded-full">
                     <x-thumbnail :image="$person->mainImage()" srcset="square" class="size-full" alt="" />
                 </div>
