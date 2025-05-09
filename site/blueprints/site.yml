@@ -2,15 +2,27 @@ title: Site
 
 tabs:
   pages:
-    label: Seiten
+    label: Dashboard
+    icon: dashboard
     columns:
-      left:
-        width: 1/2
+      top:
+        width: 1
         sections:
           events:
             extends: sections/events
             headline: Talks
             layout: cards
+            image:
+              cover: true
+      left:
+        width: 1/2
+        sections:
+          persons:
+            extends: sections/persons
+            headline: Personen
+            layout: cardlets
+            search: true
+            limit: 10
             image:
               cover: true
       right:
@@ -23,6 +35,7 @@ tabs:
               color: blue-100
   contact:
     label: Kontakt/Social
+    icon: email
     columns:
       left:
         width: 2/3
@@ -72,6 +85,7 @@ tabs:
             image:
               cover: true
   navigation:
+    icon: folder-structure
     fields:
       footer_navigation:
         label: Footer

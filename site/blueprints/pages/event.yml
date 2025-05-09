@@ -1,4 +1,5 @@
 title: Veranstaltung
+icon: chat
 
 num: '{{ page.date.toDate("Ymd") }}'
 
