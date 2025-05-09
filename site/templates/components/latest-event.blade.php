@@ -24,6 +24,7 @@ if ($text && $blocks) {
         <div class="lg:col-span-2 xl:col-span-3 flex flex-col items-start space-y-8 aos" x-data="{ visible: false }"
             x-intersect="setTimeout(function() { visible = true }, 200)" :class="visible && 'visible'">
             <h1 class="sm:text-4xl text-3xl font-semibold text-base-content">{!! $event->title()->widont() !!}</h1>
+            <p class="text-base-content/60 text-sm">{{ $event->textline() }} am {{ $event->date()->toDate('%e. %B %Y') }}</p>
             <p class="text-base-content leading-relaxed max-w-xl">{{ $description }}</p>
             <a href="{{ $event->url() }}" class="btn btn-accent">Mehr erfahren</a>
         </div>
