@@ -13,12 +13,7 @@ class EventPage extends Page implements MainImageHolder {
     }
 
     public function startDateTime(): Carbon {
-        $date = new Carbon();
-
-        $date->setDate($this->date()->toDate('Y'), $this->date()->toDate('M'), $this->date()->toDate('d'));
-        $date->setTime($this->startTime()->toDate('H'), $this->startTime()->toDate('m'));
-
-        return $date;
+        return Carbon::createFromTimestamp($this->date()->toDate());
     }
 
     public function past(): bool {
