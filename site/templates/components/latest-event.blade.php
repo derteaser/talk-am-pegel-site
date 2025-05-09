@@ -29,4 +29,8 @@ if ($text && $blocks) {
             <a href="{{ $event->url() }}" class="btn btn-accent">Mehr erfahren</a>
         </div>
     </article>
+
+    <aside class="text-center">
+        <a href="{{ $event->parent()->url() }}" class="btn btn-primary btn-outline">Frühere Talks</a>
+    </aside>
 </section>
