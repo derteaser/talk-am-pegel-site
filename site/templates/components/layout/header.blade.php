@@ -14,7 +14,7 @@
     $subTitle = $page->textline() ?: null;
 @endphp
 
-<header class="bg-neutral relative h-dvh md:h-auto" x-data="{ scrolledAway: false }">
+<header class="bg-neutral relative h-svh md:h-auto" x-data="{ scrolledAway: false }">
     <div class="fixed bg-tap-alpha-blue-light/80 dark:bg-tap-alpha-blue-dark/80 backdrop-blur-md w-full p-2 z-50" x-show="scrolledAway"
         x-transition:enter="transition ease-out duration-300 origin-top" x-transition:enter-start="opacity-0 -translate-y-12"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease-in duration-300 origin-top"
