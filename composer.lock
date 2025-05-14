@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a1dbdf08234c82a012003e909a5cee4",
+    "content-hash": "d8febca09fdbac5da9af59a1577a73b0",
     "packages": [
         {
             "name": "bnomei/kirby3-dotenv",
@@ -726,16 +726,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "3.10.1.1",
+            "version": "3.10.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "1953eb4979f6d05ce7779c547bf761517024cccb"
+                "reference": "dba5ea8ea7fd468190a401cc37d6032ec717cac8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/1953eb4979f6d05ce7779c547bf761517024cccb",
-                "reference": "1953eb4979f6d05ce7779c547bf761517024cccb",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/dba5ea8ea7fd468190a401cc37d6032ec717cac8",
+                "reference": "dba5ea8ea7fd468190a401cc37d6032ec717cac8",
                 "shasum": ""
             },
             "require": {
@@ -824,7 +824,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-08-29T08:36:26+00:00"
+            "time": "2025-05-05T19:14:17+00:00"
         },
         {
             "name": "getkirby/composer-installer",
@@ -3129,16 +3129,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.11.0",
+            "version": "4.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "ebf67deb9902b6da58a4b3383cbd12fed3f4f555"
+                "reference": "53dc0bcb6a667cac5b760b46f98d5380e63e02ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/ebf67deb9902b6da58a4b3383cbd12fed3f4f555",
-                "reference": "ebf67deb9902b6da58a4b3383cbd12fed3f4f555",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/53dc0bcb6a667cac5b760b46f98d5380e63e02ca",
+                "reference": "53dc0bcb6a667cac5b760b46f98d5380e63e02ca",
                 "shasum": ""
             },
             "require": {
@@ -3202,7 +3202,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.11.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.11.1"
             },
             "funding": [
                 {
@@ -3214,7 +3214,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-04-14T09:04:23+00:00"
+            "time": "2025-05-12T11:30:33+00:00"
         },
         {
             "name": "sylvainjule/locator",
