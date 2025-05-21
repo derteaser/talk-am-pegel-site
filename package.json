@@ -19,7 +19,7 @@
     "@tailwindcss/vite": "4.1.7",
     "alpinejs": "3.14.9",
     "bigpicture": "2.6.3",
-    "flyonui": "2.1.0",
+    "flyonui": "2.2.0",
     "laravel-vite-plugin": "1.2.0",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
