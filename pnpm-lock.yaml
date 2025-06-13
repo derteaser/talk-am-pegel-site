@@ -30,8 +30,8 @@ importers:
         specifier: 3.14.9
         version: 3.14.9
       bigpicture:
-        specifier: 2.6.3
-        version: 2.6.3
+        specifier: 2.6.4
+        version: 2.6.4
       flyonui:
         specifier: 2.2.0
         version: 2.2.0
@@ -540,8 +540,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  bigpicture@2.6.3:
-    resolution: {integrity: sha512-Zmnca4YpQn3iygBNSxiyILBVk/a0nvdn3BAmNyZ3KLG5aasDYg+f0oEBqsbohL2YPS5UPqrk3NZH2zXSSHDKIg==}
+  bigpicture@2.6.4:
+    resolution: {integrity: sha512-fB1V5js7KwMQaLfELD5J2fm90/GwEN6fFLAOONYSd3u3F4OWFcc53b0CNnqCgWIesq9tL1mFrueJZf11tYjCwQ==}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -1691,7 +1691,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  bigpicture@2.6.3: {}
+  bigpicture@2.6.4: {}
 
   binary-extensions@2.3.0: {}
 
