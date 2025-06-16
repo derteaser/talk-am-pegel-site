@@ -442,20 +442,20 @@
         },
         {
             "name": "czproject/git-php",
-            "version": "v4.4.0",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/czproject/git-php.git",
-                "reference": "3f2c75c6456b03730955a17a457247861390a6aa"
+                "reference": "3ea910e188849d5e239d65167010c05196310915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/czproject/git-php/zipball/3f2c75c6456b03730955a17a457247861390a6aa",
-                "reference": "3f2c75c6456b03730955a17a457247861390a6aa",
+                "url": "https://api.github.com/repos/czproject/git-php/zipball/3ea910e188849d5e239d65167010c05196310915",
+                "reference": "3ea910e188849d5e239d65167010c05196310915",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4.0"
+                "php": "8.0 - 8.4"
             },
             "require-dev": {
                 "nette/tester": "^2.4"
@@ -482,7 +482,7 @@
             ],
             "support": {
                 "issues": "https://github.com/czproject/git-php/issues",
-                "source": "https://github.com/czproject/git-php/tree/v4.4.0"
+                "source": "https://github.com/czproject/git-php/tree/v4.5.0"
             },
             "funding": [
                 {
@@ -494,7 +494,7 @@
                     "type": "stripe"
                 }
             ],
-            "time": "2025-03-21T21:34:11+00:00"
+            "time": "2025-06-10T18:32:14+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -3129,16 +3129,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.12.0",
+            "version": "4.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "0173702ffcbe36ce7638f07f090271294866a7a0"
+                "reference": "f8c50304bd2f1640704345274bdd5af150b6945d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/0173702ffcbe36ce7638f07f090271294866a7a0",
-                "reference": "0173702ffcbe36ce7638f07f090271294866a7a0",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/f8c50304bd2f1640704345274bdd5af150b6945d",
+                "reference": "f8c50304bd2f1640704345274bdd5af150b6945d",
                 "shasum": ""
             },
             "require": {
@@ -3202,7 +3202,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.12.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.14.0"
             },
             "funding": [
                 {
@@ -3214,7 +3214,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-06-07T08:37:56+00:00"
+            "time": "2025-06-13T17:22:57+00:00"
         },
         {
             "name": "sylvainjule/locator",
