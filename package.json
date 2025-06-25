@@ -21,7 +21,7 @@
     "bigpicture": "2.6.4",
     "flyonui": "2.2.0",
     "laravel-vite-plugin": "1.3.0",
-    "prettier": "3.5.3",
+    "prettier": "3.6.1",
     "prettier-plugin-tailwindcss": "0.6.13",
     "remixicon": "4.6.0",
     "tailwindcss": "4.1.10",
