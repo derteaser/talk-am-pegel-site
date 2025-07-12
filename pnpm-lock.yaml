@@ -18,8 +18,8 @@ importers:
         specifier: 0.22.4
         version: 0.22.4(prettier@3.6.2)
       '@shufo/prettier-plugin-blade':
-        specifier: 1.15.3
-        version: 1.15.3
+        specifier: 1.15.4
+        version: 1.15.4
       '@tailwindcss/typography':
         specifier: 0.5.16
         version: 0.5.16(tailwindcss@4.1.11)
@@ -378,8 +378,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@shufo/prettier-plugin-blade@1.15.3':
-    resolution: {integrity: sha512-c9lGQwWGbaRHkzTQGf/EesrJzQAC/bn11XG6I8Ce9yv58gRaW/l3I+/bhO+cNh7YpaYZcPBgY4QhtAZZyTo/mA==}
+  '@shufo/prettier-plugin-blade@1.15.4':
+    resolution: {integrity: sha512-xSARQLL6s3LKZA6ZMYxXJQFOcxwGvLX59xkIrEJ8frYePWqFPNk3qZh5SvkxDHHydZ5k2G9+VdSB1zY6p5siBQ==}
     engines: {node: '>= 14.0.0'}
 
   '@shufo/tailwindcss-class-sorter@3.0.1':
@@ -542,8 +542,8 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
-  blade-formatter@1.42.2:
-    resolution: {integrity: sha512-mbjnget+vJ8fcKiEn0Et1IepMdiKoDGxSROt6qFKF3UW+tmRuvr/v/CK8GECJL+RE6jsJo8x3mFXrDZk+RgjDQ==}
+  blade-formatter@1.42.3:
+    resolution: {integrity: sha512-yHyyrKP4oIzrMHRSeU2zniMISiJJiqsY/OSQib/7kVksapaWt7R985YjVQrh0XPmZka9xTRsWkXBbjHJriqV+g==}
     engines: {node: '>= 14.0.0'}
     hasBin: true
 
@@ -958,11 +958,11 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
-  php-parser@3.2.2:
-    resolution: {integrity: sha512-voj3rzCJmEbwHwH3QteON28wA6K+JbcaJEofyUZkUXmcViiXofjbSbcE5PtqtjX6nstnnAEYCFoRq0mkjP5/cg==}
-
   php-parser@3.2.4:
     resolution: {integrity: sha512-X1HIaSHCb9aAReEqb+U/AAB3evE1iKD6tAY/lw9+wT4koCkWhg22m4LNtFGwd3Qv4PYIL2+zl+oXh00ALKya0Q==}
+
+  php-parser@3.2.5:
+    resolution: {integrity: sha512-M1ZYlALFFnESbSdmRtTQrBFUHSriHgPhgqtTF/LCbZM4h7swR5PHtUceB2Kzby5CfqcsYwBn7OXTJ0+8Sajwkw==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -1088,11 +1088,6 @@ packages:
         optional: true
       prettier-plugin-svelte:
         optional: true
-
-  prettier@3.4.2:
-    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
-    engines: {node: '>=14'}
-    hasBin: true
 
   prettier@3.6.2:
     resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
@@ -1547,10 +1542,10 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.44.2':
     optional: true
 
-  '@shufo/prettier-plugin-blade@1.15.3':
+  '@shufo/prettier-plugin-blade@1.15.4':
     dependencies:
-      blade-formatter: 1.42.2
-      prettier: 3.4.2
+      blade-formatter: 1.42.3
+      prettier: 3.6.2
     transitivePeerDependencies:
       - ts-node
 
@@ -1693,7 +1688,7 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
-  blade-formatter@1.42.2:
+  blade-formatter@1.42.3:
     dependencies:
       '@prettier/plugin-php': 0.22.4(prettier@3.6.2)
       '@shufo/tailwindcss-class-sorter': 3.0.1
@@ -1708,7 +1703,7 @@ snapshots:
       ignore: 6.0.2
       js-beautify: 1.15.4
       lodash: 4.17.21
-      php-parser: 3.2.2
+      php-parser: 3.2.5
       prettier: 3.6.2
       string-replace-async: 2.0.0
       tailwindcss: 3.4.17
@@ -2088,9 +2083,9 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  php-parser@3.2.2: {}
-
   php-parser@3.2.4: {}
+
+  php-parser@3.2.5: {}
 
   picocolors@1.1.1: {}
 
@@ -2147,8 +2142,6 @@ snapshots:
   prettier-plugin-tailwindcss@0.6.14(prettier@3.6.2):
     dependencies:
       prettier: 3.6.2
-
-  prettier@3.4.2: {}
 
   prettier@3.6.2: {}
 

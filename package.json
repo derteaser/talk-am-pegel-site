@@ -14,7 +14,7 @@
     "@alpinejs/intersect": "3.14.9",
     "@fontsource/roboto": "5.2.6",
     "@prettier/plugin-php": "0.22.4",
-    "@shufo/prettier-plugin-blade": "1.15.3",
+    "@shufo/prettier-plugin-blade": "1.15.4",
     "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "4.1.11",
     "alpinejs": "3.14.9",
