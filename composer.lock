@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9639a19a513b9552eb7064fa459f12d",
+    "content-hash": "05c72caa83622db8c5080c2b38b2a2b6",
     "packages": [
         {
             "name": "bnomei/kirby3-dotenv",
-            "version": "5.0.0",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnomei/kirby3-dotenv.git",
-                "reference": "fe5d63d9e1537a5d7f4668db0585ccd3d56596c9"
+                "reference": "69380949d992351665454508f28b1ee857be68fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnomei/kirby3-dotenv/zipball/fe5d63d9e1537a5d7f4668db0585ccd3d56596c9",
-                "reference": "fe5d63d9e1537a5d7f4668db0585ccd3d56596c9",
+                "url": "https://api.github.com/repos/bnomei/kirby3-dotenv/zipball/69380949d992351665454508f28b1ee857be68fa",
+                "reference": "69380949d992351665454508f28b1ee857be68fa",
                 "shasum": ""
             },
             "require": {
@@ -74,9 +74,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bnomei/kirby3-dotenv/issues",
-                "source": "https://github.com/bnomei/kirby3-dotenv/tree/v5.0.0"
+                "source": "https://github.com/bnomei/kirby3-dotenv/tree/v5.0.1"
             },
-            "time": "2024-11-27T15:09:28+00:00"
+            "time": "2025-08-23T07:02:29+00:00"
         },
         {
             "name": "bnomei/kirby3-feed",
