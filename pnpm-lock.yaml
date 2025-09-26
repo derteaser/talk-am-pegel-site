@@ -33,8 +33,8 @@ importers:
         specifier: 2.6.4
         version: 2.6.4
       flyonui:
-        specifier: 2.4.0
-        version: 2.4.0
+        specifier: 2.4.1
+        version: 2.4.1
       laravel-vite-plugin:
         specifier: 2.0.1
         version: 2.0.1(vite@7.1.7(jiti@2.5.1)(lightningcss@1.30.1)(yaml@2.8.1))
@@ -697,8 +697,8 @@ packages:
     resolution: {integrity: sha512-Z+suHH+7LSE40WfUeZPIxSxypCWvrzdVc60xAjUShZeT5eMWM0/FQUduq3HjluyfAHWvC/aOBkT1pTZktyF/jg==}
     engines: {node: '>= 0.12'}
 
-  flyonui@2.4.0:
-    resolution: {integrity: sha512-gXlZLY1/XcywnitWCB4EVbUNU8NSA92RRyi5WGRK5wyQunQEHRW/AvTUyZoiNIxjVC/VRnnO0vkLPsETXsj9RQ==}
+  flyonui@2.4.1:
+    resolution: {integrity: sha512-WgP/YP1nZXbEtRkl3ThJIcIaisXOyON3zS2Qz2IwikQA/2X/PmqnP6E+eOz7WLBzEQI4ec7wViYAcRf9vljcbg==}
 
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
@@ -1873,7 +1873,7 @@ snapshots:
     dependencies:
       user-home: 2.0.0
 
-  flyonui@2.4.0:
+  flyonui@2.4.1:
     dependencies:
       '@floating-ui/dom': 1.7.4
 
