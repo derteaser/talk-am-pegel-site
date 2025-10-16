@@ -11,7 +11,7 @@
   "require": {
     "php": "~8.2.0 || ~8.3.0",
     "getkirby/cms": "3.10.1.2",
-    "getkirby/cli": "1.7.0",
+    "getkirby/cli": "1.8.0",
     "leitsch/kirby-blade": "2.3.5",
     "wearejust/kirby-meta-tags": "3.0.1",
     "sylvainjule/locator": "1.1.4",
