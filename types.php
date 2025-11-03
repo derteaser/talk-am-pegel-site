@@ -18,7 +18,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/headline
          */
-        public function addressHeadline(): \Kirby\Cms\Field
+        public function addressHeadline(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->addressHeadline();
@@ -30,7 +30,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function address1(): \Kirby\Cms\Field
+        public function address1(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->address1();
@@ -42,7 +42,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function address2(): \Kirby\Cms\Field
+        public function address2(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->address2();
@@ -54,7 +54,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function postal-code(): \Kirby\Cms\Field
+        public function postal-code(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->postal-code();
@@ -66,7 +66,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function city(): \Kirby\Cms\Field
+        public function city(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->city();
@@ -78,7 +78,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/headline
          */
-        public function phoneMailHeadline(): \Kirby\Cms\Field
+        public function phoneMailHeadline(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->phoneMailHeadline();
@@ -90,7 +90,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/tel
          */
-        public function phone(): \Kirby\Cms\Field
+        public function phone(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->phone();
@@ -102,7 +102,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/email
          */
-        public function email(): \Kirby\Cms\Field
+        public function email(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->email();
@@ -114,7 +114,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/headline
          */
-        public function socialHeadline(): \Kirby\Cms\Field
+        public function socialHeadline(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->socialHeadline();
@@ -126,7 +126,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function facebook(): \Kirby\Cms\Field
+        public function facebook(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->facebook();
@@ -138,7 +138,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function twitter(): \Kirby\Cms\Field
+        public function twitter(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->twitter();
@@ -150,7 +150,7 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/files
          */
-        public function main_image(): \Kirby\Cms\Field
+        public function main_image(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->main_image();
@@ -162,671 +162,56 @@ namespace Kirby\Cms
          *
          * @see https://getkirby.com/docs/reference/panel/fields/pages
          */
-        public function footer_navigation(): \Kirby\Cms\Field
+        public function footer_navigation(): \Kirby\Content\Field
         {
             /** @var \Kirby\Cms\Site $instance */
             return $instance->footer_navigation();
         }
+        public function env(string $env, mixed $default = null)
+        {
+            /** @var \Kirby\Cms\Site $instance */
+            return $instance->env($env, $default);
+        }
+        public function getenv(string $env, mixed $default = null)
+        {
+            /** @var \Kirby\Cms\Site $instance */
+            return $instance->getenv($env, $default);
+        }
+        public function loadenv(array $options = []): bool
+        {
+            /** @var \Kirby\Cms\Site $instance */
+            return $instance->loadenv($options);
+        }
     }
     class Page
     {
-        /**
-         * Returns the contact_persons field.
-         *
-         * Uses a `pages` field in the `pages/contact` blueprint.
-         *
-         * @see https://getkirby.com/docs/reference/panel/fields/pages
-         */
-        public function contact_persons(): \Kirby\Cms\Field
-        {
-            /** @var \Kirby\Cms\Page $instance */
-            return $instance->contact_persons();
-        }
         public function metaTags($groups = null)
         {
             /** @var \Kirby\Cms\Page $instance */
             return $instance->metaTags($groups);
         }
-    }
-    class Field
-    {
-        /**
-         * Converts the field value into a proper boolean and inverts it
-         *
-         * @return bool
-         */
-        public function isFalse(): bool
+        public function env(string $env, mixed $default = null)
         {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->isFalse();
+            /** @var \Kirby\Cms\Page $instance */
+            return $instance->env($env, $default);
         }
-        /**
-         * Converts the field value into a proper boolean
-         *
-         * @return bool
-         */
-        public function isTrue(): bool
+        public function getenv(string $env, mixed $default = null)
         {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->isTrue();
-        }
-        /**
-         * Validates the field content with the given validator and parameters
-         *
-         * @param string $validator
-         * @param mixed ...$arguments A list of optional validator arguments
-         * @return bool
-         */
-        public function isValid(string $validator, ...$arguments): bool
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->isValid($validator, ...$arguments);
-        }
-        /**
-         * Converts a yaml or json field to a Blocks object
-         *
-         * @return \Kirby\Cms\Blocks|\Kirby\Cms\Block[]
-         */
-        public function toBlocks()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toBlocks();
-        }
-        /**
-         * Converts the field value into a proper boolean
-         *
-         * @param bool $default Default value if the field is empty
-         * @return bool
-         */
-        public function toBool($default = false): bool
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toBool($default);
-        }
-        /**
-         * Parses the field value with the given method
-         *
-         * @param string $method [',', 'yaml', 'json']
-         * @return array
-         */
-        public function toData(string $method = ',')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toData($method);
-        }
-        /**
-         * Converts the field value to a timestamp or a formatted date
-         *
-         * @param string|\IntlDateFormatter|null $format PHP date formatting string
-         * @param string|null $fallback Fallback string for `strtotime` (since 3.2)
-         * @return string|int
-         */
-        public function toDate($format = null, ?string $fallback = null)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toDate($format, $fallback);
-        }
-        /**
-         * Returns a file object from a filename in the field
-         *
-         * @return \Kirby\Cms\File|null
-         */
-        public function toFile()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toFile();
-        }
-        /**
-         * Returns a file collection from a yaml list of filenames in the field
-         *
-         * @param string $separator
-         * @return \Kirby\Cms\Files|\Kirby\Cms\File[]
-         */
-        public function toFiles(string $separator = 'yaml')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toFiles($separator);
-        }
-        /**
-         * Converts the field value into a proper float
-         *
-         * @param float $default Default value if the field is empty
-         * @return float
-         */
-        public function toFloat(float $default = 0.0)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toFloat($default);
-        }
-        /**
-         * Converts the field value into a proper integer
-         *
-         * @param int $default Default value if the field is empty
-         * @return int
-         */
-        public function toInt(int $default)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toInt($default);
-        }
-        /**
-         * Parse layouts and turn them into
-         * Layout objects
-         *
-         * @return \Kirby\Cms\Layouts|\Kirby\Cms\Layout[]
-         */
-        public function toLayouts()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toLayouts();
-        }
-        /**
-         * Wraps a link tag around the field value. The field value is used as the link text
-         *
-         * @param mixed $attr1 Can be an optional Url. If no Url is set, the Url of the Page, File or Site will be used. Can also be an array of link attributes
-         * @param mixed $attr2 If `$attr1` is used to set the Url, you can use `$attr2` to pass an array of additional attributes.
-         * @return string
-         */
-        public function toLink($attr1 = null, $attr2 = null)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toLink($attr1, $attr2);
-        }
-        /**
-         * Parse yaml data and convert it to a
-         * content object
-         *
-         * @return \Kirby\Cms\Content
-         */
-        public function toObject()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toObject();
-        }
-        /**
-         * Returns a page object from a page id in the field
-         *
-         * @return \Kirby\Cms\Page|null
-         */
-        public function toPage()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toPage();
-        }
-        /**
-         * Returns a pages collection from a yaml list of page ids in the field
-         *
-         * @param string $separator Can be any other separator to split the field value by
-         * @return \Kirby\Cms\Pages|\Kirby\Cms\Page[]
-         */
-        public function toPages(string $separator = 'yaml')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toPages($separator);
-        }
-        /**
-         * Converts a yaml field to a Structure object
-         *
-         * @return \Kirby\Cms\Structure|\Kirby\Cms\StructureObject[]
-         */
-        public function toStructure()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toStructure();
-        }
-        /**
-         * Converts the field value to a Unix timestamp
-         *
-         * @return int|false
-         */
-        public function toTimestamp(): int|false
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toTimestamp();
-        }
-        /**
-         * Turns the field value into an absolute Url
-         *
-         * @return string
-         */
-        public function toUrl(): string
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toUrl();
-        }
-        /**
-         * Converts a user email address to a user object
-         *
-         * @return \Kirby\Cms\User|null
-         */
-        public function toUser()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toUser();
-        }
-        /**
-         * Returns a users collection from a yaml list of user email addresses in the field
-         *
-         * @param string $separator
-         * @return \Kirby\Cms\Users|\Kirby\Cms\User[]
-         */
-        public function toUsers(string $separator = 'yaml')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toUsers($separator);
-        }
-        /**
-         * Returns the length of the field content
-         */
-        public function length()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->length();
-        }
-        /**
-         * Returns the number of words in the text
-         */
-        public function words()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->words();
-        }
-        /**
-         * Applies the callback function to the field
-         *
-         * @since 3.4.0
-         * @param \Closure $callback
-         */
-        public function callback(\Closure $callback)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->callback($callback);
-        }
-        /**
-         * Escapes the field value to be safely used in HTML
-         * templates without the risk of XSS attacks
-         *
-         * @param string $context Location of output (`html`, `attr`, `js`, `css`, `url` or `xml`)
-         */
-        public function escape(string $context = 'html')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->escape($context);
-        }
-        /**
-         * Creates an excerpt of the field value without html
-         * or any other formatting.
-         *
-         * @param int $cahrs
-         * @param bool $strip
-         * @param string $rep
-         * @return \Kirby\Cms\Field
-         */
-        public function excerpt(int $chars, bool $strip = true, string $rep = ' …')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->excerpt($chars, $strip, $rep);
-        }
-        /**
-         * Converts the field content to valid HTML
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function html()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->html();
-        }
-        /**
-         * Strips all block-level HTML elements from the field value,
-         * it can be safely placed inside of other inline elements
-         * without the risk of breaking the HTML structure.
-         *
-         * @since 3.3.0
-         * @return \Kirby\Cms\Field
-         */
-        public function inline()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->inline();
-        }
-        /**
-         * Converts the field content from Markdown/Kirbytext to valid HTML
-         *
-         * @param array $options
-         * @return \Kirby\Cms\Field
-         */
-        public function kirbytext(array $options = [])
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->kirbytext($options);
-        }
-        /**
-         * Converts the field content from inline Markdown/Kirbytext
-         * to valid HTML
-         *
-         * @since 3.1.0
-         * @param array $options
-         * @return \Kirby\Cms\Field
-         */
-        public function kirbytextinline(array $options = [])
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->kirbytextinline($options);
-        }
-        /**
-         * Parses all KirbyTags without also parsing Markdown
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function kirbytags()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->kirbytags();
-        }
-        /**
-         * Converts the field content to lowercase
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function lower()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->lower();
-        }
-        /**
-         * Converts markdown to valid HTML
-         *
-         * @param array $options
-         * @return \Kirby\Cms\Field
-         */
-        public function markdown(array $options = [])
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->markdown($options);
-        }
-        /**
-         * Converts all line breaks in the field content to `<br>` tags.
-         *
-         * @since 3.3.0
-         * @return \Kirby\Cms\Field
-         */
-        public function nl2br()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->nl2br();
-        }
-        /**
-         * Uses the field value as Kirby query
-         *
-         * @param string|null $expect
-         * @return mixed
-         */
-        public function query(?string $expect = null)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->query($expect);
-        }
-        /**
-         * It parses any queries found in the field value.
-         *
-         * @param array $data
-         * @param string|null $fallback Fallback for tokens in the template that cannot be replaced
-         * (`null` to keep the original token)
-         * @return \Kirby\Cms\Field
-         */
-        public function replace(array $data = [], ?string $fallback = '')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->replace($data, $fallback);
-        }
-        /**
-         * Cuts the string after the given length and
-         * adds "…" if it is longer
-         *
-         * @param int $length The number of characters in the string
-         * @param string $appendix An optional replacement for the missing rest
-         * @return \Kirby\Cms\Field
-         */
-        public function short(int $length, string $appendix = '…')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->short($length, $appendix);
-        }
-        /**
-         * Converts the field content to a slug
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function slug()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->slug();
-        }
-        /**
-         * Applies SmartyPants to the field
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function smartypants()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->smartypants();
-        }
-        /**
-         * Splits the field content into an array
-         *
-         * @return array
-         */
-        public function split($separator = ',')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->split($separator);
-        }
-        /**
-         * Converts the field content to uppercase
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function upper()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->upper();
-        }
-        /**
-         * Avoids typographical widows in strings by replacing
-         * the last space with `&nbsp;`
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function widont()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->widont();
-        }
-        /**
-         * Converts the field content to valid XML
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function xml()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->xml();
-        }
-        /**
-         * Parses yaml in the field content and returns an array
-         *
-         * @return array
-         */
-        public function yaml(): array
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->yaml();
-        }
-        /**
-         * Converts the field value into a proper boolean
-         *
-         * @param bool $default Default value if the field is empty
-         * @return bool
-         */
-        public function bool($default = false): bool
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toBool($default);
-        }
-        /**
-         * Escapes the field value to be safely used in HTML
-         * templates without the risk of XSS attacks
-         *
-         * @param string $context Location of output (`html`, `attr`, `js`, `css`, `url` or `xml`)
-         */
-        public function esc(string $context = 'html')
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->escape($context);
-        }
-        /**
-         * Converts the field value into a proper float
-         *
-         * @param float $default Default value if the field is empty
-         * @return float
-         */
-        public function float(float $default = 0.0)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toFloat($default);
-        }
-        /**
-         * Converts the field content to valid HTML
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function h()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->html();
-        }
-        /**
-         * Converts the field value into a proper integer
-         *
-         * @param int $default Default value if the field is empty
-         * @return int
-         */
-        public function int(int $default)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toInt($default);
-        }
-        /**
-         * Converts the field content from Markdown/Kirbytext to valid HTML
-         *
-         * @param array $options
-         * @return \Kirby\Cms\Field
-         */
-        public function kt(array $options = [])
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->kirbytext($options);
-        }
-        /**
-         * Converts the field content from inline Markdown/Kirbytext
-         * to valid HTML
-         *
-         * @since 3.1.0
-         * @param array $options
-         * @return \Kirby\Cms\Field
-         */
-        public function kti(array $options = [])
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->kirbytextinline($options);
-        }
-        /**
-         * Wraps a link tag around the field value. The field value is used as the link text
-         *
-         * @param mixed $attr1 Can be an optional Url. If no Url is set, the Url of the Page, File or Site will be used. Can also be an array of link attributes
-         * @param mixed $attr2 If `$attr1` is used to set the Url, you can use `$attr2` to pass an array of additional attributes.
-         * @return string
-         */
-        public function link($attr1 = null, $attr2 = null)
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toLink($attr1, $attr2);
-        }
-        /**
-         * Converts markdown to valid HTML
-         *
-         * @param array $options
-         * @return \Kirby\Cms\Field
-         */
-        public function md(array $options = [])
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->markdown($options);
-        }
-        /**
-         * Applies SmartyPants to the field
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function sp()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->smartypants();
-        }
-        /**
-         * Validates the field content with the given validator and parameters
-         *
-         * @param string $validator
-         * @param mixed ...$arguments A list of optional validator arguments
-         * @return bool
-         */
-        public function v(string $validator, ...$arguments): bool
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->isValid($validator, ...$arguments);
-        }
-        /**
-         * Converts the field content to valid XML
-         *
-         * @return \Kirby\Cms\Field
-         */
-        public function x()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->xml();
-        }
-        public function toLocation()
-        {
-            /** @var \Kirby\Cms\Field $instance */
-            return $instance->toLocation();
+            /** @var \Kirby\Cms\Page $instance */
+            return $instance->getenv($env, $default);
         }
     }
     class Pages
     {
-        public function feed($options = [], $force = null)
+        public function feed(array $options = []): \Kirby\Http\Response
         {
             /** @var \Kirby\Cms\Pages $instance */
-            return $instance->feed($options, $force);
+            return $instance->feed($options);
         }
-        public function sitemap($options = [], $force = null)
+        public function sitemap(array $options = []): \Kirby\Http\Response
         {
             /** @var \Kirby\Cms\Pages $instance */
-            return $instance->sitemap($options, $force);
-        }
-    }
-    class Content
-    {
-        /**
-         * Returns all registered field objects
-         *
-         * @return \Kirby\Cms\Field[]
-         */
-        public function fields(): array
-        {
-            /** @var \Kirby\Cms\Content $instance */
-            return $instance->fields();
+            return $instance->sitemap($options);
         }
     }
     class Layout
@@ -836,7 +221,7 @@ namespace Kirby\Cms
          *
          * @return \Kirby\Cms\LayoutColumns|\Kirby\Cms\LayoutColumn[]
          */
-        public function columns()
+        public function columns(): \Kirby\Cms\LayoutColumns
         {
             /** @var \Kirby\Cms\Layout $instance */
             return $instance->columns();
@@ -850,7 +235,7 @@ namespace Kirby\Cms
          * @param bool $includeHidden Sets whether to include hidden blocks
          * @return \Kirby\Cms\Blocks|\Kirby\Cms\Block[]
          */
-        public function blocks(bool $includeHidden = false)
+        public function blocks(bool $includeHidden = false): \Kirby\Cms\Blocks
         {
             /** @var \Kirby\Cms\LayoutColumn $instance */
             return $instance->blocks($includeHidden);
@@ -863,13 +248,25 @@ namespace
     class DefaultPage
     {
         /**
+         * Returns the contact_persons field.
+         *
+         * Uses a `pages` field in the `pages/contact` blueprint.
+         *
+         * @see https://getkirby.com/docs/reference/panel/fields/pages
+         */
+        public function contact_persons(): \Kirby\Content\Field
+        {
+            /** @var \DefaultPage $instance */
+            return $instance->contact_persons();
+        }
+        /**
          * Returns the text field.
          *
          * Uses a `blocks` field in the `pages/default` blueprint.
          *
          * @see https://getkirby.com/docs/reference/panel/fields/blocks
          */
-        public function text(): \Kirby\Cms\Field
+        public function text(): \Kirby\Content\Field
         {
             /** @var \DefaultPage $instance */
             return $instance->text();
@@ -878,6 +275,16 @@ namespace
         {
             /** @var \DefaultPage $instance */
             return $instance->metaTags($groups);
+        }
+        public function env(string $env, mixed $default = null)
+        {
+            /** @var \DefaultPage $instance */
+            return $instance->env($env, $default);
+        }
+        public function getenv(string $env, mixed $default = null)
+        {
+            /** @var \DefaultPage $instance */
+            return $instance->getenv($env, $default);
         }
     }
     class EventPage
@@ -889,7 +296,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/date
          */
-        public function date(): \Kirby\Cms\Field
+        public function date(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->date();
@@ -901,7 +308,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/toggle
          */
-        public function is_virtual(): \Kirby\Cms\Field
+        public function is_virtual(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->is_virtual();
@@ -913,7 +320,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function location_name(): \Kirby\Cms\Field
+        public function location_name(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->location_name();
@@ -923,7 +330,7 @@ namespace
          *
          * Uses a `locator` field in the `pages/event` blueprint.
          */
-        public function location_geo(): \Kirby\Cms\Field
+        public function location_geo(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->location_geo();
@@ -935,7 +342,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/url
          */
-        public function location_url(): \Kirby\Cms\Field
+        public function location_url(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->location_url();
@@ -947,7 +354,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/url
          */
-        public function eventbrite_url(): \Kirby\Cms\Field
+        public function eventbrite_url(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->eventbrite_url();
@@ -959,7 +366,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/blocks
          */
-        public function text(): \Kirby\Cms\Field
+        public function text(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->text();
@@ -971,7 +378,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/files
          */
-        public function main_image(): \Kirby\Cms\Field
+        public function main_image(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->main_image();
@@ -983,7 +390,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function textline(): \Kirby\Cms\Field
+        public function textline(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->textline();
@@ -995,7 +402,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/pages
          */
-        public function attendants(): \Kirby\Cms\Field
+        public function attendants(): \Kirby\Content\Field
         {
             /** @var \EventPage $instance */
             return $instance->attendants();
@@ -1004,6 +411,16 @@ namespace
         {
             /** @var \EventPage $instance */
             return $instance->metaTags($groups);
+        }
+        public function env(string $env, mixed $default = null)
+        {
+            /** @var \EventPage $instance */
+            return $instance->env($env, $default);
+        }
+        public function getenv(string $env, mixed $default = null)
+        {
+            /** @var \EventPage $instance */
+            return $instance->getenv($env, $default);
         }
     }
     class HomePage
@@ -1015,7 +432,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function herotitle(): \Kirby\Cms\Field
+        public function herotitle(): \Kirby\Content\Field
         {
             /** @var \HomePage $instance */
             return $instance->herotitle();
@@ -1027,7 +444,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function textline(): \Kirby\Cms\Field
+        public function textline(): \Kirby\Content\Field
         {
             /** @var \HomePage $instance */
             return $instance->textline();
@@ -1036,6 +453,16 @@ namespace
         {
             /** @var \HomePage $instance */
             return $instance->metaTags($groups);
+        }
+        public function env(string $env, mixed $default = null)
+        {
+            /** @var \HomePage $instance */
+            return $instance->env($env, $default);
+        }
+        public function getenv(string $env, mixed $default = null)
+        {
+            /** @var \HomePage $instance */
+            return $instance->getenv($env, $default);
         }
     }
     class PersonPage
@@ -1047,7 +474,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/text
          */
-        public function sub_heading(): \Kirby\Cms\Field
+        public function sub_heading(): \Kirby\Content\Field
         {
             /** @var \PersonPage $instance */
             return $instance->sub_heading();
@@ -1059,7 +486,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/url
          */
-        public function website(): \Kirby\Cms\Field
+        public function website(): \Kirby\Content\Field
         {
             /** @var \PersonPage $instance */
             return $instance->website();
@@ -1071,7 +498,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/url
          */
-        public function linkedin(): \Kirby\Cms\Field
+        public function linkedin(): \Kirby\Content\Field
         {
             /** @var \PersonPage $instance */
             return $instance->linkedin();
@@ -1083,7 +510,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/url
          */
-        public function xing(): \Kirby\Cms\Field
+        public function xing(): \Kirby\Content\Field
         {
             /** @var \PersonPage $instance */
             return $instance->xing();
@@ -1095,7 +522,7 @@ namespace
          *
          * @see https://getkirby.com/docs/reference/panel/fields/files
          */
-        public function main_image(): \Kirby\Cms\Field
+        public function main_image(): \Kirby\Content\Field
         {
             /** @var \PersonPage $instance */
             return $instance->main_image();
@@ -1104,6 +531,590 @@ namespace
         {
             /** @var \PersonPage $instance */
             return $instance->metaTags($groups);
+        }
+        public function env(string $env, mixed $default = null)
+        {
+            /** @var \PersonPage $instance */
+            return $instance->env($env, $default);
+        }
+        public function getenv(string $env, mixed $default = null)
+        {
+            /** @var \PersonPage $instance */
+            return $instance->getenv($env, $default);
+        }
+    }
+}
+
+namespace Kirby\Content
+{
+    class Field
+    {
+        /**
+         * Converts the field value into a proper boolean and inverts it
+         */
+        public function isFalse(): bool
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->isFalse();
+        }
+        /**
+         * Converts the field value into a proper boolean
+         */
+        public function isTrue(): bool
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->isTrue();
+        }
+        /**
+         * Validates the field content with the given validator and parameters
+         *
+         * @param mixed ...$arguments A list of optional validator arguments
+         */
+        public function isValid(string $validator, ...$arguments): bool
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->isValid($validator, ...$arguments);
+        }
+        /**
+         * Converts a yaml or json field to a Blocks object
+         *
+         * @return \Kirby\Cms\Blocks|\Kirby\Cms\Block[]
+         */
+        public function toBlocks(): \Kirby\Cms\Blocks
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toBlocks();
+        }
+        /**
+         * Converts the field value into a proper boolean
+         *
+         * @param bool $default Default value if the field is empty
+         */
+        public function toBool(bool $default = false): bool
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toBool($default);
+        }
+        /**
+         * Parses the field value with the given method
+         *
+         * @param string $method [',', 'yaml', 'json']
+         */
+        public function toData(string $method = ','): array
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toData($method);
+        }
+        /**
+         * Converts the field value to a timestamp or a formatted date
+         *
+         * @param string|\IntlDateFormatter|null $format PHP date formatting string
+         * @param string|null $fallback Fallback string for `strtotime`
+         */
+        public function toDate(\IntlDateFormatter|string|null $format = null, ?string $fallback = null): string|int|null
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toDate($format, $fallback);
+        }
+        /**
+         * Parse yaml entries data and convert it to a
+         * collection of field objects
+         */
+        public function toEntries(): \Kirby\Cms\Collection
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toEntries();
+        }
+        /**
+         * Returns a file object from a filename in the field
+         */
+        public function toFile(): ?\Kirby\Cms\File
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toFile();
+        }
+        /**
+         * Returns a file collection from a yaml list of filenames in the field
+         *
+         * @return \Kirby\Cms\Files|\Kirby\Cms\File[]
+         */
+        public function toFiles(string $separator = 'yaml'): \Kirby\Cms\Files
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toFiles($separator);
+        }
+        /**
+         * Converts the field value into a proper float
+         *
+         * @param float $default Default value if the field is empty
+         */
+        public function toFloat(float $default = 0.0): float
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toFloat($default);
+        }
+        /**
+         * Converts the field value into a proper integer
+         *
+         * @param int $default Default value if the field is empty
+         */
+        public function toInt(int $default): int
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toInt($default);
+        }
+        /**
+         * Parse layouts and turn them into Layout objects
+         *
+         * @return \Kirby\Cms\Layouts|\Kirby\Cms\Layout[]
+         */
+        public function toLayouts(): \Kirby\Cms\Layouts
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toLayouts();
+        }
+        /**
+         * Wraps a link tag around the field value. The field value is used as the link text
+         *
+         * @param mixed $attr1 Can be an optional Url. If no Url is set, the Url of the Page, File or Site will be used. Can also be an array of link attributes
+         * @param mixed $attr2 If `$attr1` is used to set the Url, you can use `$attr2` to pass an array of additional attributes.
+         */
+        public function toLink(array|string|null $attr1 = null, ?array $attr2 = null): string
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toLink($attr1, $attr2);
+        }
+        /**
+         * Parse yaml data and convert it to a
+         * content object
+         */
+        public function toObject(): \Kirby\Content\Content
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toObject();
+        }
+        /**
+         * Returns a page object from a page id in the field
+         */
+        public function toPage(): ?\Kirby\Cms\Page
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toPage();
+        }
+        /**
+         * Returns a pages collection from a yaml list of page ids in the field
+         *
+         * @param string $separator Can be any other separator to split the field value by
+         * @return \Kirby\Cms\Pages|\Kirby\Cms\Page[]
+         */
+        public function toPages(string $separator = 'yaml'): \Kirby\Cms\Pages
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toPages($separator);
+        }
+        /**
+         * Turns the field value into an QR code object
+         */
+        public function toQrCode(): ?\Kirby\Image\QrCode
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toQrCode();
+        }
+        /**
+         * Converts a yaml field to a Structure object
+         *
+         * @return \Kirby\Cms\Structure|\Kirby\Cms\StructureObject[]
+         */
+        public function toStructure(): \Kirby\Cms\Structure
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toStructure();
+        }
+        /**
+         * Converts the field value to a Unix timestamp
+         */
+        public function toTimestamp(): int|false
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toTimestamp();
+        }
+        /**
+         * Turns the field value into an absolute Url
+         */
+        public function toUrl(): ?string
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toUrl();
+        }
+        /**
+         * Converts a user email address to a user object
+         */
+        public function toUser(): ?\Kirby\Cms\User
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toUser();
+        }
+        /**
+         * Returns a users collection from a yaml list
+         * of user email addresses in the field
+         *
+         * @return \Kirby\Cms\Users|\Kirby\Cms\User[]
+         */
+        public function toUsers(string $separator = 'yaml'): \Kirby\Cms\Users
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toUsers($separator);
+        }
+        /**
+         * Returns the length of the field content
+         */
+        public function length(): int
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->length();
+        }
+        /**
+         * Returns the number of words in the text
+         */
+        public function words(): int
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->words();
+        }
+        /**
+         * Applies the callback function to the field
+         *
+         * @since 3.4.0
+         */
+        public function callback(\Closure $callback): mixed
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->callback($callback);
+        }
+        /**
+         * Escapes the field value to be safely used in HTML
+         * templates without the risk of XSS attacks
+         *
+         * @param string $context Location of output (`html`, `attr`, `js`, `css`, `url` or `xml`)
+         */
+        public function escape(string $context = 'html'): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->escape($context);
+        }
+        /**
+         * Creates an excerpt of the field value without html
+         * or any other formatting.
+         */
+        public function excerpt(int $chars, bool $strip = true, string $rep = ' …'): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->excerpt($chars, $strip, $rep);
+        }
+        /**
+         * Converts the field content to valid HTML
+         */
+        public function html(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->html();
+        }
+        /**
+         * Strips all block-level HTML elements from the field value,
+         * it can be safely placed inside of other inline elements
+         * without the risk of breaking the HTML structure.
+         *
+         * @since 3.3.0
+         */
+        public function inline(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->inline();
+        }
+        /**
+         * Converts the field content from Markdown/Kirbytext to valid HTML
+         */
+        public function kirbytext(array $options = []): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->kirbytext($options);
+        }
+        /**
+         * Converts the field content from inline Markdown/Kirbytext
+         * to valid HTML
+         *
+         * @since 3.1.0
+         */
+        public function kirbytextinline(array $options = []): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->kirbytextinline($options);
+        }
+        /**
+         * Parses all KirbyTags without also parsing Markdown
+         */
+        public function kirbytags(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->kirbytags();
+        }
+        /**
+         * Converts the field content to lowercase
+         */
+        public function lower(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->lower();
+        }
+        /**
+         * Converts markdown to valid HTML
+         */
+        public function markdown(array $options = []): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->markdown($options);
+        }
+        /**
+         * Converts all line breaks in the field content to `<br>` tags.
+         *
+         * @since 3.3.0
+         */
+        public function nl2br(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->nl2br();
+        }
+        /**
+         * Parses the field value as DOM and replaces
+         * any permalinks in href/src attributes with
+         * the regular url
+         *
+         * This method is still experimental! You can use
+         * it to solve potential problems with permalinks
+         * already, but it might change in the future.
+         */
+        public function permalinksToUrls(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->permalinksToUrls();
+        }
+        /**
+         * Uses the field value as Kirby query
+         */
+        public function query(?string $expect = null): mixed
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->query($expect);
+        }
+        /**
+         * It parses any queries found in the field value.
+         *
+         * @param string|null $fallback Fallback for tokens in the template that cannot be replaced (`null` to keep the original token)
+         */
+        public function replace(array $data = [], ?string $fallback = ''): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->replace($data, $fallback);
+        }
+        /**
+         * Cuts the string after the given length and
+         * adds "…" if it is longer
+         *
+         * @param int $length The number of characters in the string
+         * @param string $appendix An optional replacement for the missing rest
+         */
+        public function short(int $length, string $appendix = '…'): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->short($length, $appendix);
+        }
+        /**
+         * Converts the field content to a slug
+         */
+        public function slug(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->slug();
+        }
+        /**
+         * Applies SmartyPants to the field
+         */
+        public function smartypants(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->smartypants();
+        }
+        /**
+         * Splits the field content into an array
+         */
+        public function split($separator = ','): array
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->split($separator);
+        }
+        /**
+         * Converts the field content to uppercase
+         */
+        public function upper(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->upper();
+        }
+        /**
+         * Avoids typographical widows in strings by replacing
+         * the last space with `&nbsp;`
+         */
+        public function widont(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->widont();
+        }
+        /**
+         * Converts the field content to valid XML
+         */
+        public function xml(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->xml();
+        }
+        /**
+         * Parses yaml in the field content and returns an array
+         */
+        public function yaml(): array
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->yaml();
+        }
+        /**
+         * Converts the field value into a proper boolean
+         *
+         * @param bool $default Default value if the field is empty
+         */
+        public function bool(bool $default = false): bool
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toBool($default);
+        }
+        /**
+         * Escapes the field value to be safely used in HTML
+         * templates without the risk of XSS attacks
+         *
+         * @param string $context Location of output (`html`, `attr`, `js`, `css`, `url` or `xml`)
+         */
+        public function esc(string $context = 'html'): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->escape($context);
+        }
+        /**
+         * Converts the field value into a proper float
+         *
+         * @param float $default Default value if the field is empty
+         */
+        public function float(float $default = 0.0): float
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toFloat($default);
+        }
+        /**
+         * Converts the field content to valid HTML
+         */
+        public function h(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->html();
+        }
+        /**
+         * Converts the field value into a proper integer
+         *
+         * @param int $default Default value if the field is empty
+         */
+        public function int(int $default): int
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toInt($default);
+        }
+        /**
+         * Converts the field content from Markdown/Kirbytext to valid HTML
+         */
+        public function kt(array $options = []): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->kirbytext($options);
+        }
+        /**
+         * Converts the field content from inline Markdown/Kirbytext
+         * to valid HTML
+         *
+         * @since 3.1.0
+         */
+        public function kti(array $options = []): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->kirbytextinline($options);
+        }
+        /**
+         * Wraps a link tag around the field value. The field value is used as the link text
+         *
+         * @param mixed $attr1 Can be an optional Url. If no Url is set, the Url of the Page, File or Site will be used. Can also be an array of link attributes
+         * @param mixed $attr2 If `$attr1` is used to set the Url, you can use `$attr2` to pass an array of additional attributes.
+         */
+        public function link(array|string|null $attr1 = null, ?array $attr2 = null): string
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toLink($attr1, $attr2);
+        }
+        /**
+         * Converts markdown to valid HTML
+         */
+        public function md(array $options = []): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->markdown($options);
+        }
+        /**
+         * Applies SmartyPants to the field
+         */
+        public function sp(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->smartypants();
+        }
+        /**
+         * Validates the field content with the given validator and parameters
+         *
+         * @param mixed ...$arguments A list of optional validator arguments
+         */
+        public function v(string $validator, ...$arguments): bool
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->isValid($validator, ...$arguments);
+        }
+        /**
+         * Converts the field content to valid XML
+         */
+        public function x(): \Kirby\Content\Field
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->xml();
+        }
+        public function toLocation()
+        {
+            /** @var \Kirby\Content\Field $instance */
+            return $instance->toLocation();
+        }
+    }
+    class Content
+    {
+        /**
+         * Returns all registered field objects
+         *
+         * @return \Kirby\Content\Field[]
+         */
+        public function fields(): array
+        {
+            /** @var \Kirby\Content\Content $instance */
+            return $instance->fields();
         }
     }
 }
@@ -1139,6 +1150,14 @@ namespace Kirby\Toolkit
         public static function between($value, $min, $max): bool
         {
             return V::between($value, $min, $max);
+        }
+        /**
+         * Checks with the callback sent by the user
+         * It's ideal for one-time custom validations
+         */
+        public static function callback($value, callable $callback): bool
+        {
+            return V::callback($value, $callback);
         }
         /**
          * Checks if the given string contains the given value
@@ -1349,6 +1368,13 @@ namespace Kirby\Toolkit
             return V::startsWith($value, $start);
         }
         /**
+         * Checks for a valid unformatted telephone number
+         */
+        public static function tel($value): bool
+        {
+            return V::tel($value);
+        }
+        /**
          * Checks for valid time
          */
         public static function time($value): bool
@@ -1365,7 +1391,7 @@ namespace Kirby\Toolkit
         /**
          * Checks for a valid Uuid, optionally for specific model type
          */
-        public static function uuid(string $value, ?string $type = null): bool
+        public static function uuid(string $value, array|string|null $type = null): bool
         {
             return V::uuid($value, $type);
         }
@@ -1375,7 +1401,6 @@ namespace Kirby\Toolkit
 namespace 
 {
     class Collection extends \Kirby\Cms\Collection {}
-    class Field extends \Kirby\Cms\Field {}
     class File extends \Kirby\Cms\File {}
     class Files extends \Kirby\Cms\Files {}
     class Find extends \Kirby\Cms\Find {}
@@ -1395,6 +1420,7 @@ namespace
     class User extends \Kirby\Cms\User {}
     class Users extends \Kirby\Cms\Users {}
     class Visitor extends \Kirby\Cms\Visitor {}
+    class Field extends \Kirby\Content\Field {}
     class Data extends \Kirby\Data\Data {}
     class Json extends \Kirby\Data\Json {}
     class Yaml extends \Kirby\Data\Yaml {}
