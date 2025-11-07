@@ -12,6 +12,8 @@ tabs:
             extends: sections/events
             headline: Talks
             layout: cards
+            search: true
+            limit: 6
             image:
               cover: true
       left:
