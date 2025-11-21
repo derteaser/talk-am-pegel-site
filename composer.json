@@ -9,7 +9,7 @@
   ],
   "homepage": "https://www.talk-am-pegel.de",
   "require": {
-    "php": "~8.2.0 || ~8.3.0",
+    "php": "~8.2.0 || ~8.3.0 || ~8.5.0",
     "getkirby/cms": "3.10.1.2",
     "getkirby/cli": "1.8.0",
     "leitsch/kirby-blade": "2.3.5",
