@@ -23,6 +23,7 @@ sections:
     extends: sections/persons
     headline: Veröffentlichte Personen
     status: unlisted
+    search: true
     layout: cards
     image:
       cover: true

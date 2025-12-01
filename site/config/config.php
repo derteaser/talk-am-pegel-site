@@ -15,7 +15,6 @@ return [
     ],
     'panel' => [
         'language' => 'de',
-        'css' => 'custom-panel/styles.css',
     ],
     'auth' => [
         'methods' => ['password', 'code'],

@@ -15,7 +15,7 @@ status:
 
 columns:
   left:
-    width: 1/2
+    width: 1/3
     sections:
       drafts:
         extends: sections/events
@@ -26,12 +26,13 @@ columns:
         headline: Ungelistete Talks
         status: unlisted
   right:
-    width: 1/2
+    width: 2/3
     sections:
       listed:
         extends: sections/events
         headline: Veröffentlichte Talks
         status: listed
         layout: cards
+        search: true
         image:
           cover: true
