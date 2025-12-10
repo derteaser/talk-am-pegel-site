@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d11245a9a1e449ffad23e8bbe1b789b",
+    "content-hash": "61013a64816392e86ce1bdf3624f15f8",
     "packages": [
         {
             "name": "bnomei/kirby3-dotenv",
@@ -659,16 +659,16 @@
         },
         {
             "name": "getkirby/cli",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/cli.git",
-                "reference": "494ea08a2a799390d81f37d71cf033362c4ae25a"
+                "reference": "333565dce28a32d91046abadf5df2c45c95a035b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/cli/zipball/494ea08a2a799390d81f37d71cf033362c4ae25a",
-                "reference": "494ea08a2a799390d81f37d71cf033362c4ae25a",
+                "url": "https://api.github.com/repos/getkirby/cli/zipball/333565dce28a32d91046abadf5df2c45c95a035b",
+                "reference": "333565dce28a32d91046abadf5df2c45c95a035b",
                 "shasum": ""
             },
             "require": {
@@ -676,7 +676,7 @@
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": "^7.10.0",
                 "league/climate": "^3.10.0",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
             },
             "bin": [
                 "bin/kirby"
@@ -721,7 +721,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-10-13T13:26:56+00:00"
+            "time": "2025-12-09T09:57:31+00:00"
         },
         {
             "name": "getkirby/cms",
