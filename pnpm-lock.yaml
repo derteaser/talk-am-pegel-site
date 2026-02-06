@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@alpinejs/intersect':
-        specifier: 3.15.6
-        version: 3.15.6
+        specifier: 3.15.8
+        version: 3.15.8
       '@fontsource/roboto':
         specifier: 5.2.9
         version: 5.2.9
@@ -27,8 +27,8 @@ importers:
         specifier: 4.1.18
         version: 4.1.18(vite@7.3.1(jiti@1.21.7)(lightningcss@1.30.2))
       alpinejs:
-        specifier: 3.15.6
-        version: 3.15.6
+        specifier: 3.15.8
+        version: 3.15.8
       bigpicture:
         specifier: 2.6.4
         version: 2.6.4
@@ -60,8 +60,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@alpinejs/intersect@3.15.6':
-    resolution: {integrity: sha512-/iD/ANpShZ1mLmRTOkq3/qtnWo+ihP4OiRSLuC+OBBHDSyS/+9CBSO2Pgxzy+zxPW674Laho09sLgZOAqUsLQw==}
+  '@alpinejs/intersect@3.15.8':
+    resolution: {integrity: sha512-iDrv7rFLp48lXcQkpsojLXrDDWhYKF3NAaem0piiwRs7xBOix5UAOCd/Uj8+PLhV/fuv+itqU1qKxKal9Z0Jaw==}
 
   '@babel/runtime-corejs3@7.29.0':
     resolution: {integrity: sha512-TgUkdp71C9pIbBcHudc+gXZnihEDOjUAmXO1VO4HHGES7QLZcShR0stfKIxLSNIYx2fqhmJChOjm/wkF8wv4gA==}
@@ -546,8 +546,8 @@ packages:
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
-  alpinejs@3.15.6:
-    resolution: {integrity: sha512-ETE0k88xU74URryk2JyvmrvyCyZG0Wo+2/tZux9gEvaPc/k5XcBSdvFHyW76puIFqhD+nHgeO/5j3pRRsHh6HA==}
+  alpinejs@3.15.8:
+    resolution: {integrity: sha512-zxIfCRTBGvF1CCLIOMQOxAyBuqibxSEwS6Jm1a3HGA9rgrJVcjEWlwLcQTVGAWGS8YhAsTRLVrtQ5a5QT9bSSQ==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -750,6 +750,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   graceful-fs@4.2.11:
@@ -1354,7 +1355,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@alpinejs/intersect@3.15.6': {}
+  '@alpinejs/intersect@3.15.8': {}
 
   '@babel/runtime-corejs3@7.29.0':
     dependencies:
@@ -1690,7 +1691,7 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  alpinejs@3.15.6:
+  alpinejs@3.15.8:
     dependencies:
       '@vue/reactivity': 3.1.5
 
