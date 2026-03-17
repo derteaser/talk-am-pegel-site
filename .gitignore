@@ -52,3 +52,4 @@ Icon
 /content/
 /.cert/
 /.idea/
+/.claude/settings.local.json
