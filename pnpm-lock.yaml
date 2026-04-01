@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.10
         version: 5.2.10
       '@prettier/plugin-php':
-        specifier: 0.24.0
-        version: 0.24.0(prettier@3.8.1)
+        specifier: 0.25.0
+        version: 0.25.0(prettier@3.8.1)
       '@shufo/prettier-plugin-blade':
         specifier: 1.16.2
         version: 1.16.2
@@ -135,6 +135,11 @@ packages:
 
   '@prettier/plugin-php@0.24.0':
     resolution: {integrity: sha512-x9l65fCE/pgoET6RQowgdgG8Xmzs44z6j6Hhg3coINCyCw9JBGJ5ZzMR2XHAM2jmAdbJAIgqB6cUn4/3W3XLTA==}
+    peerDependencies:
+      prettier: ^3.0.0
+
+  '@prettier/plugin-php@0.25.0':
+    resolution: {integrity: sha512-hi0NhucbspYqw5pZYKywEk5CxsBwA0pBcG6K08AZw7OQDoUm4Hhbxql7z/SzQGeTRHqak5PwDnVNgttZiZdrlg==}
     peerDependencies:
       prettier: ^3.0.0
 
@@ -1280,6 +1285,12 @@ snapshots:
     optional: true
 
   '@prettier/plugin-php@0.24.0(prettier@3.8.1)':
+    dependencies:
+      linguist-languages: 8.2.0
+      php-parser: 3.5.0
+      prettier: 3.8.1
+
+  '@prettier/plugin-php@0.25.0(prettier@3.8.1)':
     dependencies:
       linguist-languages: 8.2.0
       php-parser: 3.5.0
