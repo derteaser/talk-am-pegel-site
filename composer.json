@@ -36,6 +36,11 @@
     "allow-plugins": {
       "getkirby/composer-installer": true,
       "php-http/discovery": true
+    },
+    "audit": {
+      "ignore": {
+        "PKSA-nqgv-t4m1-732c": "Kirby 3.10.x is EOL; no patch available. Acknowledged."
+      }
     }
   },
   "scripts": {
