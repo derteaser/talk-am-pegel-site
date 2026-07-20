@@ -16,7 +16,7 @@
     "@prettier/plugin-php": "0.25.0",
     "@shufo/prettier-plugin-blade": "1.16.2",
     "@tailwindcss/typography": "0.5.20",
-    "@tailwindcss/vite": "4.3.2",
+    "@tailwindcss/vite": "4.3.3",
     "alpinejs": "3.15.12",
     "bigpicture": "2.6.4",
     "flyonui": "2.4.1",
@@ -24,7 +24,7 @@
     "prettier": "3.9.5",
     "prettier-plugin-tailwindcss": "0.8.1",
     "remixicon": "4.9.1",
-    "tailwindcss": "4.3.2",
+    "tailwindcss": "4.3.3",
     "vite": "8.0.16"
   },
   "packageManager": "pnpm@10.34.5"
