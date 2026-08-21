@@ -22,7 +22,7 @@
       }
     },
     {
-      "files": ["**/*.css", "**/*.js", "**/*.json", "**/*.yml"],
+      "files": ["**/*.css", "**/*.js", "**/*.json", "**/*.yml", "**/*.yaml"],
       "options": {
         "tabWidth": 2
       }

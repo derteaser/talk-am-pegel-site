@@ -1,0 +1,6 @@
+# pnpm 11 reads its settings from this file (no longer from .npmrc or package.json#pnpm).
+
+# Dependency build scripts are opt-in. core-js-pure's postinstall only prints a
+# funding banner, so it is explicitly denied instead of approved.
+allowBuilds:
+  core-js-pure: false
