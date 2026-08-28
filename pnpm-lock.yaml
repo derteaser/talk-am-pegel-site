@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@alpinejs/intersect':
-        specifier: 3.16.2
-        version: 3.16.2
+        specifier: 3.16.3
+        version: 3.16.3
       '@fontsource/roboto':
         specifier: 5.3.0
         version: 5.3.0
@@ -27,8 +27,8 @@ importers:
         specifier: 4.3.3
         version: 4.3.3(vite@8.2.2(jiti@1.21.7))
       alpinejs:
-        specifier: 3.16.2
-        version: 3.16.2
+        specifier: 3.16.3
+        version: 3.16.3
       bigpicture:
         specifier: 2.6.4
         version: 2.6.4
@@ -60,8 +60,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@alpinejs/intersect@3.16.2':
-    resolution: {integrity: sha512-qRguIfwsvMrQwl5vgHm0wDKgexa9kjaInge8+3zJLhluSlwXf+ksg1ZdPINvFOFnrtD2WOABBqyDhCBZ815TOQ==}
+  '@alpinejs/intersect@3.16.3':
+    resolution: {integrity: sha512-hGiwxwfuRjiYpxnuZOD5ymQAPhyxspVfhwuSEg/TdJhfqmfacJd4Z42LIKIdXoDE8JaexXvrUeg5MBxzLVgMmQ==}
 
   '@babel/runtime-corejs3@7.29.2':
     resolution: {integrity: sha512-Lc94FOD5+0aXhdb0Tdg3RUtqT6yWbI/BbFWvlaSJ3gAb9Ks+99nHRDKADVqC37er4eCB0fHyWT+y+K3QOvJKbw==}
@@ -356,8 +356,8 @@ packages:
   ajv@8.18.0:
     resolution: {integrity: sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A==}
 
-  alpinejs@3.16.2:
-    resolution: {integrity: sha512-6kbqqrRK7iGPYx5upTfqc8Tcl1xhpcurLCxTdn4/ym2Kb68+cYj+2I5Zji53vUIPf7zj3C1DoIvrDkgrNDCXdA==}
+  alpinejs@3.16.3:
+    resolution: {integrity: sha512-kLIO2JOPs5ZY3mHPH+CHHPzp89Y6Gb2luLRy+RDIb1oG9y6N5Vfc75kkEoaSOPhJqvakuPiAsnd9paNPNSZyVg==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1273,7 +1273,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@alpinejs/intersect@3.16.2': {}
+  '@alpinejs/intersect@3.16.3': {}
 
   '@babel/runtime-corejs3@7.29.2':
     dependencies:
@@ -1509,7 +1509,7 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  alpinejs@3.16.2:
+  alpinejs@3.16.3:
     dependencies:
       '@vue/reactivity': 3.5.41
 
