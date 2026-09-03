@@ -146,15 +146,27 @@ version control, so they are written down here. Path: **Workers & Pages →
 | Deploy command | `npx wrangler deploy` |
 | Non-production branch deploy command | `npx wrangler versions upload` *(the default — this is what produces PR preview URLs)* |
 | Root directory | *(leave empty)* |
-| Build variable `PNPM_VERSION` | `11.25.0` |
+| Build variable `PNPM_VERSION` | `11.25.0` — recommended, not required (see below) |
 
 There is **no "build output directory" field** — that is a Pages concept. Workers takes
 the asset directory from `assets.directory` in `wrangler.jsonc`.
 
-`PNPM_VERSION` must be set as a **build variable** (Settings → Build variables and
-secrets), not as `[vars]` in `wrangler.jsonc` — the latter are runtime bindings and are
-not visible to the build. The build image defaults to pnpm 10.x while this repo pins
-`pnpm@11.25.0` via `packageManager`. Node 24 is already the image default.
+`PNPM_VERSION` goes under **Settings → Build variables and secrets**, not the runtime
+**Variables** panel — an assets-only Worker has no script, so that panel rejects them.
+It is also not `[vars]` in `wrangler.jsonc`; those are runtime bindings the build never
+sees.
+
+**It is recommended for determinism, not required.** The build image defaults to pnpm
+10.x while this repo pins `pnpm@11.25.0` via `packageManager`, and `pnpm-workspace.yaml`
+uses `allowBuilds`, which is pnpm 11 syntax — under pnpm 10 that is ignored, producing
+`Ignored build scripts: core-js-pure, esbuild, workerd`. That warning turns out to be
+harmless: esbuild ships prebuilt platform packages, and workerd is only needed for
+`wrangler dev`, not `deploy`. Tested directly — a genuine pnpm 10.11.1 install produces
+**byte-identical `dist/` output** (977 files, matching hashes), passes `verify.mjs`
+37/37, and `wrangler deploy` works.
+
+So pin it to keep CI, local and Cloudflare identical, but a missing or stale
+`PNPM_VERSION` will not silently break a deploy. Node 24 is already the image default.
 
 **Non-production branch builds must be enabled** for pull requests to get preview URLs;
 that, plus `preview_urls: true` and `workers_dev: true` in `wrangler.jsonc`, is what
