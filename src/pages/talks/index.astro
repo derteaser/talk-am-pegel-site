@@ -1,0 +1,106 @@
+---
+/**
+ * Talks timeline, ported from site/templates/events.blade.php.
+ *
+ * FlyOnUI timeline with the sides alternating per item — the Blade version flipped an
+ * `$odd` flag each iteration, which is the index parity here.
+ *
+ * Kirby emitted neither a description nor JSON-LD for this template.
+ */
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import Thumbnail from '../../components/Thumbnail.astro';
+import PersonAvatarGroup from '../../components/PersonAvatarGroup.astro';
+import { talks, persons } from '../../lib/content';
+import { formatDate } from '../../lib/dates';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'talks');
+const all = await talks();
+const everyone = await persons();
+
+// Resolve each talk's attendants once, preserving the order stored in the content.
+const items = all.map((talk) => ({
+    talk,
+    attendants: talk.data.attendants
+        .map((ref) => everyone.find((p) => p.id === ref.id))
+        .filter((p): p is NonNullable<typeof p> => Boolean(p)),
+}));
+
+const description = 'Alle Ausgaben der Talk-Reihe Talk am Pegel in Neuss.';
+---
+
+<Layout title={page?.data.title ?? 'Talks'} description={description}>
+    <section class="container mx-auto my-16">
+        <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical timeline-centered">
+            {
+                items.map(({ talk, attendants }, i) => {
+                    const odd = i % 2 === 1;
+                    return (
+                        <li>
+                            <div class="timeline-middle">
+                                <span class="bg-primary/20 flex size-4.5 items-center justify-center rounded-full">
+                                    <span class="badge badge-primary size-3 rounded-full p-0" />
+                                </span>
+                            </div>
+                            <div
+                                class:list={[
+                                    odd ? 'timeline-start' : 'timeline-end',
+                                    'me-4 ms-1 mt-3 max-md:pt-2',
+                                ]}
+                            >
+                                <time class="text-base-content/50 text-sm font-normal">
+                                    {formatDate(talk.data.date)}
+                                </time>
+                            </div>
+                            <div
+                                class:list={[odd ? 'timeline-end' : 'timeline-start', 'ms-4 mb-8']}
+                            >
+                                <div
+                                    class="card aos aos-fade-up"
+                                    x-data="{ visible: false }"
+                                    x-intersect.once="visible = true"
+                                    :class="visible && 'visible'"
+                                >
+                                    <figure>
+                                        <Thumbnail
+                                            image={talk.data.mainImage}
+                                            preset="wide"
+                                            class="object-cover object-center aspect-video w-full"
+                                            alt=""
+                                        />
+                                    </figure>
+                                    <div class="card-body gap-4">
+                                        <h2 class="card-title text-lg">
+                                            <div class="text-base-content/50 text-sm">
+                                                {talk.data.textline}
+                                                <span class="sr-only">:</span>
+                                            </div>
+                                            {talk.data.title}
+                                        </h2>
+
+                                        <PersonAvatarGroup persons={attendants} />
+
+                                        <div class="card-actions">
+                                            <a
+                                                href={`/talks/${talk.id}`}
+                                                class="btn btn-sm btn-soft btn-accent"
+                                            >
+                                                Mehr erfahren
+                                                <Icon
+                                                    name="ri:arrow-right-line"
+                                                    class="max-sm:hidden size-5"
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    </section>
+</Layout>

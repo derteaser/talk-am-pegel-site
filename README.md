@@ -1,64 +1,98 @@
 # Talk am Pegel
 
-![Deploy to Live](https://github.com/derteaser/talk-am-pegel-site/workflows/Deploy%20to%20Live/badge.svg)
+![CI](https://github.com/derteaser/talk-am-pegel-site/actions/workflows/ci.yml/badge.svg)
 
-Event showcase website for **Talk am Pegel** — built with [Kirby CMS](https://getkirby.com), [Tailwind CSS](https://tailwindcss.com), [Alpine.js](https://alpinejs.dev), and [Vite](https://vite.dev).
+Event showcase website for **Talk am Pegel** — built with [Astro](https://astro.build),
+[Tailwind CSS](https://tailwindcss.com) and [Alpine.js](https://alpinejs.dev), hosted on
+[Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/).
+
+> **Migrated from Kirby CMS 3.** The Astro site is live on `www.talk-am-pegel.de`.
+> Content is now authored in this repository as MDX — there is no CMS panel.
+>
+> The Kirby stack is still in the tree so the two can be diffed, and is removed as a
+> follow-up; the "Reference Kirby site" section covers running it. Every other section
+> describes Astro. Do not extend anything under `site/`, `app/`, `kirby/`, `resources/`
+> or `composer.json`.
 
 ## Tech Stack
 
-| Layer     | Technology                                      |
-| --------- | ----------------------------------------------- |
-| CMS       | Kirby 3 (flat-file, PHP 8.2/8.3)               |
-| Templates | Laravel Blade (via kirby-blade)                 |
-| Styling   | Tailwind CSS 4, FlyOnUI                         |
-| JS        | Alpine.js 3, BigPicture (lightbox)              |
-| Build     | Vite 8, pnpm                                    |
-| Icons     | Remix Icon                                      |
-| Analytics | Fathom Analytics                                |
-| Errors    | Sentry                                          |
+| Layer     | Technology                                       |
+| --------- | ------------------------------------------------ |
+| Framework | Astro 7 (static output)                          |
+| Content   | MDX in `src/content/`, Astro content collections |
+| Styling   | Tailwind CSS 4, FlyOnUI                          |
+| JS        | Alpine.js 3, BigPicture (lightbox)               |
+| Icons     | Remix Icon (via astro-icon)                      |
+| Fonts     | Astro Fonts API, self-hosted Roboto              |
+| Hosting   | Cloudflare Workers (static assets)               |
+| Analytics | Fathom Analytics                                 |
 
 ## Prerequisites
 
-- PHP 8.2 or 8.3
-- [Composer](https://getcomposer.org)
 - Node.js 24
-- [pnpm](https://pnpm.io) 10
+- [pnpm](https://pnpm.io) 11 (pinned via `packageManager`)
+
+For the reference Kirby site only: PHP 8.3. Note `composer.json` pins
+`~8.2 || ~8.3`, so a newer local PHP will refuse to install — see below.
 
 ## Setup
 
 ```bash
-# Install dependencies
-composer install
 pnpm install
-
-# Copy and configure environment
-cp .env.ci .env
-# Edit .env with your local settings (APP_URL, APP_DEBUG, etc.)
 ```
+
+No environment file is needed. `.env` exists only for the reference Kirby site.
 
 ## Development
 
-Run both servers simultaneously:
-
 ```bash
-# Terminal 1 — PHP server
-composer start
-
-# Terminal 2 — Vite dev server (HMR)
-pnpm dev
+pnpm dev       # Astro dev server, http://localhost:4321
 ```
-
-The site is then available at `http://localhost:8000`. Kirby Panel is at `/panel`.
-
-For local TLS, configure the domain `talk-am-pegel.test`.
 
 ## Production Build
 
 ```bash
-pnpm build
+pnpm build     # -> dist/
+pnpm verify    # assert the output is intact (see below)
+pnpm preview   # serve dist/ locally
 ```
 
-Output goes to `public/build/`.
+`astro preview` daemonises and binds IPv6 only — use `http://localhost:4321`, not
+`127.0.0.1`, and stop it with `astro preview stop`.
+
+To exercise the real Cloudflare routing locally, which is what actually serves the
+extensionless URLs:
+
+```bash
+npx wrangler dev --port 8788
+curl -sI http://127.0.0.1:8788/talks/talk-am-pegel-11-sicherheit-als-standortfaktor
+```
+
+## Content
+
+Content lives in `src/content/` as MDX with co-located images, one directory per entry;
+the directory name **is** the URL slug. Schemas are in `src/content.config.ts`.
+
+Adding a talk means adding `src/content/talks/<slug>/index.mdx` plus its images. Open it
+as a pull request and Cloudflare will build a preview URL to check before merging.
+
+`src/data/site.ts` holds the site-wide values (address, phone, socials, footer nav) that
+used to be Kirby's site fields.
+
+## Verification
+
+```bash
+pnpm verify
+```
+
+`scripts/verify.mjs` asserts the URL inventory against `scripts/expected-urls.txt`, that
+internal links and assets resolve, HTML sanity (tag balance, no nested anchors, no block
+elements inside `<p>`), that JSON-LD parses and appears on the right pages, that
+`canonical`/`og:url` are absolute and extensionless, German date formatting, and that
+every `<img>` has `alt` plus intrinsic dimensions.
+
+**`scripts/expected-urls.txt` is the SEO guard.** Every line is an indexed URL. Removing
+one is a deliberate decision, not a cleanup.
 
 ## Formatting
 
@@ -66,16 +100,109 @@ Output goes to `public/build/`.
 pnpm prettier --write .
 ```
 
-Uses Prettier with plugins for PHP, Blade templates, and Tailwind class sorting. See `.prettierrc.json` for details.
+Prettier, with plugins for Astro, PHP/Blade and Tailwind class sorting. See
+`.prettierrc.json`.
+
+**`.astro` files are excluded for now** — see `.prettierignore` for why. In short:
+`prettier-plugin-astro` corrupts Alpine's `x-intersect.once` inside JSX expression
+blocks, and `prettier-plugin-tailwindcss` re-sorts utility classes, which changes the
+emitted class order and breaks byte comparison against the Kirby baseline. Neither
+affects rendering; both are worth fixing only once that baseline is retired.
+
+## Reference Kirby site
+
+Kept runnable until the PHP stack is deleted, so the port can be diffed against it.
+`composer.json` pins `php ~8.2 || ~8.3`, so `composer install` fails on a newer PHP —
+but `vendor/`, `kirby/` and `site/plugins/` are already installed, so Composer is not
+needed:
+
+```bash
+"$HOME/Library/Application Support/Herd/bin/php83" -S 127.0.0.1:8000 -t public kirby/router.php
+```
+
+Set `APP_DEBUG=false` in `.env` before capturing a comparison baseline, or the robots-txt
+plugin serves `disallow: /`. Restore it afterwards.
+
+`scripts/parity.mjs` diffs the built output against a captured baseline, classifying
+differences against an allowlist of intended fixes. Both it and `scripts/migrate-kirby.mjs`
+are one-shot migration tooling and go away with the PHP stack; `scripts/verify.mjs` stays,
+because it runs as a deploy gate.
 
 ## Deployment
 
-Pushing to `main` triggers a GitHub Actions workflow that:
+Hosted on **Cloudflare Workers** as static assets. Pushing to `main` triggers a
+**Cloudflare Workers Build**, which builds and deploys; every pull request gets its own
+preview URL. GitHub Actions does *not* deploy — `.github/workflows/ci.yml` only runs
+checks, so there is no Cloudflare API token stored in the repository.
 
-1. Installs dependencies and runs `pnpm build`
-2. Auto-commits built assets
-3. Deploys to the server via SSH (`git pull` + `composer install --no-dev`)
-4. Creates a Sentry release
+### Workers Builds settings
+
+These live in the Cloudflare dashboard — the **only** part of the pipeline not in
+version control, so they are written down here. Path: **Workers & Pages →
+`talk-am-pegel` → Settings → Builds**, then **Git Repository → Manage** to connect.
+
+| Field | Value |
+| --- | --- |
+| Git repository | `derteaser/talk-am-pegel-site` |
+| Production branch | `main` |
+| Build command | `pnpm build && pnpm verify` |
+| Deploy command | `npx wrangler deploy` |
+| Non-production branch deploy command | `npx wrangler versions upload` *(the default — this is what produces PR preview URLs)* |
+| Root directory | *(leave empty)* |
+| Build variables | *(none — see below)* |
+
+There is **no "build output directory" field** — that is a Pages concept. Workers takes
+the asset directory from `assets.directory` in `wrangler.jsonc`.
+
+**No build variables are set, deliberately.** `PNPM_VERSION` was considered and rejected
+as unnecessary.
+
+The build image defaults to pnpm 10.x while this repo pins `pnpm@11.25.0` via
+`packageManager`, and `pnpm-workspace.yaml` uses `allowBuilds` — pnpm 11 syntax that
+pnpm 10 ignores, producing `Ignored build scripts: core-js-pure, esbuild, workerd`.
+**That warning is expected and harmless.** Tested directly with a genuine pnpm 10.11.1
+install (packageManager pin removed, or corepack redirects to 11 and the test proves
+nothing): esbuild ships prebuilt platform packages, and workerd is only needed for
+`wrangler dev`, not `deploy`. Result — `dist/` is **byte-identical** to the pnpm 11
+build across all 977 files, `verify.mjs` passes 37/37, and `wrangler deploy` succeeds.
+
+Node 24 is already the build image default.
+
+If a build variable is ever needed: it goes under **Settings → Build variables and
+secrets**, not the runtime **Variables** panel (an assets-only Worker has no script, so
+that panel rejects them), and not `[vars]` in `wrangler.jsonc` (runtime bindings, which
+the build never sees).
+
+**Non-production branch builds must be enabled** for pull requests to get preview URLs;
+that, plus `preview_urls: true` and `workers_dev: true` in `wrangler.jsonc`, is what
+makes previews work. Setting `routes` silently flips those two to `false`, so they are
+declared explicitly.
+
+`pnpm verify` runs `scripts/verify.mjs`, which asserts that all 57 public URLs exist,
+internal links resolve, `canonical`/`og:url` are extensionless, and the JSON-LD is
+intact. Because it is part of the build command, a failure blocks the deploy.
+
+### Routing
+
+`wrangler.jsonc` sets `html_handling: "drop-trailing-slash"`, which is what serves the
+extensionless URLs (`/talks/<slug>`) from `talks/<slug>.html` at 200 with no redirect.
+Do not change it without re-checking every URL — the entire migration was built around
+preserving them. `not_found_handling: "404-page"` serves `dist/404.html`.
+
+### Deploying by hand
+
+```bash
+pnpm deploy:cf   # build + verify + wrangler deploy
+```
+
+Needs `npx wrangler login` once.
+
+### What Cloudflare provides at the zone level
+
+Not in this repo, and not to be duplicated in `static/_headers`: HSTS, the
+`X-Content-Type-Options` security-headers managed transform, the apex → `www` redirect,
+and the AI-bot block that Cloudflare prepends to `robots.txt`. Setting a response header
+in both places joins the values with a comma.
 
 ## License
 

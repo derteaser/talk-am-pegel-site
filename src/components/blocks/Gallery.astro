@@ -1,0 +1,62 @@
+---
+/**
+ * Gallery block, ported from site/snippets/blocks/gallery.blade.php.
+ *
+ * The `.image-gallery` class and `data-bp` attribute are the contract with
+ * BigPicture in src/scripts/site.ts: it intercepts clicks on `.image-gallery a` and
+ * pages through the set.
+ *
+ * The Blade version used `$image->thumb()->url()` for the lightbox target, but no
+ * `thumbs.presets` were ever defined, so Kirby's File::thumb() returned the file
+ * unchanged — the lightbox loaded the multi-megabyte original. Here it gets an
+ * explicit large-but-bounded variant instead.
+ *
+ * Kirby ignored the block's own caption/ratio/crop fields; so does this.
+ */
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Thumbnail from '../Thumbnail.astro';
+
+interface Props {
+    images: ImageMetadata[];
+}
+
+const { images } = Astro.props;
+
+// Column logic carried over verbatim. Both real galleries have 6 and 9 images,
+// so both land on the 3-column branch.
+const count = images.length;
+const cols =
+    count === 1
+        ? 'grid-cols-1'
+        : count % 3 === 0
+          ? 'grid-cols-1 sm:grid-cols-3'
+          : count % 2 === 0
+            ? 'grid-cols-1 sm:grid-cols-2'
+            : 'grid-cols-1 sm:grid-cols-3';
+
+// Lightbox targets: one bounded full-size variant per image.
+const lightboxes = await Promise.all(
+    images.map((image) =>
+        getImage({ src: image, width: Math.min(image.width, 1800), format: 'webp', quality: 85 }),
+    ),
+);
+---
+
+<figure>
+    <div class:list={['grid', cols, 'gap-2', 'image-gallery', 'not-prose']}>
+        {
+            images.map((image, i) => (
+                <a href={lightboxes[i].src} class="aspect-3/2">
+                    <Thumbnail
+                        image={image}
+                        preset="landscape"
+                        alt=""
+                        class="w-full h-full object-center object-cover m-0"
+                        data-bp={lightboxes[i].src}
+                    />
+                </a>
+            ))
+        }
+    </div>
+</figure>

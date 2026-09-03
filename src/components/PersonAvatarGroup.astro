@@ -1,0 +1,69 @@
+---
+/**
+ * Overlapping avatar row for the /talks timeline, ported from
+ * site/templates/components/person-avatar-group.blade.php.
+ *
+ * The Blade version called `thumb('person')`, but site/config/thumbs.php defines no
+ * `presets` at all — and Kirby's File::thumb() returns the file UNCHANGED when the
+ * preset is missing. So the live site serves full-resolution portraits into these
+ * 52px avatars; the worst case is a 10.6MB JPEG. Here they get a real 104px (2x)
+ * square crop.
+ */
+import { getImage } from 'astro:assets';
+import { initials } from '../lib/content';
+import type { Person } from '../lib/content';
+
+interface Props {
+    persons: Person[];
+}
+
+const { persons } = Astro.props;
+
+const avatars = await Promise.all(
+    persons.map(async (person) => ({
+        person,
+        // 52px displayed (w-13), so 104px for 2x displays.
+        thumb: person.data.mainImage
+            ? await getImage({
+                  src: person.data.mainImage,
+                  width: 104,
+                  height: 104,
+                  fit: 'cover',
+                  position: 'center',
+                  format: 'webp',
+                  quality: 85,
+              })
+            : null,
+    })),
+);
+---
+
+<ul class="avatar-group pull-up -space-x-4">
+    {
+        avatars.map(({ person, thumb }) => (
+            <li class="tooltip">
+                {thumb ? (
+                    <div class="tooltip-toggle avatar">
+                        <div class="w-13">
+                            <img alt="" src={thumb.src} width="104" height="104" />
+                        </div>
+                    </div>
+                ) : (
+                    <div class="tooltip-toggle avatar avatar-placeholder">
+                        <div class="w-13 bg-neutral text-neutral-content">
+                            <span class="uppercase" aria-hidden="true">
+                                {initials(person.data.title)}
+                            </span>
+                        </div>
+                    </div>
+                )}
+                <span
+                    class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible"
+                    role="tooltip"
+                >
+                    <span class="tooltip-body">{person.data.title}</span>
+                </span>
+            </li>
+        ))
+    }
+</ul>

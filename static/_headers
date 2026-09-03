@@ -1,0 +1,23 @@
+# Response headers for Cloudflare Workers static assets.
+# Lands at dist/_headers via publicDir; parsed by Workers, never served as an asset.
+#
+# HSTS is NOT set here. It is owned by the Cloudflare zone (SSL/TLS -> Edge
+# Certificates -> HSTS), which is the right home: it also covers redirects and error
+# responses that never reach this Worker. Verified that the zone value overrides
+# anything set here, so declaring it would be dead config that misleads.
+#
+# History worth keeping: both HSTS and nosniff were originally assumed to be
+# zone-supplied and were therefore omitted. They vanished the instant DNS moved to
+# this Worker, which proved the old shared host had been sending them. nosniff is
+# still set below because its source is ambiguous — Cloudflare's HSTS panel has an
+# optional No-Sniff toggle, and no duplication is observed either way, so keeping it
+# is the safe side of the trade.
+
+# Content-hashed by Astro, so the filename changes whenever the bytes do — safe to
+# cache forever. Everything else keeps the default `max-age=0, must-revalidate`,
+# which is what HTML wants and yields cheap ETag 304s.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  X-Content-Type-Options: nosniff

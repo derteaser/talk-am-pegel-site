@@ -1,0 +1,61 @@
+Title: Neue Herausforderungen für den Katastrophenschutz
+
+----
+
+Date: 2021-10-27 19:30:00
+
+----
+
+Is-virtual: false
+
+----
+
+Location-name: Pegelbar Neuss
+
+----
+
+Location-geo:
+
+lat: 51.1996335
+lon: 6.6958312
+number: "5"
+city: Neuss
+country: Deutschland
+postcode: "41460"
+address: Am Zollhafen
+
+----
+
+Location-url: 
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/neue-herausforderungen-fur-den-katastrophenschutz-tickets-189625303387
+
+----
+
+Text: [{"content":{"level":"h2","text":"Katastrophenschutz beginnt beim Einzelnen"},"id":"b034595a-9669-48c8-b896-154b02ee74f6","isHidden":false,"type":"heading"},{"content":{"location":"kirby","image":["249488509_6211045662304095_1601760935520309107_n.jpg"],"src":"","alt":"","caption":"","link":"","ratio":"","crop":"false"},"id":"f6a8a192-93a4-4b34-a1d3-ce45e4329ffe","isHidden":false,"type":"image"},{"content":{"text":"<p>Jeder Einzelne kann einen Beitrag zum Schutz vor Katastrophen leisten \u2013 und sollte das auch tun. Das Kennen von Sirenensignalen, das richtige Verhalten im Notfall oder ein ehrenamtliches Engagement im Katastrophenschutz \u2013 jeder kann etwas tun; und das wird immer wichtiger. Eine Aufgabe der Politik wird es sein, die Bev\u00f6lkerung \u201ekatastrophenfest\u201c zu machen.<\/p><p>Das war eine Erkenntnis aus dem Expertengespr\u00e4ch bei J\u00f6rg Geerlings\u2018 Talk am Pegel. Die Flutkatastrophe an Ahr und Erft sowie die Corona-Pandemie haben deutlich gezeigt, wie wichtig ein guter Katastrophenschutz ist und wie schnell eine Krisensituation eintreten kann. Deshalb diskutierte der Neusser Landtagsabgeordnete in der Pegelbar mit dem Parlamentarischen Staatssekret\u00e4r im Bundeministerium des Innern, f\u00fcr Bau und Heimat, Prof. Dr. G\u00fcnter Krings, dem Stadtbeauftragten der Neusser Malteser, Kurt Koenemann, und dem K\u00f6lner Hersteller von Warnsystemen Andreas Schmitz (Coptr) \u00fcber neue Herausforderungen f\u00fcr den Katastrophenschutz.<\/p>"},"id":"585b0c5e-9eea-4872-87b2-3bc9d3f801aa","isHidden":false,"type":"text"},{"content":{"images":["249586776_6211045725637422_5840341995736666067_n.jpg","248906500_6211045815637413_9178476443913173309_n.jpg","249787597_6211045802304081_6084382241471415936_n.jpg","249766742_6211045752304086_2968872023753882343_n.jpg","249249514_6211045808970747_5626997730756912598_n.jpg","249249510_6211045792304082_4045550982474443020_n.jpg"]},"id":"fe5cea75-a256-425a-81de-f286eb4563ee","isHidden":false,"type":"gallery"},{"content":{"text":"<p>Der Katastrophenschutz in Deutschland wird von vielen Ehrenamtlern mitgetragen. Damit h\u00e4tte unser Land, so Krings, im Vergleich zu unseren europ\u00e4ischen Nachbarn eine ungleich gr\u00f6\u00dfere personelle Ausstattung im Krisenfall. \u201eWir k\u00f6nnen stolz sein auf die umfangreichen schnellen Hilfeleistungen, die von Hilfsorganisationen, aber auch Privatleuten, Landwirten, der Bundeswehr und vielen mehr nach der Flutkatastrophe im Juli umgehend angelaufen sind\u201c, so Krings.\u00a0<\/p>"},"id":"76a9eafc-2b71-46cf-9dd9-a218d3d843d2","isHidden":false,"type":"text"},{"content":{"text":"\u201eDie Hilfsdienste sorgen sich um den ehrenamtlichen Nachwuchs.\u201c","citation":"Kurt Koenemann"},"id":"5649e3dd-d858-47f3-8399-563b9aa90d71","isHidden":false,"type":"quote"},{"content":{"text":"<p>Dies darf aber nicht dar\u00fcber hinwegt\u00e4uschen, dass es Verbesserungsbedarf im Katastrophenschutz gibt. Kurt Koenemann sprach dies an: \u201eDie Hilfsdienste sorgen sich um den ehrenamtlichen Nachwuchs. Die Rekrutierung ist schwierig, die personelle Fluktuation gro\u00df. Au\u00dferdem haben wir in der Corona-Krise schmerzlich erfahren m\u00fcssen, wie abh\u00e4ngig unser Land von internationalen Lieferketten ist. Deutschlands Lager sind die Autobahnen.\u201c Eine konsequentere nationale und europ\u00e4ische Lagerhaltung wichtiger medizinischer Produkte ist eine klare Lehre aus den Erfahrungen des vergangenen Jahres.<\/p><p>Die Flutkatastrophe habe auch deutlich gemacht, dass die klassische Sirene als Warnmittel nicht ausgedient habe. Ohne Strom k\u00f6nne niemand Warnmeldungen auf dem Smartphone empfangen. Zum Schutz der Bev\u00f6lkerung m\u00fcsse das Sirenensystem wieder ausgebaut und die Menschen die verschiedenen Signale wieder lernen, sind sich alle Beteiligten einig.<\/p>"},"id":"f0d46f91-e818-4bab-92c4-43841876bd84","isHidden":false,"type":"text"},{"content":{"text":"\u201eDie Digitalisierung gibt uns die M\u00f6glichkeit, die Warnkette zu automatisieren.\u201c","citation":"Andreas Schmitz"},"id":"193c64ad-8182-4263-8896-b8e3ee46b652","isHidden":false,"type":"quote"},{"content":{"text":"<p>Dass aber auch die Warnung vor Unwettern aber auch durch moderne L\u00f6sungen verbessert werden kann, machte Andreas Schmitz von der Firma Coptr deutlich: \u201eDie Digitalisierung gibt uns die M\u00f6glichkeit, die Warnkette zu automatisieren. Faktische Messungen der Warnanlagen k\u00f6nnen passgenaue Warnungen ausl\u00f6sen und gleichzeitig \u00fcber die verschiedenen Medien Informationen kommunizieren.\u201c Moderne L\u00f6sungen k\u00f6nnen so die Sicherheit auf \u00f6ffentlichen, stark frequentierten Fl\u00e4chen, in Stadien etc. deutlich verbessern.<\/p>"},"id":"6c7a12db-e16e-4a9e-a1f2-c69b6b54d381","isHidden":false,"type":"text"}]
+
+----
+
+Main-image:
+
+- >
+  tap_katastrophenschutz_-c-tobias-koch.jpg
+
+----
+
+Textline: Talk am Pegel #5
+
+----
+
+Attendants:
+
+- persons/guenter-krings
+- persons/kurt-koenemann
+- persons/andreas-schmitz
+- persons/joerg-geerlings
+
+----
+
+Uuid: Uv1q49usY6VW6uC4

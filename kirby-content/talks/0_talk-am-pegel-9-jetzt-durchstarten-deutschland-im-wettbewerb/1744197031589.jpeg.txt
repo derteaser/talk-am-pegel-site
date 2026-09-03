@@ -1,0 +1,5 @@
+Uuid: MpgCIlCP3AHw4O9t
+
+----
+
+Template: blocks/image

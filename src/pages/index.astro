@@ -1,0 +1,38 @@
+---
+/**
+ * Home page, ported from site/templates/home.blade.php plus
+ * site/controllers/home.php (which just passed the newest talk to the view).
+ */
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import LatestEvent from '../components/LatestEvent.astro';
+import { talks } from '../lib/content';
+import { webSite } from '../lib/jsonld';
+import { getImage } from 'astro:assets';
+import tapBanner from '../assets/tap_banner.jpg';
+import { site } from '../data/site';
+
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('content/pages/home.mdx is missing');
+
+const latest = (await talks())[0];
+if (!latest) throw new Error('no talks found');
+
+// Kirby's config overrode title AND description with `herotitle` on this template.
+const herotitle = home.data.herotitle ?? home.data.title;
+
+const canonical = new URL('/', Astro.site).href;
+const og = await getImage({ src: tapBanner, width: 1200, height: 630, fit: 'cover', format: 'jpeg', quality: 85 });
+const jsonLd = webSite(site.title, canonical, new URL(og.src, Astro.site).href);
+---
+
+<Layout
+    title={herotitle}
+    description={herotitle}
+    jsonLd={jsonLd}
+    isHome
+    heroTitle={herotitle}
+    heroSubtitle={home.data.textline ?? null}
+>
+    <LatestEvent talk={latest} />
+</Layout>

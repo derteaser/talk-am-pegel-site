@@ -1,0 +1,55 @@
+name: CI
+
+# Checks only — this workflow does NOT deploy.
+#
+# Deployment is handled by Cloudflare Workers Builds, which builds and deploys on
+# push to main and gives every pull request a preview URL. See README.md for the
+# dashboard settings it needs; they are the one part of this pipeline that does not
+# live in the repo.
+#
+# The point of running the same build here is that pull requests get the quality
+# gates — `astro check` and scripts/verify.mjs — versioned alongside the code, so a
+# change that would break a URL fails review rather than production.
+
+on:
+  pull_request:
+  # Direct pushes to main bypass PR review, so check them too. Cloudflare deploys in
+  # parallel; this is a safety net, not a gate.
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔎 Type-check content collections and components
+        run: pnpm check
+
+      - name: 🏗️ Build
+        run: pnpm build
+
+      # Guards the whole point of the migration: all 57 indexed URLs must exist,
+      # internal links must resolve, canonical/og:url must be extensionless, and the
+      # JSON-LD must be intact. No build cache step — a cold build is ~13s, so
+      # caching node_modules/.astro would save about eight seconds.
+      - name: ✅ Verify build output
+        run: pnpm verify

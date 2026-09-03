@@ -1,0 +1,65 @@
+---
+/**
+ * Home page teaser for the newest talk, ported from
+ * site/templates/components/latest-event.blade.php.
+ *
+ * Note this template extracted its excerpt CORRECTLY (filterBy 'text'), unlike the
+ * meta-tag config, which filtered a non-existent 'paragraph' type — which is why the
+ * home page was the only page on the Kirby site with a description.
+ */
+import Thumbnail from './Thumbnail.astro';
+import { excerpt, decodeEntities, widont } from '../lib/content';
+import { firstTextBlockHtml } from '../lib/talkBody';
+import { formatDate } from '../lib/dates';
+import type { Talk } from '../lib/content';
+
+interface Props {
+    talk: Talk;
+}
+
+const { talk } = Astro.props;
+const description = decodeEntities(excerpt(firstTextBlockHtml(talk.body ?? ''), 400));
+const href = `/talks/${talk.id}`;
+---
+
+<section class="flex flex-col space-y-16 my-24">
+    <article
+        class="container mx-auto px-5 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+    >
+        <div
+            class="lg:row-span-2 xl:col-span-2 lg:order-last aos aos-fade-up"
+            x-data="{ visible: false }"
+            x-intersect="visible = true"
+            :class="visible && 'visible'"
+            x-cloak
+        >
+            <Thumbnail
+                image={talk.data.mainImage}
+                preset="wide"
+                class="object-cover object-center rounded-sm w-full"
+                alt=""
+            />
+        </div>
+        <div
+            class="lg:col-span-2 xl:col-span-3 flex flex-col items-start space-y-8 aos"
+            x-data="{ visible: false }"
+            x-intersect="setTimeout(function() { visible = true }, 200)"
+            :class="visible && 'visible'"
+        >
+            <h1 class="sm:text-4xl text-3xl font-semibold text-base-content">
+                <a href={href} class="link link-hover decoration-accent" set:html={widont(talk.data.title)} />
+            </h1>
+            <p class="text-base-content/60 text-sm">
+                {talk.data.textline} am {formatDate(talk.data.date)}
+            </p>
+            <p class="text-base-content leading-relaxed max-w-xl">{description}</p>
+            <a href={href} class="btn btn-accent">Mehr erfahren</a>
+        </div>
+    </article>
+
+    <div class="divider divider-vertical"></div>
+
+    <aside class="container mx-auto text-center">
+        <a href="/talks" class="btn btn-primary btn-outline">Frühere Talks</a>
+    </aside>
+</section>

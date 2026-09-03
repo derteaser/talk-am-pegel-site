@@ -1,0 +1,4 @@
+user-agent: *
+disallow: /cdn-cgi/
+allow: /media/
+sitemap: https://www.talk-am-pegel.de/sitemap.xml

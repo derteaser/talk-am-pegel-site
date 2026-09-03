@@ -1,0 +1,3 @@
+Local SVG icons for astro-icon go here (used as <Icon name="local:filename" />).
+Currently empty — all icons come from @iconify-json/ri. The directory exists only
+because astro-icon warns on every build if it is missing.

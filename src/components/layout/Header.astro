@@ -1,0 +1,98 @@
+---
+/**
+ * Hero header, ported from site/templates/components/layout/header.blade.php.
+ *
+ * The Alpine directives are carried over verbatim — a sticky logo bar toggled by
+ * x-intersect on the main logo block, and .aos reveals on the title/subtitle.
+ * Nothing here is an Astro island; Alpine is started globally in src/scripts/site.ts.
+ *
+ * Kirby resolved the hero image itself via a MainImageHolder type check with an
+ * asset('/img/pegelbar.jpg') fallback. In Astro the caller passes it, defaulting
+ * to the same fallback image.
+ */
+import { Icon } from 'astro-icon/components';
+import type { ImageMetadata } from 'astro';
+import Thumbnail from '../Thumbnail.astro';
+import pegelbar from '../../assets/pegelbar.jpg';
+// Astro renders an imported .svg as a component, so no ?raw + set:html and no
+// stripping of the XML prolog that Kirby's svg() helper used to emit mid-document.
+import Logo from '../../assets/logo.svg';
+
+interface Props {
+    title: string;
+    subtitle?: string | null;
+    heroImage?: ImageMetadata;
+}
+
+const { title, subtitle, heroImage = pegelbar } = Astro.props;
+---
+
+<header class="bg-neutral relative h-svh md:h-auto" x-data="{ scrolledAway: false }">
+    <div
+        class="fixed bg-tap-alpha-blue-light/80 dark:bg-tap-alpha-blue-dark/80 backdrop-blur-md w-full p-2 z-50"
+        x-show="scrolledAway"
+        x-transition:enter="transition ease-out duration-300 origin-top"
+        x-transition:enter-start="opacity-0 -translate-y-12"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-300 origin-top"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-12"
+        x-cloak
+    >
+        <a href="/" class="flex justify-center">
+            {/* Intrinsic size from the SVG's own viewBox; h-8 scales it. Kirby set
+                neither, leaving the img without an aspect ratio. */}
+            <img src="/img/logo.svg" class="h-8" alt="" width="212" height="40" />
+        </a>
+    </div>
+
+    <Thumbnail
+        image={heroImage}
+        sizes="100vw"
+        alt=""
+        class="w-full h-full object-cover object-center block opacity-20 inset-0 absolute"
+    />
+
+    <div class="h-full flex flex-col justify-around items-center">
+        <div
+            class="relative z-10 pt-10 text-center w-full"
+            x-intersect:leave="scrolledAway = true"
+            x-intersect:enter="scrolledAway = false"
+        >
+            <a href="/" class="flex justify-center">
+                <Logo role="img" aria-label="Talk am Pegel" />
+            </a>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-center z-10 flex-1 mx-auto container md:py-40"
+        >
+            <h1
+                class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl aos aos-fade-left"
+                x-data="{ visible: false }"
+                x-intersect.once="visible = true"
+                :class="visible && 'visible'"
+            >
+                {title}
+            </h1>
+            {
+                subtitle && (
+                    <p
+                        class="text-2xl text-gray-300 font-light aos aos-fade-left"
+                        x-data="{ visible: false }"
+                        x-intersect.once="setTimeout(function() { visible = true }, 500)"
+                        :class="visible && 'visible'"
+                    >
+                        {subtitle}
+                    </p>
+                )
+            }
+        </div>
+        <div class="z-10 text-center w-full md:hidden py-6">
+            <a href="#content" class="btn btn-accent btn-circle btn-lg">
+                <Icon name="ri:arrow-down-line" class="size-6 shrink-0" />
+            </a>
+        </div>
+    </div>
+</header>
+
+<span id="content"></span>

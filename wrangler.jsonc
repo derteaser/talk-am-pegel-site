@@ -1,0 +1,49 @@
+{
+    "$schema": "./node_modules/wrangler/config-schema.json",
+    "name": "talk-am-pegel",
+    "compatibility_date": "2026-09-03",
+
+    // Static assets only — there is no `main`, so no Worker script runs and no
+    // `binding` is needed. The site is a pure static build; @astrojs/cloudflare is
+    // deliberately NOT installed, since that adapter exists only for on-demand
+    // rendering and would add an SSR entrypoint this site has no use for.
+    "assets": {
+        "directory": "./dist",
+
+        // THE reason this migration can keep its URLs. Pages are emitted as
+        // `talks/<slug>.html` (build.format: 'file'), but every indexed URL is
+        // extensionless with no trailing slash. `drop-trailing-slash` serves
+        // /talks/<slug> from talks/<slug>.html at 200 with no redirect.
+        //
+        // The default, "auto-trailing-slash", behaves identically for this output
+        // shape — but only by coincidence. `drop` is the mode that structurally
+        // cannot redirect toward a trailing slash, so it encodes the same invariant
+        // as astro.config.mjs's `trailingSlash: 'never'` rather than depending on
+        // build.format never changing.
+        "html_handling": "drop-trailing-slash",
+
+        // Defaults to "none", which would serve a bodyless 404. dist/404.html exists.
+        "not_found_handling": "404-page"
+    },
+
+    // The live domain. Declared here so deploys are idempotent: with the Custom
+    // Domain attached in the dashboard but absent from this config, a later
+    // `wrangler deploy` could detach it.
+    "routes": [{ "pattern": "www.talk-am-pegel.de", "custom_domain": true }],
+
+    // Both default to FALSE once `routes` is set, and wrangler disables them silently
+    // with only a warning — which would have quietly removed the per-PR preview URLs
+    // that were the main reason for choosing Workers Builds over GitHub Actions.
+    //
+    // Preview URLs are served on the workers.dev subdomain, so enabling them requires
+    // workers_dev too. That does leave the site reachable on a second hostname, but
+    // every page emits an absolute `<link rel="canonical">` pointing at
+    // www.talk-am-pegel.de, so a crawled preview consolidates to the real URL.
+    "workers_dev": true,
+    "preview_urls": true
+
+    // Deliberately no `build.command` here. Cloudflare Workers Builds runs its own
+    // build command (see README.md), and setting one here would make `wrangler
+    // deploy` re-run the build a second time. The local equivalent is
+    // `pnpm deploy:cf`, which builds, verifies, then deploys.
+}

@@ -1,0 +1,61 @@
+---
+/**
+ * Ported from site/templates/contact.blade.php.
+ *
+ * The address block comes from site globals, not the page. Kirby rendered the phone
+ * and email through Html::tel()/Html::email(); the latter obfuscated the address with
+ * per-character entities chosen by random_int(), so the page differed on every
+ * request. A deterministic encoder keeps the obfuscation while making the output
+ * diffable.
+ *
+ * Kirby's config gave this template only json-ld, no description.
+ */
+import { getImage } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Person from '../components/Person.astro';
+import { getEntry, getCollection } from 'astro:content';
+import { site, telHref } from '../data/site';
+import { contactPage } from '../lib/jsonld';
+import tapBanner from '../assets/tap_banner.jpg';
+
+const page = await getEntry('pages', 'kontakt');
+if (!page) throw new Error('content/pages/kontakt.mdx is missing');
+
+const contacts = [];
+for (const ref of page.data.contactPersons) {
+    const person = (await getCollection('persons')).find((p) => p.id === ref.id);
+    if (person) contacts.push(person);
+}
+
+/**
+ * Obfuscate as numeric character references, deterministically — Kirby's
+ * Html::email() did the same but picked &#dec; vs &#xhex; per character with
+ * random_int(), so /kontakt differed on every request.
+ *
+ * The entities must reach the browser raw, so the whole anchor is emitted via
+ * set:html: interpolating them into an href would escape the ampersands to
+ * &amp;#105; and leave a broken mailto link.
+ */
+const encodeEmail = (address: string) =>
+    [...address].map((c) => `&#${c.codePointAt(0)};`).join('');
+const emailAnchor = `<a class="link link-primary" href="mailto:${encodeEmail(site.email)}">${encodeEmail(site.email)}</a>`;
+
+const canonical = new URL('/kontakt', Astro.site).href;
+const og = await getImage({ src: tapBanner, width: 1200, height: 630, fit: 'cover', format: 'jpeg', quality: 85 });
+const jsonLd = contactPage(page.data.title, canonical, new URL(og.src, Astro.site).href);
+---
+
+<Layout title={page.data.title} jsonLd={jsonLd}>
+    <section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32 text-center">
+        <h2 class="text-xl mb-4 leading-relaxed">{site.title}</h2>
+        <p>{site.address1}</p>
+        <p>{site.address2}</p>
+        <p>{site.postalCode} {site.city}</p>
+        <p class="mt-3"><a class="link link-primary" href={telHref}>{site.phone}</a></p>
+        <p><Fragment set:html={emailAnchor} /></p>
+
+        <div class="flex justify-center mt-6">
+            {contacts.map((person) => <Person person={person} />)}
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,108 @@
+---
+/**
+ * Responsive image, ported from site/templates/components/thumbnail.blade.php.
+ *
+ * Built on Astro's own <Picture>, which already does what the Blade version — and
+ * this component's first draft — hand-rolled: it defaults `formats` to ['webp'],
+ * derives the fallback format from the source (with carve-outs for formats that
+ * should not get a PNG fallback, and SVGs that cannot rasterise), and propagates
+ * `sizes` onto the <source> elements.
+ *
+ * The `preset` prop replaces Kirby's named srcsets from site/config/thumbs.php.
+ * Only four of that file's 18 srcsets were ever requested by a template; `portrait`
+ * and `logo` are not ported. Kirby's `portrait` srcset was also mislabelled — it
+ * tagged a 200px-wide image as `300w`.
+ *
+ * `widths` and `sizes` are passed explicitly rather than using `layout`, on purpose:
+ * `layout="constrained"` would auto-generate `sizes="(min-width: Npx) Npx, 100vw"`,
+ * which is wrong for the two-column 50vw layouts, and its auto-width ladder
+ * ([w, 2w, ...breakpoints]) would roughly halve again the number of images per slot
+ * — a meaningful cost across 78 source images. Omitting `layout` also means no
+ * `data-astro-image` attribute and no injected styles, which is what we want when
+ * every image is positioned by Tailwind utilities.
+ *
+ * Fixes carried over from the Blade version: it emitted height={width}, stamping a
+ * square intrinsic box on every image (wrong aspect-ratio hint, layout shift), and
+ * it resized twice just to read dimensions.
+ */
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/** Width ladder, matching thumbs.php's 300/600/900/1200/1800. */
+const WIDTHS = [300, 600, 900, 1200, 1800] as const;
+
+/**
+ * Aspect ratios from thumbs.php, expressed as the largest width/height pair.
+ * Heights match Kirby's exactly: wide → 1013 (16:9), landscape → 1200 (3:2),
+ * square → 1800. Sharp centre-crops when given both dimensions, which is what
+ * Kirby's `crop: true` did.
+ */
+const ASPECT = {
+    default: null,
+    wide: 16 / 9,
+    landscape: 3 / 2,
+    square: 1,
+} as const;
+
+export type ThumbnailPreset = keyof typeof ASPECT;
+
+interface Props {
+    image: ImageMetadata;
+    preset?: ThumbnailPreset;
+    alt?: string;
+    sizes?: string;
+    lazy?: boolean;
+    class?: string;
+}
+
+const {
+    image,
+    preset = 'default',
+    alt = '',
+    sizes = '(min-width: 600px) 50vw, 100vw',
+    lazy = true,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const aspect = ASPECT[preset];
+
+// Astro never upscales (withoutEnlargement is hardcoded in the sharp service), so a
+// requested width above the source silently clamps and two ladder rungs would point
+// to the same file. Cap at the source width, then append the native width so a source
+// falling between rungs is still served at full resolution — src/assets/pegelbar.jpg
+// is 960px, and the ladder alone would top out at 900 and quietly lose detail.
+//
+// The Kirby version instead advertised 1200w/1800w descriptors for that same 960px
+// file, which the browser trusted. That inaccuracy disappears here.
+const LARGEST_RUNG = WIDTHS.at(-1)!;
+const widths: number[] = WIDTHS.filter((w) => w <= image.width);
+// Only for sources SMALLER than the top rung. Appending unconditionally would push
+// the ladder up to the source width on large images (a 4500px source asking for
+// 4500px), which also breaks the cropped presets: a 4500x4500 `square` request
+// exceeds a 4500x3000 source's height, and since Astro never upscales it silently
+// clamps back to the uncropped 4500x3000.
+if (image.width < LARGEST_RUNG && widths.at(-1) !== image.width) {
+    widths.push(image.width);
+}
+
+// Largest rung defines the intrinsic box; heights come from the preset's ratio so
+// the browser gets a correct aspect-ratio hint.
+const width = widths.at(-1)!;
+const height = aspect
+    ? Math.round(width / aspect)
+    : Math.round((width * image.height) / image.width);
+---
+
+<Picture
+    src={image}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    width={width}
+    height={height}
+    quality={85}
+    loading={lazy ? 'lazy' : 'eager'}
+    class={className}
+    {...rest}
+/>

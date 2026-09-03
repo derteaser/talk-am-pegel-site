@@ -1,5 +1,10 @@
 {
-  "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade", "prettier-plugin-tailwindcss"],
+  "plugins": [
+    "@prettier/plugin-php",
+    "@shufo/prettier-plugin-blade",
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss"
+  ],
   "phpVersion": "8.3",
   "singleQuote": true,
   "trailingComma": "all",
@@ -10,19 +15,34 @@
   "trailingCommaPHP": true,
   "overrides": [
     {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    },
+    {
       "files": "*.blade.php",
       "options": {
         "parser": "blade"
       }
     },
     {
-      "files": ["**/*.css", "**/*.html"],
+      "files": [
+        "**/*.css",
+        "**/*.html"
+      ],
       "options": {
         "singleQuote": false
       }
     },
     {
-      "files": ["**/*.css", "**/*.js", "**/*.json", "**/*.yml", "**/*.yaml"],
+      "files": [
+        "**/*.css",
+        "**/*.js",
+        "**/*.json",
+        "**/*.yml",
+        "**/*.yaml"
+      ],
       "options": {
         "tabWidth": 2
       }

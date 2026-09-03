@@ -53,3 +53,13 @@ Icon
 /.cert/
 /.idea/
 /.claude/settings.local.json
+
+# Kirby parity baseline (local migration artifact)
+/baseline/
+
+# Astro
+/dist/
+/.astro/
+
+# Wrangler local state
+/.wrangler/

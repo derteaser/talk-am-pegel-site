@@ -1,0 +1,5 @@
+Uuid: GigGoTdAsifIbGDJ
+
+----
+
+Template: blocks/image

@@ -1,0 +1,64 @@
+# The public URL inventory, captured from the running Kirby site in phase 0.
+# scripts/verify.mjs asserts dist/ contains exactly these pages, and the deploy
+# workflow runs it as a gate. Every entry is indexed, so removing a line is a
+# deliberate SEO decision, not a cleanup.
+#
+# /error is intentionally absent: Kirby served it with a 404 status, so it was
+# never a usable URL. /404 is emitted but not listed as a page.
+/
+/datenschutz
+/impressum
+/kontakt
+/persons
+/persons/achim-fischer
+/persons/ahmad-mansour
+/persons/alexandra-klein
+/persons/andreas-schmitz
+/persons/armin-papperger
+/persons/arndt-g-kirchhoff
+/persons/christian-lange
+/persons/christoph-heusgen
+/persons/dilek-guersoy
+/persons/dirk-bruegge
+/persons/dr-guido-hitze
+/persons/frank-gensler
+/persons/guenter-krings
+/persons/hans-christian-wirtz
+/persons/herbert-reul
+/persons/heribert-adamsky
+/persons/hermann-groehe
+/persons/hermann-josef-baaken
+/persons/hildegard-mueller
+/persons/ina-scharrenbach
+/persons/ines-stefen
+/persons/jan-kaiser
+/persons/jan-philipp-buechler
+/persons/joerg-geerlings
+/persons/johann-andreas-werhahn
+/persons/juergen-steinmetz
+/persons/karl-josef-laumann
+/persons/katherina-reiche
+/persons/kurt-koenemann
+/persons/lena-behr
+/persons/michael-bott
+/persons/michael-mronz
+/persons/natalie-goldkamp
+/persons/nathanael-liminski
+/persons/nicolas-kraemer
+/persons/patricia-voeltz
+/persons/sabine-hustedt
+/persons/serena-becker
+/persons/umut-ali-oeksuez
+/persons/volker-backs
+/talks
+/talks/2019-09-03-talk-am-pegel-1
+/talks/2020-02-06-talk-am-pegel-2
+/talks/2020-06-15-talk-am-pegel-3
+/talks/talk-am-pegel-10-radikal-politisch-gefaehrlich-wie-extreme-die-mitte-bedrohen
+/talks/talk-am-pegel-11-sicherheit-als-standortfaktor
+/talks/talk-am-pegel-4-mobilitaet-der-zukunft
+/talks/talk-am-pegel-5-neue-herausforderungen-fuer-den-katastrophenschutz
+/talks/talk-am-pegel-6-innenstadt-der-zukunft
+/talks/talk-am-pegel-7-wege-aus-der-energiekrise
+/talks/talk-am-pegel-8-extremismus-in-unserer-gesellschaft
+/talks/talk-am-pegel-9-jetzt-durchstarten-deutschland-im-wettbewerb

@@ -1,0 +1,30 @@
+# Build output and vendored code
+dist/
+public/build/
+public/media/
+kirby/
+vendor/
+node_modules/
+types.php
+kirby-content/
+baseline/
+
+# --- .astro formatting is DEFERRED until after cutover -----------------------------
+#
+# Two separate problems, neither worth solving mid-migration:
+#
+# 1. prettier-plugin-astro corrupts Alpine's dot-modifier attributes when the element
+#    sits inside a JSX expression block: it rewrites `x-intersect.once="…"` to
+#    `x-intersectωP_once="…"` and then fails to parse its own output. Affects
+#    Header.astro and pages/talks/index.astro, which use it inside `{ cond && (…) }`
+#    and `.map(…)`. The attribute is fine in plain markup, so it is a plugin bug.
+#
+# 2. prettier-plugin-tailwindcss re-sorts the utility classes, which changes the
+#    class order in the emitted HTML. Rendering is unaffected (utility order in the
+#    attribute has no bearing on specificity), but it breaks byte comparison against
+#    the Kirby baseline — and scripts/parity.mjs is the safety net for this whole
+#    migration. Degrading it for cosmetics is the wrong trade while it still matters.
+#
+# Run `pnpm prettier --write "src/**/*.astro"` once the baseline is retired, and
+# expect a large but semantically empty diff.
+src/**/*.astro
