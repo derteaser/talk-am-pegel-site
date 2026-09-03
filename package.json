@@ -9,6 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "verify": "node scripts/verify.mjs",
+    "deploy": "pnpm build && pnpm verify && wrangler deploy",
     "kirby:assets": "vite build",
     "copy-icons": "node copy-icons.cjs",
     "postinstall": "pnpm run copy-icons"

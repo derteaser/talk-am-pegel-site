@@ -28,4 +28,9 @@
 
     // No `routes` / custom domain yet, on purpose: the Worker is verified on its
     // workers.dev URL first, so the DNS switch is the last and only risky step.
+
+    // Deliberately no `build.command` here. Cloudflare Workers Builds runs its own
+    // build command (see README.md), and setting one here would make `wrangler
+    // deploy` re-run the build a second time. The local equivalent is
+    // `pnpm deploy`, which builds, verifies, then deploys.
 }
