@@ -6,10 +6,13 @@ Event showcase website for **Talk am Pegel** — built with [Astro](https://astr
 [Tailwind CSS](https://tailwindcss.com) and [Alpine.js](https://alpinejs.dev), hosted on
 [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/).
 
-> **Migration in progress.** The site has been ported from Kirby CMS 3 to Astro. The
-> Kirby stack is still present so the two can be diffed, and is removed in the final
-> step. The "Reference Kirby site" section below covers running the old site; every
-> other section describes Astro.
+> **Migrated from Kirby CMS 3.** The Astro site is live on `www.talk-am-pegel.de`.
+> Content is now authored in this repository as MDX — there is no CMS panel.
+>
+> The Kirby stack is still in the tree so the two can be diffed, and is removed as a
+> follow-up; the "Reference Kirby site" section covers running it. Every other section
+> describes Astro. Do not extend anything under `site/`, `app/`, `kirby/`, `resources/`
+> or `composer.json`.
 
 ## Tech Stack
 
@@ -146,27 +149,29 @@ version control, so they are written down here. Path: **Workers & Pages →
 | Deploy command | `npx wrangler deploy` |
 | Non-production branch deploy command | `npx wrangler versions upload` *(the default — this is what produces PR preview URLs)* |
 | Root directory | *(leave empty)* |
-| Build variable `PNPM_VERSION` | `11.25.0` — recommended, not required (see below) |
+| Build variables | *(none — see below)* |
 
 There is **no "build output directory" field** — that is a Pages concept. Workers takes
 the asset directory from `assets.directory` in `wrangler.jsonc`.
 
-`PNPM_VERSION` goes under **Settings → Build variables and secrets**, not the runtime
-**Variables** panel — an assets-only Worker has no script, so that panel rejects them.
-It is also not `[vars]` in `wrangler.jsonc`; those are runtime bindings the build never
-sees.
+**No build variables are set, deliberately.** `PNPM_VERSION` was considered and rejected
+as unnecessary.
 
-**It is recommended for determinism, not required.** The build image defaults to pnpm
-10.x while this repo pins `pnpm@11.25.0` via `packageManager`, and `pnpm-workspace.yaml`
-uses `allowBuilds`, which is pnpm 11 syntax — under pnpm 10 that is ignored, producing
-`Ignored build scripts: core-js-pure, esbuild, workerd`. That warning turns out to be
-harmless: esbuild ships prebuilt platform packages, and workerd is only needed for
-`wrangler dev`, not `deploy`. Tested directly — a genuine pnpm 10.11.1 install produces
-**byte-identical `dist/` output** (977 files, matching hashes), passes `verify.mjs`
-37/37, and `wrangler deploy` works.
+The build image defaults to pnpm 10.x while this repo pins `pnpm@11.25.0` via
+`packageManager`, and `pnpm-workspace.yaml` uses `allowBuilds` — pnpm 11 syntax that
+pnpm 10 ignores, producing `Ignored build scripts: core-js-pure, esbuild, workerd`.
+**That warning is expected and harmless.** Tested directly with a genuine pnpm 10.11.1
+install (packageManager pin removed, or corepack redirects to 11 and the test proves
+nothing): esbuild ships prebuilt platform packages, and workerd is only needed for
+`wrangler dev`, not `deploy`. Result — `dist/` is **byte-identical** to the pnpm 11
+build across all 977 files, `verify.mjs` passes 37/37, and `wrangler deploy` succeeds.
 
-So pin it to keep CI, local and Cloudflare identical, but a missing or stale
-`PNPM_VERSION` will not silently break a deploy. Node 24 is already the image default.
+Node 24 is already the build image default.
+
+If a build variable is ever needed: it goes under **Settings → Build variables and
+secrets**, not the runtime **Variables** panel (an assets-only Worker has no script, so
+that panel rejects them), and not `[vars]` in `wrangler.jsonc` (runtime bindings, which
+the build never sees).
 
 **Non-production branch builds must be enabled** for pull requests to get preview URLs;
 that, plus `preview_urls: true` and `workers_dev: true` in `wrangler.jsonc`, is what
