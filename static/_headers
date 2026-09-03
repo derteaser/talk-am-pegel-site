@@ -1,16 +1,17 @@
 # Response headers for Cloudflare Workers static assets.
 # Lands at dist/_headers via publicDir; parsed by Workers, never served as an asset.
 #
-# CORRECTION: these two WERE assumed to come from the Cloudflare zone, and they do
-# not. Measured immediately after the DNS cutover, both vanished — a zone-level
-# setting would have kept firing regardless of origin, so they were being sent by the
-# old shared host's server config all along. Restored here verbatim as the old origin
-# sent them; nothing more is added, to avoid changing behaviour beyond what was lost.
+# HSTS is NOT set here. It is owned by the Cloudflare zone (SSL/TLS -> Edge
+# Certificates -> HSTS), which is the right home: it also covers redirects and error
+# responses that never reach this Worker. Verified that the zone value overrides
+# anything set here, so declaring it would be dead config that misleads.
 #
-# The durable home for HSTS is the zone setting (SSL/TLS -> Edge Certificates -> HSTS),
-# which also covers redirects and error responses that never reach this Worker. If it
-# is enabled there, REMOVE the header from here — applying it twice risks a
-# comma-joined value.
+# History worth keeping: both HSTS and nosniff were originally assumed to be
+# zone-supplied and were therefore omitted. They vanished the instant DNS moved to
+# this Worker, which proved the old shared host had been sending them. nosniff is
+# still set below because its source is ambiguous — Cloudflare's HSTS panel has an
+# optional No-Sniff toggle, and no duplication is observed either way, so keeping it
+# is the safe side of the trade.
 
 # Content-hashed by Astro, so the filename changes whenever the bytes do — safe to
 # cache forever. Everything else keeps the default `max-age=0, must-revalidate`,
@@ -19,5 +20,4 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /*
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
