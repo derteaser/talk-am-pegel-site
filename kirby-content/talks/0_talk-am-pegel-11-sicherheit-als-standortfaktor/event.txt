@@ -1,0 +1,60 @@
+Title: Sicherheit als Standortfaktor
+
+----
+
+Date: 2026-03-26 19:00:00
+
+----
+
+Is-virtual: false
+
+----
+
+Location-name: Pegelbar
+
+----
+
+Location-geo:
+
+lat: 51.1996335
+lon: 6.6958312
+number: "5"
+city: Neuss
+region: Nordrhein-Westfalen
+country: Deutschland
+countryCode: de
+postcode: "41460"
+address: Am Zollhafen
+osm: 331186561
+
+----
+
+Location-url: 
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/sicherheit-als-standortfaktor-tickets-1984132870828
+
+----
+
+Text: [{"content":{"level":"h2","text":"Wie wehrhaft muss Deutschland wirtschaftlich und diplomatisch werden?"},"id":"cb10d35a-e063-41a4-8785-66f3cc14caf2","isHidden":false,"type":"heading"},{"content":{"text":"<p>Der Vorsitzende des Vorstands der Rheinmetall AG, Armin Papperger, ist der nächste Gast der Veranstaltungsreihe „Talk am Pegel“, die der Neusser Landtagsabgeordnete Dr. Jörg Geerlings ins Leben gerufen hat.</p><p>Der Diplom-Ingenieur Papperger ist seit 2013 Vorsitzender des Vorstands der Rheinmetall AG. Er engagiert sich darüber hinaus als Präsident des Bundesverbands der Deutschen Sicherheits- und Verteidigungsindustrie (BDSV) und Präsidiumsmitglied des Bundesverbands der Deutschen Industrie e. V. (BDI).</p><p>Am Donnerstag, dem 26. März 2026, spricht Papperger um 19 Uhr in der Pegelbar (Am Zollhafen). Das Thema der Veranstaltung lautet: „Sicherheit als Standortfaktor – Wie wehrhaft muss Deutschland wirtschaftlich und diplomatisch werden?“ Nach dem Vortrag schließt sich eine Diskussion an, für die Geerlings Dr. Christoph Heusgen, Botschafter a.D., gewinnen konnte. Das Trio diskutiert über die Frage, wie viel wirtschaftliche und diplomatische Wehrhaftigkeit Deutschland angesichts veränderter geopolitischer Rahmenbedingungen braucht.</p><p>Mit der Reihe „Talk am Pegel“ hat Geerlings ein neues Veranstaltungsformat geschaffen. „So wie im Hafen Güter aus aller Welt verladen werden, so möchte ich mit dieser Veranstaltungsreihe im Hafen neue Ideen und Impulse für Neuss heranholen“, sagt der Abgeordnete. „Dadurch soll das gesellschaftliche Leben in unserer Stadt bereichert werden.“ Besondere lokale Relevanz erhält der Abend dadurch, dass Rheinmetall ein Werk im Neusser Hafen hat.</p>"},"id":"7357505c-4a89-4778-a875-ed8f4a6055b1","isHidden":false,"type":"text"},{"content":{"text":"<p><em>Foto: PeopleImages / shutterstock.com</em></p>"},"id":"d37195de-f4b2-45a8-8d4d-8bedaa42ba82","isHidden":false,"type":"text"}]
+
+----
+
+Main-image: - file://PdDptuEy6hES8l7e
+
+----
+
+Textline: Talk am Pegel #11
+
+----
+
+Attendants:
+
+- page://2XlNBPQKGBUMEuFO
+- page://Qa2vAOnXZ8sLAlE5
+- page://ogFlkVQTkspVgPSu
+
+----
+
+Uuid: vWUZKrZoEr2lI653

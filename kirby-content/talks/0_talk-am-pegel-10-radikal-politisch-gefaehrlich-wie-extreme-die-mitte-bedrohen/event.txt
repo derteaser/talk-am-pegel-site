@@ -1,0 +1,62 @@
+Title: Radikal. Politisch. Gefährlich. – Wie Extreme die Mitte bedrohen.
+
+----
+
+Date: 2025-05-27 19:00:00
+
+----
+
+Is-virtual: false
+
+----
+
+Location-name: Pegelbar
+
+----
+
+Location-geo:
+
+lat: 51.1996335
+lon: 6.6958312
+number: "5"
+city: Neuss
+region: Nordrhein-Westfalen
+country: Deutschland
+countryCode: de
+postcode: "41460"
+address: Am Zollhafen
+osm: 331186561
+
+----
+
+Location-url: 
+
+----
+
+Eventbrite-url: https://www.eventbrite.de/e/radikal-politisch-gefahrlich-wie-extreme-die-mitte-bedrohen-tickets-1358516642849
+
+----
+
+Text: [{"content":{"level":"h2","text":"Keynote"},"id":"d60bbc02-61fc-4a5b-84a5-5fc675cbe863","isHidden":false,"type":"heading"},{"content":{"text":"<p>Ahmad Mansour, israelisch-deutscher Psychologe und Autor arabisch-palästinensischer Herkunft, spricht über die Frage, warum radikale Ideologien attraktiv erscheinen, wie Radikalisierungsprozesse ablaufen und was die Gesellschaft dagegen tun kann.</p>"},"id":"f05a70af-a312-48b5-a7be-c471f4d536ae","isHidden":false,"type":"text"},{"content":{"level":"h2","text":"Kurzstatements"},"id":"6848d852-0a64-4b67-b365-ee45b29eaf2f","isHidden":false,"type":"heading"},{"content":{"text":"<ul><li>Lena Behr, Schülerin des Gymnasiums Norf, engagiert in der Demokratiebildung</li><li>Johann-Andreas Werhahn, Familienunternehmer und Initiator der Unternehmerinitiative „Kompass D“, die jungen Zugewanderten eine Perspektive ermöglicht</li><li>Dr. Guido Hitze, Historiker und Po­li­to­lo­ge</li></ul>"},"id":"da84a5ef-c78e-4a0c-b332-3341e05f2350","isHidden":false,"type":"list"}]
+
+----
+
+Main-image: - file://TgEhZlaD82TxyvmA
+
+----
+
+Textline: Talk am Pegel #10
+
+----
+
+Attendants:
+
+- page://x4kzgg09imKSOLB0
+- page://DGugZohqyjKXPJIw
+- page://AS8YkzvMvXYjh9CE
+- page://C3IR3mL24f110Mez
+- page://ogFlkVQTkspVgPSu
+
+----
+
+Uuid: MPJEgoK6zQdFkrH7

@@ -1,0 +1,5 @@
+Uuid: RUGVIiW2KYiCMY2w
+
+----
+
+Template: blocks/image
