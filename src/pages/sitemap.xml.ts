@@ -19,15 +19,19 @@ export const GET: APIRoute = async ({ site }) => {
     const talkPaths = (await talks()).map((t) => `/talks/${t.id}`);
     const personPaths = (await persons()).map((p) => `/persons/${p.id}`);
 
-    // Kirby used the content file's modification time. There is no per-entry
-    // equivalent at build time, so the build timestamp stands in for all entries.
-    const lastmod = new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00');
-
+    // `lastmod` is deliberately omitted.
+    //
+    // Kirby emitted the content file's mtime, which in a git checkout was the
+    // checkout time — so every entry carried the same, meaningless value. Using the
+    // BUILD timestamp instead would be actively worse: the site is rebuilt on a
+    // schedule to keep event past/upcoming state fresh, which would tell crawlers
+    // all 57 pages changed every single day and make the signal worthless.
+    //
+    // `lastmod` is optional in the sitemap spec, and an unreliable one is worse than
+    // none. If a real per-entry date is wanted later, derive it from each content
+    // file's last git commit (which needs `fetch-depth: 0` in CI).
     const urls = [...staticPaths, ...talkPaths, ...personPaths]
-        .map(
-            (p) =>
-                `    <url>\n        <loc>${base}${p}</loc>\n        <lastmod>${lastmod}</lastmod>\n    </url>`,
-        )
+        .map((p) => `    <url>\n        <loc>${base}${p}</loc>\n    </url>`)
         .join('\n');
 
     const body = `<?xml version="1.0" encoding="utf-8"?>
