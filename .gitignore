@@ -60,3 +60,6 @@ Icon
 # Astro
 /dist/
 /.astro/
+
+# Wrangler local state
+/.wrangler/

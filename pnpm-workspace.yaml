@@ -6,3 +6,6 @@ allowBuilds:
   core-js-pure: false
   # esbuild's postinstall installs its platform binary — required for Astro/Vite.
   esbuild: true
+  # workerd is the Workers runtime wrangler uses for local dev and for validating
+  # asset routing before deploy; its postinstall fetches the platform binary.
+  workerd: true

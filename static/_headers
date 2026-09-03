@@ -1,0 +1,12 @@
+# Response headers for Cloudflare Workers static assets.
+# Lands at dist/_headers via publicDir; parsed by Workers, never served as an asset.
+#
+# Deliberately does NOT restate HSTS or X-Content-Type-Options: those come from the
+# Cloudflare zone (edge TLS settings and the "Add security headers" managed
+# transform) and applying a header twice joins the values with a comma.
+
+# Content-hashed by Astro, so the filename changes whenever the bytes do — safe to
+# cache forever. Everything else keeps the default `max-age=0, must-revalidate`,
+# which is what HTML wants and yields cheap ETag 304s.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,10 +1,15 @@
 /**
- * Pre-cutover verification over dist/. Dev-only; deleted in phase 6.
+ * Verification over dist/. Runs as a gate in the deploy workflow, so unlike
+ * parity.mjs and migrate-kirby.mjs this is PERMANENT tooling — it does not get
+ * deleted with the rest of the migration scaffolding.
  *
  *   node scripts/verify.mjs
  *
+ * It reads scripts/expected-urls.txt (a committed fixture) rather than baseline/,
+ * which is a gitignored local artifact absent in CI.
+ *
  * Checks, in order of how much they'd hurt if wrong:
- *   1. URL inventory matches the Kirby baseline exactly
+ *   1. URL inventory matches the expected public URL list exactly
  *   2. Every internal link and asset reference resolves to a built file
  *   3. HTML sanity: tag balance, no nested anchors, no invalid nesting
  *   4. JSON-LD parses, and the per-page presence map matches Kirby's
@@ -17,7 +22,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const DIST = 'dist';
-const BASE = 'baseline';
 
 let failures = 0;
 let checks = 0;
@@ -54,10 +58,13 @@ const read = (f) => fs.readFileSync(f, 'utf8');
 // ---------------------------------------------------------------- 1. inventory
 console.log('\n1. URL inventory');
 {
+    // Read from the committed fixture, not baseline/ — baseline/ is a gitignored
+    // local artifact, and this script runs as a gate in CI where it does not exist.
     const expected = fs
-        .readFileSync(path.join(BASE, 'urls.txt'), 'utf8')
+        .readFileSync(path.join('scripts', 'expected-urls.txt'), 'utf8')
         .split('\n')
-        .filter((u) => u && !/\.(xml|txt)$/.test(u) && u !== '/error');
+        .map((l) => l.trim())
+        .filter((u) => u && !u.startsWith('#'));
     const got = pages.map(toUrl).filter((u) => u !== '/404');
     const missing = expected.filter((u) => !got.includes(u));
     const extra = got.filter((u) => !expected.includes(u));
