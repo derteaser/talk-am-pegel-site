@@ -134,19 +134,32 @@ checks, so there is no Cloudflare API token stored in the repository.
 
 ### Workers Builds settings
 
-These live in the Cloudflare dashboard (Workers & Pages → `talk-am-pegel` → Settings →
-Builds) and are the **only** part of the pipeline not in version control, so they are
-written down here:
+These live in the Cloudflare dashboard — the **only** part of the pipeline not in
+version control, so they are written down here. Path: **Workers & Pages →
+`talk-am-pegel` → Settings → Builds**, then **Git Repository → Manage** to connect.
 
-| Setting | Value |
+| Field | Value |
 | --- | --- |
+| Git repository | `derteaser/talk-am-pegel-site` |
+| Production branch | `main` |
 | Build command | `pnpm build && pnpm verify` |
 | Deploy command | `npx wrangler deploy` |
-| Build output directory | *(leave empty — `wrangler.jsonc` sets `assets.directory`)* |
-| `PNPM_VERSION` | `11.25.0` |
+| Non-production branch deploy command | `npx wrangler versions upload` *(the default — this is what produces PR preview URLs)* |
+| Root directory | *(leave empty)* |
+| Build variable `PNPM_VERSION` | `11.25.0` |
 
-`PNPM_VERSION` matters: the build image defaults to pnpm 10.x, and this repo pins
-`pnpm@11.25.0` via `packageManager`. Node 24 is already the build image default.
+There is **no "build output directory" field** — that is a Pages concept. Workers takes
+the asset directory from `assets.directory` in `wrangler.jsonc`.
+
+`PNPM_VERSION` must be set as a **build variable** (Settings → Build variables and
+secrets), not as `[vars]` in `wrangler.jsonc` — the latter are runtime bindings and are
+not visible to the build. The build image defaults to pnpm 10.x while this repo pins
+`pnpm@11.25.0` via `packageManager`. Node 24 is already the image default.
+
+**Non-production branch builds must be enabled** for pull requests to get preview URLs;
+that, plus `preview_urls: true` and `workers_dev: true` in `wrangler.jsonc`, is what
+makes previews work. Setting `routes` silently flips those two to `false`, so they are
+declared explicitly.
 
 `pnpm verify` runs `scripts/verify.mjs`, which asserts that all 57 public URLs exist,
 internal links resolve, `canonical`/`og:url` are extensionless, and the JSON-LD is
