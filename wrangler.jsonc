@@ -24,10 +24,23 @@
 
         // Defaults to "none", which would serve a bodyless 404. dist/404.html exists.
         "not_found_handling": "404-page"
-    }
+    },
 
-    // No `routes` / custom domain yet, on purpose: the Worker is verified on its
-    // workers.dev URL first, so the DNS switch is the last and only risky step.
+    // The live domain. Declared here so deploys are idempotent: with the Custom
+    // Domain attached in the dashboard but absent from this config, a later
+    // `wrangler deploy` could detach it.
+    "routes": [{ "pattern": "www.talk-am-pegel.de", "custom_domain": true }],
+
+    // Both default to FALSE once `routes` is set, and wrangler disables them silently
+    // with only a warning — which would have quietly removed the per-PR preview URLs
+    // that were the main reason for choosing Workers Builds over GitHub Actions.
+    //
+    // Preview URLs are served on the workers.dev subdomain, so enabling them requires
+    // workers_dev too. That does leave the site reachable on a second hostname, but
+    // every page emits an absolute `<link rel="canonical">` pointing at
+    // www.talk-am-pegel.de, so a crawled preview consolidates to the real URL.
+    "workers_dev": true,
+    "preview_urls": true
 
     // Deliberately no `build.command` here. Cloudflare Workers Builds runs its own
     // build command (see README.md), and setting one here would make `wrangler
