@@ -50,9 +50,12 @@
 
 @theme {
   --font-*: initial;
+  /* --font-roboto comes from the `fonts` config in astro.config.mjs; it resolves to
+     the self-hosted family plus Astro's size-adjusted fallbacks. Was the bare
+     "Roboto" family name when Fontsource was imported directly as CSS. */
   --font-sans:
-    Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    var(--font-roboto), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-tap-alpha-blue-light: hsla(216, 98%, 16%, 0.69);
   --color-tap-alpha-blue-dark: hsla(213, 96%, 78%, 0.42);

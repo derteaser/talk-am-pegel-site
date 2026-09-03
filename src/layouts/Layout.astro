@@ -14,8 +14,8 @@ import type { ImageMetadata } from 'astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import Seo, { type SeoProps } from '../components/Seo.astro';
+import { Font } from 'astro:assets';
 
-import '@fontsource/roboto/latin.css';
 import '../styles/site.css';
 
 const FATHOM_SITE_ID = 'ZUNMTQNH';
@@ -40,6 +40,13 @@ const { heroTitle, heroSubtitle, heroImage, ...seo } = Astro.props;
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        {/*
+          No `preload`: <Font> preloads every face of the family, and preloading all
+          six weights (144 kB) would compete with the hero image, which is the actual
+          LCP element. The generated size-adjust/ascent-override fallback metrics
+          already prevent the layout shift that preloading would be buying.
+        */}
+        <Font cssVariable="--font-roboto" />
         <Seo {...seo} />
     </head>
 
