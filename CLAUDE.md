@@ -25,6 +25,14 @@ pnpm deploy:cf  # build + verify + wrangler deploy
 
 `deploy:cf` is namespaced because `pnpm deploy` collides with pnpm's built-in command.
 
+## Docs
+
+`.mcp.json` registers the **Astro Docs MCP server** (`https://mcp.docs.astro.build/mcp`), which
+serves a live index of the Astro documentation. Prefer it over recalling Astro APIs from memory —
+this project runs Astro 7, and several things moved recently: Satteri replaced remark/rehype,
+`compressHTML` defaults to `'jsx'`, `z` moved from `astro:content` to `astro/zod`, and the Fonts
+API became stable. Project-scoped MCP servers need approving once per user.
+
 ## Non-negotiable invariant: URL parity
 
 All 57 public URLs are indexed and must keep working **without a redirect**. The whole migration was
