@@ -253,9 +253,14 @@ function assertMdxSafe(text, context) {
     if (/[{}]/.test(text)) problems.push(`${context}: text contains { or }, which MDX evaluates`);
 }
 
-let importSeq = 0;
-
+/**
+ * Image import names are numbered PER ENTRY, not globally. A global counter meant
+ * that adding one image block to a single talk renumbered the variables in every
+ * entry processed after it, so re-importing after a content change churned unrelated
+ * files. Numbering locally keeps the diff limited to what actually changed.
+ */
 function blocksToMdx(rawJson, ownerDir, imports, context) {
+    let importSeq = 0;
     let blocks;
     try {
         blocks = JSON.parse(rawJson);
