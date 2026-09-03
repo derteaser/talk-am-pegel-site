@@ -20,10 +20,13 @@ interface Props {
 const { person, animate = false, animationDelay = 0 } = Astro.props;
 const { title, subHeading, website, linkedin, xing, mainImage } = person.data;
 
+// The margin is per-link, not positional: Kirby hardcoded ml-2 on linkedin and xing
+// whether or not the website link before them was present, so someone with only a
+// LinkedIn profile gets a leading indent. Kept for visual parity.
 const socials = [
-    { href: website, icon: 'ri:global-line', label: `Website von ${title}` },
-    { href: linkedin, icon: 'ri:linkedin-box-fill', label: `${title} bei LinkedIn` },
-    { href: xing, icon: 'ri:xing-fill', label: `${title} bei Xing` },
+    { href: website, icon: 'ri:global-line', label: `Website von ${title}`, indent: false },
+    { href: linkedin, icon: 'ri:linkedin-box-fill', label: `${title} bei LinkedIn`, indent: true },
+    { href: xing, icon: 'ri:xing-fill', label: `${title} bei Xing`, indent: true },
 ].filter((s) => s.href);
 ---
 
@@ -59,10 +62,10 @@ const socials = [
         <div class="w-full absolute bottom-0">
             <span class="inline-flex">
                 {
-                    socials.map((social, i) => (
+                    socials.map((social) => (
                         <a
                             class:list={[
-                                i > 0 && 'ml-2',
+                                social.indent && 'ml-2',
                                 'text-base-content/50 hover:text-base-content/70 tooltip',
                             ]}
                             href={social.href}

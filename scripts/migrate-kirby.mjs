@@ -291,10 +291,14 @@ function blocksToMdx(rawJson, ownerDir, imports, context) {
                 const text = normalizeHtml(c.text ?? '');
                 const cite = (c.citation ?? '').trim();
                 assertMdxSafe(text + cite, context);
+                // Emitted on a single line on purpose: split across lines, MDX reads
+                // the inner text as a paragraph and wraps it in <p>, which both
+                // changes the markup Kirby produced and nests <footer> inside a <p>,
+                // where it is invalid HTML.
                 chunks.push(
                     cite
-                        ? `<blockquote>\n${text}\n<footer>${cite}</footer>\n</blockquote>`
-                        : `<blockquote>\n${text}\n</blockquote>`,
+                        ? `<blockquote>${text}<footer>${cite}</footer></blockquote>`
+                        : `<blockquote>${text}</blockquote>`,
                 );
                 break;
             }

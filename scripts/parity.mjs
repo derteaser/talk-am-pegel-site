@@ -86,13 +86,19 @@ function normalize(html) {
 
     // Kirby printed absolute URLs ($site->url(), asset()->url()); stripping the origin
     // above leaves href="" and src="//img/…" where Astro writes root-relative paths.
-    s = s.replace(/href=""/g, 'href="/"').replace(/(src|href)="\/\//g, '$1="/');
+    s = s.replace(/(?:href|content)=""/g, (m) => m.replace('""', '"/"'));
+    s = s.replace(/(src|href)="\/\//g, '$1="/');
 
     // Empty alt: Astro renders the attribute bare.
     s = s.replace(/\salt=""/g, ' alt');
 
     // Void-element style: the importer wrote <br />, Satteri emits <br/>, Kirby <br>.
-    s = s.replace(/<br\s*\/?>/g, '<br/>');
+    s = s.replace(/<(br|hr|img|source|link|meta)([^>]*?)\s*\/>/g, '<$1$2>');
+
+    // Authored HTML comments (Kirby's templates had "<!-- timeline item -->"), which
+    // are invisible. The markers this script inserts have no inner spaces, so they
+    // are left alone.
+    s = s.replace(/<!--\s[\s\S]*?\s-->/g, '');
 
     // Satteri adds github-slugger ids to Markdown headings; Kirby's block snippet
     // emitted bare <h2>/<h3>. Extra ids are harmless (they enable anchors).
@@ -145,7 +151,21 @@ function extractJsonLd(html) {
         JSON.stringify(out)
             .replace(/http:\/\/schema\.org/g, 'https://schema.org')
             .replace(/https?:\/\/(?:127\.0\.0\.1:8000|localhost:4321|www\.talk-am-pegel\.de)/g, '')
-            .replace(/\/(?:media|_astro)\/[^"']+/g, 'IMG'),
+            .replace(/\/(?:media|_astro)\/[^"']+/g, 'IMG')
+            // Origin-stripping leaves "" where Astro writes "/".
+            .replace(/"url":""/g, '"url":"/"')
+            // Kirby's sameAs was missing a slash: "https://twitter.comtalkampegel".
+            .replace(/https:\/\/twitter\.comtalkampegel/g, 'https://twitter.com/talkampegel')
+            // eventStatus was an object, which is not how schema.org spells the enum.
+            .replace(/"eventStatus":\{"@type":"EventScheduled"\}/g, '"eventStatus":"https://schema.org/EventScheduled"')
+            // startDate: Kirby emitted a FIXED +0100 for every talk, because PHP's
+            // default timezone was never set — wrong for the 6 events that fall in
+            // CEST. The port computes the real Europe/Berlin offset per date, so the
+            // offsets legitimately differ; the local wall time is what must match.
+            .replace(/("startDate":"[^"+]+)[+-]\d{2}:?\d{2}"/g, '$1"')
+            // schema.org's property is `performer`; Kirby emitted `performers`, which
+            // Google silently ignored — so the speaker list was never published.
+            .replace(/"performers":/g, '"performer":'),
     );
 }
 
@@ -177,6 +197,20 @@ const ACCEPTED = [
     // person whose portrait is a PNG emitted og:image:type image/png.
     [/^- <meta property="og:image:type" content="image\/png">/, 'og:image always jpeg'],
     [/^\+ <meta property="og:image:type" content="image\/jpeg">/, 'og:image always jpeg'],
+    [/^- <meta name="twitter:title" content="Home">/, 'twitter:title matches og:title on home'],
+    [/^\+ <meta name="twitter:title" content="Talk am Pegel">/, 'twitter:title matches og:title on home'],
+    // One text block on talk 2 has a bare text run between two <p> elements —
+    // malformed authored HTML that Kirby passed through unwrapped, so it rendered
+    // without paragraph spacing. MDX wraps it in <p>, as intended.
+    // Scoped to that one talk, so the same reshaping elsewhere would still be flagged.
+    [
+        /^[-+] <\/?p>/,
+        'malformed source HTML wrapped in <p>',
+        /^\/talks\/2020-02-06-talk-am-pegel-2$/,
+    ],
+    // Kirby's Str::excerpt() fused the last word of one paragraph into the first of
+    // the next ("gerufen hat.Der Diplom-Ingenieur"); the port inserts the space.
+    [/^[-+] <p class="text-base-content leading-relaxed max-w-xl">/, 'excerpt word-fusing fixed'],
     // Stylesheet/script plumbing.
     [/^[-+] <!--CSS-->/, 'asset plumbing'],
     [/^[-+] <!--JS-->/, 'asset plumbing'],
@@ -195,8 +229,19 @@ const ACCEPTED = [
 function classify(lines, url) {
     const real = [];
     const accepted = new Map();
+
+    // A line present on both sides but at a different position is a reorder, which
+    // the naive resync reports as a +/- pair. Not a content change.
+    const added = new Set(lines.filter((l) => l.trim().startsWith('+ ')).map((l) => l.trim().slice(2)));
+    const removed = new Set(lines.filter((l) => l.trim().startsWith('- ')).map((l) => l.trim().slice(2)));
+    const reordered = new Set([...added].filter((l) => removed.has(l)));
     for (const line of lines) {
         // diffLines indents each line, so match against the trimmed form.
+        const body = line.trim().slice(2);
+        if (reordered.has(body)) {
+            accepted.set('tag order', (accepted.get('tag order') ?? 0) + 1);
+            continue;
+        }
         const hit = ACCEPTED.find(
             ([re, , when]) => re.test(line.trim()) && (!when || when.test(url)),
         );

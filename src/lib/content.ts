@@ -82,7 +82,10 @@ export function initials(title: string): string {
 export function excerpt(html: string, chars = 140): string {
     const text = html
         .replace(/<\/?[^>]+>/g, ' ')
-        .replace(/\s+/g, ' ')
+        // Collapse ASCII whitespace only. \s would also match U+00A0, and the content
+        // contains deliberate non-breaking spaces (e.g. binding "7. April 2025"
+        // together) that Kirby preserved.
+        .replace(/[ \t\n\r\f\v]+/g, ' ')
         .trim();
     if (chars === 0 || text.length <= chars) return text;
     const cut = text.slice(0, chars);
@@ -99,4 +102,23 @@ export function decodeEntities(text: string): string {
         .replace(/&quot;/g, '"')
         .replace(/&#39;/g, "'")
         .replace(/&nbsp;/g, ' ');
+}
+
+/**
+ * Port of Kirby's Str::widont() (kirby/src/Toolkit/Str.php), used on the home page's
+ * event title to stop the last word wrapping alone.
+ *
+ * Two passes, matching the original: first bind a trailing single character to the
+ * word before it, then bind the last two words — converting hyphens in that last
+ * word to non-breaking hyphens so it cannot break either.
+ *
+ * Emits raw entities, so the result must be rendered with set:html.
+ */
+export function widont(text: string): string {
+    let s = text ?? '';
+    s = s.replace(/(\S)\s(\S?)$/u, (_, a, b) => `${a}&nbsp;${b}`);
+    return s.replace(/(\s)(?=\S*$)(\S+)/u, (_, __, word) => {
+        const w = word.includes('-') ? word.replace(/-/g, '&#8209;') : word;
+        return `&nbsp;${w}`;
+    });
 }

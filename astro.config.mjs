@@ -57,12 +57,16 @@ export default defineConfig({
     // Worthwhile on a 57-page site whose whole purpose is browsing between talks and people.
     prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
 
-    // GFM off. The imported bodies carry final HTML from Kirby, and GFM's autolink
-    // literals were rewriting a bare URL that already sat inside an <a href> on
-    // /datenschutz into a SECOND anchor — nested <a>, which is invalid HTML. None of
-    // GFM's other extensions (tables, task lists, strikethrough) appear in this
-    // content, so switching it off costs nothing.
-    markdown: { processor: satteri({ features: { gfm: false } }) },
+    // The imported bodies carry final HTML from Kirby, so Markdown extensions that
+    // rewrite text are a liability rather than a feature:
+    //
+    //  - GFM's autolink literals turned a bare URL that already sat inside an
+    //    <a href> on /datenschutz into a SECOND, nested anchor — invalid HTML. None
+    //    of GFM's other extensions (tables, task lists, strikethrough) appear here.
+    //  - smartPunctuation rewrote the straight quotes in a heading
+    //    ("Talk am Pegel") into typographic ones, silently altering content that had
+    //    been authored in the panel.
+    markdown: { processor: satteri({ features: { gfm: false, smartPunctuation: false } }) },
 
     integrations: [mdx(), icon({ include: { ri: ['*'] } })],
 
