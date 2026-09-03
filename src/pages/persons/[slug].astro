@@ -1,0 +1,63 @@
+---
+/**
+ * Person detail page, ported from site/templates/person.blade.php.
+ *
+ * DELIBERATE DIFFERENCE FROM THE KIRBY SITE: the Blade template called
+ * `snippet('person', …)`, but site/snippets/ contains no `person` snippet — only
+ * blocks/. Kirby's snippet loader renders an empty string rather than erroring, so
+ * all 40 live person pages show just the hero, a bare list of talks and the footer,
+ * with an empty gap where the card belongs. The card markup that does exist is a
+ * Blade *component*, which the contact and event templates use correctly.
+ *
+ * This renders the card, as decided during planning. Expect the person pages to have
+ * MORE content than the parity baseline.
+ *
+ * Kirby emitted neither a description nor JSON-LD for this template.
+ */
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import Person from '../../components/Person.astro';
+import { persons, talksOf } from '../../lib/content';
+import { formatDate } from '../../lib/dates';
+
+export async function getStaticPaths() {
+    const all = await persons();
+    return all.map((person) => ({ params: { slug: person.id }, props: { person } }));
+}
+
+const { person } = Astro.props;
+const talks = await talksOf(person.id);
+const description = `${person.data.title} — ${person.data.subHeading}`;
+---
+
+<Layout
+    title={person.data.title}
+    description={description}
+    mainImage={person.data.mainImage}
+    heroImage={person.data.mainImage}
+>
+    <section
+        class="mx-auto mt-16 px-6 lg:px-24 xl:px-32 flex flex-col md:flex-row md:space-x-12 md:justify-center"
+    >
+        <Person person={person} />
+
+        <ul class="space-y-6 pt-6">
+            {
+                talks.map((talk) => (
+                    <li>
+                        <p class="font-medium text-sm text-base-content/60">
+                            {formatDate(talk.data.date)}
+                        </p>
+                        <a
+                            href={`/talks/${talk.id}`}
+                            class="link link-accent inline-flex items-center"
+                        >
+                            {talk.data.title}
+                            <Icon name="ri:arrow-right-line" class="fill-current w-4 h-4 ml-2" />
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+</Layout>

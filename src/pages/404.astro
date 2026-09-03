@@ -1,0 +1,22 @@
+---
+/**
+ * 404 page, from content/error (Kirby's errorPage).
+ *
+ * Kirby served this at /error too, but with a 404 status — so /error was never a
+ * usable URL despite being listed in the sitemap. Here it exists only as 404.html,
+ * wired up via ErrorDocument in the deployed .htaccess, and is kept out of the
+ * sitemap.
+ */
+import { getEntry, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const page = await getEntry('pages', 'error');
+if (!page) throw new Error('content/pages/error.mdx is missing');
+const { Content } = await render(page);
+---
+
+<Layout title={page.data.title}>
+    <section class="container mx-auto blocks my-16 px-6">
+        <Content />
+    </section>
+</Layout>

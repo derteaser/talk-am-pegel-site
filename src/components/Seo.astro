@@ -35,12 +35,17 @@ export interface SeoProps {
 
 const { title, description, mainImage, jsonLd, isHome = false } = Astro.props as SeoProps;
 
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// `build.format: 'file'` puts ".html" into Astro.url.pathname, which would publish
+// canonical and og:url as "/impressum.html" — URLs that are not what is indexed.
+// Strip it, and collapse "/index" back to "/".
+const cleanPath = Astro.url.pathname.replace(/\.html$/, '').replace(/(^|\/)index$/, '$1') || '/';
+const canonical = new URL(cleanPath, Astro.site).href;
 const pageTitle = isHome ? site.title : `${title} | ${site.title}`;
 
 // Kirby cropped this per request. There is no runtime now, so the crop is a real
 // build-time asset. Forced to JPEG: the source is PNG on one talk, and a
-// multi-megabyte PNG is a poor social card.
+// multi-megabyte PNG is a poor social card. (One person's portrait is a PNG, so
+// Kirby emitted og:image:type image/png there; this normalises every page to jpeg.)
 const og = await getImage({
     src: mainImage ?? tapBanner,
     width: 1200,

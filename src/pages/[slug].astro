@@ -1,0 +1,47 @@
+---
+/**
+ * The two legal pages, ported from site/templates/default.blade.php.
+ *
+ * Kirby's `default` template also backed content/error, which is served here by
+ * src/pages/404.astro instead — visiting /error returned a 404 on the Kirby site
+ * anyway, despite it being listed in the sitemap.
+ */
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { excerpt } from '../lib/content';
+import { webPage } from '../lib/jsonld';
+import { getImage } from 'astro:assets';
+import tapBanner from '../assets/tap_banner.jpg';
+
+export async function getStaticPaths() {
+    const pages = await getCollection('pages');
+    return pages
+        .filter((page) => page.id === 'impressum' || page.id === 'datenschutz')
+        .map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+// Kirby emitted no description on these pages at all — its extraction filtered a
+// block type that does not exist. Deriving one is a fix. The body is MDX, so strip
+// Markdown heading markers first or the description starts with "## ".
+const description = excerpt((page.body ?? '').replace(/^#{1,6}\s+/gm, ''), 155);
+
+const canonical = new URL(`/${page.id}`, Astro.site).href;
+const og = await getImage({
+    src: tapBanner,
+    width: 1200,
+    height: 630,
+    fit: 'cover',
+    format: 'jpeg',
+    quality: 85,
+});
+const jsonLd = webPage(page.data.title, canonical, new URL(og.src, Astro.site).href);
+---
+
+<Layout title={page.data.title} description={description} jsonLd={jsonLd}>
+    <section class="container mx-auto blocks my-16 px-6">
+        <Content />
+    </section>
+</Layout>

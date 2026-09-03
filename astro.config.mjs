@@ -1,5 +1,6 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import { satteri } from '@astrojs/markdown-satteri';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -55,6 +56,13 @@ export default defineConfig({
     // Not on by default: `prefetchAll` only defaults to true alongside <ClientRouter />.
     // Worthwhile on a 57-page site whose whole purpose is browsing between talks and people.
     prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
+
+    // GFM off. The imported bodies carry final HTML from Kirby, and GFM's autolink
+    // literals were rewriting a bare URL that already sat inside an <a href> on
+    // /datenschutz into a SECOND anchor — nested <a>, which is invalid HTML. None of
+    // GFM's other extensions (tables, task lists, strikethrough) appear in this
+    // content, so switching it off costs nothing.
+    markdown: { processor: satteri({ features: { gfm: false } }) },
 
     integrations: [mdx(), icon({ include: { ri: ['*'] } })],
 

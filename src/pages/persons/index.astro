@@ -1,0 +1,41 @@
+---
+/**
+ * Ported from site/templates/persons.blade.php.
+ *
+ * The legacy `text-gray-700` / `dark:text-gray-400` classes are kept verbatim for
+ * visual parity, even though the FlyOnUI theme is light-only so the dark variants
+ * never apply.
+ *
+ * Kirby emitted neither a description nor JSON-LD for this template; a description
+ * is added here since the page is indexed.
+ */
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import { persons } from '../../lib/content';
+import { site } from '../../data/site';
+
+const all = await persons();
+const description = `Die Gäste der Talk-Reihe ${site.title} in Neuss.`;
+---
+
+<Layout title="Personen" description={description}>
+    <section class="overflow-hidden text-gray-700 dark:text-gray-400">
+        <div class="container px-5 py-24 mx-auto">
+            <ul class="grid max-w-(--breakpoint-sm) gap-8 mx-auto sm:grid-cols-2">
+                {
+                    all.map((person) => (
+                        <li>
+                            <h2 class="mb-2 text-2xl font-medium text-gray-900 dark:text-gray-100">
+                                {person.data.title}
+                            </h2>
+                            <a href={`/persons/${person.id}`} class="btn btn-sm btn-soft btn-accent">
+                                Mehr erfahren
+                                <Icon name="ri:arrow-right-line" class="max-sm:hidden size-5" />
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </section>
+</Layout>

@@ -14,6 +14,9 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.10
         version: 0.9.10(prettier-plugin-astro@0.14.1)(prettier@3.9.6)(typescript@6.0.3)
+      '@astrojs/markdown-satteri':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@astrojs/mdx':
         specifier: ^8.0.0
         version: 8.0.0(@astrojs/markdown-satteri@0.4.0)(astro@7.2.10(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(jiti@1.21.7)(yaml@2.9.0))
