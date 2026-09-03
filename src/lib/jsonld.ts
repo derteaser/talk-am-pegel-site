@@ -2,13 +2,13 @@
  * JSON-LD builders, replacing the `wearejust.meta-tags.templates` block in
  * site/config/config.php.
  *
- * Three bugs in the Kirby output are fixed rather than reproduced:
+ * Changes from the Kirby output — two corrections and one modernisation:
  *  - `@context` was `http://schema.org`; now https.
  *  - `eventStatus` was the object `{ '@type': 'EventScheduled' }`, which is not how
  *    schema.org expresses the enum; now the enum URL.
- *  - the Event carried `performers`, but schema.org's property is `performer` —
- *    Google silently ignored the plural, so the speaker list was never actually
- *    published as structured data.
+ *  - the Event carried `performers`. That IS a real schema.org property on Event,
+ *    but it is marked "superseded by performer", so the current spelling is used.
+ *    This is modernisation, not a fix — consumers likely still read the old term.
  */
 
 import { site } from '../data/site';

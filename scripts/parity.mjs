@@ -163,8 +163,8 @@ function extractJsonLd(html) {
             // CEST. The port computes the real Europe/Berlin offset per date, so the
             // offsets legitimately differ; the local wall time is what must match.
             .replace(/("startDate":"[^"+]+)[+-]\d{2}:?\d{2}"/g, '$1"')
-            // schema.org's property is `performer`; Kirby emitted `performers`, which
-            // Google silently ignored — so the speaker list was never published.
+            // `performers` is a real schema.org Event property but is superseded by
+            // `performer`; the port uses the current spelling.
             .replace(/"performers":/g, '"performer":'),
     );
 }
