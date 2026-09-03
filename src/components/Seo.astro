@@ -81,8 +81,4 @@ const ogUrl = new URL(og.src, Astro.site).href;
 
 <link rel="canonical" href={canonical} />
 
-{
-    jsonLd && (
-        <script type="application/ld+json" set:html={JSON.stringify(jsonLd, null, 4)} is:inline />
-    )
-}
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd, null, 4)} is:inline />}

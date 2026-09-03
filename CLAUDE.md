@@ -8,11 +8,9 @@ Talk am Pegel is an event/talk showcase website: a **static Astro 7** build with
 (FlyOnUI theme "TAP"), **Alpine.js 3**, hosted on **Cloudflare Workers** static assets. German
 language only, ~57 pages, updated two or three times a year.
 
-It was migrated from **Kirby CMS 3** (EOL). The migration is complete and live; the Kirby stack is
-still in the tree so the two can be diffed, and is removed as a follow-up. Anything under `site/`,
-`app/`, `kirby/`, `vendor/`, `resources/`, `kirby-content/`, `composer.json`, `.htaccess`,
-`index.php`, `server.php`, `php.ini`, `vite.config.js` or `copy-icons.cjs` is **legacy** — do not
-extend it.
+Migrated from **Kirby CMS 3** (EOL) in September 2026; the PHP stack has been removed. Git history
+before that describes the old setup, so treat pre-migration commits as archaeology rather than
+guidance.
 
 ## Commands
 
@@ -54,7 +52,7 @@ src/components/         Thumbnail, Seo, Person, PersonAvatarGroup, LatestEvent, 
 src/lib/                content.ts (collections, prev/next, excerpt), dates.ts, jsonld.ts, talkBody.ts
 src/styles/site.css     Tailwind 4 CSS-first config + the FlyOnUI "tap" theme
 src/scripts/site.ts     Alpine + @alpinejs/intersect + FlyOnUI + BigPicture
-static/                 becomes public/ once Kirby is deleted; holds _headers, favicons, robots.txt
+public/                 static passthrough: _headers, robots.txt, favicons, img/logo.svg
 ```
 
 Images go through `Thumbnail.astro`, which wraps Astro's `<Picture>` with four presets
@@ -72,10 +70,11 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   The pin is deliberate.
 - **`astro preview` daemonises and binds IPv6 only.** Use `http://localhost:4321`, not `127.0.0.1`;
   stop it with `astro preview stop`.
-- **`.astro` files are excluded from Prettier.** `prettier-plugin-astro` corrupts
-  `x-intersect.once` inside JSX expression blocks, and `prettier-plugin-tailwindcss` re-sorts
-  utility classes, which changes emitted class order and breaks byte comparison against the Kirby
-  baseline. See `.prettierignore`. Revisit once the baseline is retired.
+- **Two paths are excluded from Prettier**, both deliberately (`.prettierignore`):
+  `Header.astro` and `pages/talks/index.astro`, because `prettier-plugin-astro` corrupts
+  `x-intersect.once` inside JSX expression blocks; and `src/content/`, because the generated MDX
+  emits blockquotes on ONE line on purpose — splitting them makes MDX wrap the inner text in a
+  `<p>`, putting `<footer>` inside a `<p>`, which `verify.mjs` catches as 90 invalid nestings.
 - **GFM and smart punctuation are off** (`markdown.processor` in `astro.config.mjs`). Astro 7 uses
   Satteri, not remark. GFM autolinks rewrote a URL already inside an `<a>` into nested anchors, and
   smart punctuation rewrote straight quotes in panel-authored headings.
@@ -86,8 +85,11 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
 - **`past()` is a build-time decision** (`isPast` in `src/lib/content.ts`), where Kirby evaluated it
   per request. Every talk is currently past, so the Eventbrite branch in `talks/[slug].astro` is
   unreachable — exercise it by temporarily dating a talk into the future before changing that file.
-- **Do not set HSTS in `static/_headers`.** The Cloudflare zone owns it and overrides anything set
-  there.
+- **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
+  there. `nosniff` IS set there; its source is ambiguous, so leave it.
+- **Tailwind also auto-detects sources beyond `@source`.** Deleting the Blade templates shrank the
+  CSS by 57 kB (156 kB → 98 kB), because auto-detection had been generating FlyOnUI classes that
+  only appeared in them.
 
 ## Content
 
@@ -95,22 +97,16 @@ Adding a talk means adding `src/content/talks/<slug>/index.mdx` plus its images,
 (Cloudflare gives it a preview URL). Image imports in generated MDX are numbered **per entry** so a
 change to one talk does not churn others.
 
-**This repository is now the source of record.** The Kirby panel is not served
-(`/panel` returns 404), so no new content can arrive through it.
-
-The importer remains only as an escape hatch, in case edits were made on the old PHP host before
-cutover and never synced: `git subtree pull --prefix=kirby-content ./content master`, then
-`node scripts/migrate-kirby.mjs` (idempotent). If used, **re-capture the parity baseline
-afterwards** — Kirby's output changes too, and comparing against a stale baseline looks clean while
-proving nothing. Both go away with the PHP stack.
+**This repository is the source of record.** There is no CMS.
 
 ## Verification
 
-- `scripts/verify.mjs` — **permanent**; runs in CI and as part of the Cloudflare build command.
-- `scripts/parity.mjs` — diffs `dist/` against a captured Kirby baseline, classifying differences
-  against an allowlist of intended fixes. One-shot; goes with the PHP stack.
-- `scripts/migrate-kirby.mjs` — one-shot importer; goes with the PHP stack.
-- `baseline/` is gitignored and regenerated locally.
+`scripts/verify.mjs` is the only verification tooling and it is load-bearing: it runs in CI
+(`.github/workflows/ci.yml`) and as part of the Cloudflare build command, so a failure blocks the
+deploy. `pnpm verify` runs it against `dist/`.
+
+The migration-era importer and parity harness (`migrate-kirby.mjs`, `parity.mjs`) were deleted with
+the PHP stack; recover them from git history if ever needed.
 
 ## Deployment
 

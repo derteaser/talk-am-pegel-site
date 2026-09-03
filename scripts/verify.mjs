@@ -50,7 +50,12 @@ function htmlFiles() {
 const toUrl = (f) =>
     f === path.join(DIST, 'index.html')
         ? '/'
-        : '/' + path.relative(DIST, f).replace(/\.html$/, '').split(path.sep).join('/');
+        : '/' +
+          path
+              .relative(DIST, f)
+              .replace(/\.html$/, '')
+              .split(path.sep)
+              .join('/');
 
 const pages = htmlFiles();
 const read = (f) => fs.readFileSync(f, 'utf8');
@@ -84,20 +89,14 @@ console.log('\n2. Internal links and assets resolve');
     const resolves = (target) => {
         if (target === '/') return fs.existsSync(path.join(DIST, 'index.html'));
         const p = path.join(DIST, target);
-        return (
-            fs.existsSync(p) ||
-            fs.existsSync(`${p}.html`) ||
-            fs.existsSync(path.join(p, 'index.html'))
-        );
+        return fs.existsSync(p) || fs.existsSync(`${p}.html`) || fs.existsSync(path.join(p, 'index.html'));
     };
     for (const f of pages) {
         const html = read(f);
         const refs = [
             ...[...html.matchAll(/\shref="([^"]+)"/g)].map((m) => m[1]),
             ...[...html.matchAll(/\ssrc="([^"]+)"/g)].map((m) => m[1]),
-            ...[...html.matchAll(/srcset="([^"]+)"/g)].flatMap((m) =>
-                m[1].split(',').map((s) => s.trim().split(/\s+/)[0]),
-            ),
+            ...[...html.matchAll(/srcset="([^"]+)"/g)].flatMap((m) => m[1].split(',').map((s) => s.trim().split(/\s+/)[0])),
         ];
         for (const raw of refs) {
             if (!raw.startsWith('/') || raw.startsWith('//')) continue; // external, mailto, tel, #, data:
@@ -117,7 +116,7 @@ console.log('\n2. Internal links and assets resolve');
 // -------------------------------------------------------------- 3. HTML sanity
 console.log('\n3. HTML sanity');
 {
-    const VOID = new Set(['area','base','br','col','embed','hr','img','input','link','meta','source','track','wbr']);
+    const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
     let unbalanced = 0;
     let nestedAnchors = 0;
     let badNesting = 0;
@@ -141,8 +140,7 @@ console.log('\n3. HTML sanity');
             } else {
                 if (name === 'a' && stack.includes('a')) nestedAnchors++;
                 // footer/div/p are not phrasing content and must not sit inside <p>
-                if (['footer', 'div', 'p', 'ul', 'ol', 'blockquote'].includes(name) && stack.includes('p'))
-                    badNesting++;
+                if (['footer', 'div', 'p', 'ul', 'ol', 'blockquote'].includes(name) && stack.includes('p')) badNesting++;
                 stack.push(name);
             }
         }
@@ -175,13 +173,10 @@ console.log('\n4. JSON-LD');
 
     const count = (t) => [...seen.values()].filter((v) => v.includes(t)).length;
     const expect = { Event: 11, WebSite: 1, ContactPage: 1, WebPage: 2 };
-    for (const [t, n] of Object.entries(expect))
-        count(t) === n ? pass(`${n}× ${t}`) : fail(`expected ${n}× ${t}, found ${count(t)}`);
+    for (const [t, n] of Object.entries(expect)) count(t) === n ? pass(`${n}× ${t}`) : fail(`expected ${n}× ${t}, found ${count(t)}`);
 
     // Kirby emitted none on these; confirm we match.
-    const shouldHaveNone = [...seen].filter(
-        ([u]) => u === '/talks' || u === '/persons' || u.startsWith('/persons/') || u === '/404',
-    );
+    const shouldHaveNone = [...seen].filter(([u]) => u === '/talks' || u === '/persons' || u.startsWith('/persons/') || u === '/404');
     const wrong = shouldHaveNone.filter(([, t]) => t.length > 0).map(([u]) => u);
     wrong.length === 0
         ? pass(`no JSON-LD on the ${shouldHaveNone.length} pages Kirby left bare`)
@@ -189,10 +184,22 @@ console.log('\n4. JSON-LD');
 
     // Event schema completeness
     const talkFile = pages.find((f) => toUrl(f).startsWith('/talks/'));
-    const ev = JSON.parse(
-        /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(read(talkFile))[1],
-    );
-    for (const k of ['name','description','eventStatus','eventAttendanceMode','location','url','image','startDate','organizer','offers','performer','isAccessibleForFree','inLanguage'])
+    const ev = JSON.parse(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(read(talkFile))[1]);
+    for (const k of [
+        'name',
+        'description',
+        'eventStatus',
+        'eventAttendanceMode',
+        'location',
+        'url',
+        'image',
+        'startDate',
+        'organizer',
+        'offers',
+        'performer',
+        'isAccessibleForFree',
+        'inLanguage',
+    ])
         k in ev ? pass(`Event.${k}`) : fail(`Event.${k} missing`);
 }
 
@@ -206,8 +213,14 @@ console.log('\n5. Canonical and og:url');
         const canonical = /<link rel="canonical" href="([^"]+)"/.exec(html)?.[1];
         const ogUrl = /<meta property="og:url" content="([^"]+)"/.exec(html)?.[1];
         const want = `https://www.talk-am-pegel.de${toUrl(f) === '/' ? '/' : toUrl(f)}`;
-        if (canonical !== want) { fail(`${toUrl(f)}: canonical is ${canonical}, expected ${want}`); bad++; }
-        if (ogUrl !== want) { fail(`${toUrl(f)}: og:url is ${ogUrl}, expected ${want}`); bad++; }
+        if (canonical !== want) {
+            fail(`${toUrl(f)}: canonical is ${canonical}, expected ${want}`);
+            bad++;
+        }
+        if (ogUrl !== want) {
+            fail(`${toUrl(f)}: og:url is ${ogUrl}, expected ${want}`);
+            bad++;
+        }
     }
     if (!bad) pass('canonical and og:url absolute, extensionless and self-consistent on every page');
 }

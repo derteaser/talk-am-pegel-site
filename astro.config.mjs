@@ -16,10 +16,6 @@ export default defineConfig({
     trailingSlash: 'never',
     build: { format: 'file' },
 
-    // Kirby still owns public/ as its docroot while both stacks coexist. Without
-    // this override, `astro build` would copy index.php, media/ and build/ into
-    // dist/. Renamed to public/ in phase 6, when Kirby is deleted.
-    publicDir: './static',
     outDir: './dist',
 
     // Replaces the plain `@fontsource/roboto/latin.css` import. Astro self-hosts the

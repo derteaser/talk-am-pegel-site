@@ -22,37 +22,30 @@ const description = decodeEntities(excerpt(firstTextBlockHtml(talk.body ?? ''), 
 const href = `/talks/${talk.id}`;
 ---
 
-<section class="flex flex-col space-y-16 my-24">
-    <article
-        class="container mx-auto px-5 grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-6"
-    >
+<section class="my-24 flex flex-col space-y-16">
+    <article class="container mx-auto grid grid-cols-1 gap-6 px-5 lg:grid-cols-3 xl:grid-cols-5">
         <div
-            class="lg:row-span-2 xl:col-span-2 lg:order-last aos aos-fade-up"
+            class="aos aos-fade-up lg:order-last lg:row-span-2 xl:col-span-2"
             x-data="{ visible: false }"
             x-intersect="visible = true"
             :class="visible && 'visible'"
             x-cloak
         >
-            <Thumbnail
-                image={talk.data.mainImage}
-                preset="wide"
-                class="object-cover object-center rounded-sm w-full"
-                alt=""
-            />
+            <Thumbnail image={talk.data.mainImage} preset="wide" class="w-full rounded-sm object-cover object-center" alt="" />
         </div>
         <div
-            class="lg:col-span-2 xl:col-span-3 flex flex-col items-start space-y-8 aos"
+            class="aos flex flex-col items-start space-y-8 lg:col-span-2 xl:col-span-3"
             x-data="{ visible: false }"
             x-intersect="setTimeout(function() { visible = true }, 200)"
             :class="visible && 'visible'"
         >
-            <h1 class="sm:text-4xl text-3xl font-semibold text-base-content">
+            <h1 class="text-base-content text-3xl font-semibold sm:text-4xl">
                 <a href={href} class="link link-hover decoration-accent" set:html={widont(talk.data.title)} />
             </h1>
             <p class="text-base-content/60 text-sm">
                 {talk.data.textline} am {formatDate(talk.data.date)}
             </p>
-            <p class="text-base-content leading-relaxed max-w-xl">{description}</p>
+            <p class="text-base-content max-w-xl leading-relaxed">{description}</p>
             <a href={href} class="btn btn-accent">Mehr erfahren</a>
         </div>
     </article>

@@ -6,13 +6,9 @@ Event showcase website for **Talk am Pegel** — built with [Astro](https://astr
 [Tailwind CSS](https://tailwindcss.com) and [Alpine.js](https://alpinejs.dev), hosted on
 [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/).
 
-> **Migrated from Kirby CMS 3.** The Astro site is live on `www.talk-am-pegel.de`.
-> Content is now authored in this repository as MDX — there is no CMS panel.
->
-> The Kirby stack is still in the tree so the two can be diffed, and is removed as a
-> follow-up; the "Reference Kirby site" section covers running it. Every other section
-> describes Astro. Do not extend anything under `site/`, `app/`, `kirby/`, `resources/`
-> or `composer.json`.
+> Migrated from Kirby CMS 3 in September 2026. Content is authored in this repository
+> as MDX — there is no CMS panel. Git history before the migration describes the old
+> PHP stack.
 
 ## Tech Stack
 
@@ -29,11 +25,8 @@ Event showcase website for **Talk am Pegel** — built with [Astro](https://astr
 
 ## Prerequisites
 
-- Node.js 24
+- Node.js 24 (see `.nvmrc`)
 - [pnpm](https://pnpm.io) 11 (pinned via `packageManager`)
-
-For the reference Kirby site only: PHP 8.3. Note `composer.json` pins
-`~8.2 || ~8.3`, so a newer local PHP will refuse to install — see below.
 
 ## Setup
 
@@ -41,7 +34,7 @@ For the reference Kirby site only: PHP 8.3. Note `composer.json` pins
 pnpm install
 ```
 
-No environment file is needed. `.env` exists only for the reference Kirby site.
+No environment file is needed.
 
 ## Development
 
@@ -100,39 +93,24 @@ one is a deliberate decision, not a cleanup.
 pnpm prettier --write .
 ```
 
-Prettier, with plugins for Astro, PHP/Blade and Tailwind class sorting. See
-`.prettierrc.json`.
+Prettier, with plugins for Astro and Tailwind class sorting. See `.prettierrc.json`.
 
-**`.astro` files are excluded for now** — see `.prettierignore` for why. In short:
-`prettier-plugin-astro` corrupts Alpine's `x-intersect.once` inside JSX expression
-blocks, and `prettier-plugin-tailwindcss` re-sorts utility classes, which changes the
-emitted class order and breaks byte comparison against the Kirby baseline. Neither
-affects rendering; both are worth fixing only once that baseline is retired.
+Two paths are excluded, both for real reasons — see `.prettierignore`:
 
-## Reference Kirby site
-
-Kept runnable until the PHP stack is deleted, so the port can be diffed against it.
-`composer.json` pins `php ~8.2 || ~8.3`, so `composer install` fails on a newer PHP —
-but `vendor/`, `kirby/` and `site/plugins/` are already installed, so Composer is not
-needed:
-
-```bash
-"$HOME/Library/Application Support/Herd/bin/php83" -S 127.0.0.1:8000 -t public kirby/router.php
-```
-
-Set `APP_DEBUG=false` in `.env` before capturing a comparison baseline, or the robots-txt
-plugin serves `disallow: /`. Restore it afterwards.
-
-`scripts/parity.mjs` diffs the built output against a captured baseline, classifying
-differences against an allowlist of intended fixes. Both it and `scripts/migrate-kirby.mjs`
-are one-shot migration tooling and go away with the PHP stack; `scripts/verify.mjs` stays,
-because it runs as a deploy gate.
+- `src/components/layout/Header.astro` and `src/pages/talks/index.astro`, because
+  `prettier-plugin-astro` corrupts Alpine's `x-intersect.once` when the element sits
+  inside a JSX expression block, rewriting it to `x-intersectωP_once` and then failing
+  to parse its own output. Re-test on plugin upgrades.
+- `src/content/`, because the generated MDX has semantically significant line
+  structure: blockquotes are emitted on one line so MDX does not wrap the inner text in
+  a `<p>`, which would put `<footer>` inside a `<p>`. Prettier reformats them and
+  reintroduces exactly that invalid nesting.
 
 ## Deployment
 
 Hosted on **Cloudflare Workers** as static assets. Pushing to `main` triggers a
 **Cloudflare Workers Build**, which builds and deploys; every pull request gets its own
-preview URL. GitHub Actions does *not* deploy — `.github/workflows/ci.yml` only runs
+preview URL. GitHub Actions does _not_ deploy — `.github/workflows/ci.yml` only runs
 checks, so there is no Cloudflare API token stored in the repository.
 
 ### Workers Builds settings
@@ -141,15 +119,15 @@ These live in the Cloudflare dashboard — the **only** part of the pipeline not
 version control, so they are written down here. Path: **Workers & Pages →
 `talk-am-pegel` → Settings → Builds**, then **Git Repository → Manage** to connect.
 
-| Field | Value |
-| --- | --- |
-| Git repository | `derteaser/talk-am-pegel-site` |
-| Production branch | `main` |
-| Build command | `pnpm build && pnpm verify` |
-| Deploy command | `npx wrangler deploy` |
-| Non-production branch deploy command | `npx wrangler versions upload` *(the default — this is what produces PR preview URLs)* |
-| Root directory | *(leave empty)* |
-| Build variables | *(none — see below)* |
+| Field                                | Value                                                                                  |
+| ------------------------------------ | -------------------------------------------------------------------------------------- |
+| Git repository                       | `derteaser/talk-am-pegel-site`                                                         |
+| Production branch                    | `main`                                                                                 |
+| Build command                        | `pnpm build && pnpm verify`                                                            |
+| Deploy command                       | `npx wrangler deploy`                                                                  |
+| Non-production branch deploy command | `npx wrangler versions upload` _(the default — this is what produces PR preview URLs)_ |
+| Root directory                       | _(leave empty)_                                                                        |
+| Build variables                      | _(none — see below)_                                                                   |
 
 There is **no "build output directory" field** — that is a Pages concept. Workers takes
 the asset directory from `assets.directory` in `wrangler.jsonc`.
@@ -199,7 +177,7 @@ Needs `npx wrangler login` once.
 
 ### What Cloudflare provides at the zone level
 
-Not in this repo, and not to be duplicated in `static/_headers`: HSTS, the
+Not in this repo, and not to be duplicated in `public/_headers`: HSTS, the
 `X-Content-Type-Options` security-headers managed transform, the apex → `www` redirect,
 and the AI-bot block that Cloudflare prepends to `robots.txt`. Setting a response header
 in both places joins the values with a comma.

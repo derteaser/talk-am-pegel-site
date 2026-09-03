@@ -37,9 +37,7 @@ const cols =
 
 // Lightbox targets: one bounded full-size variant per image.
 const lightboxes = await Promise.all(
-    images.map((image) =>
-        getImage({ src: image, width: Math.min(image.width, 1800), format: 'webp', quality: 85 }),
-    ),
+    images.map((image) => getImage({ src: image, width: Math.min(image.width, 1800), format: 'webp', quality: 85 })),
 );
 ---
 
@@ -52,7 +50,7 @@ const lightboxes = await Promise.all(
                         image={image}
                         preset="landscape"
                         alt=""
-                        class="w-full h-full object-center object-cover m-0"
+                        class="m-0 h-full w-full object-cover object-center"
                         data-bp={lightboxes[i].src}
                     />
                 </a>

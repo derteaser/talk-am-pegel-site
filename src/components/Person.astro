@@ -31,12 +31,12 @@ const socials = [
 ---
 
 <article
-    class:list={['p-4 w-full lg:w-1/5 md:w-1/3 sm:w-1/2 relative', animate && 'aos aos-fade-up']}
+    class:list={['relative w-full p-4 sm:w-1/2 md:w-1/3 lg:w-1/5', animate && 'aos aos-fade-up']}
     x-data={animate ? '{ visible: false }' : undefined}
     x-intersect.once={animate ? `setTimeout(function() { visible = true }, ${animationDelay})` : undefined}
     :class={animate ? "visible && 'visible'" : undefined}
 >
-    <div class="h-full flex flex-col items-center text-center pb-2">
+    <div class="flex h-full flex-col items-center pb-2 text-center">
         {
             mainImage ? (
                 <figure class="avatar w-full">
@@ -55,26 +55,20 @@ const socials = [
             )
         }
 
-        <div class="w-full mt-4">
-            <h2 class="font-medium text-lg text-base-content/90">{title}</h2>
-            <p class="mb-4 text-base-content/60">{subHeading}</p>
+        <div class="mt-4 w-full">
+            <h2 class="text-base-content/90 text-lg font-medium">{title}</h2>
+            <p class="text-base-content/60 mb-4">{subHeading}</p>
         </div>
-        <div class="w-full absolute bottom-0">
+        <div class="absolute bottom-0 w-full">
             <span class="inline-flex">
                 {
                     socials.map((social) => (
                         <a
-                            class:list={[
-                                social.indent && 'ml-2',
-                                'text-base-content/50 hover:text-base-content/70 tooltip',
-                            ]}
+                            class:list={[social.indent && 'ml-2', 'text-base-content/50 hover:text-base-content/70 tooltip']}
                             href={social.href}
                         >
-                            <Icon name={social.icon} class="size-5 tooltip-toggle" />
-                            <span
-                                class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible"
-                                role="tooltip"
-                            >
+                            <Icon name={social.icon} class="tooltip-toggle size-5" />
+                            <span class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
                                 <span class="tooltip-body">{social.label}</span>
                             </span>
                         </a>

@@ -23,7 +23,7 @@
         "html_handling": "drop-trailing-slash",
 
         // Defaults to "none", which would serve a bodyless 404. dist/404.html exists.
-        "not_found_handling": "404-page"
+        "not_found_handling": "404-page",
     },
 
     // The live domain. Declared here so deploys are idempotent: with the Custom
@@ -40,7 +40,7 @@
     // every page emits an absolute `<link rel="canonical">` pointing at
     // www.talk-am-pegel.de, so a crawled preview consolidates to the real URL.
     "workers_dev": true,
-    "preview_urls": true
+    "preview_urls": true,
 
     // Deliberately no `build.command` here. Cloudflare Workers Builds runs its own
     // build command (see README.md), and setting one here would make `wrangler

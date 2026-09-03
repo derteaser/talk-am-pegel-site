@@ -50,17 +50,14 @@ const avatars = await Promise.all(
                     </div>
                 ) : (
                     <div class="tooltip-toggle avatar avatar-placeholder">
-                        <div class="w-13 bg-neutral text-neutral-content">
+                        <div class="bg-neutral text-neutral-content w-13">
                             <span class="uppercase" aria-hidden="true">
                                 {initials(person.data.title)}
                             </span>
                         </div>
                     </div>
                 )}
-                <span
-                    class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible"
-                    role="tooltip"
-                >
+                <span class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
                     <span class="tooltip-body">{person.data.title}</span>
                 </span>
             </li>

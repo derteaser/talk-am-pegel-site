@@ -89,9 +89,7 @@ if (image.width < LARGEST_RUNG && widths.at(-1) !== image.width) {
 // Largest rung defines the intrinsic box; heights come from the preset's ratio so
 // the browser gets a correct aspect-ratio hint.
 const width = widths.at(-1)!;
-const height = aspect
-    ? Math.round(width / aspect)
-    : Math.round((width * image.height) / image.width);
+const height = aspect ? Math.round(width / aspect) : Math.round((width * image.height) / image.width);
 ---
 
 <Picture

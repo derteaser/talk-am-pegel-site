@@ -41,7 +41,7 @@ const jsonLd = webPage(page.data.title, canonical, new URL(og.src, Astro.site).h
 ---
 
 <Layout title={page.data.title} description={description} jsonLd={jsonLd}>
-    <section class="container mx-auto blocks my-16 px-6">
+    <section class="blocks container mx-auto my-16 px-6">
         <Content />
     </section>
 </Layout>

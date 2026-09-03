@@ -1,6 +1,0 @@
-label: Hauptbild
-type: files
-query: page.images
-multiple: false
-layout: cards
-empty: Kein Bild ausgewählt

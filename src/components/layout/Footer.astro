@@ -12,8 +12,8 @@ import { site, footerNavigation } from '../../data/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer footer-center bg-base-300/60 p-12 mt-12">
-    <nav class="grid grid-flow-col gap-4 text-base-content">
+<footer class="footer footer-center bg-base-300/60 mt-12 p-12">
+    <nav class="text-base-content grid grid-flow-col gap-4">
         {
             footerNavigation.map((item) => (
                 <a href={item.href} class="link link-hover">
@@ -30,11 +30,8 @@ const year = new Date().getFullYear();
                 aria-label="Facebook (Link öffnet in neuem Fenster)"
                 rel="noopener noreferrer"
             >
-                <Icon name="ri:facebook-circle-fill" class="size-6 tooltip-toggle" />
-                <span
-                    class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible"
-                    role="tooltip"
-                >
+                <Icon name="ri:facebook-circle-fill" class="tooltip-toggle size-6" />
+                <span class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible" role="tooltip">
                     <span class="tooltip-body">{site.title} bei Facebook</span>
                 </span>
             </a>

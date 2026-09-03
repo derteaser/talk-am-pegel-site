@@ -1,9 +1,0 @@
-Title: Fehler
-
-----
-
-Text: [{"content":{"text":"<p>Leider ist ein Fehler aufgetreten.<\/p>"},"id":"2d3a1156-e0d1-4bbf-a690-247dfaf2f1e8","isHidden":false,"type":"text"}]
-
-----
-
-Uuid: UBTOMZJn2gsBZf1J

@@ -49,13 +49,7 @@ export interface PerformerInput {
     image: string | null;
 }
 
-export function eventSchema(opts: {
-    talk: Talk;
-    description: string;
-    pageUrl: string;
-    imageUrl: string;
-    performers: PerformerInput[];
-}) {
+export function eventSchema(opts: { talk: Talk; description: string; pageUrl: string; imageUrl: string; performers: PerformerInput[] }) {
     const { talk, description, pageUrl, imageUrl, performers } = opts;
     const d = talk.data;
     const geo = d.location;
@@ -66,9 +60,7 @@ export function eventSchema(opts: {
         name: d.title,
         description,
         eventStatus: `${CONTEXT}/EventScheduled`,
-        eventAttendanceMode: d.isVirtual
-            ? `${CONTEXT}/OnlineEventAttendanceMode`
-            : `${CONTEXT}/OfflineEventAttendanceMode`,
+        eventAttendanceMode: d.isVirtual ? `${CONTEXT}/OnlineEventAttendanceMode` : `${CONTEXT}/OfflineEventAttendanceMode`,
         location: d.isVirtual
             ? { '@type': 'VirtualLocation', name: d.locationName, url: d.locationUrl }
             : {

@@ -26,13 +26,6 @@ const og = await getImage({ src: tapBanner, width: 1200, height: 630, fit: 'cove
 const jsonLd = webSite(site.title, canonical, new URL(og.src, Astro.site).href);
 ---
 
-<Layout
-    title={herotitle}
-    description={herotitle}
-    jsonLd={jsonLd}
-    isHome
-    heroTitle={herotitle}
-    heroSubtitle={home.data.textline ?? null}
->
+<Layout title={herotitle} description={herotitle} jsonLd={jsonLd} isHome heroTitle={herotitle} heroSubtitle={home.data.textline ?? null}>
     <LatestEvent talk={latest} />
 </Layout>

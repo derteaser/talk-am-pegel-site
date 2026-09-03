@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
 @plugin "flyonui" {
   themes: tap --default;
 }
@@ -11,7 +11,7 @@
    during the Kirby coexistence phase: the reference site is styled by the committed
    public/build assets, and scanning Blade too would silently supply classes the port
    has not actually written yet. */
-@source '../**/*.{astro,ts,js,mdx,md}';
+@source "../**/*.{astro,ts,js,mdx,md}";
 
 @plugin "flyonui/theme" {
   name: "tap";

@@ -40,12 +40,14 @@ const { heroTitle, heroSubtitle, heroImage, ...seo } = Astro.props;
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        {/*
+        {
+            /*
           No `preload`: <Font> preloads every face of the family, and preloading all
           six weights (144 kB) would compete with the hero image, which is the actual
           LCP element. The generated size-adjust/ascent-override fallback metrics
           already prevent the layout shift that preloading would be buying.
-        */}
+        */
+        }
         <Font cssVariable="--font-roboto" />
         <Seo {...seo} />
     </head>
@@ -57,10 +59,6 @@ const { heroTitle, heroSubtitle, heroImage, ...seo } = Astro.props;
         <script>
             import '../scripts/site.ts';
         </script>
-        <script
-            src="https://cdn.usefathom.com/script.js"
-            data-site={FATHOM_SITE_ID}
-            defer
-            is:inline></script>
+        <script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} defer is:inline></script>
     </body>
 </html>

@@ -36,8 +36,7 @@ for (const ref of page.data.contactPersons) {
  * set:html: interpolating them into an href would escape the ampersands to
  * &amp;#105; and leave a broken mailto link.
  */
-const encodeEmail = (address: string) =>
-    [...address].map((c) => `&#${c.codePointAt(0)};`).join('');
+const encodeEmail = (address: string) => [...address].map((c) => `&#${c.codePointAt(0)};`).join('');
 const emailAnchor = `<a class="link link-primary" href="mailto:${encodeEmail(site.email)}">${encodeEmail(site.email)}</a>`;
 
 const canonical = new URL('/kontakt', Astro.site).href;
@@ -46,15 +45,15 @@ const jsonLd = contactPage(page.data.title, canonical, new URL(og.src, Astro.sit
 ---
 
 <Layout title={page.data.title} jsonLd={jsonLd}>
-    <section class="container mx-auto mt-16 px-6 lg:px-24 xl:px-32 text-center">
-        <h2 class="text-xl mb-4 leading-relaxed">{site.title}</h2>
+    <section class="container mx-auto mt-16 px-6 text-center lg:px-24 xl:px-32">
+        <h2 class="mb-4 text-xl leading-relaxed">{site.title}</h2>
         <p>{site.address1}</p>
         <p>{site.address2}</p>
         <p>{site.postalCode} {site.city}</p>
         <p class="mt-3"><a class="link link-primary" href={telHref}>{site.phone}</a></p>
         <p><Fragment set:html={emailAnchor} /></p>
 
-        <div class="flex justify-center mt-6">
+        <div class="mt-6 flex justify-center">
             {contacts.map((person) => <Person person={person} />)}
         </div>
     </section>

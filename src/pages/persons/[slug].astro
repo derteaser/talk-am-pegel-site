@@ -30,30 +30,18 @@ const talks = await talksOf(person.id);
 const description = `${person.data.title} — ${person.data.subHeading}`;
 ---
 
-<Layout
-    title={person.data.title}
-    description={description}
-    mainImage={person.data.mainImage}
-    heroImage={person.data.mainImage}
->
-    <section
-        class="mx-auto mt-16 px-6 lg:px-24 xl:px-32 flex flex-col md:flex-row md:space-x-12 md:justify-center"
-    >
+<Layout title={person.data.title} description={description} mainImage={person.data.mainImage} heroImage={person.data.mainImage}>
+    <section class="mx-auto mt-16 flex flex-col px-6 md:flex-row md:justify-center md:space-x-12 lg:px-24 xl:px-32">
         <Person person={person} />
 
         <ul class="space-y-6 pt-6">
             {
                 talks.map((talk) => (
                     <li>
-                        <p class="font-medium text-sm text-base-content/60">
-                            {formatDate(talk.data.date)}
-                        </p>
-                        <a
-                            href={`/talks/${talk.id}`}
-                            class="link link-accent inline-flex items-center"
-                        >
+                        <p class="text-base-content/60 text-sm font-medium">{formatDate(talk.data.date)}</p>
+                        <a href={`/talks/${talk.id}`} class="link link-accent inline-flex items-center">
                             {talk.data.title}
-                            <Icon name="ri:arrow-right-line" class="fill-current w-4 h-4 ml-2" />
+                            <Icon name="ri:arrow-right-line" class="ml-2 h-4 w-4 fill-current" />
                         </a>
                     </li>
                 ))
