@@ -4,3 +4,5 @@
 # funding banner, so it is explicitly denied instead of approved.
 allowBuilds:
   core-js-pure: false
+  # esbuild's postinstall installs its platform binary — required for Astro/Vite.
+  esbuild: true

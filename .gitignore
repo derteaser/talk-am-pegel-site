@@ -56,3 +56,7 @@ Icon
 
 # Kirby parity baseline (local migration artifact)
 /baseline/
+
+# Astro
+/dist/
+/.astro/

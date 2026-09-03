@@ -1,0 +1,46 @@
+---
+/**
+ * Ported from site/templates/components/layout/footer.blade.php.
+ *
+ * Note: the copyright year is baked at build time, where Kirby evaluated date('Y')
+ * per request. The daily rebuild that keeps event `past()` state fresh covers this
+ * too — see the migration plan.
+ */
+import { Icon } from 'astro-icon/components';
+import { site, footerNavigation } from '../../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer footer-center bg-base-300/60 p-12 mt-12">
+    <nav class="grid grid-flow-col gap-4 text-base-content">
+        {
+            footerNavigation.map((item) => (
+                <a href={item.href} class="link link-hover">
+                    {item.title}
+                </a>
+            ))
+        }
+    </nav>
+    <nav>
+        <div class="flex gap-4">
+            <a
+                href={`https://facebook.com/${site.facebook}`}
+                class="link link-animated tooltip"
+                aria-label="Facebook (Link öffnet in neuem Fenster)"
+                rel="noopener noreferrer"
+            >
+                <Icon name="ri:facebook-circle-fill" class="size-6 tooltip-toggle" />
+                <span
+                    class="tooltip-content tooltip-shown:opacity-100 tooltip-shown:visible"
+                    role="tooltip"
+                >
+                    <span class="tooltip-body">{site.title} bei Facebook</span>
+                </span>
+            </a>
+        </div>
+    </nav>
+    <aside>
+        <p>&copy;{year} {site.title}</p>
+    </aside>
+</footer>

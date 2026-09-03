@@ -1,0 +1,83 @@
+---
+/**
+ * Meta tags + JSON-LD, replacing the `wearejust/kirby-meta-tags` config block in
+ * site/config/config.php. Hand-rolled rather than a library: the tag set is small
+ * and fully known, and no library reproduces this plugin's tag order.
+ *
+ * Tag order matches the plugin's `Tags::$order` — title, meta, og, twitter, link,
+ * json-ld — so the parity diff stays readable. Note canonical comes AFTER the
+ * twitter tags, which is unusual but is what the current site emits.
+ *
+ * Bugs in the Kirby config deliberately NOT reproduced:
+ *  - `description` was always null: the extraction filtered `type: 'paragraph'`,
+ *    a block type that does not exist (blocks use `text`), and had a PHP precedence
+ *    bug on top. Callers now pass a real description.
+ *  - `'https://twitter.com' . $site->twitter()` was missing its slash, emitting
+ *    `https://twitter.comtalkampegel` in the home page's `sameAs`.
+ *  - `@context` was `http://schema.org`; now https.
+ *  - `twitter:site` was the bare handle; now `@`-prefixed.
+ */
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site } from '../data/site';
+import tapBanner from '../assets/tap_banner.jpg';
+
+export interface SeoProps {
+    title: string;
+    description?: string;
+    /** Social image source. Falls back to the site banner, as Kirby's config did. */
+    mainImage?: ImageMetadata;
+    /** Rendered into <script type="application/ld+json">. Omit for no JSON-LD. */
+    jsonLd?: Record<string, unknown> | null;
+    /** Home shows the bare site title rather than "Page | Site". */
+    isHome?: boolean;
+}
+
+const { title, description, mainImage, jsonLd, isHome = false } = Astro.props as SeoProps;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const pageTitle = isHome ? site.title : `${title} | ${site.title}`;
+
+// Kirby cropped this per request. There is no runtime now, so the crop is a real
+// build-time asset. Forced to JPEG: the source is PNG on one talk, and a
+// multi-megabyte PNG is a poor social card.
+const og = await getImage({
+    src: mainImage ?? tapBanner,
+    width: 1200,
+    height: 630,
+    fit: 'cover',
+    position: 'center',
+    format: 'jpeg',
+    quality: 85,
+});
+const ogUrl = new URL(og.src, Astro.site).href;
+---
+
+<title>{pageTitle}</title>
+
+<meta name="robots" content="index,follow,noodp" />
+{description && <meta name="description" content={description} />}
+
+<meta property="og:title" content={isHome ? site.title : title} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.title} />
+<meta property="og:url" content={canonical} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:locale" content="de_DE" />
+<meta property="og:image" content={ogUrl} />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:type" content="image/jpeg" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={`@${site.twitter}`} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:image" content={ogUrl} />
+
+<link rel="canonical" href={canonical} />
+
+{
+    jsonLd && (
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd, null, 4)} is:inline />
+    )
+}

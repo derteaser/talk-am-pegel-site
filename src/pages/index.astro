@@ -1,0 +1,17 @@
+---
+// PHASE 1 SCAFFOLD — placeholder so the layout chrome (hero, sticky logo bar, aos
+// reveals, footer, theme tokens) can be diffed against the Kirby site before any
+// content exists. Phase 4 replaces this with the real home page: hero + the latest
+// talk teaser via <LatestEvent>.
+import Layout from '../layouts/Layout.astro';
+
+const herotitle = 'Die Talk-Reihe in Neuss.';
+---
+
+<Layout title={herotitle} description={herotitle} heroTitle={herotitle} isHome>
+    <section class="container mx-auto my-16 px-6 lg:px-24 xl:px-32">
+        <p class="text-base-content/60">
+            Phase 1 scaffold. Layout chrome only — no content collections yet.
+        </p>
+    </section>
+</Layout>
