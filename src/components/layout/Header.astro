@@ -40,7 +40,9 @@ const { title, subtitle, heroImage = pegelbar } = Astro.props;
         x-cloak
     >
         <a href="/" class="flex justify-center">
-            <img src="/img/logo.svg" class="h-8" alt="" />
+            {/* Intrinsic size from the SVG's own viewBox; h-8 scales it. Kirby set
+                neither, leaving the img without an aspect ratio. */}
+            <img src="/img/logo.svg" class="h-8" alt="" width="212" height="40" />
         </a>
     </div>
 

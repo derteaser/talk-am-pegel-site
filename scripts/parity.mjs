@@ -211,6 +211,9 @@ const ACCEPTED = [
     // Kirby's Str::excerpt() fused the last word of one paragraph into the first of
     // the next ("gerufen hat.Der Diplom-Ingenieur"); the port inserts the space.
     [/^[-+] <p class="text-base-content leading-relaxed max-w-xl">/, 'excerpt word-fusing fixed'],
+    // The sticky-bar logo <img> now declares its intrinsic size; Kirby set neither
+    // width nor height, leaving it without an aspect ratio.
+    [/^[-+] <img src="\/img\/logo\.svg"/, 'sticky logo intrinsic size added'],
     // Stylesheet/script plumbing.
     [/^[-+] <!--CSS-->/, 'asset plumbing'],
     [/^[-+] <!--JS-->/, 'asset plumbing'],
