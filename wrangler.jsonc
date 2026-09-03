@@ -32,5 +32,5 @@
     // Deliberately no `build.command` here. Cloudflare Workers Builds runs its own
     // build command (see README.md), and setting one here would make `wrangler
     // deploy` re-run the build a second time. The local equivalent is
-    // `pnpm deploy`, which builds, verifies, then deploys.
+    // `pnpm deploy:cf`, which builds, verifies, then deploys.
 }

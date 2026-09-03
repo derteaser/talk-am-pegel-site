@@ -162,7 +162,7 @@ preserving them. `not_found_handling: "404-page"` serves `dist/404.html`.
 ### Deploying by hand
 
 ```bash
-pnpm deploy   # build + verify + wrangler deploy
+pnpm deploy:cf   # build + verify + wrangler deploy
 ```
 
 Needs `npx wrangler login` once.
