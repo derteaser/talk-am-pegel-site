@@ -21,6 +21,14 @@ BASE=${BASE%/}
 UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36'
 CURL=(curl -sS --max-time 20 -A "$UA")
 
+# Zone-owned behaviour (apex redirect, HSTS, the managed robots.txt block) only exists
+# on talk-am-pegel.de. A workers.dev preview is outside the zone, so those checks are
+# skipped there rather than reported as regressions.
+case "$BASE" in
+    *.workers.dev) on_zone=0 ;;
+    *) on_zone=1 ;;
+esac
+
 pass=0
 fail=0
 ok() {
@@ -30,6 +38,10 @@ ok() {
 no() {
     fail=$((fail + 1))
     printf '  \033[31m✗\033[0m %s\n' "$1"
+}
+
+skip() {
+    printf '  \033[90m-\033[0m %s\n' "$1"
 }
 
 # status + location in one request, without following redirects
@@ -100,7 +112,7 @@ if [ "$apex" != "$BASE" ]; then
         *) no "$apex -> $code, expected a 3xx to $BASE" ;;
     esac
 else
-    ok "skipped (not a www host)"
+    skip "apex redirect not checked (not a www host)"
 fi
 
 # ---------------------------------------------------------------------------
@@ -132,10 +144,16 @@ fi
 
 # ---------------------------------------------------------------------------
 echo
-echo "7. Security headers (zone-owned — not set by this repo)"
+echo "7. Security headers"
 h=$(headers "$BASE/")
+# HSTS is zone-owned. nosniff is not: it survives on a workers.dev preview, which is
+# outside the zone, so its source is public/_headers.
 sts=$(hdr strict-transport-security "$h")
-[ -n "$sts" ] && ok "HSTS: $sts" || no "no Strict-Transport-Security — the zone setting may have been switched off"
+if [ "$on_zone" = 1 ]; then
+    [ -n "$sts" ] && ok "HSTS: $sts" || no "no Strict-Transport-Security — the zone setting may have been switched off"
+else
+    skip "HSTS not checked (off-zone host)"
+fi
 xcto=$(hdr x-content-type-options "$h")
 [ "$xcto" = "nosniff" ] && ok "X-Content-Type-Options: nosniff" || no "X-Content-Type-Options is '$xcto', expected nosniff"
 
@@ -146,7 +164,11 @@ r=$("${CURL[@]}" "$BASE/robots.txt")
 printf '%s' "$r" | grep -qi 'sitemap:.*sitemap\.xml' && ok "robots.txt points at /sitemap.xml" || no "robots.txt has no sitemap line"
 # Cloudflare PREPENDS a managed AI-bot block to the origin file. It has silently stopped
 # doing so once before, and only this check notices.
-printf '%s' "$r" | grep -qi 'Content-Signal' && ok "Cloudflare's managed AI-bot block is being prepended" || no "no Content-Signal in robots.txt — the Cloudflare managed block is missing"
+if [ "$on_zone" = 1 ]; then
+    printf '%s' "$r" | grep -qi 'Content-Signal' && ok "Cloudflare's managed AI-bot block is being prepended" || no "no Content-Signal in robots.txt — the Cloudflare managed block is missing"
+else
+    skip "managed AI-bot block not checked (off-zone host)"
+fi
 read -r code _ <<<"$(probe "$BASE/sitemap.xml")"
 locs=$("${CURL[@]}" "$BASE/sitemap.xml" | grep -c '<loc>')
 [ "$code" = "200" ] && ok "/sitemap.xml -> 200 with $locs <loc> entries" || no "/sitemap.xml -> $code"

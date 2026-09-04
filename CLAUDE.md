@@ -99,7 +99,9 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   per request. Every talk is currently past, so the Eventbrite branch in `talks/[slug].astro` is
   unreachable — exercise it by temporarily dating a talk into the future before changing that file.
 - **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
-  there. `nosniff` IS set there; its source is ambiguous, so leave it.
+  there — setting a header in both places joins the values with a comma. `nosniff` is different:
+  it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is
+  demonstrably its source. Keep it there.
 - **Tailwind also auto-detects sources beyond `@source`.** Deleting the Blade templates shrank the
   CSS by 57 kB (156 kB → 98 kB), because auto-detection had been generating FlyOnUI classes that
   only appeared in them.

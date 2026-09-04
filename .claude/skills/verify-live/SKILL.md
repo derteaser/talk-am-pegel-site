@@ -18,6 +18,11 @@ scripts/verify-live.sh https://<hash>.talk-am-pegel.workers.dev   # a PR preview
 
 20 checks, read-only, ~30 seconds. Exit 0 on PASS, 1 on FAIL.
 
+Against a `workers.dev` preview it runs 17 and marks 3 as skipped (`-`), because the
+apex redirect, HSTS and the managed `robots.txt` block are zone behaviours and a preview
+hostname is outside the zone. That is expected, not a regression — the script detects the
+host itself, so a preview run should still say PASS.
+
 ## When to run it
 
 - **After a deploy that changed URLs** — a new talk or person. Section 1 is the real
