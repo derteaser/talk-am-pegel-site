@@ -476,16 +476,29 @@ console.log('\n9. Progressive enhancement');
         .map((f) => read(path.join(DIST, '_astro', f)))
         .join('\n');
 
-    const missingBootstrap = pages.filter((f) => !read(f).includes("classList.add('js')"));
+    // Matched loosely on purpose: the exact quoting and spacing of the inline script is
+    // the minifier's business (compressHTML defaults to 'jsx'), not something this check
+    // should pin.
+    const BOOTSTRAP = /classList\s*\.\s*add\(\s*(['"`])js\1\s*\)/;
+    const missingBootstrap = pages.filter((f) => !BOOTSTRAP.test(read(f)));
     missingBootstrap.length === 0
         ? pass(`all ${pages.length} pages carry the inline .js bootstrap`)
         : fail(`${missingBootstrap.length} page(s) without the inline .js bootstrap: ${missingBootstrap[0]}`);
 
-    // Any rule that hides an .aos element must be behind the gate.
+    // Any rule that hides an .aos element must be behind the gate — and there is more
+    // than one way to hide: `opacity: 0` for the fades, `scale: 0` for aos-zoom-in, which
+    // collapses the element to a 0x0 box. (A translate only moves it, so it does not
+    // count.) Checking opacity alone is the same gap the forced-colors rule had.
+    // Tailwind compiles `scale-0` to `--tw-scale-x:0%` plus `scale:var(--tw-scale-x) …`,
+    // so the literal `scale:0` never appears — match the custom property instead. This
+    // check passed a mutated stylesheet until that was fixed.
+    const HIDES = /opacity:\s*0(?![.\d])|--tw-scale-[xy]:\s*0(?:%|px)?(?![.\d])/;
     const ungated = [];
     for (const m of css.matchAll(/([^{}]*\.aos[^{}]*)\{([^}]*)\}/g)) {
         const [, selector, body] = m;
-        if (!/opacity:\s*0(?![.\d])/.test(body)) continue;
+        if (!HIDES.test(body)) continue;
+        // The forced-colors block deliberately un-hides without a gate.
+        if (/forced-colors/.test(selector)) continue;
         if (!selector.includes('.js ')) ungated.push(selector.trim().slice(0, 60));
     }
     ungated.length === 0

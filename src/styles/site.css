@@ -112,9 +112,15 @@
       border-bottom: 1px solid CanvasText;
     }
 
+    /* Every hiding mechanism the reveals use, not just opacity: `aos-fade-*` hides with
+       `translate`, `aos-zoom-in` with `scale-0` — and a scaled-to-zero element is a 0x0
+       box, so resetting opacity alone left the talk fact cards invisible. Measured: three
+       elements at scale 0 with this block already in place. */
     .aos {
       opacity: 1 !important;
       translate: none !important;
+      scale: none !important;
+      transition: none !important;
     }
   }
 }
