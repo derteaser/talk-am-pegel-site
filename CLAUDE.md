@@ -96,15 +96,24 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
 - **A `*/` inside a comment** (e.g. writing `text-gray-*/dark:`) closes the block comment and breaks
   the Astro compile.
 - **`past()` is a build-time decision** (`isPast` in `src/lib/content.ts`), where Kirby evaluated it
-  per request. Every talk is currently past, so the Eventbrite branch in `talks/[slug].astro` is
-  unreachable — exercise it by temporarily dating a talk into the future before changing that file.
+  per request, and **there is no scheduled rebuild** — Cloudflare deploys on push and nothing else.
+  `talks/[slug].astro` therefore ships *both* states and lets Alpine pick, comparing the reader's
+  clock against an epoch emitted at build time, so the ticket CTA disappears when the event ends
+  rather than at the next deploy. The Alpine bindings use `:class` **object** syntax deliberately:
+  only that form removes classes that came from the static `class` attribute, which is what lets the
+  server render the build-time state and the client take it back. The Event JSON-LD does *not*
+  self-correct — a past talk advertises `SoldOut` as of the next deploy, and `verify.mjs` asserts it.
 - **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
   there — setting a header in both places joins the values with a comma. `nosniff` is different:
   it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is
   demonstrably its source. Keep it there.
 - **Tailwind also auto-detects sources beyond `@source`.** Deleting the Blade templates shrank the
   CSS by 57 kB (156 kB → 98 kB), because auto-detection had been generating FlyOnUI classes that
-  only appeared in them.
+  only appeared in them. This reaches **prose in comments**, not just markup: rewording one code
+  comment that happened to contain the word "switch" dropped 4 kB, because it had been generating
+  FlyOnUI's entire `.switch` component — which no element on the site has ever used. So a CSS size
+  change after an edit that touched no classes is not necessarily a lost-class regression; diff the
+  selectors before assuming either way.
 
 ## Content
 

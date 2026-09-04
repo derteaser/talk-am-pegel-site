@@ -6,10 +6,21 @@
  * full-width for past ones), three fact cards with staggered reveals, the attendant
  * cards, then prev/next navigation.
  *
- * `past()` is now a BUILD-TIME decision where Kirby evaluated it per request. Every
- * talk is currently in the past, so the signup branch is unreachable today; once a
- * future talk is published the page needs a rebuild to switch over, which the daily
- * scheduled build covers.
+ * `past()` was a per-request decision in Kirby and is a BUILD-TIME one here, which on a
+ * static site means it freezes at deploy. There is no scheduled rebuild, so a talk that
+ * ended would keep selling tickets until the next push — potentially weeks.
+ *
+ * So the signup card is rendered on every talk and Alpine decides whether to show it,
+ * comparing the reader's clock against the event's epoch timestamp. The server still
+ * emits the build-time-correct state, and the card carries a matching inline
+ * `display` — so this is progressive enhancement: with JS off the behaviour is exactly
+ * what it was, and with JS on it self-corrects within milliseconds and with no deploy.
+ *
+ * Both states are therefore always in the DOM. That also makes the signup markup
+ * exercised on every build, where it used to be unreachable dead code that only a
+ * temporarily future-dated talk could reach.
+ *
+ * The Event JSON-LD does NOT self-correct — see the `past` option in lib/jsonld.ts.
  */
 import { Icon } from 'astro-icon/components';
 import { getImage } from 'astro:assets';
@@ -42,6 +53,31 @@ const { talk, attendants, prev, next } = Astro.props;
 const { Content } = await render(talk);
 const upcoming = !isPast(talk);
 
+/**
+ * What the client compares its own clock against. Emitted as epoch milliseconds so the
+ * browser does no date parsing and no timezone work — the Europe/Berlin offset was
+ * already resolved when the frontmatter was parsed.
+ */
+const startsAt = talk.data.date.getTime();
+
+/**
+ * The two layouts, as literal class lists.
+ *
+ * They are constants rather than inline strings for two reasons: Tailwind's scanner
+ * needs to see the literals (it does, here), and the server-rendered `class` and the
+ * Alpine `:class` that re-evaluates it on the client are built from the same values, so
+ * they cannot drift apart.
+ *
+ * The Alpine bindings use OBJECT syntax, not a string. That matters: Alpine's
+ * setClassesFromObject removes a falsy key's classes even when they came from the
+ * static `class` attribute, whereas string syntax can only add. Object syntax is what
+ * lets the server emit the build-time-correct classes AND lets the client take them
+ * away again.
+ */
+const ROW = 'flex flex-col sm:flex-row';
+const BODY_BESIDE_ASIDE = 'border-base-200 mb-4 border-b pb-4 sm:mb-0 sm:w-2/3 sm:border-r sm:border-b-0 sm:py-8 sm:pr-8';
+const BODY_FULL_WIDTH = 'mx-auto';
+
 // Kirby's EventPage::excerpt() ran Blocks::excerpt(180) over all text blocks; it is
 // used only as the Event schema's description.
 const description = decodeEntities(excerpt(allTextBlocksHtml(talk.body ?? ''), 180));
@@ -63,6 +99,7 @@ const jsonLd = eventSchema({
     description,
     pageUrl: canonical,
     imageUrl: ogUrl,
+    past: !upcoming,
     performers: attendants.map((person) => ({
         name: person.data.title,
         jobTitle: person.data.subHeading,
@@ -82,50 +119,46 @@ const jsonLd = eventSchema({
 >
     <section class="container mx-auto flex flex-col px-5 pt-6 pb-12">
         <div class="mx-auto lg:w-4/6">
-            {
-                upcoming ? (
-                    <div class="mt-10 flex flex-col sm:flex-row">
-                        <div class="border-base-200 mb-4 border-b pb-4 sm:mb-0 sm:w-2/3 sm:border-r sm:border-b-0 sm:py-8 sm:pr-8">
-                            <div class="blocks mb-4">
-                                <Content />
-                            </div>
-                        </div>
-                        <aside class="text-center sm:w-1/3 sm:py-12 sm:pl-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="text-base-content/50 bg-base-300 inline-flex size-22 items-center justify-center rounded-full">
-                                        <Icon name="ri:ticket-2-line" class="size-16" />
-                                    </div>
-                                    <h2 class="card-title text-base-content/90 mt-4 text-lg font-medium">Anmeldung</h2>
-                                    <div class="bg-primary mx-auto mt-2 mb-4 h-1 w-12 rounded-sm" />
-                                </div>
-                                <div class="card-body">
-                                    <p class="text-base-content/80 text-base">
-                                        Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen
-                                        Sie nachfolgend Ihr <strong>kostenloses</strong> Ticket über unseren Partner Eventbrite!
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    {/* Fathom goal conversion, carried over from the Blade template. */}
-                                    <a
-                                        class="btn btn-accent"
-                                        href={talk.data.eventbriteUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onclick="fathom.trackGoal('DZC4R54V', 0);"
-                                    >
-                                        Ticket sichern
-                                    </a>
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
-                ) : (
-                    <div class="blocks mx-auto mt-10 mb-4">
+            <div class:list={['mt-10', upcoming && ROW]} x-data={`{ past: Date.now() > ${startsAt} }`} :class={`{ '${ROW}': !past }`}>
+                <div
+                    class={upcoming ? BODY_BESIDE_ASIDE : BODY_FULL_WIDTH}
+                    :class={`{ '${BODY_BESIDE_ASIDE}': !past, '${BODY_FULL_WIDTH}': past }`}
+                >
+                    <div class="blocks mb-4">
                         <Content />
                     </div>
-                )
-            }
+                </div>
+                {/* Shown only while the event is ahead. The inline `display` prevents a flash before Alpine boots. */}
+                <aside class="text-center sm:w-1/3 sm:py-12 sm:pl-8" x-show="!past" style={upcoming ? undefined : 'display:none'}>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="text-base-content/50 bg-base-300 inline-flex size-22 items-center justify-center rounded-full">
+                                <Icon name="ri:ticket-2-line" class="size-16" />
+                            </div>
+                            <h2 class="card-title text-base-content/90 mt-4 text-lg font-medium">Anmeldung</h2>
+                            <div class="bg-primary mx-auto mt-2 mb-4 h-1 w-12 rounded-sm"></div>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-base-content/80 text-base">
+                                Für die Teilnahme an unserer Veranstaltung ist eine Anmeldung zwingend erforderlich. Bitte bestellen Sie
+                                nachfolgend Ihr <strong>kostenloses</strong> Ticket über unseren Partner Eventbrite!
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            {/* Fathom goal conversion, carried over from the Blade template. */}
+                            <a
+                                class="btn btn-accent"
+                                href={talk.data.eventbriteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onclick="fathom.trackGoal('DZC4R54V', 0);"
+                            >
+                                Ticket sichern
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
         </div>
     </section>
 
