@@ -52,6 +52,13 @@ interface Props {
     alt?: string;
     sizes?: string;
     lazy?: boolean;
+    /**
+     * Only for the LCP element. `lazy={false}` alone just removes the brake; this
+     * asks for the fetch to jump the queue ahead of the stylesheet and the rest of
+     * the images. Passing it on a below-the-fold image is actively harmful — it
+     * competes with the one image that decides LCP.
+     */
+    fetchpriority?: 'high' | 'low' | 'auto';
     class?: string;
 }
 
@@ -61,6 +68,7 @@ const {
     alt = '',
     sizes = '(min-width: 600px) 50vw, 100vw',
     lazy = true,
+    fetchpriority,
     class: className,
     ...rest
 } = Astro.props;
@@ -101,6 +109,7 @@ const height = aspect ? Math.round(width / aspect) : Math.round((width * image.h
     height={height}
     quality={85}
     loading={lazy ? 'lazy' : 'eager'}
+    fetchpriority={fetchpriority}
     class={className}
     {...rest}
 />

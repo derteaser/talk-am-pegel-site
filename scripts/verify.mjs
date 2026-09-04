@@ -16,7 +16,7 @@
  *      still advertises tickets
  *   5. canonical/og:url are extensionless and absolute
  *   6. German date formatting is present where expected
- *   7. Images: every <img> has alt and intrinsic dimensions
+ *   7. Images: every <img> has alt and intrinsic dimensions, and the hero is not lazy
  */
 
 import fs from 'node:fs';
@@ -275,6 +275,29 @@ console.log('\n7. Images');
     }
     noAlt === 0 ? pass(`all ${total} <img> have an alt attribute`) : fail(`${noAlt}/${total} <img> without alt`);
     noDims === 0 ? pass('all <img> declare width and height') : fail(`${noDims}/${total} <img> without intrinsic dimensions`);
+
+    // The hero backdrop is the LCP element on every page, and Thumbnail defaults to
+    // lazy — so a page that loses its `lazy={false}` would silently defer its own
+    // largest paint. Target the first <picture> rather than the first <img>: the
+    // sticky logo bar's plain <img> comes earlier in the markup.
+    let lazyHero = 0;
+    let noPriority = 0;
+    let missing = 0;
+    for (const f of pages) {
+        const hero = read(f).match(/<picture[\s\S]*?<\/picture>/)?.[0];
+        if (!hero) {
+            missing++;
+            continue;
+        }
+        const img = hero.match(/<img\s[^>]*>/)?.[0] ?? '';
+        if (/loading="lazy"/.test(img)) lazyHero++;
+        if (!/fetchpriority="high"/.test(img)) noPriority++;
+    }
+    missing === 0 ? pass(`all ${pages.length} pages render a hero <picture>`) : fail(`${missing} page(s) without a hero <picture>`);
+    lazyHero === 0 ? pass('no page lazy-loads its hero (LCP) image') : fail(`${lazyHero} page(s) lazy-load the LCP image`);
+    noPriority === 0
+        ? pass('every hero image is fetchpriority="high"')
+        : fail(`${noPriority} page(s) hero image without fetchpriority="high"`);
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);
