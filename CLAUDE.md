@@ -109,11 +109,15 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   demonstrably its source. Keep it there.
 - **Tailwind also auto-detects sources beyond `@source`.** Deleting the Blade templates shrank the
   CSS by 57 kB (156 kB → 98 kB), because auto-detection had been generating FlyOnUI classes that
-  only appeared in them. This reaches **prose in comments**, not just markup: rewording one code
-  comment that happened to contain the word "switch" dropped 4 kB, because it had been generating
-  FlyOnUI's entire `.switch` component — which no element on the site has ever used. So a CSS size
-  change after an edit that touched no classes is not necessarily a lost-class regression; diff the
-  selectors before assuming either way.
+  only appeared in them. This reaches **prose in comments and docs**, not just markup: one code
+  comment happened to contain the name of FlyOnUI's toggle-switch component as an ordinary English
+  verb, which generated that component's entire CSS — 4 kB, for a class no element here has ever
+  used. Rewording the comment removed it. So a CSS size change after an edit that touched no
+  classes is not necessarily a lost-class regression; `grep` the built CSS for the component before
+  assuming either way.
+
+  This paragraph therefore **avoids writing that component's name**, because writing it here brings
+  the 4 kB straight back — this file is scanned too. Verified both ways.
 
 ## Content
 

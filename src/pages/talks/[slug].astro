@@ -76,7 +76,18 @@ const startsAt = talk.data.date.getTime();
  */
 const ROW = 'flex flex-col sm:flex-row';
 const BODY_BESIDE_ASIDE = 'border-base-200 mb-4 border-b pb-4 sm:mb-0 sm:w-2/3 sm:border-r sm:border-b-0 sm:py-8 sm:pr-8';
-const BODY_FULL_WIDTH = 'mx-auto';
+
+/**
+ * Centres the prose when it has the row to itself.
+ *
+ * This MUST sit on the `.blocks` element and not on a wrapper: `.blocks` is `prose`,
+ * which caps its own width at 65ch, and `mx-auto` only centres an element that is
+ * narrower than its container. On a wrapper — which has no max-width and so fills the
+ * row — it is a no-op, and the prose sits hard left with the leftover width reading as
+ * an invisible second column. Measured at 1440px: 584px of prose in an 827px row, all
+ * 242px of the gap on the right.
+ */
+const PROSE_CENTRED = 'mx-auto';
 
 // Kirby's EventPage::excerpt() ran Blocks::excerpt(180) over all text blocks; it is
 // used only as the Event schema's description.
@@ -120,11 +131,8 @@ const jsonLd = eventSchema({
     <section class="container mx-auto flex flex-col px-5 pt-6 pb-12">
         <div class="mx-auto lg:w-4/6">
             <div class:list={['mt-10', upcoming && ROW]} x-data={`{ past: Date.now() > ${startsAt} }`} :class={`{ '${ROW}': !past }`}>
-                <div
-                    class={upcoming ? BODY_BESIDE_ASIDE : BODY_FULL_WIDTH}
-                    :class={`{ '${BODY_BESIDE_ASIDE}': !past, '${BODY_FULL_WIDTH}': past }`}
-                >
-                    <div class="blocks mb-4">
+                <div class={upcoming ? BODY_BESIDE_ASIDE : undefined} :class={`{ '${BODY_BESIDE_ASIDE}': !past }`}>
+                    <div class:list={['blocks', 'mb-4', !upcoming && PROSE_CENTRED]} :class={`{ '${PROSE_CENTRED}': past }`}>
                         <Content />
                     </div>
                 </div>
