@@ -21,6 +21,7 @@
  *      link resolving to a non-empty accessible name, and no dangling
  *      aria-labelledby reference
  *   9. Progressive enhancement: the reveals cannot outlive their JavaScript
+ *  10. Indexing policy: exactly one noindex page, and it is the error page
  */
 
 import fs from 'node:fs';
@@ -510,6 +511,32 @@ console.log('\n9. Progressive enhancement');
     /\.vt-nav header \.aos/.test(css)
         ? pass('the hero reveal is suppressed on view-transition navigations')
         : fail('no .vt-nav rule — the hero will re-fade on every navigation');
+}
+
+// ------------------------------------------------------- 10. indexing policy
+console.log('\n10. Indexing policy');
+{
+    // Every page states its policy explicitly, and exactly one page opts out: the error
+    // page. It shipped `index,follow` for the whole of the migration, because Seo.astro
+    // hardcoded the string with no way to override it.
+    const noindexed = pages.filter((f) => /<meta name="robots"[^>]*noindex/.test(read(f)));
+    const missing = pages.filter((f) => !/<meta name="robots"/.test(read(f)));
+    const expected = path.join(DIST, '404.html');
+
+    missing.length === 0
+        ? pass(`all ${pages.length} pages declare a robots policy`)
+        : fail(`${missing.length} page(s) with no robots meta: ${missing[0]}`);
+    noindexed.length === 1 && noindexed[0] === expected
+        ? pass('404.html is the only noindex page')
+        : fail(
+              noindexed.length === 0
+                  ? '404.html is indexable — nothing declares noindex'
+                  : `unexpected noindex pages: ${noindexed.filter((f) => f !== expected).join(', ') || '(404 missing from the list)'}`,
+          );
+    // The directory this referred to closed in 2017.
+    pages.every((f) => !read(f).includes('noodp'))
+        ? pass('no page still sends the dead noodp directive')
+        : fail('noodp is still being emitted');
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);

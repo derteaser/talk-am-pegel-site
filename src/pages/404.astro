@@ -4,8 +4,13 @@
  *
  * Kirby served this at /error too, but with a 404 status — so /error was never a
  * usable URL despite being listed in the sitemap. Here it exists only as 404.html,
- * wired up via ErrorDocument in the deployed .htaccess, and is kept out of the
- * sitemap.
+ * wired up via `not_found_handling: "404-page"` in wrangler.jsonc, which serves it with
+ * a real 404 status, and it is kept out of the sitemap.
+ *
+ * `noindex` because everything else defaults to index: a page whose job is to say a URL
+ * does not exist has no business in an index. There is no 500 counterpart — this is a
+ * static-assets deploy with no Worker in the request path, so Cloudflare's own 5xx page
+ * is what renders and nothing in this repo can change it.
  */
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
@@ -15,7 +20,7 @@ if (!page) throw new Error('content/pages/error.mdx is missing');
 const { Content } = await render(page);
 ---
 
-<Layout title={page.data.title}>
+<Layout title={page.data.title} noindex>
     <section class="blocks container mx-auto my-16 px-6">
         <Content />
     </section>
