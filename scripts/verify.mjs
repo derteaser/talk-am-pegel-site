@@ -554,9 +554,25 @@ console.log('\n11. Contrast tokens');
         .map((f) => read(path.join(DIST, '_astro', f)))
         .join('\n');
 
+    // The declared value of a custom property, following `var(--other)` aliases so a
+    // token defined by reference — the tempting way to write accent-content, since it is
+    // literally base-content — still resolves instead of reading as missing.
+    const declared = (token, seen = new Set()) => {
+        if (seen.has(token)) return null; // a cycle in the CSS, not our problem to resolve
+        seen.add(token);
+        const name = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const m = css.match(new RegExp(`${name}:\\s*([^;}]+)`));
+        if (!m) return null;
+        const value = m[1].trim();
+        const alias = value.match(/^var\(\s*(--[\w-]+)\s*(?:,\s*([^)]*))?\)$/);
+        if (!alias) return value;
+        return declared(alias[1], seen) ?? alias[2]?.trim() ?? null;
+    };
+
     // oklch lightness, written either as a percentage or a 0-1 number
     const lightness = (token) => {
-        const m = css.match(new RegExp(`${token}:\\s*oklch\\(\\s*([0-9.]+)(%?)`));
+        const value = declared(token);
+        const m = value?.match(/^oklch\(\s*([0-9.]+)(%?)/);
         if (!m) return null;
         return m[2] === '%' ? Number(m[1]) / 100 : Number(m[1]);
     };
