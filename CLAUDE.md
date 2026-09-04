@@ -17,7 +17,7 @@ guidance.
 ```bash
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/
-pnpm verify      # assert dist/ is intact (52 assertions) — also a deploy gate
+pnpm verify      # assert dist/ is intact (54 assertions) — also a deploy gate
 pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (27 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
@@ -158,6 +158,25 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **The accent is a fill colour, not a text colour.** `--color-accent` is the brand red and is
+  deliberately unchanged; white on it measures **3.29:1**, which fails AA for every button label
+  here (18px, weight 500 — the large-text exemption needs 18.66px _and_ bold). So
+  `--color-accent-content` is the dark base-content instead: 5.39:1, dark-on-coral. Soft buttons
+  take their text from `--btn-color`, not `--btn-fg`, so that change does not reach them —
+  `--color-accent-strong` exists for that one case (accent on its own 10% tint was 2.82:1, the
+  worst pairing on the site; the darker red reads 5.26:1). `verify.mjs` asserts the label token
+  stays dark and that accent-strong stays darker than the accent.
+- **Do not measure contrast by overriding a token at runtime.** FlyOnUI derives button colours
+  through registered custom properties and `color-mix()`, which Chrome resolves eagerly: injecting
+  a new `--color-accent` moves the solid button and leaves the soft variant frozen at the old
+  value, so a sweep of candidate colours silently reports the same number for every one of them.
+  Change the token in `site.css`, rebuild, and measure the built output. Also note computed colours
+  come back as `oklch()`/`oklab()` now, so parsing `rgb(...)` finds nothing — rasterise through a
+  canvas instead.
+- **Opacity-suffixed text below `/65` fails AA.** `text-base-content/50` measured 3.31:1 and
+  `text-neutral/50` 3.07:1 on the page background; `/60` scrapes 4.51 and `/65` gives 4.74. Icons
+  at `/50` are fine — non-text contrast only needs 3:1 — which is why `Person.astro`'s socials and
+  the ticket glyph keep theirs.
 - **`aria-labelledby` on the repeated "Mehr erfahren" links lists the link's own id first**,
   then the card heading — `aria-labelledby="talk-x-more talk-x-title"`. The self-reference looks
   redundant and is not: naming the heading alone would drop the visible words "Mehr erfahren" out

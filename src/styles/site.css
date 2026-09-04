@@ -30,8 +30,27 @@
   --color-primary-content: oklch(100% 0 0);
   --color-secondary: oklch(0.81 0.1381 70.94);
   --color-secondary-content: oklch(0% 0 0);
+  /*
+   * The brand red is unchanged. What changed is the label ON it: white measured 3.29:1
+   * against this colour, which fails AA for anything but large text, and every button
+   * label here is 18px at weight 500. The dark base-content reads 5.39:1 on the same
+   * fill, so the buttons are dark-on-coral now and the brand colour is untouched
+   * everywhere it appears.
+   *
+   * The accent as a fill still passes non-text contrast against the page (3.12:1
+   * against base-200, measured) — thin, so darkening the page or lightening the accent
+   * would need re-measuring.
+   */
   --color-accent: oklch(0.67 0.2013 24.29);
-  --color-accent-content: oklch(100% 0 0);
+  --color-accent-content: oklch(21% 0.006 285.885);
+
+  /*
+   * Soft buttons take their TEXT colour from the accent itself rather than from
+   * accent-content, so the change above does not reach them: accent on its own 10% tint
+   * measured 2.82:1, the worst pairing on the site. This darker red is for that case
+   * only — 5.26:1 on the same tint. Do not use it for fills.
+   */
+  --color-accent-strong: oklch(0.52 0.2013 24.29);
   --color-neutral: oklch(27% 0.006 286.033);
   --color-neutral-content: oklch(98% 0 0);
   --color-info: oklch(74% 0.16 232.661);
@@ -132,6 +151,14 @@
    The paired elements are named with Astro's `transition:name` directive, which emits
    nothing but a `view-transition-name` rule — see Header/Person/LatestEvent and the
    talks templates. */
+/* Unlayered on purpose: FlyOnUI's own `.btn-soft { color: var(--btn-color) }` lives in a
+   layer, and an unlayered rule beats every layer regardless of source order. Setting
+   --btn-color rather than `color` also carries the darker red into the 10% background
+   mix, so the tint deepens with the text and the pairing stays balanced. */
+.btn-soft.btn-accent {
+  --btn-color: var(--color-accent-strong);
+}
+
 @view-transition {
   navigation: auto;
 }
