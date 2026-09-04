@@ -29,7 +29,7 @@ const href = `/talks/${talk.id}`;
             x-data="{ visible: false }"
             x-intersect="visible = true"
             :class="visible && 'visible'"
-            x-cloak
+            transition:name={`talk-${talk.id}`}
         >
             <Thumbnail image={talk.data.mainImage} preset="wide" class="w-full rounded-sm object-cover object-center" alt="" />
         </div>

@@ -39,13 +39,13 @@ const socials = [
     <div class="flex h-full flex-col items-center pb-2 text-center">
         {
             mainImage ? (
-                <figure class="avatar w-full">
+                <figure class="avatar w-full" transition:name={`person-${person.id}`}>
                     <div class="size-full rounded-full">
                         <Thumbnail image={mainImage} preset="square" class="size-full" alt="" />
                     </div>
                 </figure>
             ) : (
-                <figure class="avatar avatar-placeholder w-full">
+                <figure class="avatar avatar-placeholder w-full" transition:name={`person-${person.id}`}>
                     <div class="bg-neutral text-neutral-content size-full rounded-full">
                         <span class="text-9xl uppercase" aria-hidden="true">
                             {initials(title)}

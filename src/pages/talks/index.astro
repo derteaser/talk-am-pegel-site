@@ -56,13 +56,13 @@ const description = 'Alle Ausgaben der Talk-Reihe Talk am Pegel in Neuss.';
                             <div
                                 class:list={[odd ? 'timeline-end' : 'timeline-start', 'ms-4 mb-8']}
                             >
-                                <div
-                                    class="card aos aos-fade-up"
-                                    x-data="{ visible: false }"
-                                    x-intersect.once="visible = true"
-                                    :class="visible && 'visible'"
-                                >
-                                    <figure>
+                                {/* The reveal sits on the body, not the whole card, so the
+                                    thumbnail is painted immediately. A view transition
+                                    snapshots the incoming document before IntersectionObserver
+                                    has fired, so an .aos ancestor would hand the morph a fully
+                                    transparent target on the way back from a talk page. */}
+                                <div class="card">
+                                    <figure transition:name={`talk-${talk.id}`}>
                                         <Thumbnail
                                             image={talk.data.mainImage}
                                             preset="wide"
@@ -70,7 +70,12 @@ const description = 'Alle Ausgaben der Talk-Reihe Talk am Pegel in Neuss.';
                                             alt=""
                                         />
                                     </figure>
-                                    <div class="card-body gap-4">
+                                    <div
+                                        class="card-body gap-4 aos aos-fade-up"
+                                        x-data="{ visible: false }"
+                                        x-intersect.once="visible = true"
+                                        :class="visible && 'visible'"
+                                    >
                                         <h2 class="card-title text-lg">
                                             <div class="text-base-content/50 text-sm">
                                                 {talk.data.textline}

@@ -73,6 +73,17 @@ Images go through `Thumbnail.astro`, which wraps Astro's `<Picture>` with four p
 explicit — do **not** add `layout`, which auto-generates a `sizes` that is wrong for the 50vw
 two-column layouts and inflates the width ladder.
 
+**View transitions are native and cross-document** — `@view-transition { navigation: auto }` in
+`site.css`, no `<ClientRouter />` and not a byte of extra JavaScript, so every page still loads
+normally and Alpine/FlyOnUI/BigPicture keep booting once per document. Paired elements are named with
+Astro's `transition:name`, which compiles to a bare `view-transition-name` rule. A name must be
+unique **per document**, and that dictates the scheme: `site-logo` and `hero-image` everywhere;
+`talk-<slug>` on the `/talks` card figure, the home teaser image and the talk detail hero (that page
+overrides `heroName`, so it carries no `hero-image`); `person-<slug>` on the `Person.astro` avatar.
+Person pages keep the generic `hero-image` because the avatar carries their morph instead.
+`PersonAvatarGroup` is deliberately unnamed — the same person recurs across several cards on
+`/talks`, and duplicate names abort the whole transition.
+
 Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`, `x-transition`,
 `x-cloak`); no components are registered. Alpine just needs starting once, which
 `src/scripts/site.ts` does.
@@ -82,7 +93,12 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
 - **`astro check` needs TypeScript 6.x.** TS 7's native compiler does not expose the API it uses.
   The pin is deliberate.
 - **`astro preview` daemonises and binds IPv6 only.** Use `http://localhost:4321`, not `127.0.0.1`;
-  stop it with `astro preview stop`.
+  stop it with `astro preview stop`. It also sends `Cache-Control: no-cache`, and Chrome silently
+  refuses a cross-document view transition on a `no-cache` response — the outgoing `pageswap` fires
+  with a transition, the incoming `pagereveal` gets `null`. **View transitions therefore never appear
+  under `pnpm preview`**, and the site is fine: production serves
+  `public, max-age=0, must-revalidate`, which works. To check them locally, serve `dist/` with a
+  plain static server instead.
 - **Two paths are excluded from Prettier**, both deliberately (`.prettierignore`):
   `Header.astro` and `pages/talks/index.astro`, because `prettier-plugin-astro` corrupts
   `x-intersect.once` inside JSX expression blocks; and `src/content/`, because the generated MDX
@@ -103,6 +119,11 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   only that form removes classes that came from the static `class` attribute, which is what lets the
   server render the build-time state and the client take it back. The Event JSON-LD does *not*
   self-correct — a past talk advertises `SoldOut` as of the next deploy, and `verify.mjs` asserts it.
+- **A view transition snapshots the incoming page before `IntersectionObserver` fires**, so an
+  element inside an `.aos` wrapper is captured at `opacity: 0` and a shared-element morph lands on
+  something invisible. That is why the reveal on the `/talks` cards sits on `.card-body` rather than
+  `.card`, and why `LatestEvent`'s image no longer carries `x-cloak` — both used to hide the very
+  image the morph targets. Keep `transition:name` off anything a reveal can blank out.
 - **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
   there — setting a header in both places joins the values with a comma. `nosniff` is different:
   it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is

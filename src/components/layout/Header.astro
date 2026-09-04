@@ -22,9 +22,11 @@ interface Props {
     title: string;
     subtitle?: string | null;
     heroImage?: ImageMetadata;
+    /** See Layout.astro — pages with a subject-specific hero override this. */
+    heroName?: string;
 }
 
-const { title, subtitle, heroImage = pegelbar } = Astro.props;
+const { title, subtitle, heroImage = pegelbar, heroName = 'hero-image' } = Astro.props;
 ---
 
 <header class="bg-neutral relative h-svh md:h-auto" x-data="{ scrolledAway: false }">
@@ -46,12 +48,19 @@ const { title, subtitle, heroImage = pegelbar } = Astro.props;
         </a>
     </div>
 
-    <Thumbnail
-        image={heroImage}
-        sizes="100vw"
-        alt=""
-        class="w-full h-full object-cover object-center block opacity-20 inset-0 absolute"
-    />
+    {/* The positioning and opacity moved off the <img> onto this wrapper purely so the
+        view transition has a plain element to name: `transition:name` reaches a
+        component as a data-astro-transition-scope *prop*, which would have to survive
+        Thumbnail's rest spread and <Picture>'s own attribute forwarding to land on the
+        img. Geometry is unchanged — the img still fills an inset-0 box. */}
+    <div class="absolute inset-0 opacity-20" transition:name={heroName}>
+        <Thumbnail
+            image={heroImage}
+            sizes="100vw"
+            alt=""
+            class="w-full h-full object-cover object-center block"
+        />
+    </div>
 
     <div class="h-full flex flex-col justify-around items-center">
         <div
@@ -60,7 +69,7 @@ const { title, subtitle, heroImage = pegelbar } = Astro.props;
             x-intersect:enter="scrolledAway = false"
         >
             <a href="/" class="flex justify-center">
-                <Logo role="img" aria-label="Talk am Pegel" />
+                <Logo role="img" aria-label="Talk am Pegel" transition:name="site-logo" />
             </a>
         </div>
         <div

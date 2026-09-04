@@ -86,3 +86,23 @@
     display: none !important;
   }
 }
+
+/* Native cross-document view transitions. No JavaScript and no <ClientRouter />: the
+   browser animates between two normally-loaded documents, so Alpine, FlyOnUI and
+   BigPicture keep booting once per page exactly as before. Browsers without support
+   (Firefox, today) simply navigate the way they always did.
+   The paired elements are named with Astro's `transition:name` directive, which emits
+   nothing but a `view-transition-name` rule — see Header/Person/LatestEvent and the
+   talks templates. */
+@view-transition {
+  navigation: auto;
+}
+
+/* Unlike Astro's <ClientRouter />, the native at-rule has no built-in reduced-motion
+   opt-out, so switch navigation off explicitly. Same intent as the `motion-safe:`
+   variant carrying the .aos reveals in aos.css. */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
