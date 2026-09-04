@@ -22,6 +22,8 @@
  *      aria-labelledby reference
  *   9. Progressive enhancement: the reveals cannot outlive their JavaScript
  *  10. Indexing policy: exactly one noindex page, and it is the error page
+ *  11. Contrast tokens: the label on the accent stays dark, accent-strong stays
+ *      darker than the accent
  */
 
 import fs from 'node:fs';
@@ -537,6 +539,42 @@ console.log('\n10. Indexing policy');
     pages.every((f) => !read(f).includes('noodp'))
         ? pass('no page still sends the dead noodp directive')
         : fail('noodp is still being emitted');
+}
+
+// ------------------------------------------------------- 11. contrast tokens
+console.log('\n11. Contrast tokens');
+{
+    // Contrast itself needs a browser — these are the two token invariants the measured
+    // ratios rest on, so a change that would quietly reintroduce a 3.29:1 button fails
+    // here instead. The accent FILL is deliberately unconstrained: it is the brand
+    // colour and it only has to clear the 3:1 non-text bar.
+    const css = fs
+        .readdirSync(path.join(DIST, '_astro'))
+        .filter((f) => f.endsWith('.css'))
+        .map((f) => read(path.join(DIST, '_astro', f)))
+        .join('\n');
+
+    // oklch lightness, written either as a percentage or a 0-1 number
+    const lightness = (token) => {
+        const m = css.match(new RegExp(`${token}:\\s*oklch\\(\\s*([0-9.]+)(%?)`));
+        if (!m) return null;
+        return m[2] === '%' ? Number(m[1]) / 100 : Number(m[1]);
+    };
+
+    const content = lightness('--color-accent-content');
+    const accent = lightness('--color-accent');
+    const strong = lightness('--color-accent-strong');
+
+    content !== null && content < 0.5
+        ? pass(`the label on the accent is dark (L=${content})`)
+        : fail(
+              content === null
+                  ? '--color-accent-content not found'
+                  : `--color-accent-content is light (L=${content}) — white on this accent measures 3.29:1`,
+          );
+    strong !== null && accent !== null && strong < accent
+        ? pass(`--color-accent-strong is darker than the accent (L=${strong} < ${accent})`)
+        : fail('--color-accent-strong is missing or not darker than --color-accent');
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);
