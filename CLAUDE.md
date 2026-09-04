@@ -15,20 +15,24 @@ guidance.
 ## Commands
 
 ```bash
-pnpm dev        # Astro dev server, http://localhost:4321
-pnpm build      # -> dist/
-pnpm verify     # assert the output is intact (37 assertions) — also a deploy gate
-pnpm check      # astro check
-pnpm preview    # serve dist/
-pnpm deploy:cf  # build + verify + wrangler deploy
+pnpm dev         # Astro dev server, http://localhost:4321
+pnpm build       # -> dist/
+pnpm verify      # assert dist/ is intact (37 assertions) — also a deploy gate
+pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (20 checks)
+pnpm check       # astro check
+pnpm preview     # serve dist/
+pnpm deploy:cf   # build + verify + wrangler deploy
 ```
 
 `deploy:cf` is namespaced because `pnpm deploy` collides with pnpm's built-in command.
 
 ## Docs
 
-`.mcp.json` registers the **Astro Docs MCP server** (`https://mcp.docs.astro.build/mcp`), which
-serves a live index of the Astro documentation. Prefer it over recalling Astro APIs from memory —
+`.mcp.json` registers two MCP servers at project scope, so both need approving once per
+user. The **Astro Docs MCP server** (`https://mcp.docs.astro.build/mcp`) serves a live index of
+the Astro documentation. **Playwright** (`npx @playwright/mcp@latest`) drives a real browser —
+the only way to check the things static output cannot prove: Alpine initialising, the
+BigPicture lightbox, FlyOnUI tooltips and the scroll reveals. Prefer it over recalling Astro APIs from memory —
 this project runs Astro 7, and several things moved recently: Satteri replaced remark/rehype,
 `compressHTML` defaults to `'jsx'`, `z` moved from `astro:content` to `astro/zod`, and the Fonts
 API became stable. Project-scoped MCP servers need approving once per user.
@@ -39,7 +43,8 @@ All 57 public URLs are indexed and must keep working **without a redirect**. The
 built around this.
 
 - `scripts/expected-urls.txt` is the guard. `scripts/verify.mjs` asserts `dist/` contains exactly
-  those pages. **Removing a line is a deliberate SEO decision, not a cleanup.**
+  those pages. **Removing a line is a deliberate SEO decision, not a cleanup.** A `PreToolUse`
+  hook turns every edit of that file into a confirmation prompt for exactly this reason.
 - URLs are extensionless with no trailing slash. `astro.config.mjs` sets `trailingSlash: 'never'`
   and `build.format: 'file'`; `wrangler.jsonc` sets `html_handling: "drop-trailing-slash"`. Changing
   any of those three requires re-checking every URL.
@@ -94,7 +99,9 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   per request. Every talk is currently past, so the Eventbrite branch in `talks/[slug].astro` is
   unreachable — exercise it by temporarily dating a talk into the future before changing that file.
 - **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
-  there. `nosniff` IS set there; its source is ambiguous, so leave it.
+  there — setting a header in both places joins the values with a comma. `nosniff` is different:
+  it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is
+  demonstrably its source. Keep it there.
 - **Tailwind also auto-detects sources beyond `@source`.** Deleting the Blade templates shrank the
   CSS by 57 kB (156 kB → 98 kB), because auto-detection had been generating FlyOnUI classes that
   only appeared in them.
@@ -109,12 +116,42 @@ change to one talk does not churn others.
 
 ## Verification
 
-`scripts/verify.mjs` is the only verification tooling and it is load-bearing: it runs in CI
-(`.github/workflows/ci.yml`) and as part of the Cloudflare build command, so a failure blocks the
-deploy. `pnpm verify` runs it against `dist/`.
+`scripts/verify.mjs` is load-bearing: it runs in CI (`.github/workflows/ci.yml`) and as part of
+the Cloudflare build command, so a failure blocks the deploy. `pnpm verify` runs it against
+`dist/`.
+
+`scripts/verify-live.sh` is the other half, and answers a different question: not "is `dist/`
+correct" but "does the edge serve it correctly". Everything it checks originates outside the
+build — `html_handling` in `wrangler.jsonc` plus four Cloudflare zone settings that are not in
+this repo (apex→www, HSTS, the security-headers transform, and the managed AI-bot block
+prepended to `robots.txt`). 20 read-only checks, ~30s. Run it after a deploy that changed URLs
+and after any Cloudflare dashboard change. It presents a browser user agent on purpose:
+**production 403s unusual UAs**, so a bare `curl` sweep reads like a total outage.
 
 The migration-era importer and parity harness (`migrate-kirby.mjs`, `parity.mjs`) were deleted with
 the PHP stack; recover them from git history if ever needed.
+
+## Claude Code setup
+
+`.claude/` is committed, so the whole authoring workflow travels with the repo.
+
+**Skills** (`/add-talk`, `/recap-talk`, `/verify-live`) are user-invocable only —
+`disable-model-invocation: true` — because each one either publishes content or hits
+production. They encode the two-pass life of an event page: `/add-talk` writes the
+announcement, `/recap-talk` rewrites it afterwards as a report with the event photos.
+
+**Hooks** (`.claude/settings.json`, scripts in `.claude/hooks/`):
+
+- `PreToolUse` on `Edit|Write` → confirmation prompt when `scripts/expected-urls.txt` is
+  touched. Adding a line is routine; removing one de-indexes a live page and nothing
+  downstream can detect it.
+- `Stop` → `pnpm build && pnpm verify`, but only when the turn changed something that
+  reaches `dist/` (fingerprinted over `HEAD` *and* the working tree, so a turn that ends in
+  a commit still counts). It runs with `asyncRewake`, so it costs the turn nothing and only
+  interrupts on failure. ~14s warm, ~45s when `dist/` is absent.
+
+Both hook scripts are plain bash and safe to run by hand — pipe them the payload shape
+documented in their header comments.
 
 ## Deployment
 

@@ -1,0 +1,46 @@
+---
+# Copy to src/content/talks/<slug>/index.mdx — the directory name becomes the URL.
+# Every field down to `attendants` is required; the build fails without it.
+title: REPLACE — the talk title, without the "Talk am Pegel #N" prefix
+textline: "Talk am Pegel #REPLACE" # quoted: an unquoted # starts a YAML comment
+# Explicit Europe/Berlin offset. +01:00 in winter, +02:00 in summer — compute it,
+# don't guess; see step 2 of the skill.
+date: 2027-01-01T19:00:00+01:00
+isVirtual: false
+locationName: Pegelbar
+locationUrl: ""
+eventbriteUrl: REPLACE — must be a real URL, the schema rejects anything else
+mainImage: ./REPLACE.jpg
+attendants:
+  - REPLACE-person-slug
+  - joerg-geerlings # the host, last in every existing talk
+# The venue block, copied verbatim from any Pegelbar talk. DELETE the whole `location`
+# key for a virtual event — that is what the three virtual talks do.
+location:
+  lat: 51.1996335
+  lon: 6.6958312
+  address: Am Zollhafen
+  number: "5"
+  postcode: "41460"
+  city: Neuss
+  region: Nordrhein-Westfalen
+  country: Deutschland
+  countryCode: de
+---
+
+REPLACE — the announcement text, as plain Markdown paragraphs. Type German quotes
+(„so“) literally; smart punctuation is switched off.
+
+{/* Delete this comment and the imports below if the body has no images.
+    Imports are numbered PER ENTRY — always start at img0 in a new file.
+
+import Figure from '../../../components/blocks/Figure.astro';
+import Gallery from '../../../components/blocks/Gallery.astro';
+import img0 from './REPLACE.jpg';
+
+<Figure src={img0} alt="REPLACE" caption="REPLACE, or drop the attribute" width="md" />
+<Gallery images={[img0]} />
+
+A blockquote must stay on ONE line, or <footer> ends up inside a <p>:
+<blockquote><p>REPLACE quote.</p><footer>REPLACE attribution</footer></blockquote>
+*/}
