@@ -17,6 +17,8 @@
  *   5. canonical/og:url are extensionless and absolute
  *   6. German date formatting is present where expected
  *   7. Images: every <img> has alt and intrinsic dimensions, and the hero is not lazy
+ *   8. Document structure: one <main>, one <h1>, no skipped heading level,
+ *      and no link without an accessible name
  */
 
 import fs from 'node:fs';
@@ -298,6 +300,67 @@ console.log('\n7. Images');
     noPriority === 0
         ? pass('every hero image is fetchpriority="high"')
         : fail(`${noPriority} page(s) hero image without fetchpriority="high"`);
+}
+
+// ------------------------------------------------------- 8. document structure
+console.log('\n8. Document structure');
+{
+    let noMain = 0;
+    let manyMain = 0;
+    let wrongH1 = 0;
+    let skipped = 0;
+    let nameless = 0;
+    let anchors = 0;
+
+    for (const f of pages) {
+        const html = read(f);
+
+        const mains = (html.match(/<main[\s>]/g) ?? []).length;
+        if (mains === 0) noMain++;
+        else if (mains > 1) manyMain++;
+
+        // Exactly one — zero leaves the page without a top-level heading, more than one
+        // flattens the outline. The home page shipped two for the whole of the migration.
+        if ((html.match(/<h1[\s>]/g) ?? []).length !== 1) wrongH1++;
+
+        // Headings must nest, not jump: h2 -> h4 leaves a hole in the outline that a
+        // screen-reader user navigating by heading level cannot see past.
+        let prev = 0;
+        for (const m of html.matchAll(/<h([1-6])[\s>]/g)) {
+            const level = Number(m[1]);
+            if (prev && level > prev + 1) skipped++;
+            prev = level;
+        }
+
+        // An <a> whose name is empty is unusable in a screen reader's link list. A name
+        // can come from text content, an aria-label/aria-labelledby/title on the anchor,
+        // or a named <img>/<svg> inside it — icon-only links have none of those unless
+        // they say so explicitly.
+        for (const m of html.matchAll(/<a\s[^>]*>([\s\S]*?)<\/a>/g)) {
+            anchors++;
+            const tag = m[0].slice(0, m[0].indexOf('>') + 1);
+            const inner = m[1];
+            if (/\saria-label(ledby)?=|\stitle=/.test(tag)) continue;
+            if (
+                inner
+                    .replace(/<[^>]*>/g, ' ')
+                    .replace(/&[a-z]+;/g, ' ')
+                    .trim()
+            )
+                continue;
+            if (/<img[^>]*\salt="[^"]+"/.test(inner) || /aria-label=/.test(inner)) continue;
+            nameless++;
+        }
+    }
+
+    noMain === 0 && manyMain === 0
+        ? pass(`all ${pages.length} pages have exactly one <main>`)
+        : fail(`${noMain} page(s) without <main>, ${manyMain} with more than one`);
+    wrongH1 === 0 ? pass('every page has exactly one <h1>') : fail(`${wrongH1} page(s) without exactly one <h1>`);
+    skipped === 0 ? pass('no page skips a heading level') : fail(`${skipped} skipped heading level(s)`);
+    nameless === 0
+        ? pass(`all ${anchors} <a> elements have an accessible name`)
+        : fail(`${nameless}/${anchors} <a> without an accessible name`);
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);

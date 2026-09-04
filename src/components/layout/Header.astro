@@ -43,8 +43,12 @@ const { title, subtitle, heroImage = pegelbar, heroName = 'hero-image' } = Astro
     >
         <a href="/" class="flex justify-center">
             {/* Intrinsic size from the SVG's own viewBox; h-8 scales it. Kirby set
-                neither, leaving the img without an aspect ratio. */}
-            <img src="/img/logo.svg" class="h-8" alt="" width="212" height="40" />
+                neither, leaving the img without an aspect ratio.
+
+                The alt text is load-bearing rather than decorative: this img is the
+                only content of the link, so alt="" left the link with no accessible
+                name at all — on all 58 pages. */}
+            <img src="/img/logo.svg" class="h-8" alt="Talk am Pegel" width="212" height="40" />
         </a>
     </div>
 
@@ -110,11 +114,11 @@ const { title, subtitle, heroImage = pegelbar, heroName = 'hero-image' } = Astro
             }
         </div>
         <div class="z-10 text-center w-full md:hidden py-6">
-            <a href="#content" class="btn btn-accent btn-circle btn-lg">
+            {/* Icon-only link: the arrow glyph is decorative, so the name has to come
+                from aria-label. */}
+            <a href="#content" class="btn btn-accent btn-circle btn-lg" aria-label="Zum Inhalt scrollen">
                 <Icon name="ri:arrow-down-line" class="size-6 shrink-0" />
             </a>
         </div>
     </div>
 </header>
-
-<span id="content"></span>

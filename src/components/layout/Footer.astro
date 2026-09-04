@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="footer footer-center bg-base-300/60 mt-12 p-12">
-    <nav class="text-base-content grid grid-flow-col gap-4">
+    <nav class="text-base-content grid grid-flow-col gap-4" aria-label="Rechtliches und Kontakt">
         {
             footerNavigation.map((item) => (
                 <a href={item.href} class="link link-hover">
@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
             ))
         }
     </nav>
-    <nav>
+    <nav aria-label="Soziale Netzwerke">
         <div class="flex gap-4">
             <a
                 href={`https://facebook.com/${site.facebook}`}

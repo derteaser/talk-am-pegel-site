@@ -81,15 +81,21 @@ const description = 'Alle Ausgaben der Talk-Reihe Talk am Pegel in Neuss.';
                                                 {talk.data.textline}
                                                 <span class="sr-only">:</span>
                                             </div>
-                                            {talk.data.title}
+                                            <span id={`talk-${talk.id}-title`}>{talk.data.title}</span>
                                         </h2>
 
                                         <PersonAvatarGroup persons={attendants} />
 
                                         <div class="card-actions">
+                                            {/* "Mehr erfahren" repeats on every card, so the
+                                                accessible name pairs it with that card's
+                                                title. The link is listed first so its own
+                                                visible text stays part of the name. */}
                                             <a
+                                                id={`talk-${talk.id}-more`}
                                                 href={`/talks/${talk.id}`}
                                                 class="btn btn-sm btn-soft btn-accent"
+                                                aria-labelledby={`talk-${talk.id}-more talk-${talk.id}-title`}
                                             >
                                                 Mehr erfahren
                                                 <Icon

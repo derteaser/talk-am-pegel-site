@@ -45,7 +45,7 @@ const lightboxes = await Promise.all(
     <div class:list={['grid', cols, 'gap-2', 'image-gallery', 'not-prose']}>
         {
             images.map((image, i) => (
-                <a href={lightboxes[i].src} class="aspect-3/2">
+                <a href={lightboxes[i].src} class="aspect-3/2" aria-label={`Bild ${i + 1} von ${count} vergrößern`}>
                     <Thumbnail
                         image={image}
                         preset="landscape"

@@ -60,8 +60,31 @@ const { heroTitle, heroSubtitle, heroImage, heroName = 'hero-image', ...seo } = 
     </head>
 
     <body>
+        {
+            /*
+          Skip link, first focusable thing on the page: every page opens with a
+          full-viewport hero and a logo bar, so without it a keyboard user traverses
+          the whole header before reaching content. Hidden until focused.
+        */
+        }
+        <a
+            href="#content"
+            class="focus:bg-primary focus:text-primary-content sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-sm focus:px-4 focus:py-2 focus:no-underline focus:outline-2 focus:outline-offset-2"
+        >
+            Zum Inhalt springen
+        </a>
         <Header title={heroTitle ?? seo.title} subtitle={heroSubtitle} heroImage={heroImage} heroName={heroName} />
-        <slot />
+        {
+            /*
+          The site's only <main>, and the target of both the skip link and the hero's
+          scroll-down arrow — it replaces the empty <span id="content"> that used to sit
+          after the header purely as an anchor. tabindex="-1" so the skip link actually
+          moves focus here rather than only scrolling.
+        */
+        }
+        <main id="content" tabindex="-1">
+            <slot />
+        </main>
         <Footer />
         <script>
             import '../scripts/site.ts';
