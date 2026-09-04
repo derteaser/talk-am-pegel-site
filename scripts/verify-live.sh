@@ -157,6 +157,46 @@ fi
 xcto=$(hdr x-content-type-options "$h")
 [ "$xcto" = "nosniff" ] && ok "X-Content-Type-Options: nosniff" || no "X-Content-Type-Options is '$xcto', expected nosniff"
 
+# The rest of the /* block in public/_headers. All of it is invisible to verify.mjs —
+# dist/_headers is a Cloudflare instruction file, not output, so only a live response
+# proves the platform parsed and applied it. A typo in that file fails silently.
+xfo=$(hdr x-frame-options "$h")
+[ "$xfo" = "DENY" ] && ok "X-Frame-Options: DENY" || no "X-Frame-Options is '$xfo', expected DENY"
+
+ref=$(hdr referrer-policy "$h")
+[ "$ref" = "strict-origin-when-cross-origin" ] && ok "Referrer-Policy: $ref" || no "Referrer-Policy is '$ref', expected strict-origin-when-cross-origin"
+
+pp=$(hdr permissions-policy "$h")
+case "$pp" in
+    *camera=\(\)*microphone=\(\)*) ok "Permissions-Policy denies the unused device APIs" ;;
+    "") no "no Permissions-Policy" ;;
+    *) no "Permissions-Policy present but does not deny camera/microphone: $pp" ;;
+esac
+
+coop=$(hdr cross-origin-opener-policy "$h")
+[ "$coop" = "same-origin" ] && ok "Cross-Origin-Opener-Policy: $coop" || no "Cross-Origin-Opener-Policy is '$coop', expected same-origin"
+
+corp=$(hdr cross-origin-resource-policy "$h")
+[ "$corp" = "same-site" ] && ok "Cross-Origin-Resource-Policy: $corp" || no "Cross-Origin-Resource-Policy is '$corp', expected same-site"
+
+nvs=$(hdr no-vary-search "$h")
+case "$nvs" in
+    *utm_source*) ok "No-Vary-Search ignores the campaign params" ;;
+    "") no "no No-Vary-Search" ;;
+    *) no "No-Vary-Search present but without utm_source: $nvs" ;;
+esac
+
+# The /* block must reach the hashed assets too, or the security headers cover only
+# HTML. Cloudflare applies every matching rule, so this is a check on that behaviour
+# continuing to hold, not on our own file.
+# $asset is the path picked up in section 6, and may be empty if the parse failed.
+if [ -n "$asset" ]; then
+    a=$(headers "$BASE$asset")
+    [ "$(hdr x-frame-options "$a")" = "DENY" ] && ok "the /* headers reach /_astro/* as well" || no "/_astro/* did not inherit the /* security headers"
+else
+    skip "asset header inheritance not checked (no /_astro asset found on the home page)"
+fi
+
 # ---------------------------------------------------------------------------
 echo
 echo "8. robots.txt and sitemap.xml"

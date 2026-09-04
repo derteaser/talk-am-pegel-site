@@ -12,12 +12,42 @@
 # still set below because its source is ambiguous — Cloudflare's HSTS panel has an
 # optional No-Sniff toggle, and no duplication is observed either way, so keeping it
 # is the safe side of the trade.
+#
+# Cloudflare applies every matching rule, so the /* block below reaches the hashed
+# assets too; only Cache-Control differs between the two.
 
 # Content-hashed by Astro, so the filename changes whenever the bytes do — safe to
-# cache forever. Everything else keeps the default `max-age=0, must-revalidate`,
-# which is what HTML wants and yields cheap ETag 304s.
+# cache forever. Everything else keeps the default `max-age=0, must-revalidate`, which
+# is what HTML wants.
+#
+# It does NOT yield ETag 304s, which an earlier version of this comment claimed:
+# Workers static assets send a validator for /_astro/* (confirmed 304 on
+# If-None-Match) but none at all for HTML documents, so an HTML revalidation is a
+# full re-fetch. Tracked in issue #1494 with the other platform limits.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*
   X-Content-Type-Options: nosniff
+  # Nothing here is meant to be framed, and the site has no embed use case. Replace
+  # with CSP frame-ancestors 'none' once a policy exists (issue #1487) — until then
+  # this is the only clickjacking protection the site has.
+  X-Frame-Options: DENY
+  # Send the full URL within the site, only the origin when leaving it. The default
+  # varies by browser, so it is worth stating.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # None of these APIs is used anywhere in src/, so deny them outright: a compromised
+  # or injected script cannot ask for what the policy refuses. browsing-topics opts the
+  # site out of Chrome's Topics API, which is on by default. `interest-cohort` is
+  # deliberately absent — FLoC is dead and the token now only produces console noise.
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()
+  # Isolate the browsing context from anything that opens or is opened by it. Safe here
+  # because nothing calls window.open and no flow depends on a popup talking back.
+  Cross-Origin-Opener-Policy: same-origin
+  # Only this site may embed these responses. COEP require-corp is NOT set: it would
+  # need the Fathom script to be crossorigin-clean and belongs with the CSP work.
+  Cross-Origin-Resource-Policy: same-site
+  # Precautionary rather than load-bearing: the site has no query-string routes today,
+  # so nothing varies on these. It matters the moment a campaign link is shared — a
+  # prefetch of /talks?utm_source=x can then satisfy a visit to /talks.
+  No-Vary-Search: params=("utm_source" "utm_medium" "utm_campaign" "utm_content" "utm_term" "gclid" "fbclid" "msclkid" "ref"), key-order
