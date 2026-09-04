@@ -121,9 +121,12 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   self-correct — a past talk advertises `SoldOut` as of the next deploy, and `verify.mjs` asserts it.
 - **A view transition snapshots the incoming page before `IntersectionObserver` fires**, so an
   element inside an `.aos` wrapper is captured at `opacity: 0` and a shared-element morph lands on
-  something invisible. That is why the reveal on the `/talks` cards sits on `.card-body` rather than
-  `.card`, and why `LatestEvent`'s image no longer carries `x-cloak` — both used to hide the very
-  image the morph targets. Keep `transition:name` off anything a reveal can blank out.
+  something invisible. Every reveal therefore sits *beside* a named element, never above it: on
+  `/talks` it is on `.card-body` rather than `.card`, `LatestEvent`'s image has none at all (nor
+  `x-cloak` any more), and `Person.astro` reveals the name and socials rather than the whole
+  `<article>`, so the avatar stays painted. Keep `transition:name` off anything a reveal can blank
+  out — measure it: probe the incoming element's effective opacity at `pagereveal`, not just that
+  the transition fired.
 - **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
   there — setting a header in both places joins the values with a comma. `nosniff` is different:
   it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is
