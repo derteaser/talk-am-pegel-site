@@ -23,9 +23,8 @@ export const GET: APIRoute = async ({ site }) => {
     //
     // Kirby emitted the content file's mtime, which in a git checkout was the
     // checkout time — so every entry carried the same, meaningless value. Using the
-    // BUILD timestamp instead would be actively worse: the site is rebuilt on a
-    // schedule to keep event past/upcoming state fresh, which would tell crawlers
-    // all 57 pages changed every single day and make the signal worthless.
+    // BUILD timestamp instead would be no better: every deploy would mark all 57 pages
+    // as changed, when in practice one talk changed and 56 pages did not.
     //
     // `lastmod` is optional in the sitemap spec, and an unreliable one is worse than
     // none. If a real per-entry date is wanted later, derive it from each content

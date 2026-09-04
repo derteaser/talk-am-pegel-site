@@ -12,7 +12,8 @@
  *   1. URL inventory matches the expected public URL list exactly
  *   2. Every internal link and asset reference resolves to a built file
  *   3. HTML sanity: tag balance, no nested anchors, no invalid nesting
- *   4. JSON-LD parses, and the per-page presence map matches Kirby's
+ *   4. JSON-LD parses, the per-page presence map matches Kirby's, and no past event
+ *      still advertises tickets
  *   5. canonical/og:url are extensionless and absolute
  *   6. German date formatting is present where expected
  *   7. Images: every <img> has alt and intrinsic dimensions
@@ -201,6 +202,27 @@ console.log('\n4. JSON-LD');
         'inLanguage',
     ])
         k in ev ? pass(`Event.${k}`) : fail(`Event.${k} missing`);
+
+    // A finished event must not still advertise tickets. Derived entirely from the
+    // emitted JSON-LD — startDate is in there — so this needs no knowledge of the
+    // content collection, and it keeps working as talks move into the past.
+    //
+    // It is deliberately one-directional: SoldOut is required once startDate has
+    // passed, but an upcoming talk is not asserted to be InStock, because on a normal
+    // day there are no upcoming talks and the check would have nothing to run against.
+    const stale = [];
+    for (const f of pages) {
+        if (!toUrl(f).startsWith('/talks/')) continue;
+        const json = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(read(f));
+        if (!json) continue;
+        const e = JSON.parse(json[1]);
+        if (e['@type'] !== 'Event' || !e.startDate) continue;
+        if (Date.parse(e.startDate) >= Date.now()) continue;
+        if (e.offers?.availability !== 'https://schema.org/SoldOut') stale.push(toUrl(f));
+    }
+    stale.length === 0
+        ? pass('every past Event advertises SoldOut, not InStock')
+        : fail(`past Events still advertising tickets: ${stale.join(', ')}`);
 }
 
 // ------------------------------------------------------------- 5. canonical/og

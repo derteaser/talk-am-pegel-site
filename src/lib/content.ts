@@ -56,9 +56,16 @@ export async function neighbours(talkId: string): Promise<{ prev?: Talk; next?: 
 /**
  * Whether a talk has already happened — EventPage::past().
  *
- * Note this is now evaluated at BUILD time, where Kirby evaluated it per request.
- * A talk flipping from upcoming to past therefore needs a rebuild; the daily
- * scheduled build covers that.
+ * Evaluated at BUILD time, where Kirby evaluated it per request. On a static site with
+ * no scheduled rebuild — and there is none; Cloudflare deploys on push and nothing
+ * else — that means the answer freezes at deploy.
+ *
+ * Two callers handle the staleness differently, on purpose:
+ *  - The ticket panel in pages/talks/[slug].astro does NOT rely on this at runtime. It
+ *    ships both states and lets Alpine compare the reader's clock, so the CTA
+ *    disappears the moment the event is over, with no deploy.
+ *  - The Event JSON-LD in lib/jsonld.ts does rely on it, and so stays stale until the
+ *    next deploy — which in practice is the recap push. That gap is accepted.
  */
 export function isPast(talk: Talk, now: Date = new Date()): boolean {
     return talk.data.date.getTime() < now.getTime();

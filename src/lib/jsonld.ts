@@ -49,8 +49,23 @@ export interface PerformerInput {
     image: string | null;
 }
 
-export function eventSchema(opts: { talk: Talk; description: string; pageUrl: string; imageUrl: string; performers: PerformerInput[] }) {
-    const { talk, description, pageUrl, imageUrl, performers } = opts;
+export function eventSchema(opts: {
+    talk: Talk;
+    description: string;
+    pageUrl: string;
+    imageUrl: string;
+    performers: PerformerInput[];
+    /**
+     * Whether the event has already happened, at BUILD time. Only affects `offers`.
+     *
+     * Unlike the page's ticket panel, which corrects itself on the client, this is
+     * frozen until the next deploy — accepted, because that deploy is in practice the
+     * recap push. The two therefore disagree between the event ending and that deploy:
+     * the CTA is already gone while the offer still reads InStock.
+     */
+    past: boolean;
+}) {
+    const { talk, description, pageUrl, imageUrl, performers, past } = opts;
     const d = talk.data;
     const geo = d.location;
 
@@ -89,12 +104,25 @@ export function eventSchema(opts: { talk: Talk; description: string; pageUrl: st
             name: 'Dr. Jörg Geerlings MdL',
             url: 'https://www.geerlings.de',
         },
+        /**
+         * `eventStatus` deliberately stays EventScheduled for a past event:
+         * EventStatusType has no "completed" member (only Cancelled, MovedOnline,
+         * Postponed, Rescheduled, Scheduled), and an event that took place as planned
+         * was, indeed, scheduled.
+         *
+         * The offer is the part that goes stale. ItemAvailability has no "expired"
+         * member either, so SoldOut is the closest — it is the convention for closed
+         * ticketing, and `validThrough` states the actual expiry alongside it.
+         * Keeping the key rather than dropping it also keeps the Event.offers
+         * assertion in scripts/verify.mjs meaningful.
+         */
         offers: {
             '@type': 'Offer',
             url: d.eventbriteUrl,
             price: '0',
             priceCurrency: 'EUR',
-            availability: `${CONTEXT}/InStock`,
+            availability: past ? `${CONTEXT}/SoldOut` : `${CONTEXT}/InStock`,
+            ...(past && { validThrough: isoWithOffset(d.date) }),
         },
         performer: performers.map((p) => ({
             '@type': 'Person',
