@@ -17,7 +17,7 @@ guidance.
 ```bash
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/
-pnpm verify      # assert dist/ is intact (46 assertions) — also a deploy gate
+pnpm verify      # assert dist/ is intact (49 assertions) — also a deploy gate
 pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (27 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
@@ -137,6 +137,27 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `<article>`, so the avatar stays painted. Keep `transition:name` off anything a reveal can blank
   out — measure it: probe the incoming element's effective opacity at `pagereveal`, not just that
   the transition fired.
+
+    The **hero** could not be moved out of the way like that — it is the root snapshot. So the
+    inline script in `Layout.astro` marks a document entered through a transition with `vt-nav`, and
+    `:root.vt-nav header .aos` skips the reveal there. Without it the outgoing page's headline (at
+    full opacity) crossfades into this one's (at zero) and then fades in again, which reads as the
+    headline blanking out and restarting. `verify.mjs` asserts the rule still exists.
+
+- **The reveals are gated on `.js`**, added by that same inline script. `.aos` hides content in CSS
+  and reveals it with JavaScript, so ungating it means anyone whose script does not run gets a
+  permanently invisible page — the spec's own listed graceful-degradation mistake. `verify.mjs`
+  asserts every `.aos` hiding rule carries the gate and every page carries the bootstrap.
+- **Put both the property and the duration behind `motion-safe:`.** `transition-property`'s initial
+  value is `all`, so a bare `duration-1000` animates on its own: `motion-safe:transition-all` was
+  restating a default and gating nothing, and the reveals ran at full length under
+  `prefers-reduced-motion: reduce` for the whole life of the migration. Measure it in a browser
+  (`reducedMotion: 'reduce'` and count distinct opacity values) rather than reading the classes.
+- **A reveal must not start off-screen horizontally.** `aos-fade-left` used `translate-x-2/5` — 40%
+  of a full-width headline — which put the hero 86px past the viewport for the first ~280ms of
+  every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
+  `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
+  reported the overflow with it set.
 - **`aria-labelledby` on the repeated "Mehr erfahren" links lists the link's own id first**,
   then the card heading — `aria-labelledby="talk-x-more talk-x-title"`. The self-reference looks
   redundant and is not: naming the heading alone would drop the visible words "Mehr erfahren" out

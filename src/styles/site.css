@@ -76,6 +76,17 @@
 @layer base {
   html {
     @apply scroll-smooth;
+
+    /* The sticky logo bar is `fixed` and ~56px tall, so an element scrolled to via
+       #content or any in-page anchor would otherwise land underneath it. */
+    scroll-padding-top: 4.5rem;
+
+    /* A reveal that starts off-screen must not be able to produce a horizontal
+       scrollbar. `clip` rather than `hidden`: it clips without creating a scroll
+       container, so it cannot become a scroll port and does not disturb the
+       document scroller or the view transitions. body's overflow-x: hidden does
+       not cover this — the document still reported 86px of overflow with it set. */
+    overflow-x: clip;
   }
 
   body {
@@ -84,6 +95,27 @@
 
   [x-cloak] {
     display: none !important;
+  }
+
+  /*
+   * Forced-colours mode replaces the palette wholesale, which takes the translucent
+   * sticky bar's background with it — leaving the logo floating over whatever is behind
+   * it. Give it a real border so it still reads as a bar, and make sure a reveal can
+   * never be the reason something is invisible here.
+   */
+  @media (forced-colors: active) {
+    /* System colours, so the bar survives the palette being replaced. `.site-bar` is a
+       plain hook on the element in Header.astro — the translucent tint and the blur both
+       disappear in this mode. */
+    .site-bar {
+      background: Canvas;
+      border-bottom: 1px solid CanvasText;
+    }
+
+    .aos {
+      opacity: 1 !important;
+      translate: none !important;
+    }
   }
 }
 

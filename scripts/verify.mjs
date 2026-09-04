@@ -20,6 +20,7 @@
  *   8. Document structure: one <main>, one <h1>, no skipped heading level, every
  *      link resolving to a non-empty accessible name, and no dangling
  *      aria-labelledby reference
+ *   9. Progressive enhancement: the reveals cannot outlive their JavaScript
  */
 
 import fs from 'node:fs';
@@ -460,6 +461,42 @@ console.log('\n8. Document structure');
     dangling === 0
         ? pass(`all ${references} aria-labelledby references resolve to an element on the page`)
         : fail(`${dangling}/${references} aria-labelledby references point at a missing id`);
+}
+
+// -------------------------------------------------- 9. progressive enhancement
+console.log('\n9. Progressive enhancement');
+{
+    // The reveals hide content in CSS and reveal it with JavaScript, which is only safe
+    // because the hidden state is gated on `.js` — set by an inline script in the head.
+    // Break either half and content disappears for anyone whose JS does not run, which
+    // no other check here can see.
+    const css = fs
+        .readdirSync(path.join(DIST, '_astro'))
+        .filter((f) => f.endsWith('.css'))
+        .map((f) => read(path.join(DIST, '_astro', f)))
+        .join('\n');
+
+    const missingBootstrap = pages.filter((f) => !read(f).includes("classList.add('js')"));
+    missingBootstrap.length === 0
+        ? pass(`all ${pages.length} pages carry the inline .js bootstrap`)
+        : fail(`${missingBootstrap.length} page(s) without the inline .js bootstrap: ${missingBootstrap[0]}`);
+
+    // Any rule that hides an .aos element must be behind the gate.
+    const ungated = [];
+    for (const m of css.matchAll(/([^{}]*\.aos[^{}]*)\{([^}]*)\}/g)) {
+        const [, selector, body] = m;
+        if (!/opacity:\s*0(?![.\d])/.test(body)) continue;
+        if (!selector.includes('.js ')) ungated.push(selector.trim().slice(0, 60));
+    }
+    ungated.length === 0
+        ? pass('every rule hiding an .aos element is gated on .js')
+        : fail(`${ungated.length} ungated .aos hiding rule(s): ${ungated.join(' | ')}`);
+
+    // Arriving through a view transition must skip the hero reveal, or the outgoing
+    // page's headline crossfades into an invisible one and appears to restart.
+    /\.vt-nav header \.aos/.test(css)
+        ? pass('the hero reveal is suppressed on view-transition navigations')
+        : fail('no .vt-nav rule — the hero will re-fade on every navigation');
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);
