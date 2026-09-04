@@ -89,6 +89,19 @@ const { heroTitle, heroSubtitle, heroImage, heroName = 'hero-image', ...seo } = 
         <script>
             import '../scripts/site.ts';
         </script>
+        {
+            /*
+          No `integrity` on this one, deliberately. SRI pins a hash to an immutable URL,
+          and cdn.usefathom.com/script.js is a mutable "latest" file — Fathom documents
+          no versioned URL and no self-hosting. Hashing it would break analytics silently
+          on their next release, which is why The Website Specification lists pinning a
+          "latest" CDN URL as a mistake rather than a fix.
+
+          The two real options are to self-host a frozen, hashed copy refreshed on a
+          schedule — this site has no scheduled build, only deploy-on-push — or to drop
+          Fathom. Recorded in issue #1486; revisit if either changes.
+        */
+        }
         <script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} defer is:inline></script>
     </body>
 </html>
