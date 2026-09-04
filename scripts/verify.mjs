@@ -17,8 +17,9 @@
  *   5. canonical/og:url are extensionless and absolute
  *   6. German date formatting is present where expected
  *   7. Images: every <img> has alt and intrinsic dimensions, and the hero is not lazy
- *   8. Document structure: one <main>, one <h1>, no skipped heading level,
- *      and no link without an accessible name
+ *   8. Document structure: one <main>, one <h1>, no skipped heading level, every
+ *      link resolving to a non-empty accessible name, and no dangling
+ *      aria-labelledby reference
  */
 
 import fs from 'node:fs';
@@ -62,6 +63,90 @@ const toUrl = (f) =>
 
 const pages = htmlFiles();
 const read = (f) => fs.readFileSync(f, 'utf8');
+
+const VOID_TAGS = new Set(['img', 'input', 'br', 'hr', 'source', 'meta', 'link', 'area']);
+
+/**
+ * Entities have to be DECODED, not blanked: /kontakt writes its mailto address as
+ * numeric character references to frustrate harvesters, and treating those as
+ * whitespace makes a perfectly well-named link look nameless.
+ */
+const ENTITIES = {
+    amp: '&',
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    nbsp: ' ',
+    shy: '',
+    copy: '©',
+    ndash: '–',
+    mdash: '—',
+    hellip: '…',
+    laquo: '«',
+    raquo: '»',
+    bdquo: '„',
+    ldquo: '“',
+    rdquo: '”',
+    euro: '€',
+    auml: 'ä',
+    ouml: 'ö',
+    uuml: 'ü',
+    Auml: 'Ä',
+    Ouml: 'Ö',
+    Uuml: 'Ü',
+    szlig: 'ß',
+};
+
+const decodeEntities = (s) =>
+    s
+        .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+        .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
+        // An unknown named entity is still content, so it must not decode to whitespace.
+        .replace(/&([a-zA-Z][a-zA-Z0-9]*);/g, (_, name) => (name in ENTITIES ? ENTITIES[name] : '\uFFFD'));
+
+/** Visible text of an element, tags stripped and entities decoded. */
+const textOf = (html) =>
+    decodeEntities(html.replace(/<[^>]*>/g, ' '))
+        .replace(/\s+/g, ' ')
+        .trim();
+
+/**
+ * Text content of the element carrying `id`, or null when no such id exists on the page.
+ * Walks forward counting same-name tags rather than regex-matching to the first close tag,
+ * so a heading containing a nested <span> resolves to the whole heading.
+ *
+ * Needed because an aria-labelledby pointing at an id that is not on the page yields an
+ * EMPTY accessible name while looking perfectly correct in the markup — the failure mode
+ * a presence-only check cannot see.
+ */
+function textById(html, id) {
+    const at = html.search(new RegExp(`\\sid="${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
+    if (at === -1) return null;
+    const open = html.lastIndexOf('<', at);
+    const tag = html
+        .slice(open + 1)
+        .match(/^[a-zA-Z][\w-]*/)?.[0]
+        ?.toLowerCase();
+    if (!tag) return null;
+    const openEnd = html.indexOf('>', at);
+    if (openEnd === -1) return null;
+    if (VOID_TAGS.has(tag)) {
+        // A void element's name comes from its own attributes, not children.
+        const alt = html.slice(open, openEnd + 1).match(/\salt="([^"]*)"/)?.[1];
+        return alt === undefined ? '' : decodeEntities(alt).trim();
+    }
+    let depth = 1;
+    let i = openEnd + 1;
+    const scan = new RegExp(`<(/?)${tag}[\\s>/]`, 'g');
+    scan.lastIndex = i;
+    let m;
+    while ((m = scan.exec(html))) {
+        depth += m[1] ? -1 : 1;
+        if (depth === 0) return textOf(html.slice(openEnd + 1, m.index));
+    }
+    return textOf(html.slice(openEnd + 1));
+}
 
 // ---------------------------------------------------------------- 1. inventory
 console.log('\n1. URL inventory');
@@ -311,6 +396,8 @@ console.log('\n8. Document structure');
     let skipped = 0;
     let nameless = 0;
     let anchors = 0;
+    let references = 0;
+    let dangling = 0;
 
     for (const f of pages) {
         const html = read(f);
@@ -332,24 +419,33 @@ console.log('\n8. Document structure');
             prev = level;
         }
 
-        // An <a> whose name is empty is unusable in a screen reader's link list. A name
-        // can come from text content, an aria-label/aria-labelledby/title on the anchor,
-        // or a named <img>/<svg> inside it — icon-only links have none of those unless
-        // they say so explicitly.
+        // An <a> whose name is empty is unusable in a screen reader's link list. Resolve
+        // the name the way the accessibility tree does, in precedence order — the mere
+        // PRESENCE of aria-labelledby or aria-label is not a name: the referenced ids can
+        // be absent from the page, and the attribute value can be empty.
         for (const m of html.matchAll(/<a\s[^>]*>([\s\S]*?)<\/a>/g)) {
             anchors++;
             const tag = m[0].slice(0, m[0].indexOf('>') + 1);
             const inner = m[1];
-            if (/\saria-label(ledby)?=|\stitle=/.test(tag)) continue;
-            if (
-                inner
-                    .replace(/<[^>]*>/g, ' ')
-                    .replace(/&[a-z]+;/g, ' ')
-                    .trim()
-            )
-                continue;
-            if (/<img[^>]*\salt="[^"]+"/.test(inner) || /aria-label=/.test(inner)) continue;
-            nameless++;
+
+            const labelledby = tag.match(/\saria-labelledby="([^"]*)"/)?.[1];
+            let name = '';
+
+            if (labelledby !== undefined) {
+                for (const id of labelledby.split(/\s+/).filter(Boolean)) {
+                    const text = textById(html, id);
+                    if (text === null) dangling++;
+                    else name += ` ${text}`;
+                }
+                references += labelledby.split(/\s+/).filter(Boolean).length;
+            }
+            if (!name.trim()) name = tag.match(/\saria-label="([^"]*)"/)?.[1] ?? '';
+            if (!name.trim()) name = textOf(inner);
+            if (!name.trim()) name = inner.match(/\salt="([^"]*)"/)?.[1] ?? '';
+            if (!name.trim()) name = inner.match(/\saria-label="([^"]*)"/)?.[1] ?? '';
+            if (!name.trim()) name = tag.match(/\stitle="([^"]*)"/)?.[1] ?? '';
+
+            if (!name.trim()) nameless++;
         }
     }
 
@@ -359,8 +455,11 @@ console.log('\n8. Document structure');
     wrongH1 === 0 ? pass('every page has exactly one <h1>') : fail(`${wrongH1} page(s) without exactly one <h1>`);
     skipped === 0 ? pass('no page skips a heading level') : fail(`${skipped} skipped heading level(s)`);
     nameless === 0
-        ? pass(`all ${anchors} <a> elements have an accessible name`)
+        ? pass(`all ${anchors} <a> elements resolve to a non-empty accessible name`)
         : fail(`${nameless}/${anchors} <a> without an accessible name`);
+    dangling === 0
+        ? pass(`all ${references} aria-labelledby references resolve to an element on the page`)
+        : fail(`${dangling}/${references} aria-labelledby references point at a missing id`);
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);
