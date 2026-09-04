@@ -25,9 +25,16 @@ interface Props extends SeoProps {
     heroTitle?: string;
     heroSubtitle?: string | null;
     heroImage?: ImageMetadata;
+    /**
+     * `view-transition-name` for the hero image. Pages whose hero is their own subject
+     * override it so the image morphs out of the thumbnail that linked here — see
+     * talks/[slug].astro. Everything else keeps the shared default, which makes the
+     * identical pegelbar backdrop hold still instead of crossfading with itself.
+     */
+    heroName?: string;
 }
 
-const { heroTitle, heroSubtitle, heroImage, ...seo } = Astro.props;
+const { heroTitle, heroSubtitle, heroImage, heroName = 'hero-image', ...seo } = Astro.props;
 ---
 
 <!doctype html>
@@ -53,7 +60,7 @@ const { heroTitle, heroSubtitle, heroImage, ...seo } = Astro.props;
     </head>
 
     <body>
-        <Header title={heroTitle ?? seo.title} subtitle={heroSubtitle} heroImage={heroImage} />
+        <Header title={heroTitle ?? seo.title} subtitle={heroSubtitle} heroImage={heroImage} heroName={heroName} />
         <slot />
         <Footer />
         <script>

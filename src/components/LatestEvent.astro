@@ -24,13 +24,12 @@ const href = `/talks/${talk.id}`;
 
 <section class="my-24 flex flex-col space-y-16">
     <article class="container mx-auto grid grid-cols-1 gap-6 px-5 lg:grid-cols-3 xl:grid-cols-5">
-        <div
-            class="aos aos-fade-up lg:order-last lg:row-span-2 xl:col-span-2"
-            x-data="{ visible: false }"
-            x-intersect="visible = true"
-            :class="visible && 'visible'"
-            x-cloak
-        >
+        {
+            /* No .aos here: this image is a view-transition target, and a reveal would hand
+            the morph a transparent element on the way back from the talk page. The text
+            column beside it still fades up. */
+        }
+        <div class="lg:order-last lg:row-span-2 xl:col-span-2" transition:name={`talk-${talk.id}`}>
             <Thumbnail image={talk.data.mainImage} preset="wide" class="w-full rounded-sm object-cover object-center" alt="" />
         </div>
         <div
