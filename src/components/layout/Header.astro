@@ -54,10 +54,23 @@ const { title, subtitle, heroImage = pegelbar, heroName = 'hero-image' } = Astro
         Thumbnail's rest spread and <Picture>'s own attribute forwarding to land on the
         img. Geometry is unchanged — the img still fills an inset-0 box. */}
     <div class="absolute inset-0 opacity-20" transition:name={heroName}>
+        {/* This full-viewport backdrop is the LCP element on every page of the site, which
+            is why it is eager and high-priority. Thumbnail defaults to lazy — correct for
+            the card and gallery images it was written for, wrong here: `loading="lazy"`
+            makes the browser defer the one paint the score is measured on until layout
+            says it is in view. Layout.astro's font-preload comment already names this
+            image as the LCP element; the attributes now agree with it.
+
+            No <link rel="preload"> to go with it: this <img> sits in the first kilobyte
+            of the body where the preload scanner finds it immediately, and a preload
+            whose imagesrcset/imagesizes drift out of step with Thumbnail's width ladder
+            would fetch the image a second time. */}
         <Thumbnail
             image={heroImage}
             sizes="100vw"
             alt=""
+            lazy={false}
+            fetchpriority="high"
             class="w-full h-full object-cover object-center block"
         />
     </div>
