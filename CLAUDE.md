@@ -17,7 +17,7 @@ guidance.
 ```bash
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/
-pnpm verify      # assert dist/ is intact (41 assertions) — also a deploy gate
+pnpm verify      # assert dist/ is intact (46 assertions) — also a deploy gate
 pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (20 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
@@ -123,20 +123,28 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   the Astro compile.
 - **`past()` is a build-time decision** (`isPast` in `src/lib/content.ts`), where Kirby evaluated it
   per request, and **there is no scheduled rebuild** — Cloudflare deploys on push and nothing else.
-  `talks/[slug].astro` therefore ships *both* states and lets Alpine pick, comparing the reader's
+  `talks/[slug].astro` therefore ships _both_ states and lets Alpine pick, comparing the reader's
   clock against an epoch emitted at build time, so the ticket CTA disappears when the event ends
   rather than at the next deploy. The Alpine bindings use `:class` **object** syntax deliberately:
   only that form removes classes that came from the static `class` attribute, which is what lets the
-  server render the build-time state and the client take it back. The Event JSON-LD does *not*
+  server render the build-time state and the client take it back. The Event JSON-LD does _not_
   self-correct — a past talk advertises `SoldOut` as of the next deploy, and `verify.mjs` asserts it.
 - **A view transition snapshots the incoming page before `IntersectionObserver` fires**, so an
   element inside an `.aos` wrapper is captured at `opacity: 0` and a shared-element morph lands on
-  something invisible. Every reveal therefore sits *beside* a named element, never above it: on
+  something invisible. Every reveal therefore sits _beside_ a named element, never above it: on
   `/talks` it is on `.card-body` rather than `.card`, `LatestEvent`'s image has none at all (nor
   `x-cloak` any more), and `Person.astro` reveals the name and socials rather than the whole
   `<article>`, so the avatar stays painted. Keep `transition:name` off anything a reveal can blank
   out — measure it: probe the incoming element's effective opacity at `pagereveal`, not just that
   the transition fired.
+- **`aria-labelledby` on the repeated "Mehr erfahren" links lists the link's own id first**,
+  then the card heading — `aria-labelledby="talk-x-more talk-x-title"`. The self-reference looks
+  redundant and is not: naming the heading alone would drop the visible words "Mehr erfahren" out
+  of the accessible name, which is what WCAG 2.5.3 (Label in Name) is about. `verify.mjs` asserts
+  every link has _a_ name, so deleting the self-id would still pass — the check cannot see this.
+- **`#content` lives on `<main>`**, which `Layout.astro` wraps around `<slot />`. It is the target
+  of both the skip link and the hero's scroll-down arrow, and it replaced an empty
+  `<span id="content">` that used to sit after the header purely as an anchor.
 - **Do not set HSTS in `public/_headers`.** The Cloudflare zone owns it and overrides anything set
   there — setting a header in both places joins the values with a comma. `nosniff` is different:
   it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is
@@ -146,18 +154,18 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `@source "../**/*.{astro,ts,js,mdx,md}"` as the only supplier of class candidates. So the CSS is
   a function of the markup and nothing else — **a class written outside `src/` is not generated**.
 
-  Detection used to scan the whole repo (minus `.gitignore` and `node_modules`), which swept up
-  prose: any English word matching a FlyOnUI component name generated that component's entire CSS.
-  A code comment cost 4 kB for a component no element here has ever used; the CLAUDE.md paragraph
-  documenting that trap then re-added the same 4 kB by naming it; and deleting the Blade templates
-  had earlier dropped 57 kB the same way. Scoping it removed a further 12.5 kB (96.5 kB → 84 kB) of
-  unused FlyOnUI components — `.input`, `.select`, `.table`, `.filter`, `.validate` and friends.
+    Detection used to scan the whole repo (minus `.gitignore` and `node_modules`), which swept up
+    prose: any English word matching a FlyOnUI component name generated that component's entire CSS.
+    A code comment cost 4 kB for a component no element here has ever used; the CLAUDE.md paragraph
+    documenting that trap then re-added the same 4 kB by naming it; and deleting the Blade templates
+    had earlier dropped 57 kB the same way. Scoping it removed a further 12.5 kB (96.5 kB → 84 kB) of
+    unused FlyOnUI components — `.input`, `.select`, `.table`, `.filter`, `.validate` and friends.
 
-  If you change the scanning again, the check that actually proves it safe is: for every class used
-  in `dist/**/*.html`, assert the emitted CSS carries a rule for it, and diff `getComputedStyle`
-  across the pages before and after. Size alone tells you nothing — a drop is usually dead weight,
-  not a regression. (Note `@apply` resolves from the theme and is unaffected by detection, so
-  `@utility blocks`' `italic` survives even though the standalone `.italic` utility is gone.)
+    If you change the scanning again, the check that actually proves it safe is: for every class used
+    in `dist/**/*.html`, assert the emitted CSS carries a rule for it, and diff `getComputedStyle`
+    across the pages before and after. Size alone tells you nothing — a drop is usually dead weight,
+    not a regression. (Note `@apply` resolves from the theme and is unaffected by detection, so
+    `@utility blocks`' `italic` survives even though the standalone `.italic` utility is gone.)
 
 ## Content
 
@@ -203,7 +211,7 @@ was 2026-09-04, tracked in issue #1495.
   touched. Adding a line is routine; removing one de-indexes a live page and nothing
   downstream can detect it.
 - `Stop` → `pnpm build && pnpm verify`, but only when the turn changed something that
-  reaches `dist/` (fingerprinted over `HEAD` *and* the working tree, so a turn that ends in
+  reaches `dist/` (fingerprinted over `HEAD` _and_ the working tree, so a turn that ends in
   a commit still counts). It runs with `asyncRewake`, so it costs the turn nothing and only
   interrupts on failure. ~14s warm, ~45s when `dist/` is absent.
 

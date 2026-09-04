@@ -38,14 +38,25 @@ const href = `/talks/${talk.id}`;
             x-intersect="setTimeout(function() { visible = true }, 200)"
             :class="visible && 'visible'"
         >
-            <h1 class="text-base-content text-3xl font-semibold sm:text-4xl">
-                <a href={href} class="link link-hover decoration-accent" set:html={widont(talk.data.title)} />
-            </h1>
+            {
+                /* <h2>, not <h1>: the hero already carries the page's only <h1>, and two
+                of them flattened the home page's outline. */
+            }
+            <h2 class="text-base-content text-3xl font-semibold sm:text-4xl">
+                <a id="latest-talk-title" href={href} class="link link-hover decoration-accent" set:html={widont(talk.data.title)} />
+            </h2>
             <p class="text-base-content/60 text-sm">
                 {talk.data.textline} am {formatDate(talk.data.date)}
             </p>
             <p class="text-base-content max-w-xl leading-relaxed">{description}</p>
-            <a href={href} class="btn btn-accent">Mehr erfahren</a>
+            {
+                /* aria-labelledby lists this link first, then the heading, so the name reads
+                "Mehr erfahren <talk title>" — keeping the visible label inside the
+                accessible name (WCAG 2.5.3) while still disambiguating the target. */
+            }
+            <a id="latest-talk-more" href={href} class="btn btn-accent" aria-labelledby="latest-talk-more latest-talk-title">
+                Mehr erfahren
+            </a>
         </div>
     </article>
 
