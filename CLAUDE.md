@@ -28,7 +28,7 @@ pnpm deploy:cf   # build + verify + wrangler deploy
 
 ## Docs
 
-`.mcp.json` registers two MCP servers at project scope, so both need approving once per
+`.mcp.json` registers three MCP servers at project scope, so each needs approving once per
 user. The **Astro Docs MCP server** (`https://mcp.docs.astro.build/mcp`) serves a live index of
 the Astro documentation. **Playwright** (`npx @playwright/mcp@latest`) drives a real browser —
 the only way to check the things static output cannot prove: Alpine initialising, the
@@ -36,6 +36,16 @@ BigPicture lightbox, FlyOnUI tooltips and the scroll reveals. Prefer it over rec
 this project runs Astro 7, and several things moved recently: Satteri replaced remark/rehype,
 `compressHTML` defaults to `'jsx'`, `z` moved from `astro:content` to `astro/zod`, and the Fonts
 API became stable. Project-scoped MCP servers need approving once per user.
+
+**The Website Specification** (`https://mcp.specification.website/mcp`, read-only, no auth) is
+[specification.website](https://specification.website) as tools — `search`, `list_topics`,
+`get_topic`, `get_checklist`, `get_categories`, `get_changes`, plus an `audit_url` prompt. It is
+the reference for the platform-contract layer this repo cares about most: sitemaps, robots.txt,
+canonicals, structured data, feeds, `.well-known/`, headers. Items carry one of four statuses —
+`required`, `recommended`, `optional`, `avoid` — and the list tools return all four unless you
+pass `status`. Note the documented endpoint (`specification.website/mcp/`) is a docs page and
+405s on POST; the server lives on the `mcp.` subdomain, which the site's own `Link: rel="mcp"`
+header advertises.
 
 ## Non-negotiable invariant: URL parity
 
