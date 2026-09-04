@@ -18,7 +18,7 @@ guidance.
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/
 pnpm verify      # assert dist/ is intact (46 assertions) — also a deploy gate
-pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (20 checks)
+pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (27 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
 pnpm deploy:cf   # build + verify + wrangler deploy
