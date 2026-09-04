@@ -43,6 +43,26 @@ const { heroTitle, heroSubtitle, heroImage, heroName = 'hero-image', ...seo } = 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#3b5883" />
+        {
+            /*
+          Two lines that have to run before anything paints, so they are inline and
+          unbundled:
+
+          1. `vt-nav` marks a document that was entered through a cross-document view
+             transition. The hero reveal is suppressed in that case — the outgoing page's
+             headline is fully visible, the incoming one is captured at opacity 0, so the
+             crossfade reads as the headline blanking out and starting over. See aos.css.
+          2. `js` gates the reveals themselves. Hiding content in CSS and revealing it
+             with JavaScript leaves it hidden forever if the script never runs, so the
+             hidden state is only applied once this line has proven scripting works.
+        */
+        }
+        <script is:inline>
+            document.documentElement.classList.add('js');
+            addEventListener('pagereveal', (e) => {
+                if (e.viewTransition) document.documentElement.classList.add('vt-nav');
+            });
+        </script>
         <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

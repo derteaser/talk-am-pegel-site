@@ -1,13 +1,41 @@
+/*
+ * Scroll reveals. Alpine's x-intersect adds `.visible`; everything else is CSS.
+ *
+ * The hidden state is gated on `.js` (set by the inline script in Layout.astro), because
+ * an .aos element whose JavaScript never arrives would otherwise stay invisible for
+ * good — the failure mode The Website Specification calls out under graceful degradation.
+ * With no scripting the rules below never match and every element renders in its final
+ * state.
+ */
 @layer components {
-  .aos {
-    @apply transform opacity-0 duration-1000 motion-safe:transition-all;
+  .js .aos {
+    /*
+     * Both the property AND the duration have to sit behind motion-safe. The initial
+     * value of `transition-property` is `all`, so `duration-1000` on its own was enough
+     * to animate the reveal — `motion-safe:transition-all` only restated a default and
+     * gated nothing. Measured: with prefers-reduced-motion: reduce the opacity still
+     * ran through 48 distinct values. motion-reduce:transition-none makes the intent
+     * explicit rather than relying on a duration being absent.
+     */
+    @apply transform opacity-0;
+    @apply motion-safe:transition-all motion-safe:duration-1000 motion-reduce:transition-none;
 
     &.visible {
       @apply opacity-100;
     }
   }
 
-  .aos-fade-up {
+  /*
+   * Arriving through a view transition, the hero is already on screen: the outgoing
+   * page's headline is at full opacity and this one is snapshotted at zero, so playing
+   * the reveal on top of the crossfade looks like the headline blanking and restarting.
+   * Suppress it there and let the transition carry the motion. Cold loads keep the fade.
+   */
+  :root.vt-nav header .aos {
+    @apply translate-none opacity-100 transition-none;
+  }
+
+  .js .aos-fade-up {
     @apply translate-y-1/3;
 
     &.visible {
@@ -15,7 +43,7 @@
     }
   }
 
-  .aos-fade-down {
+  .js .aos-fade-down {
     @apply -translate-y-1/3;
 
     &.visible {
@@ -23,23 +51,29 @@
     }
   }
 
-  .aos-fade-left {
-    @apply translate-x-2/5;
+  /*
+   * Fixed offsets, not the percentage these two used to carry: 40% of a full-width
+   * headline pushed it 86px past the viewport for the first ~280ms of every page load,
+   * which flashed a horizontal scrollbar. `html { overflow-x: clip }` in site.css is the
+   * belt to this braces.
+   */
+  .js .aos-fade-left {
+    @apply translate-x-8;
 
     &.visible {
       @apply translate-x-0;
     }
   }
 
-  .aos-fade-right {
-    @apply -translate-x-2/5;
+  .js .aos-fade-right {
+    @apply -translate-x-8;
 
     &.visible {
       @apply translate-x-0;
     }
   }
 
-  .aos-zoom-in {
+  .js .aos-zoom-in {
     @apply scale-0;
 
     &.visible {
