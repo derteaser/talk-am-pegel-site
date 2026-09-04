@@ -107,17 +107,23 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   there — setting a header in both places joins the values with a comma. `nosniff` is different:
   it survives on a `workers.dev` preview, which is outside the zone, so `public/_headers` is
   demonstrably its source. Keep it there.
-- **Tailwind also auto-detects sources beyond `@source`.** Deleting the Blade templates shrank the
-  CSS by 57 kB (156 kB → 98 kB), because auto-detection had been generating FlyOnUI classes that
-  only appeared in them. This reaches **prose in comments and docs**, not just markup: one code
-  comment happened to contain the name of FlyOnUI's toggle-switch component as an ordinary English
-  verb, which generated that component's entire CSS — 4 kB, for a class no element here has ever
-  used. Rewording the comment removed it. So a CSS size change after an edit that touched no
-  classes is not necessarily a lost-class regression; `grep` the built CSS for the component before
-  assuming either way.
+- **Tailwind scans only `src/`, and that is deliberate.** `src/styles/site.css` imports Tailwind
+  with `source(none)`, which switches off automatic source detection, leaving the single
+  `@source "../**/*.{astro,ts,js,mdx,md}"` as the only supplier of class candidates. So the CSS is
+  a function of the markup and nothing else — **a class written outside `src/` is not generated**.
 
-  This paragraph therefore **avoids writing that component's name**, because writing it here brings
-  the 4 kB straight back — this file is scanned too. Verified both ways.
+  Detection used to scan the whole repo (minus `.gitignore` and `node_modules`), which swept up
+  prose: any English word matching a FlyOnUI component name generated that component's entire CSS.
+  A code comment cost 4 kB for a component no element here has ever used; the CLAUDE.md paragraph
+  documenting that trap then re-added the same 4 kB by naming it; and deleting the Blade templates
+  had earlier dropped 57 kB the same way. Scoping it removed a further 12.5 kB (96.5 kB → 84 kB) of
+  unused FlyOnUI components — `.input`, `.select`, `.table`, `.filter`, `.validate` and friends.
+
+  If you change the scanning again, the check that actually proves it safe is: for every class used
+  in `dist/**/*.html`, assert the emitted CSS carries a rule for it, and diff `getComputedStyle`
+  across the pages before and after. Size alone tells you nothing — a drop is usually dead weight,
+  not a regression. (Note `@apply` resolves from the theme and is unaffected by detection, so
+  `@utility blocks`' `italic` survives even though the standalone `.italic` utility is gone.)
 
 ## Content
 
