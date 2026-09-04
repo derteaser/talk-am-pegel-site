@@ -31,9 +31,15 @@ export interface SeoProps {
     jsonLd?: Record<string, unknown> | null;
     /** Home shows the bare site title rather than "Page | Site". */
     isHome?: boolean;
+    /**
+     * Keep the page out of the index while still letting crawlers follow its links.
+     * Only 404.astro sets it: an error page that says `index` invites search engines to
+     * index a page whose whole job is to say the URL does not exist.
+     */
+    noindex?: boolean;
 }
 
-const { title, description, mainImage, jsonLd, isHome = false } = Astro.props as SeoProps;
+const { title, description, mainImage, jsonLd, isHome = false, noindex = false } = Astro.props as SeoProps;
 
 // `build.format: 'file'` puts ".html" into Astro.url.pathname, which would publish
 // canonical and og:url as "/impressum.html" — URLs that are not what is indexed.
@@ -60,7 +66,11 @@ const ogUrl = new URL(og.src, Astro.site).href;
 
 <title>{pageTitle}</title>
 
-<meta name="robots" content="index,follow,noodp" />
+{
+    /* `noodp` is gone: the Open Directory Project it referred to shut down in 2017, and
+    every engine dropped the directive with it. */
+}
+<meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
 {description && <meta name="description" content={description} />}
 
 <meta property="og:title" content={isHome ? site.title : title} />
