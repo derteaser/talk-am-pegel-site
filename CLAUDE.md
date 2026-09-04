@@ -188,10 +188,14 @@ the PHP stack; recover them from git history if ever needed.
 
 `.claude/` is committed, so the whole authoring workflow travels with the repo.
 
-**Skills** (`/add-talk`, `/recap-talk`, `/verify-live`) are user-invocable only —
-`disable-model-invocation: true` — because each one either publishes content or hits
-production. They encode the two-pass life of an event page: `/add-talk` writes the
-announcement, `/recap-talk` rewrites it afterwards as a report with the event photos.
+**Skills** (`/add-talk`, `/recap-talk`, `/verify-live`, `/spec-audit`) are user-invocable only —
+`disable-model-invocation: true` — because each one either publishes content, hits
+production or opens issues. `/add-talk` and `/recap-talk` encode the two-pass life of an event
+page: the first writes the announcement, the second rewrites it afterwards as a report with the
+event photos. `/spec-audit` runs the site against The Website Specification and files the findings
+as labelled issues; it carries the audit's scope decisions (required + recommended, i18n excluded)
+and a table of the invariants above that an auditor must **not** re-report as bugs. The first pass
+was 2026-09-04, tracked in issue #1495.
 
 **Hooks** (`.claude/settings.json`, scripts in `.claude/hooks/`):
 
