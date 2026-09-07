@@ -169,6 +169,13 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `lastBuildDate` is the newest talk's date, not the build time — a typo fix in the footer is not
   a content change. `_headers` types it `application/rss+xml`, because readers branch on the MIME
   type and Cloudflare would otherwise serve `.xml` as `application/xml`.
+- **CAA records are deliberately absent, and uptime monitoring lives on UptimeRobot.** Both
+  decided on #1493. CAA: Cloudflare picks the issuing CA itself from four possible ones and
+  rotates roughly every 90 days, its docs state plainly that a CAA record "does not affect which
+  CA Cloudflare uses", and the CA — not Cloudflare — enforces the record at issuance. A pinned
+  record therefore fails silently into an expired certificate, and one permitting all four is
+  barely a restriction. The monitor exists but no file could show it, which is why the audit
+  filed it as missing; it is written down in `README.md` beside the other out-of-repo settings.
 - **`security.csp` in `astro.config.mjs` was evaluated and rejected — do not reach for it again
   without re-testing this.** Astro 6+ can emit the policy as a per-page `<meta http-equiv>` and
   hashes the scripts and styles it emits, which sounds strictly better than a hand-written
