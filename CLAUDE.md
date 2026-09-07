@@ -175,13 +175,26 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   the trailing-slash rule, query strings survive the redirect, and all 57 indexed URLs still
   return 200 with no redirect. `verify-live.sh` section 3 now demands **308 specifically** —
   accepting any 3xx is what let the 307s go unnoticed in the first place.
-- **HTML pages cannot have ETags here, and that is settled rather than unexplored.** Astro 7 has
-  a route-caching API that sets `etag`/`lastModified`, but the docs scope it to **on-demand
-  rendered** routes with a cache provider — which needs an adapter and a Worker in the request
-  path, the thing this deployment deliberately does not have. For a prerendered site Astro
-  writes files and the server owns validators, and Workers static assets sends none for HTML.
-  So `/_astro/*` 304s and HTML does not. Do not chase this without changing the deployment
-  model; see #1494.
+- **Two platform limits are ACCEPTED, not open work** (decided on #1494, 2026-09-07). Both need
+  a Worker in the request path, which this deployment deliberately does not have, and both were
+  chased to the documentation before being accepted rather than assumed:
+
+    **HTML carries no validator, so it never 304s.** Astro 7 has a route-caching API that sets
+    `etag`/`lastModified`, but the docs scope it to **on-demand rendered** routes with a cache
+    provider — an adapter and a Worker. For a prerendered site Astro writes files and the server
+    owns validators, and Workers static assets sends none for HTML. So `/_astro/*` revalidates
+    with a 304 and HTML re-fetches in full: measured at 5.8–10.7 kB brotli per repeat view, on a
+    site that deploys two or three times a year. `public/_headers` says the same in its own
+    comment; do not "fix" that comment back.
+
+    **No `Redirect-By` header on the apex redirect.** Cloudflare does not apply `_headers` to
+    redirect responses, and the apex→www redirect is a zone rule that never reaches this Worker.
+    The header is diagnostic only — "which layer redirected me" — on the one redirect the site
+    has that is not a canonicalisation.
+
+    Revisit both only if a Worker arrives for another reason; a CSP reporting endpoint (#1487) is
+    the plausible one, and then they ride along nearly free.
+
 - **The discovery files are NOT in `scripts/expected-urls.txt`.** That fixture is the indexed
   _page_ inventory and check 1 compares it against the built HTML, so listing a non-HTML
   endpoint there reports it as missing. `/llms.txt`, `/.well-known/security.txt` and
