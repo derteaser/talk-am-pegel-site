@@ -169,6 +169,19 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `lastBuildDate` is the newest talk's date, not the build time — a typo fix in the footer is not
   a content change. `_headers` types it `application/rss+xml`, because readers branch on the MIME
   type and Cloudflare would otherwise serve `.xml` as `application/xml`.
+- **`security.csp` in `astro.config.mjs` was evaluated and rejected — do not reach for it again
+  without re-testing this.** Astro 6+ can emit the policy as a per-page `<meta http-equiv>` and
+  hashes the scripts and styles it emits, which sounds strictly better than a hand-written
+  header: hashed inline styles would remove `style-src 'unsafe-inline'`. It does not work here.
+  `transition:name` generates a scoped `<style>` per named element at render time, and those are
+  **not** among the styles Astro hashes — measured: the `@font-face` block matched, the three
+  `[data-astro-transition-scope=…]` blocks did not. The browser blocks them
+  (`style-src-elem blocked inline`, 38 violations across 8 routes), all 13 scoped elements lose
+  `view-transition-name`, and the shared-element morphs stop working. Adding
+  `style-src 'unsafe-inline'` fixes that but makes Astro suppress its hashes — per its own docs —
+  leaving a policy identical in strength to the header one, at ~486 bytes brotli of extra HTML
+  per page. So: same protection, per-page cost, policy split between two files, and
+  `frame-ancestors` still header-only because the CSP spec makes it so.
 - **The CSP allows `'unsafe-eval'` deliberately, and `'unsafe-inline'` for scripts never.**
   Alpine evaluates its inline expressions with `new Function`; the alternative is
   `@alpinejs/csp`, which means registering components and rewriting every `x-data` — a
