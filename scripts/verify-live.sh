@@ -186,6 +186,24 @@ coop=$(hdr cross-origin-opener-policy "$h")
 corp=$(hdr cross-origin-resource-policy "$h")
 [ "$corp" = "same-site" ] && ok "Cross-Origin-Resource-Policy: $corp" || no "Cross-Origin-Resource-Policy is '$corp', expected same-site"
 
+# The policy is a long value full of semicolons and single quotes — exactly the shape a
+# header parser mangles. Only a live response shows whether Cloudflare passed it through
+# intact, so check the directives that matter rather than just that the header exists.
+csp=$(hdr content-security-policy "$h")
+if [ -z "$csp" ]; then
+    no "no Content-Security-Policy"
+else
+    missing=""
+    for d in "default-src 'self'" "'unsafe-eval'" "sha256-" "frame-ancestors 'none'" "cdn.usefathom.com" "object-src 'none'"; do
+        printf '%s' "$csp" | grep -qF "$d" || missing="$missing $d"
+    done
+    if [ -n "$missing" ]; then
+        no "CSP is missing or mangled, absent:$missing"
+    else
+        ok "CSP served intact ($(printf '%s' "$csp" | tr ';' '\n' | grep -c .) directives)"
+    fi
+fi
+
 nvs=$(hdr no-vary-search "$h")
 case "$nvs" in
     *utm_source*) ok "No-Vary-Search ignores the campaign params" ;;
