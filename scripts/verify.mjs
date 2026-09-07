@@ -890,6 +890,20 @@ console.log('\n14. Discovery surface');
     feedItems.length === talkCount
         ? pass(`feed carries all ${talkCount} talks`)
         : fail(`feed has ${feedItems.length} items for ${talkCount} talks`);
+
+    // CDATA sections must balance, and must never carry an escaped `]]&gt;`: entities are
+    // not parsed inside CDATA, so that sequence reaches the reader as those literal
+    // characters. Content containing `]]>` has to SPLIT the section instead.
+    const opens = (feed.match(/<!\[CDATA\[/g) ?? []).length;
+    const closes = (feed.match(/]]>/g) ?? []).length;
+    const escapedInside = /<!\[CDATA\[[\s\S]*?]]&gt;[\s\S]*?]]>/.test(feed);
+    opens === closes && !escapedInside
+        ? pass(`feed has ${opens} balanced CDATA sections, none with an escaped ]]&gt;`)
+        : fail(
+              escapedInside
+                  ? 'a CDATA section contains ]]&gt; — entities are not parsed inside CDATA, split the section instead'
+                  : `CDATA sections do not balance: ${opens} open, ${closes} close`,
+          );
     // Attribute order is not significant in XML, so match the tag and then test its
     // attributes — the first version of this check demanded rel before href and failed on
     // a feed that xmllint and a real XML parser both accepted.

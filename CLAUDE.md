@@ -169,6 +169,11 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `lastBuildDate` is the newest talk's date, not the build time — a typo fix in the footer is not
   a content change. `_headers` types it `application/rss+xml`, because readers branch on the MIME
   type and Cloudflare would otherwise serve `.xml` as `application/xml`.
+- **`]]>` in feed content is SPLIT, never escaped.** Entities are not parsed inside a CDATA
+  section, so `]]&gt;` reaches the reader as those five literal characters; closing the section
+  after the `]]` and reopening for the `>` leaves the parsed text byte-identical. Verified
+  against a real XML parser both ways. `verify.mjs` fails if a CDATA section ever contains
+  `]]&gt;`, or if the sections stop balancing.
 - **Machine-readable titles are English, and carry no derived values.** The `Link` header and
   the api-catalog label resources for whatever fetches them — they are not page content, so they
   stay English even though the site is German. And a title must not restate a computed fact: this

@@ -1,7 +1,6 @@
 import type { APIRoute } from 'astro';
-import { talks } from '../lib/content';
+import { talks, excerpt, decodeEntities } from '../lib/content';
 import { allTextBlocksHtml } from '../lib/talkBody';
-import { excerpt, decodeEntities } from '../lib/content';
 import { site } from '../data/site';
 
 /**
@@ -17,7 +16,15 @@ import { site } from '../data/site';
  * never change, RFC 822 dates, absolute URLs everywhere, and an honest sy:updatePeriod.
  */
 const rfc822 = (d: Date) => d.toUTCString();
-const cdata = (s: string) => `<![CDATA[${s.replace(/]]>/g, ']]&gt;')}]]>`;
+
+/**
+ * A CDATA section cannot contain `]]>`, and it cannot be escaped either: entities are not
+ * parsed inside CDATA, so `]]&gt;` would reach the reader as those literal characters. The
+ * fix is to SPLIT the section — close it after the `]]`, reopen for the `>` — which leaves
+ * the parsed text byte-identical. Verified against a real XML parser: the entity form
+ * round-trips to `a]]&gt;b`, the split form to `a]]>b`.
+ */
+const cdata = (s: string) => `<![CDATA[${s.replace(/]]>/g, ']]]]><![CDATA[>')}]]>`;
 const escapeXml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 export const GET: APIRoute = async ({ site: astroSite }) => {
