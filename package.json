@@ -6,12 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/prune-dist.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "verify": "node scripts/verify.mjs",
     "verify:live": "bash scripts/verify-live.sh",
-    "deploy:cf": "astro build && node scripts/verify.mjs && wrangler deploy"
+    "deploy:cf": "astro build && node scripts/prune-dist.mjs && node scripts/verify.mjs && wrangler deploy"
   },
   "devDependencies": {
     "@alpinejs/intersect": "3.17.1",

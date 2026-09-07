@@ -16,8 +16,8 @@ guidance.
 
 ```bash
 pnpm dev         # Astro dev server, http://localhost:4321
-pnpm build       # -> dist/
-pnpm verify      # assert dist/ is intact (54 assertions) — also a deploy gate
+pnpm build       # -> dist/, then prunes unreferenced assets
+pnpm verify      # assert dist/ is intact (56 assertions) — also a deploy gate
 pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (27 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
@@ -158,6 +158,25 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **Astro emits the original of every imported image**, alongside the resized variants its
+  image service generates — a Vite asset import emits a file whether or not its URL is ever
+  printed. On this site that was **26.5 MB of dist/, a fifth of `_astro`**, including a 6.9 MB
+  PNG that no page linked. `scripts/prune-dist.mjs` deletes assets whose content-hashed name
+  appears in no other file in `dist/`, and it runs inside `pnpm build` **before** `verify.mjs`,
+  whose check 2 asserts every asset reference resolves — so a prune bug fails the build instead
+  of shipping. `verify.mjs` also fails if anything unreferenced over 100 kB survives, which is
+  how you find out the prune step was dropped.
+- **Structured data must not reference `image.src`.** That is the untouched original: the talk
+  pages were advertising 49 images totalling **10.8 MB** to crawlers, the largest a single 1.9 MB
+  portrait. `talks/[slug].astro` runs performer portraits through `getImage()` at 800px instead
+  (10.8 MB → 3.2 MB), and `verify.mjs` fails on any JSON-LD image over 400 kB.
+- **Three performance items were measured and declined** — the numbers, so they need not be
+  re-derived. **AVIF**: `<Picture>` takes one `quality` for all formats, so AVIF at 85 lands
+  +11% at 300w, −3% at 900w against WebP — no useful win — while a cold build goes from 14s to
+  118s. **Critical CSS**: the render-blocking stylesheet is 86 kB raw but **11.4 kB brotli**;
+  splitting it buys nothing worth the machinery. **Speculation Rules**: Astro's hover prefetcher
+  is **956 bytes brotli** (`page.*.js`), and native rules would add an inline script needing a
+  CSP hash. Revisit AVIF only if Astro gains per-format quality.
 - **The accent is a fill colour, not a text colour.** `--color-accent` is the brand red and is
   deliberately unchanged; white on it measures **3.29:1**, which fails AA for every button label
   here (18px, weight 500 — the large-text exemption needs 18.66px _and_ bold). So
