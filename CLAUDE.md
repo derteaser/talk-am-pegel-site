@@ -18,7 +18,7 @@ guidance.
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/, then prunes unreferenced assets
 pnpm verify      # assert dist/ is intact (64 assertions) — also a deploy gate
-pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (37 checks)
+pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (38 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
 pnpm deploy:cf   # build + verify + wrangler deploy
@@ -169,6 +169,25 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `lastBuildDate` is the newest talk's date, not the build time — a typo fix in the footer is not
   a content change. `_headers` types it `application/rss+xml`, because readers branch on the MIME
   type and Cloudflare would otherwise serve `.xml` as `application/xml`.
+- **The CSP allows `'unsafe-eval'` deliberately, and `'unsafe-inline'` for scripts never.**
+  Alpine evaluates its inline expressions with `new Function`; the alternative is
+  `@alpinejs/csp`, which means registering components and rewriting every `x-data` — a
+  documented decision reversed for a policy that would still need `'unsafe-inline'` for styles.
+  `script-src` instead carries a **sha256 for the one inline script** on the site, so an
+  injected `<script>` cannot run. `verify.mjs` recomputes that hash from `dist/` and fails with
+  the replacement value if the bootstrap is edited: a stale hash blocks the script silently, and
+  the only symptom is the hero's double-fade returning on navigation.
+- **Fathom's beacon is an IMAGE request.** `cdn.usefathom.com` therefore has to be in `img-src`,
+  not only `connect-src` — measured by watching the network, and confirmed on a preview that the
+  beacon fires under the policy. A `connect-src`-only allowance loses analytics while breaking
+  nothing visible, which is why `verify.mjs` asserts the origin is in `img-src` whenever the
+  script is present.
+- **`style-src` needs `'unsafe-inline'`**: 4-6 inline `<style>` blocks per page, plus `style`
+  attributes on the logo SVG and the ticket panel. Hashing is not available — the scoped
+  view-transition styles differ per page.
+- **`require-trusted-types-for` is NOT set, on evidence.** The built bundles use `innerHTML`
+  twice in Alpine and once in BigPicture, so enforcing it would break the reveals and the
+  lightbox. Re-check that count before trying again.
 - **Import `flyonui/dist/tooltip.js`, never `flyonui/flyonui` — and never the `.mjs`.** The
   site uses one of FlyOnUI's 24 JS components; the full bundle costs 48.2 kB brotli against the
   tooltip build's 10.4, and per-page JavaScript went 66.2 kB → 28.2 kB by changing that one
