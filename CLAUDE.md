@@ -169,6 +169,22 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   `lastBuildDate` is the newest talk's date, not the build time — a typo fix in the footer is not
   a content change. `_headers` types it `application/rss+xml`, because readers branch on the MIME
   type and Cloudflare would otherwise serve `.xml` as `application/xml`.
+- **Import `flyonui/dist/tooltip.js`, never `flyonui/flyonui` — and never the `.mjs`.** The
+  site uses one of FlyOnUI's 24 JS components; the full bundle costs 48.2 kB brotli against the
+  tooltip build's 10.4, and per-page JavaScript went 66.2 kB → 28.2 kB by changing that one
+  import. The `.mjs` variant of the same component is a trap: it externalises
+  `@floating-ui/dom`, so it builds clean, is 3 kB smaller, and throws
+  `(0 , i.BN) is not a function` on every page while the tooltip silently never opens. Only
+  hovering one in a real browser catches that. `verify.mjs` budgets per-page JS at 35 kB brotli
+  and fails if the other components' names (`HSDataTable`, `HSCarousel`, …) reappear in the
+  bundle.
+- **BigPicture is dynamically imported**, because 2 of 58 pages have a gallery. It lands in its
+  own 3.5 kB chunk that the other 56 never fetch — verified by watching the network, not by
+  reading the bundle. `verify.mjs` asserts it stays out of the entry script.
+- **The JS win here is bytes, not main-thread time.** Measured at 4× CPU throttling, median of
+  five runs: long tasks were **0 ms before and after**, and `domInteractive` moved 41 ms → 34 ms.
+  There was no long task to remove. Do not claim a responsiveness improvement from this change;
+  the saving is transfer size on a slow connection.
 - **`]]>` in feed content is SPLIT, never escaped.** Entities are not parsed inside a CDATA
   section, so `]]&gt;` reaches the reader as those five literal characters; closing the section
   after the `]]` and reopening for the `>` leaves the parsed text byte-identical. Verified

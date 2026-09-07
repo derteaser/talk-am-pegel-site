@@ -30,10 +30,13 @@
  *      scheme, and an installable manifest whose icons exist
  *  14. Discovery surface: llms.txt, the feed, security.txt and the api-catalog
  *      are well formed, advertised, and not about to expire
+ *  15. Script budget: the per-page JavaScript stays within its measured size,
+ *      and the libraries stay out of it
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 
 const DIST = 'dist';
 
@@ -962,6 +965,57 @@ console.log('\n14. Discovery surface');
     missingRels.length === 0
         ? pass(`_headers advertises ${rels.join(', ')}`)
         : fail(`_headers Link header missing rel(s): ${missingRels.join(', ')}`);
+}
+
+// ----------------------------------------------------------- 15. script budget
+console.log('\n15. Script budget');
+{
+    // What a visitor actually downloads: every <script src> a page references, brotli'd,
+    // which is how it arrives. The budget is not a round number — it is the measured cost
+    // plus headroom, and the failure it exists to catch is a one-line import going back
+    // to the whole of a library.
+    const BUDGET = 35 * 1024;
+    const brotli = (f) => zlib.brotliCompressSync(read(f)).length;
+    const perPage = new Map();
+    for (const f of pages) {
+        const refs = [...read(f).matchAll(/<script[^>]+src="(\/_astro\/[^"]+\.js)"/g)].map((m) => m[1]);
+        perPage.set(
+            toUrl(f),
+            refs.reduce((sum, r) => sum + brotli(path.join(DIST, r.replace(/^\//, ''))), 0),
+        );
+    }
+    const worst = [...perPage].sort((a, b) => b[1] - a[1])[0];
+    worst[1] <= BUDGET
+        ? pass(`heaviest page ships ${(worst[1] / 1024).toFixed(1)} kB of JS brotli (budget ${BUDGET / 1024} kB)`)
+        : fail(`${worst[0]} ships ${(worst[1] / 1024).toFixed(1)} kB of JS brotli, over the ${BUDGET / 1024} kB budget`);
+
+    const bundles = fs
+        .readdirSync(path.join(DIST, '_astro'))
+        .filter((f) => f.endsWith('.js'))
+        .map((f) => [f, read(path.join(DIST, '_astro', f))]);
+
+    // FlyOnUI ships 24 components; this site uses the tooltip. Importing
+    // `flyonui/flyonui` instead of the per-component build pulls in all of them — 48.2 kB
+    // brotli against 10.4 — so the other components' names are the fingerprint of that
+    // regression. Note `flyonui/dist/tooltip.mjs` is NOT the answer: it externalises
+    // @floating-ui/dom and throws at runtime.
+    const others = ['HSDataTable', 'HSCarousel', 'HSSelect', 'HSComboBox', 'HSFileUpload', 'HSTreeView'];
+    const leaked = bundles.flatMap(([name, code]) => others.filter((c) => code.includes(c)).map((c) => `${c} in ${name}`));
+    leaked.length === 0
+        ? pass('only the tooltip component of FlyOnUI is bundled')
+        : fail(`the full FlyOnUI bundle is back: ${leaked.slice(0, 3).join(', ')}`);
+
+    // BigPicture belongs in its own chunk: two pages of 58 have a gallery.
+    const entry = bundles.find(([name]) => name.startsWith('Layout.astro'));
+    const chunk = bundles.find(([name]) => name.startsWith('BigPicture'));
+    entry && !entry[1].includes('bigPicture') && !/BigPicture\s*=/.test(entry[1]) && chunk
+        ? pass('BigPicture is a separate chunk, not in the entry bundle')
+        : fail('BigPicture is bundled into the entry script — it should be dynamically imported');
+
+    const galleryPages = pages.filter((f) => read(f).includes('image-gallery')).length;
+    galleryPages > 0 && galleryPages < pages.length
+        ? pass(`${galleryPages} of ${pages.length} pages have a gallery, so the split earns its keep`)
+        : fail(`${galleryPages} of ${pages.length} pages have a gallery — reconsider the dynamic import`);
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);
