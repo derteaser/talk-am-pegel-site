@@ -615,14 +615,23 @@ console.log('\n12. Deploy weight');
 
     const assets = path.join(DIST, '_astro');
     const strays = [];
-    for (const name of fs.readdirSync(assets)) {
-        const file = path.join(assets, name);
-        const st = fs.statSync(file);
-        if (!st.isFile() || referenced.includes(name)) continue;
-        if (st.size > 100 * 1024) strays.push(`${Math.round(st.size / 1024)} KB ${name}`);
-    }
+    let scanned = 0;
+    (function scan(dir) {
+        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+            const file = path.join(dir, e.name);
+            if (e.isDirectory()) {
+                scan(file);
+                continue;
+            }
+            if (!e.isFile()) continue;
+            scanned++;
+            if (referenced.includes(e.name)) continue;
+            const st = fs.statSync(file);
+            if (st.size > 100 * 1024) strays.push(`${Math.round(st.size / 1024)} KB ${e.name}`);
+        }
+    })(assets);
     strays.length === 0
-        ? pass('no unreferenced asset over 100 KB in _astro')
+        ? pass(`no unreferenced asset over 100 KB among the ${scanned} files under _astro`)
         : fail(`${strays.length} unreferenced asset(s) over 100 KB — did the prune step run? ${strays[0]}`);
 
     // Structured data used to hand crawlers the untouched originals: 49 images, 10.8 MB,

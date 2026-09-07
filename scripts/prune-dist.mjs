@@ -46,18 +46,29 @@ const referenced = haystack.join('\n');
 let removed = 0;
 let freed = 0;
 const notable = [];
-for (const name of fs.readdirSync(ASSETS)) {
-    const file = path.join(ASSETS, name);
-    const stat = fs.statSync(file);
-    if (!stat.isFile()) continue;
-    // Never touch what the page actually loads: only originals go unreferenced, and a
-    // referenced name always appears in one of the readable outputs above.
-    if (referenced.includes(name)) continue;
-    if (stat.size > 200 * 1024) notable.push(`${Math.round(stat.size / 1024)} KB  ${name}`);
-    fs.unlinkSync(file);
-    removed++;
-    freed += stat.size;
-}
+
+// The whole tree, not just its top level: today the only subdirectory is fonts/, whose
+// six files are all referenced from the stylesheet, so recursing changes nothing — but a
+// scan that silently skipped a subdirectory would be a trap the first time Astro emitted
+// one, and the assertion in verify.mjs claims to cover _astro.
+(function prune(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const file = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+            prune(file);
+            continue;
+        }
+        if (!entry.isFile()) continue;
+        // Never touch what the page actually loads: only originals go unreferenced, and a
+        // referenced name always appears in one of the readable outputs above.
+        if (referenced.includes(entry.name)) continue;
+        const stat = fs.statSync(file);
+        if (stat.size > 200 * 1024) notable.push(`${Math.round(stat.size / 1024)} KB  ${entry.name}`);
+        fs.unlinkSync(file);
+        removed++;
+        freed += stat.size;
+    }
+})(ASSETS);
 
 const mb = (n) => `${(n / 1048576).toFixed(1)} MB`;
 if (removed === 0) console.log('prune: nothing unreferenced');

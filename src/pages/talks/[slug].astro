@@ -111,12 +111,16 @@ const ogUrl = new URL(og.src, Astro.site).href;
  * across the talk pages, the largest a single 1.9 MB portrait. A derived 800px JPEG is
  * ample for a `Person.image` and lands around 5% of that.
  */
-const performerImages = new Map<string, string>();
-for (const person of attendants) {
-    if (!person.data.mainImage) continue;
-    const img = await getImage({ src: person.data.mainImage, width: 800, format: 'jpeg', quality: 85 });
-    performerImages.set(person.id, new URL(img.src, Astro.site).href);
-}
+const performerImages = new Map(
+    await Promise.all(
+        attendants
+            .filter((person) => person.data.mainImage)
+            .map(async (person) => {
+                const img = await getImage({ src: person.data.mainImage!, width: 800, format: 'jpeg', quality: 85 });
+                return [person.id, new URL(img.src, Astro.site).href] as const;
+            }),
+    ),
+);
 
 const jsonLd = eventSchema({
     talk,
