@@ -12,8 +12,8 @@
  *   1. URL inventory matches the expected public URL list exactly
  *   2. Every internal link and asset reference resolves to a built file
  *   3. HTML sanity: tag balance, no nested anchors, no invalid nesting
- *   4. JSON-LD parses, the per-page presence map matches Kirby's, and no past event
- *      still advertises tickets
+ *   4. JSON-LD parses, every page type carries the nodes it should, and no past
+ *      event still advertises tickets
  *   5. canonical/og:url are extensionless and absolute
  *   6. German date formatting is present where expected
  *   7. Images: every <img> has alt and intrinsic dimensions, and the hero is not lazy
@@ -267,16 +267,67 @@ console.log('\n4. JSON-LD');
     }
     if (!unparseable) pass('every JSON-LD block parses');
 
+    // The blocks go out through set:html, and JSON.stringify does not escape `<` — so a
+    // value containing `</script>` would close the block and the rest would be parsed as
+    // markup. Seo.astro escapes it to \u003c; this asserts the escaping is still there,
+    // since the values come from content and the day one of them contains a tag is the
+    // day nobody is looking.
+    const unescaped = [];
+    for (const f of pages) {
+        for (const m of read(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+            if (m[1].includes('<')) unescaped.push(toUrl(f));
+        }
+    }
+    unescaped.length === 0
+        ? pass('no JSON-LD block contains an unescaped <')
+        : fail(`${unescaped.length} JSON-LD block(s) with a literal <: ${[...new Set(unescaped)].slice(0, 3).join(', ')}`);
+
     const count = (t) => [...seen.values()].filter((v) => v.includes(t)).length;
     const expect = { Event: 11, WebSite: 1, ContactPage: 1, WebPage: 2 };
     for (const [t, n] of Object.entries(expect)) count(t) === n ? pass(`${n}× ${t}`) : fail(`expected ${n}× ${t}, found ${count(t)}`);
 
-    // Kirby emitted none on these; confirm we match.
-    const shouldHaveNone = [...seen].filter(([u]) => u === '/talks' || u === '/persons' || u.startsWith('/persons/') || u === '/404');
-    const wrong = shouldHaveNone.filter(([, t]) => t.length > 0).map(([u]) => u);
-    wrong.length === 0
-        ? pass(`no JSON-LD on the ${shouldHaveNone.length} pages Kirby left bare`)
-        : fail(`unexpected JSON-LD on: ${wrong.join(', ')}`);
+    // The presence map used to assert the OPPOSITE of this: /talks, /persons and the 40
+    // person pages had no JSON-LD because Kirby emitted none, and the migration matched
+    // that faithfully. #1489 filled the gap, so the assertion is now positive — and
+    // derived from the page inventory rather than hardcoded, so adding a talk or a person
+    // does not require editing a number here.
+    const personPages = [...seen].filter(([u]) => u.startsWith('/persons/'));
+    const talkPages = [...seen].filter(([u]) => u.startsWith('/talks/'));
+
+    const personMissing = personPages.filter(([, t]) => !t.includes('Person')).map(([u]) => u);
+    personMissing.length === 0
+        ? pass(`Person schema on all ${personPages.length} person pages`)
+        : fail(`${personMissing.length} person page(s) without Person: ${personMissing.slice(0, 3).join(', ')}`);
+
+    const crumbless = [...personPages, ...talkPages].filter(([, t]) => !t.includes('BreadcrumbList')).map(([u]) => u);
+    crumbless.length === 0
+        ? pass(`BreadcrumbList on all ${personPages.length + talkPages.length} detail pages`)
+        : fail(`${crumbless.length} detail page(s) without BreadcrumbList: ${crumbless.slice(0, 3).join(', ')}`);
+
+    // The index pages exist to present a list, so the list has to be in the node — and
+    // as long as the page count, since an ItemList that silently drops entries is worse
+    // than none.
+    for (const [url, expectedCount] of [
+        ['/talks', talkPages.length],
+        ['/persons', personPages.length],
+    ]) {
+        const file = pages.find((f) => toUrl(f) === url);
+        const nodes = [...read(file).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+        const collection = nodes.find((n) => n['@type'] === 'CollectionPage');
+        const list = collection?.mainEntity;
+        if (!collection) fail(`${url} has no CollectionPage node`);
+        else if (list?.['@type'] !== 'ItemList') fail(`${url}: CollectionPage.mainEntity is not an ItemList`);
+        else if (list.itemListElement?.length !== expectedCount)
+            fail(`${url}: ItemList holds ${list.itemListElement?.length} of ${expectedCount} entries`);
+        else pass(`${url} lists all ${expectedCount} entries as an ItemList`);
+    }
+
+    // /404 is the one page that should carry nothing: it is noindex, so there is no
+    // consumer to describe it to.
+    const bare = [...seen].filter(([, t]) => t.length === 0).map(([u]) => u);
+    bare.length === 1 && bare[0] === '/404'
+        ? pass('/404 is the only page without JSON-LD')
+        : fail(`pages without JSON-LD: ${bare.join(', ') || '(none — /404 gained some?)'}`);
 
     // Event schema completeness
     const talkFile = pages.find((f) => toUrl(f).startsWith('/talks/'));

@@ -30,7 +30,7 @@ import Person from '../../components/Person.astro';
 import { talks, persons, neighbours, isPast, excerpt, decodeEntities } from '../../lib/content';
 import { allTextBlocksHtml } from '../../lib/talkBody';
 import { formatDate, formatTime } from '../../lib/dates';
-import { eventSchema } from '../../lib/jsonld';
+import { eventSchema, breadcrumbList } from '../../lib/jsonld';
 
 export async function getStaticPaths() {
     const all = await talks();
@@ -122,19 +122,28 @@ const performerImages = new Map(
     ),
 );
 
-const jsonLd = eventSchema({
-    talk,
-    description,
-    pageUrl: canonical,
-    imageUrl: ogUrl,
-    past: !upcoming,
-    performers: attendants.map((person) => ({
-        name: person.data.title,
-        jobTitle: person.data.subHeading,
-        url: person.data.website || null,
-        image: performerImages.get(person.id) ?? null,
-    })),
-});
+// The Event MUST stay first: verify.mjs reads the first JSON-LD block on a talk page for
+// both its Event completeness checks and the past-event SoldOut assertion.
+const jsonLd = [
+    eventSchema({
+        talk,
+        description,
+        pageUrl: canonical,
+        imageUrl: ogUrl,
+        past: !upcoming,
+        performers: attendants.map((person) => ({
+            name: person.data.title,
+            jobTitle: person.data.subHeading,
+            url: person.data.website || null,
+            image: performerImages.get(person.id) ?? null,
+        })),
+    }),
+    breadcrumbList([
+        { name: 'Start', url: new URL('/', Astro.site).href },
+        { name: 'Talks', url: new URL('/talks', Astro.site).href },
+        { name: talk.data.title, url: canonical },
+    ]),
+];
 ---
 
 <Layout

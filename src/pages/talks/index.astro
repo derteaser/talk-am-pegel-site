@@ -5,7 +5,9 @@
  * FlyOnUI timeline with the sides alternating per item — the Blade version flipped an
  * `$odd` flag each iteration, which is the index parity here.
  *
- * Kirby emitted neither a description nor JSON-LD for this template.
+ * Kirby emitted neither a description nor JSON-LD for this template; both are added now
+ * (#1489) — a page whose entire purpose is to list the talks had nothing describing the
+ * list.
  */
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
@@ -14,6 +16,8 @@ import PersonAvatarGroup from '../../components/PersonAvatarGroup.astro';
 import { talks, persons } from '../../lib/content';
 import { formatDate } from '../../lib/dates';
 import { getEntry } from 'astro:content';
+import { collectionPage } from '../../lib/jsonld';
+import { isoWithOffset } from '../../lib/dates';
 
 const page = await getEntry('pages', 'talks');
 const all = await talks();
@@ -28,9 +32,21 @@ const items = all.map((talk) => ({
 }));
 
 const description = 'Alle Ausgaben der Talk-Reihe Talk am Pegel in Neuss.';
+
+const jsonLd = collectionPage({
+    name: page?.data.title ?? 'Talks',
+    url: new URL('/talks', Astro.site).href,
+    description,
+    itemType: 'Event',
+    items: all.map((talk) => ({
+        name: talk.data.title,
+        url: new URL(`/talks/${talk.id}`, Astro.site).href,
+        startDate: isoWithOffset(talk.data.date),
+    })),
+});
 ---
 
-<Layout title={page?.data.title ?? 'Talks'} description={description}>
+<Layout title={page?.data.title ?? 'Talks'} description={description} jsonLd={jsonLd}>
     <section class="container mx-auto my-16">
         <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical timeline-centered">
             {
