@@ -105,6 +105,23 @@ const og = await getImage({
 });
 const ogUrl = new URL(og.src, Astro.site).href;
 
+/*
+ * Performer portraits for the JSON-LD. These used to be `person.data.mainImage.src` —
+ * the untouched original — so the structured data advertised 49 images totalling 10.8 MB
+ * across the talk pages, the largest a single 1.9 MB portrait. A derived 800px JPEG is
+ * ample for a `Person.image` and lands around 5% of that.
+ */
+const performerImages = new Map(
+    await Promise.all(
+        attendants
+            .filter((person) => person.data.mainImage)
+            .map(async (person) => {
+                const img = await getImage({ src: person.data.mainImage!, width: 800, format: 'jpeg', quality: 85 });
+                return [person.id, new URL(img.src, Astro.site).href] as const;
+            }),
+    ),
+);
+
 const jsonLd = eventSchema({
     talk,
     description,
@@ -115,7 +132,7 @@ const jsonLd = eventSchema({
         name: person.data.title,
         jobTitle: person.data.subHeading,
         url: person.data.website || null,
-        image: person.data.mainImage ? new URL(person.data.mainImage.src, Astro.site).href : null,
+        image: performerImages.get(person.id) ?? null,
     })),
 });
 ---

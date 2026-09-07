@@ -24,6 +24,8 @@
  *  10. Indexing policy: exactly one noindex page, and it is the error page
  *  11. Contrast tokens: the label on the accent stays dark, accent-strong stays
  *      darker than the accent
+ *  12. Deploy weight: nothing large is emitted unreferenced, and structured data
+ *      does not advertise unresized originals
  */
 
 import fs from 'node:fs';
@@ -591,6 +593,60 @@ console.log('\n11. Contrast tokens');
     strong !== null && accent !== null && strong < accent
         ? pass(`--color-accent-strong is darker than the accent (L=${strong} < ${accent})`)
         : fail('--color-accent-strong is missing or not darker than --color-accent');
+}
+
+// ---------------------------------------------------------- 12. deploy weight
+console.log('\n12. Deploy weight');
+{
+    // scripts/prune-dist.mjs runs before this and removes assets nothing references —
+    // Astro emits the original of every imported image whether or not a URL is printed,
+    // which was 26.5 MB of the deploy. This asserts the prune still happens: without it
+    // the check fails rather than the waste quietly returning.
+    const readable = /\.(html|css|js|mjs|cjs|json|webmanifest|xml|txt|svg|map)$/;
+    const texts = [];
+    (function walk(dir) {
+        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+            const f = path.join(dir, e.name);
+            if (e.isDirectory()) walk(f);
+            else if (readable.test(e.name)) texts.push(read(f));
+        }
+    })(DIST);
+    const referenced = texts.join('\n');
+
+    const assets = path.join(DIST, '_astro');
+    const strays = [];
+    let scanned = 0;
+    (function scan(dir) {
+        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+            const file = path.join(dir, e.name);
+            if (e.isDirectory()) {
+                scan(file);
+                continue;
+            }
+            if (!e.isFile()) continue;
+            scanned++;
+            if (referenced.includes(e.name)) continue;
+            const st = fs.statSync(file);
+            if (st.size > 100 * 1024) strays.push(`${Math.round(st.size / 1024)} KB ${e.name}`);
+        }
+    })(assets);
+    strays.length === 0
+        ? pass(`no unreferenced asset over 100 KB among the ${scanned} files under _astro`)
+        : fail(`${strays.length} unreferenced asset(s) over 100 KB — did the prune step run? ${strays[0]}`);
+
+    // Structured data used to hand crawlers the untouched originals: 49 images, 10.8 MB,
+    // the largest a 1.9 MB portrait. Derived images keep every one of them small.
+    const LIMIT = 400 * 1024;
+    const heavy = [];
+    for (const f of pages) {
+        for (const m of read(f).matchAll(/"image":\s*"[^"]*\/_astro\/([^"]+)"/g)) {
+            const img = path.join(assets, m[1]);
+            if (fs.existsSync(img) && fs.statSync(img).size > LIMIT) heavy.push(`${Math.round(fs.statSync(img).size / 1024)} KB ${m[1]}`);
+        }
+    }
+    heavy.length === 0
+        ? pass('every image referenced from JSON-LD is under 400 KB')
+        : fail(`${heavy.length} JSON-LD image(s) over 400 KB — an unresized original? ${heavy[0]}`);
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);

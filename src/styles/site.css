@@ -100,6 +100,12 @@
        #content or any in-page anchor would otherwise land underneath it. */
     scroll-padding-top: 4.5rem;
 
+    /* Reserve the vertical scrollbar's width even when the page does not need one, so
+       moving between a long page and a short one (/404, /kontakt) does not shift the
+       centred layout sideways. No effect where the OS uses overlay scrollbars — macOS
+       by default — which is why this is cheap insurance rather than a visible fix. */
+    scrollbar-gutter: stable;
+
     /* A reveal that starts off-screen must not be able to produce a horizontal
        scrollbar. `clip` rather than `hidden`: it clips without creating a scroll
        container, so it cannot become a scroll port and does not disturb the
