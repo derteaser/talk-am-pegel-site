@@ -158,6 +158,11 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **JSON-LD goes out through `set:html`, so `<` must stay escaped.** `JSON.stringify` does not
+  escape it, and a value containing `</script>` would close the block and turn the rest into
+  markup. `Seo.astro` replaces `<` with `\u003c` — byte-identical data to a consumer — and
+  `verify.mjs` fails if any emitted block contains a literal `<`. The values come from content,
+  so the day one of them holds a tag is the day nobody is watching.
 - **`Seo.astro` takes one JSON-LD node or an array of them**, emitting one `<script>` per node
   rather than a single array-valued block. On a talk page the **Event must come first**:
   `verify.mjs` reads the first block for its Event completeness checks and for the past-event

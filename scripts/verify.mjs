@@ -267,6 +267,21 @@ console.log('\n4. JSON-LD');
     }
     if (!unparseable) pass('every JSON-LD block parses');
 
+    // The blocks go out through set:html, and JSON.stringify does not escape `<` — so a
+    // value containing `</script>` would close the block and the rest would be parsed as
+    // markup. Seo.astro escapes it to \u003c; this asserts the escaping is still there,
+    // since the values come from content and the day one of them contains a tag is the
+    // day nobody is looking.
+    const unescaped = [];
+    for (const f of pages) {
+        for (const m of read(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+            if (m[1].includes('<')) unescaped.push(toUrl(f));
+        }
+    }
+    unescaped.length === 0
+        ? pass('no JSON-LD block contains an unescaped <')
+        : fail(`${unescaped.length} JSON-LD block(s) with a literal <: ${[...new Set(unescaped)].slice(0, 3).join(', ')}`);
+
     const count = (t) => [...seen.values()].filter((v) => v.includes(t)).length;
     const expect = { Event: 11, WebSite: 1, ContactPage: 1, WebPage: 2 };
     for (const [t, n] of Object.entries(expect)) count(t) === n ? pass(`${n}× ${t}`) : fail(`expected ${n}× ${t}, found ${count(t)}`);

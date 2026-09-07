@@ -69,6 +69,16 @@ const og = await getImage({
     quality: 85,
 });
 const ogUrl = new URL(og.src, Astro.site).href;
+
+/**
+ * JSON.stringify does not escape `<`, and this goes out through set:html — so a value
+ * containing `</script>` would close the block early and everything after it would be
+ * parsed as markup. Every value here comes from the content collections, which is to say
+ * from a pull request rather than from a stranger, but "the CMS is the repo" is not a
+ * reason to leave an unescaped sink. `\u003c` is valid inside a JSON string and parses
+ * back to `<`, so consumers see byte-identical data.
+ */
+const ldJson = (node: unknown) => JSON.stringify(node, null, 4).replace(/</g, '\\u003c');
 ---
 
 <title>{pageTitle}</title>
@@ -100,7 +110,5 @@ const ogUrl = new URL(og.src, Astro.site).href;
 
 {
     jsonLd &&
-        (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((node) => (
-            <script type="application/ld+json" set:html={JSON.stringify(node, null, 4)} is:inline />
-        ))
+        (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((node) => <script type="application/ld+json" set:html={ldJson(node)} is:inline />)
 }

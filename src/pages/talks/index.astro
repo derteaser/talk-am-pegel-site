@@ -17,6 +17,7 @@ import { talks, persons } from '../../lib/content';
 import { formatDate } from '../../lib/dates';
 import { getEntry } from 'astro:content';
 import { collectionPage } from '../../lib/jsonld';
+import { isoWithOffset } from '../../lib/dates';
 
 const page = await getEntry('pages', 'talks');
 const all = await talks();
@@ -36,7 +37,12 @@ const jsonLd = collectionPage({
     name: page?.data.title ?? 'Talks',
     url: new URL('/talks', Astro.site).href,
     description,
-    items: all.map((talk) => ({ name: talk.data.title, url: new URL(`/talks/${talk.id}`, Astro.site).href })),
+    itemType: 'Event',
+    items: all.map((talk) => ({
+        name: talk.data.title,
+        url: new URL(`/talks/${talk.id}`, Astro.site).href,
+        startDate: isoWithOffset(talk.data.date),
+    })),
 });
 ---
 

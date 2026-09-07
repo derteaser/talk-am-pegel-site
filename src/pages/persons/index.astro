@@ -22,6 +22,7 @@ const jsonLd = collectionPage({
     name: 'Personen',
     url: new URL('/persons', Astro.site).href,
     description,
+    itemType: 'Person',
     items: all.map((p) => ({ name: p.data.title, url: new URL(`/persons/${p.id}`, Astro.site).href })),
 });
 ---

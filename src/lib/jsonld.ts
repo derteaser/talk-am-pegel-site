@@ -72,9 +72,26 @@ export function person(opts: {
     };
 }
 
-/** Index pages: the page itself, plus the list it exists to present. */
-export function collectionPage(opts: { name: string; url: string; description: string; items: { name: string; url: string }[] }) {
-    const { name, url, description, items } = opts;
+/**
+ * Index pages: the page itself, plus the list it exists to present.
+ *
+ * Each ListItem wraps a TYPED `item` rather than carrying a bare `url`. Google documents
+ * both shapes — a summary-page carousel puts `url` on the ListItem, an all-in-one page
+ * nests an `item` — but carousel rich results are limited to Recipe/Movie/Course/
+ * Restaurant, so neither of these lists is eligible either way. What is left is which
+ * shape says more: `item` is the schema.org property for "the thing being listed", it is
+ * what Google's event-listing guidance wants on a page listing events, and it carries a
+ * type, so a consumer learns "this entry is an Event called X" rather than just a URL.
+ * `startDate` rides along where the collection has one.
+ */
+export function collectionPage(opts: {
+    name: string;
+    url: string;
+    description: string;
+    itemType: 'Event' | 'Person';
+    items: { name: string; url: string; startDate?: string }[];
+}) {
+    const { name, url, description, itemType, items } = opts;
     // No `image`: Seo.astro already declares the social image as meta tags, and repeating
     // it inside the node tells a consumer nothing new.
     return {
@@ -87,11 +104,15 @@ export function collectionPage(opts: { name: string; url: string; description: s
         mainEntity: {
             '@type': 'ItemList',
             numberOfItems: items.length,
-            itemListElement: items.map((item, i) => ({
+            itemListElement: items.map((entry, i) => ({
                 '@type': 'ListItem',
                 position: i + 1,
-                name: item.name,
-                url: item.url,
+                item: {
+                    '@type': itemType,
+                    name: entry.name,
+                    url: entry.url,
+                    ...(entry.startDate ? { startDate: entry.startDate } : {}),
+                },
             })),
         },
     };
