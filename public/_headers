@@ -29,13 +29,18 @@
 
 # Discovery, at the edge rather than in the markup, so a non-HTML response carries it
 # too — an agent that fetches /sitemap.xml first still learns where everything else is.
+#
+# Titles here and in the api-catalog are ENGLISH even though the site is German: they
+# label the resource for whatever fetches it, they are not page content. And they carry
+# no derived values — a title that restates a count ("all 57 URLs") is a second copy of a
+# fact that lives in sitemap.xml, and the copy goes stale silently.
 # Root-relative because it is portable across protocol and host; `type` and `title` so a
 # consumer does not need a second fetch to know what it is looking at.
 #
 # `describedby` for llms.txt is v2 of that convention's one hard requirement: without it
 # an agent is back to guessing the path.
 /*
-  Link: </llms.txt>; rel="describedby"; type="text/markdown"; title="Kuratierter Index für Agenten", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </sitemap.xml>; rel="sitemap"; type="application/xml", </.well-known/security.txt>; rel="security"; type="text/plain"
+  Link: </llms.txt>; rel="describedby"; type="text/markdown"; title="Curated index for agents", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </sitemap.xml>; rel="sitemap"; type="application/xml", </.well-known/security.txt>; rel="security"; type="text/plain"
   X-Content-Type-Options: nosniff
   # Nothing here is meant to be framed, and the site has no embed use case. Replace
   # with CSP frame-ancestors 'none' once a policy exists (issue #1487) — until then

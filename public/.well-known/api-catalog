@@ -6,21 +6,21 @@
                 {
                     "href": "https://www.talk-am-pegel.de/llms.txt",
                     "type": "text/markdown",
-                    "title": "Kuratierter Index für Agenten"
+                    "title": "Curated index for agents"
                 }
             ],
             "sitemap": [
                 {
                     "href": "https://www.talk-am-pegel.de/sitemap.xml",
                     "type": "application/xml",
-                    "title": "Alle 57 öffentlichen URLs"
+                    "title": "XML sitemap of all public pages"
                 }
             ],
             "security": [
                 {
                     "href": "https://www.talk-am-pegel.de/.well-known/security.txt",
                     "type": "text/plain",
-                    "title": "Kontakt für Sicherheitsmeldungen"
+                    "title": "Security contact"
                 }
             ]
         }

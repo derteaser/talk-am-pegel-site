@@ -158,6 +158,14 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **Machine-readable titles are English, and carry no derived values.** The `Link` header and
+  the api-catalog label resources for whatever fetches them — they are not page content, so they
+  stay English even though the site is German. And a title must not restate a computed fact: this
+  shipped as "Alle 57 öffentlichen URLs", a second copy of a number that lives in `sitemap.xml`
+  and goes stale the moment a talk is added, silently, because the file still parses and still
+  validates. `verify.mjs` fails on a digit in any api-catalog title. `llms.txt` is the exception
+  and stays German: it is prose about German content, and that spec page wants it readable by
+  humans too.
 - **The discovery files are NOT in `scripts/expected-urls.txt`.** That fixture is the indexed
   _page_ inventory and check 1 compares it against the built HTML, so listing a non-HTML
   endpoint there reports it as missing. `/llms.txt`, `/.well-known/security.txt` and

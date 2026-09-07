@@ -860,6 +860,21 @@ console.log('\n14. Discovery surface');
         broken.length === 0
             ? pass(`all ${hrefs.length} api-catalog links resolve`)
             : fail(`api-catalog links that do not resolve: ${broken.slice(0, 3).join(', ')}`);
+
+        // No derived values in the titles. This shipped as "Alle 57 öffentlichen URLs",
+        // which is a second copy of a number that lives in sitemap.xml — and the copy
+        // goes stale the moment a talk is added, silently, because the file still parses
+        // and still validates. A reviewer caught it by eye; this is cheaper than a
+        // reviewer. Relax it if a versioned API ever needs "OpenAPI 3.1" in a title.
+        const titles = entries.flatMap((e) =>
+            Object.entries(e)
+                .filter(([k]) => k !== 'anchor')
+                .flatMap(([, links]) => (Array.isArray(links) ? links.map((l) => l.title).filter(Boolean) : [])),
+        );
+        const numeric = titles.filter((t) => /\d/.test(t));
+        numeric.length === 0
+            ? pass(`all ${titles.length} api-catalog titles are free of derived values`)
+            : fail(`api-catalog title(s) contain a number that will drift: ${numeric.join(' | ')}`);
     }
 
     // --- and the header that makes any of it discoverable. dist/_headers is a Cloudflare
