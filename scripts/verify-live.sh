@@ -197,6 +197,17 @@ else
     skip "asset header inheritance not checked (no /_astro asset found on the home page)"
 fi
 
+# The spec lists "linking the manifest but serving it as text/html" as the way
+# installability fails silently. Cloudflare gets the type right from the extension, so
+# this is a check on the platform continuing to, not on anything in this repo.
+mf=$(headers "$BASE/site.webmanifest")
+mtype=$(hdr content-type "$mf")
+case "$mtype" in
+    application/manifest+json*) ok "site.webmanifest served as $mtype" ;;
+    "") no "no Content-Type on /site.webmanifest" ;;
+    *) no "site.webmanifest served as '$mtype', expected application/manifest+json — installability fails silently" ;;
+esac
+
 # ---------------------------------------------------------------------------
 echo
 echo "8. robots.txt and sitemap.xml"

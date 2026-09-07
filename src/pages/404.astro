@@ -18,9 +18,13 @@ import Layout from '../layouts/Layout.astro';
 const page = await getEntry('pages', 'error');
 if (!page) throw new Error('content/pages/error.mdx is missing');
 const { Content } = await render(page);
+
+// noindex, so this is not for search results — but og:description depends on it, and a
+// 404 does get shared in chat apps when a link goes stale.
+const description = 'Diese Seite gibt es nicht. Weiter zur Startseite, zu den Talks oder zu den Gästen.';
 ---
 
-<Layout title={page.data.title} noindex>
+<Layout title={page.data.title} description={description} noindex>
     <section class="blocks container mx-auto my-16 px-6">
         <Content />
     </section>

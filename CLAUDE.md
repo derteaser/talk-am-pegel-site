@@ -17,8 +17,8 @@ guidance.
 ```bash
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/, then prunes unreferenced assets
-pnpm verify      # assert dist/ is intact (56 assertions) — also a deploy gate
-pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (27 checks)
+pnpm verify      # assert dist/ is intact (64 assertions) — also a deploy gate
+pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (28 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
 pnpm deploy:cf   # build + verify + wrangler deploy
@@ -158,6 +158,23 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **`color-scheme` is already set in CSS — the theme block is not dead.** FlyOnUI compiles the
+  `tap` theme to `:where(:root),:root:has(input.theme-controller[value=tap]:checked),[data-theme=tap]`,
+  and the leading `:where(:root)` is what makes it apply: every colour token and
+  `color-scheme: light` are live, on a document with no `data-theme` attribute. A grep that
+  truncates the selector makes it look scoped to `[data-theme=tap]` and therefore dead — the
+  audit made exactly that mistake. Ask the browser (`getComputedStyle(document.documentElement)
+.colorScheme`) before touching it. The `<meta name="color-scheme">` in `Layout.astro` is the
+  other half the spec asks for: it applies before the stylesheet parses.
+- **The manifest ships three icons for two reasons.** 192 and 512 are what Chromium wants for
+  installability; `icon-maskable.png` exists separately because the wordmark runs nearly edge to
+  edge and Android masks to a circle, so its artwork is inset to 72% on the same `#3b5883` the
+  icon already uses — invisible padding. Regenerate it with sharp if the source icon changes;
+  do not just resize the square one into the maskable slot. `verify.mjs` asserts both sizes, the
+  maskable purpose, that every declared icon exists, that `display` is not `fullscreen`, and that
+  `start_url` stays relative (an absolute one breaks every preview deployment).
+- **`browserconfig.xml` and `mstile.png` are gone.** They were Windows 8 live tiles, nothing in
+  the head referenced them, and no current browser reads them.
 - **Astro emits the original of every imported image**, alongside the resized variants its
   image service generates — a Vite asset import emits a file whether or not its URL is ever
   printed. On this site that was **26.5 MB of dist/, a fifth of `_astro`**, including a 6.9 MB
