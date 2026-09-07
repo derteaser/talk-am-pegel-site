@@ -182,6 +182,30 @@ Not in this repo, and not to be duplicated in `public/_headers`: HSTS, the
 and the AI-bot block that Cloudflare prepends to `robots.txt`. Setting a response header
 in both places joins the values with a comma.
 
+### Uptime monitoring
+
+An external monitor runs on **UptimeRobot**. Also outside this repo, and written down here
+for the same reason as the settings above: nothing in the codebase can show it exists, and
+an audit that cannot see it files it as missing — which is exactly what happened in
+issue #1493.
+
+It is the unattended half of `pnpm verify:live`. That script proves the edge is correct
+when someone runs it; the monitor notices when the site stops answering at all.
+
+### CAA records: deliberately absent
+
+`dig CAA talk-am-pegel.de` returns nothing, and that is a decision rather than an
+oversight. Cloudflare issues the certificate — Google Trust Services today, renewing about
+every 90 days — and chooses the CA itself from Let's Encrypt, Google Trust Services,
+SSL.com and Sectigo. Its own documentation is explicit that "CAA records are evaluated by a
+CA, not by Cloudflare" and that a CAA record "does not affect which CA Cloudflare uses".
+
+So a CAA record pinned to today's CA breaks issuance silently the first time Cloudflare
+rotates, and the symptom is an expired certificate. One permitting all four is so weak a
+restriction that it buys almost nothing for that risk. Cloudflare adds its own CAs
+alongside yours _when a CAA set exists_ — with no records at all there is nothing to add,
+which is why the "we add them automatically" line in their docs does not produce any.
+
 ## License
 
 MIT
