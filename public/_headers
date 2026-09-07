@@ -27,7 +27,20 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Discovery, at the edge rather than in the markup, so a non-HTML response carries it
+# too — an agent that fetches /sitemap.xml first still learns where everything else is.
+#
+# Titles here and in the api-catalog are ENGLISH even though the site is German: they
+# label the resource for whatever fetches it, they are not page content. And they carry
+# no derived values — a title that restates a count ("all 57 URLs") is a second copy of a
+# fact that lives in sitemap.xml, and the copy goes stale silently.
+# Root-relative because it is portable across protocol and host; `type` and `title` so a
+# consumer does not need a second fetch to know what it is looking at.
+#
+# `describedby` for llms.txt is v2 of that convention's one hard requirement: without it
+# an agent is back to guessing the path.
 /*
+  Link: </llms.txt>; rel="describedby"; type="text/markdown"; title="Curated index for agents", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"; title="API catalogue", </sitemap.xml>; rel="sitemap"; type="application/xml"; title="XML sitemap of all public pages", </.well-known/security.txt>; rel="security"; type="text/plain"; title="Security contact"
   X-Content-Type-Options: nosniff
   # Nothing here is meant to be framed, and the site has no embed use case. Replace
   # with CSP frame-ancestors 'none' once a policy exists (issue #1487) — until then
@@ -51,3 +64,14 @@
   # so nothing varies on these. It matters the moment a campaign link is shared — a
   # prefetch of /talks?utm_source=x can then satisfy a visit to /talks.
   No-Vary-Search: params=("utm_source" "utm_medium" "utm_campaign" "utm_content" "utm_term" "gclid" "fbclid" "msclkid" "ref"), key-order
+
+# Two Content-Type overrides. Cloudflare types by extension, which gets .txt right as
+# text/plain — allowed for llms.txt, but we advertise type="text/markdown" in the Link
+# header above and the two should not disagree. The api-catalog has no extension at all,
+# and RFC 9727 requires application/linkset+json; an extensionless file would otherwise
+# be served as application/octet-stream, which is the mistake the spec names.
+/llms.txt
+  Content-Type: text/markdown; charset=utf-8
+
+/.well-known/api-catalog
+  Content-Type: application/linkset+json; charset=utf-8

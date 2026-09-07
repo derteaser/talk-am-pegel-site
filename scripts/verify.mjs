@@ -28,6 +28,8 @@
  *      does not advertise unresized originals
  *  13. Head and manifest: description + og:description on every page, a colour
  *      scheme, and an installable manifest whose icons exist
+ *  14. Discovery surface: llms.txt, security.txt and the api-catalog are
+ *      well formed, advertised, and not about to expire
  */
 
 import fs from 'node:fs';
@@ -174,7 +176,20 @@ console.log('\n1. URL inventory');
     if (!missing.length && !extra.length) pass(`all ${expected.length} Kirby URLs built, none extra`);
     if (fs.existsSync(path.join(DIST, '404.html'))) pass('404.html present');
     else fail('404.html missing');
-    for (const f of ['sitemap.xml', 'robots.txt', 'favicon.ico', 'favicon.svg', 'site.webmanifest', 'ads.txt'])
+    // Not expected-urls.txt: that fixture is the INDEXED PAGE inventory, compared against
+    // the built HTML above, so listing a non-HTML endpoint there reports it as missing.
+    // Discovery files belong in this list instead, which leaves the 57-URL invariant alone.
+    for (const f of [
+        'sitemap.xml',
+        'robots.txt',
+        'favicon.ico',
+        'favicon.svg',
+        'site.webmanifest',
+        'ads.txt',
+        'llms.txt',
+        '.well-known/security.txt',
+        '.well-known/api-catalog',
+    ])
         fs.existsSync(path.join(DIST, f)) ? pass(`${f} present`) : fail(`${f} missing`);
 }
 
@@ -783,6 +798,93 @@ console.log('\n13. Head and manifest');
         else if (!startResolves) fail(`manifest start_url "${startUrl}" does not resolve to a built page`);
         else pass(`manifest start_url "${startUrl}" is root-relative and resolves`);
     }
+}
+
+// -------------------------------------------------------- 14. discovery surface
+console.log('\n14. Discovery surface');
+{
+    const resolves = (url) => {
+        const p = url.replace(/^https:\/\/www\.talk-am-pegel\.de/, '').split(/[?#]/)[0];
+        const targets = p === '/' ? ['index.html'] : [p.replace(/^\//, ''), `${p.replace(/^\//, '')}.html`];
+        return targets.some((t) => fs.existsSync(path.join(DIST, t)));
+    };
+
+    // --- llms.txt: the format llmstxt.org describes, and curated rather than exhaustive
+    const llms = read(path.join(DIST, 'llms.txt'));
+    llms.startsWith(`# `) ? pass('llms.txt opens with an H1') : fail('llms.txt does not start with "# "');
+    /^>\s+\S/m.test(llms) ? pass('llms.txt carries a blockquote summary') : fail('llms.txt has no "> summary" line');
+    const llmsLinks = [...llms.matchAll(/\]\((https:\/\/[^)]+)\)/g)].map((m) => m[1]);
+    const llmsBroken = llmsLinks.filter((u) => !resolves(u));
+    llmsBroken.length === 0
+        ? pass(`all ${llmsLinks.length} llms.txt links resolve`)
+        : fail(`llms.txt links that do not resolve: ${llmsBroken.slice(0, 3).join(', ')}`);
+    // A stale llms.txt teaches models wrong things, and the failure mode is silent: it
+    // still parses, it just describes a site that no longer exists. Every talk must be in
+    // it, so adding one without touching this file fails here rather than in a model.
+    const talkPageCount = pages.filter((f) => toUrl(f).startsWith('/talks/')).length;
+    const listedTalks = llmsLinks.filter((u) => u.includes('/talks/')).length;
+    listedTalks === talkPageCount
+        ? pass(`llms.txt lists all ${talkPageCount} talks`)
+        : fail(`llms.txt lists ${listedTalks} of ${talkPageCount} talks — has a talk been added without updating it?`);
+
+    // --- security.txt: RFC 9116 requires Contact and Expires, and is invalid once
+    // Expires lapses. Failing 30 days out puts the reminder in the deploy gate.
+    const sec = read(path.join(DIST, '.well-known', 'security.txt'));
+    /^Contact:\s*\S/m.test(sec) ? pass('security.txt has a Contact') : fail('security.txt has no Contact field');
+    const expires = sec.match(/^Expires:\s*(\S+)/m)?.[1];
+    const days = expires ? Math.floor((Date.parse(expires) - Date.now()) / 86400000) : null;
+    if (!expires) fail('security.txt has no Expires field — the file is invalid per RFC 9116 without it');
+    else if (Number.isNaN(Date.parse(expires))) fail(`security.txt Expires is not a parseable timestamp: ${expires}`);
+    else if (days < 0) fail(`security.txt EXPIRED ${-days} days ago (${expires}) — the file is invalid; set a new Expires`);
+    else if (days < 30) fail(`security.txt expires in ${days} days (${expires}) — set a new Expires now`);
+    else pass(`security.txt expires in ${days} days`);
+
+    // --- api-catalog: RFC 9727 wants a Linkset, and every href in it has to exist
+    let catalog = null;
+    try {
+        catalog = JSON.parse(read(path.join(DIST, '.well-known', 'api-catalog')));
+    } catch {
+        fail('.well-known/api-catalog does not parse as JSON');
+    }
+    if (catalog) {
+        const entries = Array.isArray(catalog.linkset) ? catalog.linkset : [];
+        const hrefs = entries.flatMap((e) =>
+            Object.entries(e)
+                .filter(([k]) => k !== 'anchor')
+                .flatMap(([, links]) => (Array.isArray(links) ? links.map((l) => l.href) : [])),
+        );
+        const broken = hrefs.filter((u) => typeof u !== 'string' || !resolves(u));
+        entries.length > 0 && entries.every((e) => typeof e.anchor === 'string')
+            ? pass(`api-catalog is a Linkset with ${entries.length} anchored entr(y/ies)`)
+            : fail('api-catalog has no linkset array, or an entry without an anchor');
+        broken.length === 0
+            ? pass(`all ${hrefs.length} api-catalog links resolve`)
+            : fail(`api-catalog links that do not resolve: ${broken.slice(0, 3).join(', ')}`);
+
+        // No derived values in the titles. This shipped as "Alle 57 öffentlichen URLs",
+        // which is a second copy of a number that lives in sitemap.xml — and the copy
+        // goes stale the moment a talk is added, silently, because the file still parses
+        // and still validates. A reviewer caught it by eye; this is cheaper than a
+        // reviewer. Relax it if a versioned API ever needs "OpenAPI 3.1" in a title.
+        const titles = entries.flatMap((e) =>
+            Object.entries(e)
+                .filter(([k]) => k !== 'anchor')
+                .flatMap(([, links]) => (Array.isArray(links) ? links.map((l) => l.title).filter(Boolean) : [])),
+        );
+        const numeric = titles.filter((t) => /\d/.test(t));
+        numeric.length === 0
+            ? pass(`all ${titles.length} api-catalog titles are free of derived values`)
+            : fail(`api-catalog title(s) contain a number that will drift: ${numeric.join(' | ')}`);
+    }
+
+    // --- and the header that makes any of it discoverable. dist/_headers is a Cloudflare
+    // instruction file, so this only proves we asked; verify-live.sh proves it applied.
+    const headers = read(path.join(DIST, '_headers'));
+    const rels = ['describedby', 'api-catalog', 'sitemap', 'security'];
+    const missingRels = rels.filter((r) => !new RegExp(`rel="${r}"`).test(headers));
+    missingRels.length === 0
+        ? pass(`_headers advertises ${rels.join(', ')}`)
+        : fail(`_headers Link header missing rel(s): ${missingRels.join(', ')}`);
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);

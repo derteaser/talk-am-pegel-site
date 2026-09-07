@@ -18,7 +18,7 @@ guidance.
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/, then prunes unreferenced assets
 pnpm verify      # assert dist/ is intact (64 assertions) — also a deploy gate
-pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (28 checks)
+pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (35 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
 pnpm deploy:cf   # build + verify + wrangler deploy
@@ -158,6 +158,27 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **Machine-readable titles are English, and carry no derived values.** The `Link` header and
+  the api-catalog label resources for whatever fetches them — they are not page content, so they
+  stay English even though the site is German. And a title must not restate a computed fact: this
+  shipped as "Alle 57 öffentlichen URLs", a second copy of a number that lives in `sitemap.xml`
+  and goes stale the moment a talk is added, silently, because the file still parses and still
+  validates. `verify.mjs` fails on a digit in any api-catalog title. `llms.txt` is the exception
+  and stays German: it is prose about German content, and that spec page wants it readable by
+  humans too.
+- **The discovery files are NOT in `scripts/expected-urls.txt`.** That fixture is the indexed
+  _page_ inventory and check 1 compares it against the built HTML, so listing a non-HTML
+  endpoint there reports it as missing. `/llms.txt`, `/.well-known/security.txt` and
+  `/.well-known/api-catalog` live in check 1's second list, beside `sitemap.xml` and
+  `robots.txt` — which leaves the 57-URL invariant exactly where it was.
+- **`security.txt`'s `Expires` is a build gate, not a calendar note.** RFC 9116 requires the
+  field and the file is invalid once it lapses, so `verify.mjs` fails when it is under 30 days
+  out and says so. If a build starts failing with "security.txt expires in 12 days", the fix is
+  to set a new date in `public/.well-known/security.txt`, not to weaken the check.
+- **Two `Content-Type` overrides in `public/_headers` are load-bearing.** `/.well-known/api-catalog`
+  has no extension, so it would be served as `application/octet-stream` where RFC 9727 requires
+  `application/linkset+json`; and `/llms.txt` is typed `text/markdown` to match what the `Link`
+  header advertises. `verify-live.sh` asserts both, because only the edge can show them.
 - **JSON-LD goes out through `set:html`, so `<` must stay escaped.** `JSON.stringify` does not
   escape it, and a value containing `</script>` would close the block and turn the rest into
   markup. `Seo.astro` replaces `<` with `\u003c` — byte-identical data to a consumer — and
