@@ -9,6 +9,13 @@
                     "title": "Curated index for agents"
                 }
             ],
+            "alternate": [
+                {
+                    "href": "https://www.talk-am-pegel.de/rss.xml",
+                    "type": "application/rss+xml",
+                    "title": "Talks feed"
+                }
+            ],
             "sitemap": [
                 {
                     "href": "https://www.talk-am-pegel.de/sitemap.xml",

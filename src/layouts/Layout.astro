@@ -79,6 +79,13 @@ const { heroTitle, heroSubtitle, heroImage, heroName = 'hero-image', ...seo } = 
         <link rel="manifest" href="/site.webmanifest" />
         {
             /*
+          Feed discovery. The title is what a reader's subscribe dialog shows verbatim, so
+          it names the site and what is in the feed rather than saying "RSS".
+        */
+        }
+        <link rel="alternate" type="application/rss+xml" title="Talk am Pegel — Talks" href="/rss.xml" />
+        {
+            /*
           No `preload`: <Font> preloads every face of the family, and preloading all
           six weights (144 kB) would compete with the hero image, which is the actual
           LCP element. The generated size-adjust/ascent-override fallback metrics

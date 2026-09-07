@@ -47,6 +47,7 @@ ${talkLines}
 
 ## Optional
 
+- [RSS-Feed](${base}/rss.xml): neue Ausgaben als RSS 2.0.
 - [${pageTitle('impressum')}](${base}/impressum)
 - [${pageTitle('datenschutz')}](${base}/datenschutz)
 `;

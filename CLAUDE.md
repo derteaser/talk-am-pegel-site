@@ -18,7 +18,7 @@ guidance.
 pnpm dev         # Astro dev server, http://localhost:4321
 pnpm build       # -> dist/, then prunes unreferenced assets
 pnpm verify      # assert dist/ is intact (64 assertions) — also a deploy gate
-pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (35 checks)
+pnpm verify:live # sweep the LIVE site: URLs, redirects, headers, robots.txt (37 checks)
 pnpm check       # astro check
 pnpm preview     # serve dist/
 pnpm deploy:cf   # build + verify + wrangler deploy
@@ -158,6 +158,22 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **`/rss.xml` exists because three spec items pointed at it, one of them circularly.**
+  `machine-readable-formats` asks for a feed; `feed-discovery` and `feed-hygiene` had been graded
+  N/A _because no feed existed_, which decided the question by assuming it. A series publishing
+  two or three times a year is what RSS is actually for, so the feed is for readers first and
+  agents second. Its shape follows the feed-hygiene page and every part earns its place:
+  `atom:link rel="self"` (both validators warn without it), `<guid isPermaLink="true">` equal to
+  the link and **never** changing (readers key read-state off it), RFC 822 dates, absolute URLs
+  inside items, and `<content:encoded>` carrying the whole text so the feed is not a teaser.
+  `lastBuildDate` is the newest talk's date, not the build time — a typo fix in the footer is not
+  a content change. `_headers` types it `application/rss+xml`, because readers branch on the MIME
+  type and Cloudflare would otherwise serve `.xml` as `application/xml`.
+- **`]]>` in feed content is SPLIT, never escaped.** Entities are not parsed inside a CDATA
+  section, so `]]&gt;` reaches the reader as those five literal characters; closing the section
+  after the `]]` and reopening for the `>` leaves the parsed text byte-identical. Verified
+  against a real XML parser both ways. `verify.mjs` fails if a CDATA section ever contains
+  `]]&gt;`, or if the sections stop balancing.
 - **Machine-readable titles are English, and carry no derived values.** The `Link` header and
   the api-catalog label resources for whatever fetches them — they are not page content, so they
   stay English even though the site is German. And a title must not restate a computed fact: this

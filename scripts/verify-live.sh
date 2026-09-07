@@ -238,11 +238,12 @@ disc() { # $1 = path, $2 = expected Content-Type fragment (status is always 200)
 disc /llms.txt 'text/markdown'
 disc /.well-known/security.txt 'text/plain'
 disc /.well-known/api-catalog 'application/linkset+json'
+disc /rss.xml 'application/rss+xml'
 
 # The Link header is what makes the above discoverable without guessing a path — llms.txt
 # v2 exists because the guess never worked.
 l=$(hdr link "$(headers "$BASE/")")
-for rel in describedby api-catalog sitemap security; do
+for rel in describedby api-catalog sitemap security alternate; do
     printf '%s' "$l" | grep -q "rel=\"$rel\"" && ok "Link header advertises rel=\"$rel\"" || no "Link header has no rel=\"$rel\": ${l:-(no Link header)}"
 done
 
