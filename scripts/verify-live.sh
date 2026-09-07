@@ -215,7 +215,7 @@ echo "8. Discovery surface — the files, their types, and the Link header"
 # response shows whether Cloudflare served them, and with which Content-Type. An
 # extensionless file like api-catalog defaults to application/octet-stream on most hosts,
 # which is the mistake RFC 9727's spec page calls out.
-disc() { # path, expected status, expected content-type fragment
+disc() { # $1 = path, $2 = expected Content-Type fragment (status is always 200)
     local h code ctype
     h=$(headers "$BASE$1")
     code=$(printf '%s' "$h" | head -1 | awk '{print $2}')

@@ -42,7 +42,7 @@ ${talkLines}
 ## Seiten
 
 - [Alle Talks](${base}/talks): Übersicht aller Ausgaben, chronologisch.
-- [Personen](${base}/persons): die Gäste der Reihe, mit je einer eigenen Seite.
+- [Personen](${base}/persons): Gäste der Reihe, mit je einer eigenen Seite.
 - [${pageTitle('kontakt')}](${base}/kontakt): Anschrift, Telefon und E-Mail der Veranstalter.
 
 ## Optional

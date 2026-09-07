@@ -40,7 +40,7 @@
 # `describedby` for llms.txt is v2 of that convention's one hard requirement: without it
 # an agent is back to guessing the path.
 /*
-  Link: </llms.txt>; rel="describedby"; type="text/markdown"; title="Curated index for agents", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </sitemap.xml>; rel="sitemap"; type="application/xml", </.well-known/security.txt>; rel="security"; type="text/plain"
+  Link: </llms.txt>; rel="describedby"; type="text/markdown"; title="Curated index for agents", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"; title="API catalogue", </sitemap.xml>; rel="sitemap"; type="application/xml"; title="XML sitemap of all public pages", </.well-known/security.txt>; rel="security"; type="text/plain"; title="Security contact"
   X-Content-Type-Options: nosniff
   # Nothing here is meant to be framed, and the site has no embed use case. Replace
   # with CSP frame-ancestors 'none' once a policy exists (issue #1487) — until then
