@@ -32,11 +32,14 @@
  *      are well formed, advertised, and not about to expire
  *  15. Script budget: the per-page JavaScript stays within its measured size,
  *      and the libraries stay out of it
+ *  16. CSP: the policy is present, and its inline-script hash matches the script
+ *      actually shipped
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
+import crypto from 'node:crypto';
 
 const DIST = 'dist';
 
@@ -1016,6 +1019,56 @@ console.log('\n15. Script budget');
     galleryPages > 0 && galleryPages < pages.length
         ? pass(`${galleryPages} of ${pages.length} pages have a gallery, so the split earns its keep`)
         : fail(`${galleryPages} of ${pages.length} pages have a gallery — reconsider the dynamic import`);
+}
+
+// -------------------------------------------------------------------- 16. CSP
+console.log('\n16. CSP');
+{
+    const headers = read(path.join(DIST, '_headers'));
+    const csp = headers
+        .split('\n')
+        .map((l) => l.trim())
+        .find((l) => l.startsWith('Content-Security-Policy:'))
+        ?.replace(/^Content-Security-Policy:\s*/, '');
+
+    if (!csp) fail('no Content-Security-Policy in _headers');
+    else {
+        const need = ['default-src', 'script-src', 'style-src', 'img-src', 'frame-ancestors', 'base-uri', 'object-src'];
+        const missing = need.filter((d) => !new RegExp(`(^|;\\s*)${d}\\s`).test(csp));
+        missing.length === 0 ? pass(`CSP declares ${need.length} directives`) : fail(`CSP missing directive(s): ${missing.join(', ')}`);
+
+        // 'unsafe-eval' is a deliberate, documented acceptance for Alpine's evaluator.
+        // 'unsafe-inline' in script-src is NOT: it would make the hash below pointless
+        // and let any injected <script> run, which is most of what CSP is for.
+        const scriptSrc = csp.match(/script-src ([^;]*)/)?.[1] ?? '';
+        !/'unsafe-inline'/.test(scriptSrc)
+            ? pass("script-src does not allow 'unsafe-inline'")
+            : fail("script-src contains 'unsafe-inline' — that negates the inline-script hash");
+
+        // The one that goes stale silently. Editing the inline bootstrap changes its hash;
+        // the policy then blocks it, `.js` is never added, and the failure shows up as
+        // "the hero fade looks wrong on navigation" weeks later. Recompute and compare.
+        const inline = [];
+        for (const f of pages) {
+            for (const m of read(f).matchAll(/<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/g)) {
+                if (/application\/ld\+json/.test(m[1])) continue;
+                inline.push(`sha256-${crypto.createHash('sha256').update(m[2], 'utf8').digest('base64')}`);
+            }
+        }
+        const distinct = [...new Set(inline)];
+        const unhashed = distinct.filter((h) => !csp.includes(h));
+        unhashed.length === 0
+            ? pass(`all ${distinct.length} inline script hash(es) are in the policy (${inline.length} occurrences)`)
+            : fail(`inline script not allowed by the CSP — add ${unhashed.join(' ')} to script-src (or remove the script)`);
+
+        // Fathom's beacon is an image, not a fetch: a policy that only allows it in
+        // connect-src loses analytics without breaking anything visible.
+        const imgSrc = csp.match(/img-src ([^;]*)/)?.[1] ?? '';
+        const fathomInHtml = pages.some((f) => read(f).includes('cdn.usefathom.com'));
+        !fathomInHtml || imgSrc.includes('cdn.usefathom.com')
+            ? pass('img-src allows the analytics beacon')
+            : fail('the Fathom script is loaded but cdn.usefathom.com is not in img-src — its beacon is an image request');
+    }
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);

@@ -42,9 +42,34 @@
 /*
   Link: </llms.txt>; rel="describedby"; type="text/markdown"; title="Curated index for agents", </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"; title="API catalogue", </sitemap.xml>; rel="sitemap"; type="application/xml"; title="XML sitemap of all public pages", </.well-known/security.txt>; rel="security"; type="text/plain"; title="Security contact", </rss.xml>; rel="alternate"; type="application/rss+xml"; title="Talks feed"
   X-Content-Type-Options: nosniff
-  # Nothing here is meant to be framed, and the site has no embed use case. Replace
-  # with CSP frame-ancestors 'none' once a policy exists (issue #1487) — until then
-  # this is the only clickjacking protection the site has.
+  # Kept alongside CSP's frame-ancestors below: the directive supersedes it in every
+  # current browser, and this covers the ones that never implemented it. Duplicating the
+  # intent is free; the two never disagree because both mean "never framed".
+  #
+  # Every allowance in the policy below was measured against the built output, not
+  # guessed:
+  #   'unsafe-eval'          Alpine's expression evaluator uses new Function. Accepted
+  #                          deliberately — the alternative is @alpinejs/csp, which means
+  #                          registering components and rewriting every inline x-data.
+  #   sha256-JmbOa5b…        the one inline script on the site, byte-identical on all 58
+  #                          pages: the .js/vt-nav bootstrap in Layout.astro. A hash
+  #                          rather than 'unsafe-inline', so an injected script still
+  #                          cannot run. verify.mjs recomputes it from dist/ and fails if
+  #                          the two drift.
+  #   cdn.usefathom.com      in script-src AND img-src: Fathom's beacon is an IMAGE
+  #                          request, not fetch — a policy with only connect-src breaks
+  #                          analytics silently. connect-src is there too, for the
+  #                          sendBeacon path.
+  #   style-src 'unsafe-inline'  4-6 inline <style> blocks per page, plus style attributes
+  #                          on the logo SVG and the ticket panel. Hashes are not an
+  #                          option: the scoped view-transition styles differ per page.
+  #   img-src data:          the theme's --fx-noise SVG is a data: URI in the stylesheet.
+  #   form-action 'none'     there is no form anywhere on the site.
+  #
+  # NOT set: require-trusted-types-for. Alpine and BigPicture both use innerHTML (2 and 1
+  # occurrences in the built bundles), so enforcing it would break the reveals and the
+  # lightbox. Tracked in #1487.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' 'sha256-JmbOa5bjkKLAZzKht9HJamV27rTl/y9gpzxwHdkekYA=' https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.usefathom.com; font-src 'self'; connect-src 'self' https://cdn.usefathom.com; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
   # Send the full URL within the site, only the origin when leaving it. The default
   # varies by browser, so it is worth stating.
