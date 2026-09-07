@@ -686,24 +686,51 @@ console.log('\n13. Head and manifest');
     }
     if (!manifest) fail('site.webmanifest is missing or does not parse');
     else {
-        const icons = manifest.icons ?? [];
-        const sizes = new Set(icons.map((i) => i.sizes));
-        const missing = icons.map((i) => i.src).filter((src) => !fs.existsSync(path.join(DIST, src.replace(/^\//, ''))));
-        const maskable = icons.some((i) => (i.purpose ?? '').split(/\s+/).includes('maskable'));
+        // Validate the shape before reading it: a hand-edited manifest can put anything
+        // in here, and an entry without a string `src` would otherwise crash this script
+        // with a stack trace instead of reporting a failure.
+        const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
+        const malformed = icons.filter((i) => typeof i?.src !== 'string' || typeof i?.sizes !== 'string');
+        const wellFormed = icons.filter((i) => typeof i?.src === 'string' && typeof i?.sizes === 'string');
+
+        if (!Array.isArray(manifest.icons)) fail('manifest has no icons array');
+        else if (malformed.length) fail(`${malformed.length} manifest icon entr(y/ies) missing a string src or sizes`);
+        else pass(`manifest icons array is well formed (${icons.length} entries)`);
+
+        const sizes = new Set(wellFormed.map((i) => i.sizes));
+        const missing = wellFormed.map((i) => i.src).filter((src) => !fs.existsSync(path.join(DIST, src.replace(/^\//, ''))));
+        const maskable = wellFormed.some((i) => (typeof i.purpose === 'string' ? i.purpose : '').split(/\s+/).includes('maskable'));
 
         sizes.has('192x192') && sizes.has('512x512')
             ? pass('manifest declares both a 192 and a 512 icon')
             : fail(`manifest icon sizes are ${[...sizes].join(', ') || '(none)'} — installability wants 192 and 512`);
         maskable ? pass('manifest ships a maskable icon') : fail('no icon with purpose "maskable" — Android will crop the wordmark');
         missing.length === 0
-            ? pass(`all ${icons.length} manifest icons exist in dist`)
+            ? pass(`all ${wellFormed.length} manifest icons exist in dist`)
             : fail(`manifest icon(s) not built: ${missing.join(', ')}`);
-        manifest.display && manifest.display !== 'fullscreen'
+
+        // Chromium installs only `standalone`, `minimal-ui` or `fullscreen`, and
+        // fullscreen is the mistake the spec calls out — it removes the way back. So the
+        // invariant is the pair that is both installable and escapable, which rejects
+        // `browser` (not installable at all) as well as fullscreen.
+        const INSTALLABLE = ['standalone', 'minimal-ui'];
+        INSTALLABLE.includes(manifest.display)
             ? pass(`manifest display is "${manifest.display}"`)
-            : fail(`manifest display is "${manifest.display}" — fullscreen removes the user's way out of the app`);
-        manifest.start_url?.startsWith('/')
-            ? pass(`manifest start_url is relative ("${manifest.start_url}")`)
-            : fail(`manifest start_url "${manifest.start_url}" is absolute — it breaks on any other origin, including previews`);
+            : fail(`manifest display is "${manifest.display}" — expected one of ${INSTALLABLE.join(' / ')}`);
+
+        // Relative, and pointing at a page that exists. Not pinned to exactly "/": the
+        // spec's own example is "/?utm_source=pwa", to count installed launches
+        // separately, and "start_url pointing to a 404" is the failure it actually warns
+        // about — so resolve the path instead of matching the string.
+        const startUrl = typeof manifest.start_url === 'string' ? manifest.start_url : '';
+        const startPath = startUrl.split(/[?#]/)[0];
+        const startTargets = startPath === '/' ? ['index.html'] : [startPath.replace(/^\//, ''), `${startPath.replace(/^\//, '')}.html`];
+        const startResolves = startTargets.some((t) => fs.existsSync(path.join(DIST, t)));
+
+        if (!startUrl.startsWith('/'))
+            fail(`manifest start_url "${startUrl}" is not root-relative — it breaks on any other origin, including previews`);
+        else if (!startResolves) fail(`manifest start_url "${startUrl}" does not resolve to a built page`);
+        else pass(`manifest start_url "${startUrl}" is root-relative and resolves`);
     }
 }
 
