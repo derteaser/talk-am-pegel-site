@@ -90,15 +90,22 @@ done
 
 # ---------------------------------------------------------------------------
 echo
-echo "3. Canonicalisation — variants redirect to the extensionless URL"
+echo "3. Canonicalisation — variants redirect PERMANENTLY to the extensionless URL"
+# 308 specifically, not any 3xx. html_handling emits 307 — a TEMPORARY redirect, which is
+# the wrong signal for a permanent canonicalisation — and public/_redirects overrides it.
+# Accepting any 3xx here would let a silent regression back to 307 pass, which is exactly
+# what happened before #1494: the check said "a 3xx arrived" and nobody looked at which.
 for variant in /kontakt/ /kontakt.html /talks/talk-am-pegel-11-sicherheit-als-standortfaktor.html; do
     want=${variant%.html}
     want=${want%/}
     read -r code loc <<<"$(probe "$BASE$variant")"
-    case "$code" in
-        30*) [ "${loc%/}" = "$BASE$want" ] && ok "$variant -> $code $loc" || no "$variant -> $code $loc (expected $BASE$want)" ;;
-        *) no "$variant -> $code, expected a 3xx to $BASE$want" ;;
-    esac
+    if [ "$code" != "308" ]; then
+        no "$variant -> $code, expected 308 (307 means _redirects is not being applied)"
+    elif [ "${loc%/}" != "$BASE$want" ]; then
+        no "$variant -> $code $loc (expected $BASE$want)"
+    else
+        ok "$variant -> $code $loc"
+    fi
 done
 
 # ---------------------------------------------------------------------------

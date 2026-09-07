@@ -1,0 +1,20 @@
+# Canonicalisation redirects, so the variant URL forms return 308 rather than the 307 that
+# `html_handling: "drop-trailing-slash"` emits. 307 is a TEMPORARY redirect: it tells a
+# crawler the move might be undone, which is the wrong signal for a permanent
+# canonicalisation. See issue #1494.
+#
+# MEASURED on a preview deployment, because Cloudflare documents 301/302/303/307/308 support
+# and says redirects run before *headers*, but says nothing about precedence over
+# html_handling. _redirects wins: all five variant forms return 308, `/` is untouched, query
+# strings survive, and all 57 indexed URLs still return 200 with no redirect.
+#
+# verify-live.sh section 3 asserts 308 specifically. If it ever reports 307, this file
+# stopped being applied — the rules are not inert, they are load-bearing.
+#
+# `*` is a splat matching the rest of the path, `:splat` substitutes it. Two dynamic rules
+# out of the documented 100.
+#
+# Watch for a redirect loop on `/`: the second rule needs `/<something>/`, so `/` should
+# not match — but "should not" is why this is tested on a preview and not on production.
+/*.html /:splat 308
+/*/ /:splat 308
