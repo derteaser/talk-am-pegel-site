@@ -173,8 +173,13 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   do not just resize the square one into the maskable slot. `verify.mjs` asserts both sizes, the
   maskable purpose, that every declared icon exists, that `display` is not `fullscreen`, and that
   `start_url` stays relative (an absolute one breaks every preview deployment).
-- **`browserconfig.xml` and `mstile.png` are gone.** They were Windows 8 live tiles, nothing in
-  the head referenced them, and no current browser reads them.
+- **`browserconfig.xml`, `mstile.png` and `mask-icon.svg` are gone, and should stay gone.** The
+  first two were Windows 8 live tiles. `mask-icon` was Safari's pinned-tab mechanism for Safari
+  9–14: Safari 15+ uses the standard `favicon.svg` instead, MDN does not document the relation at
+  all, the spec's recommended five-file icon set omits it, and it is reported to override the real
+  favicon in some setups. The five files that remain — `favicon.svg`, `favicon.ico`,
+  `apple-touch-icon.png`, and the manifest's `icon-192.png` / `google-touch-icon.png` /
+  `icon-maskable.png` — are the whole modern set.
 - **Astro emits the original of every imported image**, alongside the resized variants its
   image service generates — a Vite asset import emits a file whether or not its URL is ever
   printed. On this site that was **26.5 MB of dist/, a fifth of `_astro`**, including a 6.9 MB
