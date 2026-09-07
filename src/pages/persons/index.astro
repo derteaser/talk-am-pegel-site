@@ -6,19 +6,27 @@
  * visual parity, even though the FlyOnUI theme is light-only so the dark variants
  * never apply.
  *
- * Kirby emitted neither a description nor JSON-LD for this template; a description
- * is added here since the page is indexed.
+ * Kirby emitted neither a description nor JSON-LD for this template; the description was
+ * added during the migration, the CollectionPage/ItemList here (#1489).
  */
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 import { persons } from '../../lib/content';
 import { site } from '../../data/site';
+import { collectionPage } from '../../lib/jsonld';
 
 const all = await persons();
 const description = `Die Gäste der Talk-Reihe ${site.title} in Neuss.`;
+
+const jsonLd = collectionPage({
+    name: 'Personen',
+    url: new URL('/persons', Astro.site).href,
+    description,
+    items: all.map((p) => ({ name: p.data.title, url: new URL(`/persons/${p.id}`, Astro.site).href })),
+});
 ---
 
-<Layout title="Personen" description={description}>
+<Layout title="Personen" description={description} jsonLd={jsonLd}>
     <section class="overflow-hidden text-gray-700 dark:text-gray-400">
         <div class="container mx-auto px-5 py-24">
             <ul class="mx-auto grid max-w-(--breakpoint-sm) gap-8 sm:grid-cols-2">

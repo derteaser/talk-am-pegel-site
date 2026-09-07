@@ -12,13 +12,18 @@
  * This renders the card, as decided during planning. Expect the person pages to have
  * MORE content than the parity baseline.
  *
- * Kirby emitted neither a description nor JSON-LD for this template.
+ * Kirby emitted neither a description nor JSON-LD for this template. The description was
+ * added during the migration; the JSON-LD is added here (#1489) — these people are
+ * already described as an Event's `performer` on the talk pages, so the detail page
+ * carrying nothing was the odd one out.
  */
 import { Icon } from 'astro-icon/components';
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Person from '../../components/Person.astro';
 import { persons, talksOf } from '../../lib/content';
 import { formatDate } from '../../lib/dates';
+import { person as personSchema, breadcrumbList } from '../../lib/jsonld';
 
 export async function getStaticPaths() {
     const all = await persons();
@@ -28,9 +33,39 @@ export async function getStaticPaths() {
 const { person } = Astro.props;
 const talks = await talksOf(person.id);
 const description = `${person.data.title} — ${person.data.subHeading}`;
+
+const canonical = new URL(`/persons/${person.id}`, Astro.site).href;
+
+// A derived 800px portrait, as on the talk pages — never mainImage.src, which is the
+// unresized original.
+const portrait = person.data.mainImage
+    ? new URL((await getImage({ src: person.data.mainImage, width: 800, format: 'jpeg', quality: 85 })).src, Astro.site).href
+    : null;
+
+const jsonLd = [
+    personSchema({
+        name: person.data.title,
+        jobTitle: person.data.subHeading,
+        url: canonical,
+        image: portrait,
+        sameAs: [person.data.website, person.data.linkedin, person.data.xing].filter(Boolean),
+        performerIn: talks.map((talk) => ({ name: talk.data.title, url: new URL(`/talks/${talk.id}`, Astro.site).href })),
+    }),
+    breadcrumbList([
+        { name: 'Start', url: new URL('/', Astro.site).href },
+        { name: 'Personen', url: new URL('/persons', Astro.site).href },
+        { name: person.data.title, url: canonical },
+    ]),
+];
 ---
 
-<Layout title={person.data.title} description={description} mainImage={person.data.mainImage} heroImage={person.data.mainImage}>
+<Layout
+    title={person.data.title}
+    description={description}
+    mainImage={person.data.mainImage}
+    heroImage={person.data.mainImage}
+    jsonLd={jsonLd}
+>
     <section class="mx-auto mt-16 flex flex-col px-6 md:flex-row md:justify-center md:space-x-12 lg:px-24 xl:px-32">
         <Person person={person} />
 

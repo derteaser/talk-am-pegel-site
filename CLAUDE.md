@@ -158,6 +158,21 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   every load and flashed a horizontal scrollbar. Fixed offsets now, plus `overflow-x: clip` on
   `html` as a guard. `body`'s `overflow-x: hidden` does **not** cover this; the document still
   reported the overflow with it set.
+- **`Seo.astro` takes one JSON-LD node or an array of them**, emitting one `<script>` per node
+  rather than a single array-valued block. On a talk page the **Event must come first**:
+  `verify.mjs` reads the first block for its Event completeness checks and for the past-event
+  `SoldOut` assertion, both of which bail out if it is not an Event.
+- **Section 4's presence map is now positive, and derived.** It used to assert that `/talks`,
+  `/persons` and the 40 person pages carried _no_ JSON-LD, because Kirby emitted none and the
+  migration matched it. Those pages now carry `Person`, `CollectionPage`/`ItemList` and
+  `BreadcrumbList`, and the counts come from the page inventory rather than literals — so adding
+  a talk or a person does not require editing a number. `/404` is the one page that should carry
+  nothing, and that is asserted.
+- **The `BreadcrumbList` has no visible trail to match, by decision.** The spec wants both and
+  lists a disagreement between them as a mistake; with no trail there is nothing to disagree
+  with, but this is still half the item, chosen deliberately over a visual change to 51 pages.
+  If a visible breadcrumb is ever added it must match the JSON-LD exactly — same items, same
+  order, same names, same URLs — and the current page must not link to itself.
 - **`color-scheme` is already set in CSS — the theme block is not dead.** FlyOnUI compiles the
   `tap` theme to `:where(:root),:root:has(input.theme-controller[value=tap]:checked),[data-theme=tap]`,
   and the leading `:where(:root)` is what makes it apply: every colour token and
