@@ -210,7 +210,38 @@ esac
 
 # ---------------------------------------------------------------------------
 echo
-echo "8. robots.txt and sitemap.xml"
+echo "8. Discovery surface — the files, their types, and the Link header"
+# dist/_headers and dist/.well-known/ are instructions and static files; only a live
+# response shows whether Cloudflare served them, and with which Content-Type. An
+# extensionless file like api-catalog defaults to application/octet-stream on most hosts,
+# which is the mistake RFC 9727's spec page calls out.
+disc() { # path, expected status, expected content-type fragment
+    local h code ctype
+    h=$(headers "$BASE$1")
+    code=$(printf '%s' "$h" | head -1 | awk '{print $2}')
+    ctype=$(hdr content-type "$h")
+    if [ "$code" != "200" ]; then
+        no "$1 -> $code"
+    elif [ -n "$2" ] && ! printf '%s' "$ctype" | grep -qi "$2"; then
+        no "$1 served as '$ctype', expected $2"
+    else
+        ok "$1 -> 200 $ctype"
+    fi
+}
+disc /llms.txt 'text/markdown'
+disc /.well-known/security.txt 'text/plain'
+disc /.well-known/api-catalog 'application/linkset+json'
+
+# The Link header is what makes the above discoverable without guessing a path — llms.txt
+# v2 exists because the guess never worked.
+l=$(hdr link "$(headers "$BASE/")")
+for rel in describedby api-catalog sitemap security; do
+    printf '%s' "$l" | grep -q "rel=\"$rel\"" && ok "Link header advertises rel=\"$rel\"" || no "Link header has no rel=\"$rel\": ${l:-(no Link header)}"
+done
+
+# ---------------------------------------------------------------------------
+echo
+echo "9. robots.txt and sitemap.xml"
 r=$("${CURL[@]}" "$BASE/robots.txt")
 printf '%s' "$r" | grep -qi 'sitemap:.*sitemap\.xml' && ok "robots.txt points at /sitemap.xml" || no "robots.txt has no sitemap line"
 # Cloudflare PREPENDS a managed AI-bot block to the origin file. It has silently stopped

@@ -1,0 +1,7 @@
+# RFC 9116. Expires is REQUIRED and the file is invalid once it lapses, so
+# scripts/verify.mjs fails the build when it is less than 30 days out — the reminder
+# lives in the deploy gate rather than in somebody's calendar.
+Contact: mailto:info@talk-am-pegel.de
+Expires: 2027-09-07T00:00:00Z
+Preferred-Languages: de, en
+Canonical: https://www.talk-am-pegel.de/.well-known/security.txt
