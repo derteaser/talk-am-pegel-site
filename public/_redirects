@@ -3,10 +3,13 @@
 # crawler the move might be undone, which is the wrong signal for a permanent
 # canonicalisation. See issue #1494.
 #
-# EXPERIMENT — this is the whole question the issue asks: Cloudflare documents _redirects
-# for Workers static assets with 301/302/303/307/308 support and says "redirects execute
-# before headers", but says nothing about whether they run before html_handling. If
-# html_handling wins, these rules are dead and the file goes away again.
+# MEASURED on a preview deployment, because Cloudflare documents 301/302/303/307/308 support
+# and says redirects run before *headers*, but says nothing about precedence over
+# html_handling. _redirects wins: all five variant forms return 308, `/` is untouched, query
+# strings survive, and all 57 indexed URLs still return 200 with no redirect.
+#
+# verify-live.sh section 3 asserts 308 specifically. If it ever reports 307, this file
+# stopped being applied — the rules are not inert, they are load-bearing.
 #
 # `*` is a splat matching the rest of the path, `:splat` substitutes it. Two dynamic rules
 # out of the documented 100.

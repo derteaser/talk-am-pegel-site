@@ -166,6 +166,22 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   validates. `verify.mjs` fails on a digit in any api-catalog title. `llms.txt` is the exception
   and stays German: it is prose about German content, and that spec page wants it readable by
   humans too.
+- **`public/_redirects` beats `html_handling`, and that is not documented anywhere.**
+  Cloudflare documents `_redirects` for Workers static assets (301/302/303/307/308, 2,000 static
+  and 100 dynamic rules) and says redirects run before _headers_ — it says nothing about
+  precedence over `html_handling`, which emits **307** for the trailing-slash and `.html`
+  variants. Measured on a preview deployment: `_redirects` wins, and the two splat rules turn
+  those into **308**, which is what a permanent canonicalisation should be. `/` does not match
+  the trailing-slash rule, query strings survive the redirect, and all 57 indexed URLs still
+  return 200 with no redirect. `verify-live.sh` section 3 now demands **308 specifically** —
+  accepting any 3xx is what let the 307s go unnoticed in the first place.
+- **HTML pages cannot have ETags here, and that is settled rather than unexplored.** Astro 7 has
+  a route-caching API that sets `etag`/`lastModified`, but the docs scope it to **on-demand
+  rendered** routes with a cache provider — which needs an adapter and a Worker in the request
+  path, the thing this deployment deliberately does not have. For a prerendered site Astro
+  writes files and the server owns validators, and Workers static assets sends none for HTML.
+  So `/_astro/*` 304s and HTML does not. Do not chase this without changing the deployment
+  model; see #1494.
 - **The discovery files are NOT in `scripts/expected-urls.txt`.** That fixture is the indexed
   _page_ inventory and check 1 compares it against the built HTML, so listing a non-HTML
   endpoint there reports it as missing. `/llms.txt`, `/.well-known/security.txt` and

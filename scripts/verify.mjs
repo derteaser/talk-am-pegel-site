@@ -877,6 +877,23 @@ console.log('\n14. Discovery surface');
             : fail(`api-catalog title(s) contain a number that will drift: ${numeric.join(' | ')}`);
     }
 
+    // --- the canonicalisation rules. Like _headers, dist/_redirects is an instruction
+    // file rather than output, so this only proves we asked for 308s; verify-live.sh
+    // section 3 proves Cloudflare applied them, which is the half that can actually
+    // regress — html_handling would silently go back to emitting 307.
+    const redirects = read(path.join(DIST, '_redirects'))
+        .split('\n')
+        .map((l) => l.trim())
+        .filter((l) => l && !l.startsWith('#'));
+    const permanent = redirects.filter((l) => / 308$/.test(l));
+    permanent.length === redirects.length && redirects.length >= 2
+        ? pass(`all ${redirects.length} redirect rules are 308 (permanent)`)
+        : fail(
+              redirects.length === 0
+                  ? '_redirects has no rules — the canonicalisation variants fall back to html_handling 307s'
+                  : `redirect rule(s) that are not 308: ${redirects.filter((l) => !/ 308$/.test(l)).join(' | ')}`,
+          );
+
     // --- and the header that makes any of it discoverable. dist/_headers is a Cloudflare
     // instruction file, so this only proves we asked; verify-live.sh proves it applied.
     const headers = read(path.join(DIST, '_headers'));
