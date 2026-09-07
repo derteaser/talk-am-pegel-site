@@ -26,6 +26,8 @@
  *      darker than the accent
  *  12. Deploy weight: nothing large is emitted unreferenced, and structured data
  *      does not advertise unresized originals
+ *  13. Head and manifest: description + og:description on every page, a colour
+ *      scheme, and an installable manifest whose icons exist
  */
 
 import fs from 'node:fs';
@@ -647,6 +649,89 @@ console.log('\n12. Deploy weight');
     heavy.length === 0
         ? pass('every image referenced from JSON-LD is under 400 KB')
         : fail(`${heavy.length} JSON-LD image(s) over 400 KB — an unresized original? ${heavy[0]}`);
+}
+
+// ------------------------------------------------------ 13. head and manifest
+console.log('\n13. Head and manifest');
+{
+    const attr = (html, re) => html.match(re)?.[1]?.trim() ?? '';
+    const noDesc = [];
+    const noOg = [];
+    const noScheme = [];
+    for (const f of pages) {
+        const html = read(f);
+        if (!attr(html, /<meta name="description" content="([^"]*)"/)) noDesc.push(toUrl(f));
+        if (!attr(html, /<meta property="og:description" content="([^"]*)"/)) noOg.push(toUrl(f));
+        if (!attr(html, /<meta name="color-scheme" content="([^"]*)"/)) noScheme.push(toUrl(f));
+    }
+    // /kontakt and /404 shipped without either for the whole of the migration, because
+    // Seo.astro emits og:description only when a description is passed.
+    noDesc.length === 0
+        ? pass(`all ${pages.length} pages have a non-empty description`)
+        : fail(`${noDesc.length} page(s) without a description: ${noDesc.join(', ')}`);
+    noOg.length === 0 ? pass('all pages have og:description') : fail(`${noOg.length} page(s) without og:description: ${noOg.join(', ')}`);
+    noScheme.length === 0
+        ? pass('all pages declare a colour scheme')
+        : fail(`${noScheme.length} page(s) without <meta name="color-scheme">`);
+
+    // The manifest is only useful if it parses, if the icons it names exist, and if it
+    // does not repeat the mistakes the spec calls out: a fullscreen display mode that
+    // takes away the way back, and no maskable icon so Android crops the wordmark.
+    const manifestPath = path.join(DIST, 'site.webmanifest');
+    let manifest = null;
+    try {
+        manifest = JSON.parse(read(manifestPath));
+    } catch {
+        /* reported below */
+    }
+    if (!manifest) fail('site.webmanifest is missing or does not parse');
+    else {
+        // Validate the shape before reading it: a hand-edited manifest can put anything
+        // in here, and an entry without a string `src` would otherwise crash this script
+        // with a stack trace instead of reporting a failure.
+        const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
+        const malformed = icons.filter((i) => typeof i?.src !== 'string' || typeof i?.sizes !== 'string');
+        const wellFormed = icons.filter((i) => typeof i?.src === 'string' && typeof i?.sizes === 'string');
+
+        if (!Array.isArray(manifest.icons)) fail('manifest has no icons array');
+        else if (malformed.length) fail(`${malformed.length} manifest icon entr(y/ies) missing a string src or sizes`);
+        else pass(`manifest icons array is well formed (${icons.length} entries)`);
+
+        const sizes = new Set(wellFormed.map((i) => i.sizes));
+        const missing = wellFormed.map((i) => i.src).filter((src) => !fs.existsSync(path.join(DIST, src.replace(/^\//, ''))));
+        const maskable = wellFormed.some((i) => (typeof i.purpose === 'string' ? i.purpose : '').split(/\s+/).includes('maskable'));
+
+        sizes.has('192x192') && sizes.has('512x512')
+            ? pass('manifest declares both a 192 and a 512 icon')
+            : fail(`manifest icon sizes are ${[...sizes].join(', ') || '(none)'} — installability wants 192 and 512`);
+        maskable ? pass('manifest ships a maskable icon') : fail('no icon with purpose "maskable" — Android will crop the wordmark');
+        missing.length === 0
+            ? pass(`all ${wellFormed.length} manifest icons exist in dist`)
+            : fail(`manifest icon(s) not built: ${missing.join(', ')}`);
+
+        // Chromium installs only `standalone`, `minimal-ui` or `fullscreen`, and
+        // fullscreen is the mistake the spec calls out — it removes the way back. So the
+        // invariant is the pair that is both installable and escapable, which rejects
+        // `browser` (not installable at all) as well as fullscreen.
+        const INSTALLABLE = ['standalone', 'minimal-ui'];
+        INSTALLABLE.includes(manifest.display)
+            ? pass(`manifest display is "${manifest.display}"`)
+            : fail(`manifest display is "${manifest.display}" — expected one of ${INSTALLABLE.join(' / ')}`);
+
+        // Relative, and pointing at a page that exists. Not pinned to exactly "/": the
+        // spec's own example is "/?utm_source=pwa", to count installed launches
+        // separately, and "start_url pointing to a 404" is the failure it actually warns
+        // about — so resolve the path instead of matching the string.
+        const startUrl = typeof manifest.start_url === 'string' ? manifest.start_url : '';
+        const startPath = startUrl.split(/[?#]/)[0];
+        const startTargets = startPath === '/' ? ['index.html'] : [startPath.replace(/^\//, ''), `${startPath.replace(/^\//, '')}.html`];
+        const startResolves = startTargets.some((t) => fs.existsSync(path.join(DIST, t)));
+
+        if (!startUrl.startsWith('/'))
+            fail(`manifest start_url "${startUrl}" is not root-relative — it breaks on any other origin, including previews`);
+        else if (!startResolves) fail(`manifest start_url "${startUrl}" does not resolve to a built page`);
+        else pass(`manifest start_url "${startUrl}" is root-relative and resolves`);
+    }
 }
 
 console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${checks} checks passed, ${failures} failure(s)\n`);

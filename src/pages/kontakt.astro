@@ -39,12 +39,16 @@ for (const ref of page.data.contactPersons) {
 const encodeEmail = (address: string) => [...address].map((c) => `&#${c.codePointAt(0)};`).join('');
 const emailAnchor = `<a class="link link-primary" href="mailto:${encodeEmail(site.email)}">${encodeEmail(site.email)}</a>`;
 
+// Kirby's config gave this template no description; without one the page also loses
+// og:description, since Seo.astro emits that conditionally.
+const description = `Kontakt zur Talk-Reihe ${site.title} in Neuss: Anschrift, Telefon und E-Mail-Adresse der Veranstalter.`;
+
 const canonical = new URL('/kontakt', Astro.site).href;
 const og = await getImage({ src: tapBanner, width: 1200, height: 630, fit: 'cover', format: 'jpeg', quality: 85 });
 const jsonLd = contactPage(page.data.title, canonical, new URL(og.src, Astro.site).href);
 ---
 
-<Layout title={page.data.title} jsonLd={jsonLd}>
+<Layout title={page.data.title} description={description} jsonLd={jsonLd}>
     <section class="container mx-auto mt-16 px-6 text-center lg:px-24 xl:px-32">
         <h2 class="mb-4 text-xl leading-relaxed">{site.title}</h2>
         <p>{site.address1}</p>

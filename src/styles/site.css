@@ -85,7 +85,10 @@
 }
 
 @utility blocks {
-  @apply prose dark:prose-invert prose-headings:text-primary dark:prose-headings:text-base-100 prose-a:font-bold prose-a:decoration-accent prose-a:hover:text-accent prose-blockquote:border-primary prose-blockquote:not-italic prose-blockquote:text-xl;
+  /* text-balance on headings so a two-line title does not orphan a word, text-pretty on
+     body copy so paragraphs avoid orphans and awkward last lines. Layout-only, and both
+     degrade to normal wrapping where unsupported. */
+  @apply prose dark:prose-invert prose-headings:text-primary prose-headings:text-balance prose-p:text-pretty dark:prose-headings:text-base-100 prose-a:font-bold prose-a:decoration-accent prose-a:hover:text-accent prose-blockquote:border-primary prose-blockquote:not-italic prose-blockquote:text-xl;
 
   blockquote footer {
     @apply mt-1 text-sm italic;

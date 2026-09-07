@@ -93,7 +93,7 @@ const { title, subtitle, heroImage = pegelbar, heroName = 'hero-image' } = Astro
             class="flex flex-col items-center justify-center text-center z-10 flex-1 mx-auto container md:py-40"
         >
             <h1
-                class="p-6 text-white font-thin leading-tight break-words text-5xl md:text-6xl xl:text-7xl aos aos-fade-left"
+                class="p-6 text-white font-thin leading-tight text-balance break-words text-5xl md:text-6xl xl:text-7xl aos aos-fade-left"
                 x-data="{ visible: false }"
                 x-intersect.once="visible = true"
                 :class="visible && 'visible'"

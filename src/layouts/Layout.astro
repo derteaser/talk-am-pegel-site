@@ -45,6 +45,16 @@ const { heroTitle, heroSubtitle, heroImage, heroName = 'hero-image', ...seo } = 
         <meta name="theme-color" content="#3b5883" />
         {
             /*
+          Both forms, as the spec asks: the meta tag applies before the stylesheet parses,
+          the CSS property is authoritative afterwards. The CSS side is already handled —
+          FlyOnUI's theme block carries `color-scheme: light` on `:where(:root)`, verified
+          in a browser. `light` rather than `light dark`: the theme is light-only and its
+          dark variants never apply.
+        */
+        }
+        <meta name="color-scheme" content="light" />
+        {
+            /*
           Two lines that have to run before anything paints, so they are inline and
           unbundled:
 
