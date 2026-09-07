@@ -28,8 +28,8 @@
  *      does not advertise unresized originals
  *  13. Head and manifest: description + og:description on every page, a colour
  *      scheme, and an installable manifest whose icons exist
- *  14. Discovery surface: llms.txt, security.txt and the api-catalog are
- *      well formed, advertised, and not about to expire
+ *  14. Discovery surface: llms.txt, the feed, security.txt and the api-catalog
+ *      are well formed, advertised, and not about to expire
  */
 
 import fs from 'node:fs';
@@ -187,6 +187,7 @@ console.log('\n1. URL inventory');
         'site.webmanifest',
         'ads.txt',
         'llms.txt',
+        'rss.xml',
         '.well-known/security.txt',
         '.well-known/api-catalog',
     ])
@@ -877,6 +878,51 @@ console.log('\n14. Discovery surface');
             : fail(`api-catalog title(s) contain a number that will drift: ${numeric.join(' | ')}`);
     }
 
+    // --- the feed. Its shape comes from the feed-hygiene spec page, and every one of
+    // these has a named failure mode there: a missing self-link is flagged by both
+    // validators, a GUID that changes breaks every reader's read state, a relative URL
+    // inside an item resolves against the reader rather than the site, and truncating to
+    // a teaser is the first listed mistake.
+    const feed = read(path.join(DIST, 'rss.xml'));
+    const feedItems = [...feed.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+    const talkCount = pages.filter((f) => toUrl(f).startsWith('/talks/')).length;
+
+    feedItems.length === talkCount
+        ? pass(`feed carries all ${talkCount} talks`)
+        : fail(`feed has ${feedItems.length} items for ${talkCount} talks`);
+    // Attribute order is not significant in XML, so match the tag and then test its
+    // attributes — the first version of this check demanded rel before href and failed on
+    // a feed that xmllint and a real XML parser both accepted.
+    const selfLink = [...feed.matchAll(/<atom:link\b[^>]*>/g)].find(
+        (m) => /rel="self"/.test(m[0]) && /href="https:\/\/[^"]+\/rss\.xml"/.test(m[0]),
+    );
+    selfLink ? pass('feed has an atom:link rel="self"') : fail('feed has no atom:link rel="self" pointing at its own URL');
+
+    const feedProblems = [];
+    let previousDate = Infinity;
+    for (const item of feedItems) {
+        const link = item.match(/<link>([^<]+)<\/link>/)?.[1] ?? '';
+        const guid = item.match(/<guid[^>]*>([^<]+)<\/guid>/)?.[1] ?? '';
+        const pub = item.match(/<pubDate>([^<]+)<\/pubDate>/)?.[1] ?? '';
+        const desc = item.match(/<description>([\s\S]*?)<\/description>/)?.[1] ?? '';
+        const full = item.match(/<content:encoded>([\s\S]*?)<\/content:encoded>/)?.[1] ?? '';
+        if (!link.startsWith('https://')) feedProblems.push(`relative or missing link: ${link}`);
+        if (guid !== link) feedProblems.push(`guid does not match link: ${guid}`);
+        if (Number.isNaN(Date.parse(pub))) feedProblems.push(`unparseable pubDate: ${pub}`);
+        else if (Date.parse(pub) > previousDate) feedProblems.push('items are not newest-first');
+        else previousDate = Date.parse(pub);
+        if (full.length < desc.length) feedProblems.push(`content:encoded shorter than description for ${link}`);
+    }
+    feedProblems.length === 0
+        ? pass(`all ${feedItems.length} feed items are absolute, GUID-stable, dated and un-truncated`)
+        : fail(`feed problems: ${feedProblems.slice(0, 3).join(' | ')}`);
+
+    // Discovery: a feed nobody can find is a file nobody fetches.
+    const undiscoverable = pages.filter((f) => !/<link rel="alternate"[^>]+application\/rss\+xml[^>]+title="[^"]+"/.test(read(f)));
+    undiscoverable.length === 0
+        ? pass(`all ${pages.length} pages link the feed with a title`)
+        : fail(`${undiscoverable.length} page(s) without a titled rel="alternate" feed link`);
+
     // --- the canonicalisation rules. Like _headers, dist/_redirects is an instruction
     // file rather than output, so this only proves we asked for 308s; verify-live.sh
     // section 3 proves Cloudflare applied them, which is the half that can actually
@@ -897,7 +943,7 @@ console.log('\n14. Discovery surface');
     // --- and the header that makes any of it discoverable. dist/_headers is a Cloudflare
     // instruction file, so this only proves we asked; verify-live.sh proves it applied.
     const headers = read(path.join(DIST, '_headers'));
-    const rels = ['describedby', 'api-catalog', 'sitemap', 'security'];
+    const rels = ['describedby', 'api-catalog', 'sitemap', 'security', 'alternate'];
     const missingRels = rels.filter((r) => !new RegExp(`rel="${r}"`).test(headers));
     missingRels.length === 0
         ? pass(`_headers advertises ${rels.join(', ')}`)
