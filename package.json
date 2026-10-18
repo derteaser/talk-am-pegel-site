@@ -16,7 +16,7 @@
   "devDependencies": {
     "@alpinejs/intersect": "3.17.4",
     "@astrojs/check": "0.9.10",
-    "@astrojs/markdown-satteri": "0.4.3",
+    "@astrojs/markdown-satteri": "0.4.4",
     "@astrojs/mdx": "8.0.3",
     "@iconify-json/ri": "1.2.10",
     "@tailwindcss/typography": "0.5.20",
