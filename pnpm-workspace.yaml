@@ -9,3 +9,12 @@ allowBuilds:
   # workerd is the Workers runtime wrangler uses for local dev and for validating
   # asset routing before deploy; its postinstall fetches the platform binary.
   workerd: true
+
+# @napi-rs/wasm-runtime 1.2.x lists the prerelease `2.0.0-beta.2` in its emnapi
+# peer ranges, and pnpm resolves that peer to the beta. The beta is incompatible
+# with emnapi 1.x: importing @astrojs/check (via astro2tsx) throws
+# `this.bridge.setLastError is not a function`, which `astro check` misreports as
+# "@astrojs/check is not installed". Keep emnapi on 1.x until 2.0 ships stable.
+overrides:
+  '@emnapi/core': ^1.11.3
+  '@emnapi/runtime': ^1.11.3
