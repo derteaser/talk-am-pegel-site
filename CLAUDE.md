@@ -333,13 +333,20 @@ Alpine is used entirely as inline attributes in markup (`x-data`, `x-intersect`,
   pages were advertising 49 images totalling **10.8 MB** to crawlers, the largest a single 1.9 MB
   portrait. `talks/[slug].astro` runs performer portraits through `getImage()` at 800px instead
   (10.8 MB → 3.2 MB), and `verify.mjs` fails on any JSON-LD image over 400 kB.
-- **Three performance items were measured and declined** — the numbers, so they need not be
-  re-derived. **AVIF**: `<Picture>` takes one `quality` for all formats, so AVIF at 85 lands
-  +11% at 300w, −3% at 900w against WebP — no useful win — while a cold build goes from 14s to
-  118s. **Critical CSS**: the render-blocking stylesheet is 86 kB raw but **11.4 kB brotli**;
+- **AVIF is enabled with per-format quality.** `image.service.config` in `astro.config.mjs` sets
+  AVIF quality to 50, WebP to 85, JPEG to 85 — the per-image `quality` prop on `<Picture>` is
+  removed so the service config governs all formats. AVIF at q50 is perceptually equivalent to
+  WebP at q85 and ~55% smaller per image (9.0 MB total AVIF vs 23.0 MB WebP across 357 vs 410
+  files). Browsers that support AVIF pick the first `<source>` and never fetch WebP; the WebP and
+  JPEG fallbacks are unchanged for older browsers. Cold build time rises from ~5s to ~2m because
+  AVIF encoding is expensive, but warm builds (with `node_modules/.astro/assets` cached) are fast.
+  The original measurement (AVIF at q85 was +11% at 300w) was before Astro gained per-format
+  quality via `image.service.config.avif` (Astro 6.1+).
+- **Two performance items were measured and declined** — the numbers, so they need not be
+  re-derived. **Critical CSS**: the render-blocking stylesheet is 86 kB raw but **11.4 kB brotli**;
   splitting it buys nothing worth the machinery. **Speculation Rules**: Astro's hover prefetcher
   is **956 bytes brotli** (`page.*.js`), and native rules would add an inline script needing a
-  CSP hash. Revisit AVIF only if Astro gains per-format quality.
+  CSP hash.
 - **The accent is a fill colour, not a text colour.** `--color-accent` is the brand red and is
   deliberately unchanged; white on it measures **3.29:1**, which fails AA for every button label
   here (18px, weight 500 — the large-text exemption needs 18.66px _and_ bold). So
