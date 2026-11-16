@@ -16,24 +16,24 @@
   "devDependencies": {
     "@alpinejs/intersect": "3.17.5",
     "@astrojs/check": "0.9.12",
-    "@astrojs/markdown-satteri": "0.4.9",
-    "@astrojs/mdx": "8.1.5",
+    "@astrojs/markdown-satteri": "0.4.10",
+    "@astrojs/mdx": "8.1.6",
     "@iconify-json/ri": "1.2.10",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.5",
     "alpinejs": "3.17.5",
-    "astro": "7.4.11",
+    "astro": "7.4.12",
     "astro-icon": "1.2.0",
     "bigpicture": "2.6.4",
     "flyonui": "2.4.1",
-    "prettier": "3.9.10",
+    "prettier": "3.10.1",
     "prettier-plugin-astro": "1.1.2",
     "prettier-plugin-tailwindcss": "0.8.1",
     "sharp": "0.35.5",
     "tailwindcss": "4.3.5",
     "typescript": "6.0.3",
-    "wrangler": "4.152.0",
+    "wrangler": "4.161.0",
     "yaml": "2.9.1"
   },
-  "packageManager": "pnpm@12.15.0"
+  "packageManager": "pnpm@12.20.0"
 }
