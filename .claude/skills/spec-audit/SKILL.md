@@ -11,9 +11,10 @@ a website owes the platform: ~170 items across ten categories, each graded `requ
 `recommended`, `optional` or `avoid`. This skill runs the site against it and lands the result as
 GitHub issues rather than a wall of terminal output nobody reads twice.
 
-**Last pass: 2026-09-04**, tracked in **#1495**, children **#1480–#1494**. Read #1495 before
-starting — a re-audit is a diff against it, not a fresh start, and `get_changes(since: "2026-09-04")`
-is the entry point. Record each new pass's date and tracking issue here so the next one has a floor.
+**Last pass: 2026-11-16**, tracked in **#1588**, children **#1586–#1587**. Previous pass:
+2026-09-04 (#1495, #1480–#1494, all closed). Read #1588 before starting — a re-audit is a diff
+against it, not a fresh start, and `get_changes(since: "2026-11-16")` is the entry point. Record
+each new pass's date and tracking issue here so the next one has a floor.
 
 Lessons from the first pass:
 

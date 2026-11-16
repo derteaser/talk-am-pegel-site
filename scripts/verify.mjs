@@ -444,6 +444,19 @@ console.log('\n7. Images');
     noAlt === 0 ? pass(`all ${total} <img> have an alt attribute`) : fail(`${noAlt}/${total} <img> without alt`);
     noDims === 0 ? pass('all <img> declare width and height') : fail(`${noDims}/${total} <img> without intrinsic dimensions`);
 
+    // Avatar-group images are person portraits, not decorative — they must carry the
+    // person's name, not alt="". (#1586)
+    const talksHtml = read(path.join(DIST, 'talks.html'));
+    let emptyAvatarAlt = 0;
+    for (const group of talksHtml.matchAll(/class="avatar-group[^"]*"[\s\S]*?<\/ul>/g)) {
+        for (const img of group[0].matchAll(/<img\s[^>]*>/g)) {
+            if (/\salt=""/.test(img[0])) emptyAvatarAlt++;
+        }
+    }
+    emptyAvatarAlt === 0
+        ? pass('all avatar-group images on /talks have a non-empty alt')
+        : fail(`${emptyAvatarAlt} avatar-group image(s) on /talks have alt=""`)
+
     // The hero backdrop is the LCP element on every page, and Thumbnail defaults to
     // lazy — so a page that loses its `lazy={false}` would silently defer its own
     // largest paint. Target the first <picture> rather than the first <img>: the

@@ -45,7 +45,7 @@ const avatars = await Promise.all(
                 {thumb ? (
                     <div class="tooltip-toggle avatar">
                         <div class="w-13">
-                            <img alt="" src={thumb.src} width="104" height="104" />
+                            <img alt={person.data.title} src={thumb.src} width="104" height="104" />
                         </div>
                     </div>
                 ) : (
