@@ -64,6 +64,17 @@ export default defineConfig({
     //    been authored in the panel.
     markdown: { processor: satteri({ features: { gfm: false, smartPunctuation: false } }) },
 
+    image: {
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+            config: {
+                avif: { quality: 50 },
+                webp: { quality: 85 },
+                jpeg: { quality: 85 },
+            },
+        },
+    },
+
     integrations: [mdx(), icon({ include: { ri: ['*'] } })],
 
     vite: { plugins: [tailwindcss()] },
