@@ -1,18 +1,25 @@
 ---
 name: spec-audit
-description: Audit the site against The Website Specification and turn the findings into labelled GitHub issues. Use for a fresh full audit, or to re-audit after the spec itself changes.
+description: Audit the site against The Website Specification and turn the findings into labelled GitHub issues. Use for a fresh full audit, or to re-audit after the spec or the site has changed. Triggers on 'spec audit', 'website spec', 're-audit', 'audit the site'.
 disable-model-invocation: true
 ---
 
 # Audit against The Website Specification
 
 [specification.website](https://specification.website) is an external, versioned standard for what
-a website owes the platform: 168 items across ten categories, each graded `required`,
+a website owes the platform: ~170 items across ten categories, each graded `required`,
 `recommended`, `optional` or `avoid`. This skill runs the site against it and lands the result as
 GitHub issues rather than a wall of terminal output nobody reads twice.
 
-The first full pass was **2026-09-04**, tracked in **#1495**, children **#1480–#1494**. Read that
-issue before starting — a re-audit is a diff against it, not a fresh start.
+**Last pass: 2026-09-04**, tracked in **#1495**, children **#1480–#1494**. Read #1495 before
+starting — a re-audit is a diff against it, not a fresh start, and `get_changes(since: "2026-09-04")`
+is the entry point. Record each new pass's date and tracking issue here so the next one has a floor.
+
+Lessons from the first pass:
+
+- **Second-opinion reviewers earn their keep.** Re-verify every high-severity finding by hand before
+  writing a single issue. Agents are good at finding candidates and occasionally wrong about them; a
+  wrong P0 costs more credibility than a missed P2.
 
 ## Getting the spec
 
@@ -26,6 +33,9 @@ issue before starting — a re-audit is a diff against it, not a fresh start.
 | `get_topic(slug)` | full Markdown for one item, when a one-liner is not enough to judge |
 | `search(query)` | when you know the concept but not the slug |
 | `get_changes(since)` | **what the spec itself changed** — the entry point for a re-audit |
+
+`list_topics` takes `status` with no `category`, which is the cheapest way to get the whole
+worklist in two calls. Take item counts from `get_categories` at audit time — they drift.
 
 If the server is not approved in this session, do not stop: it is read-only HTTP and the audit
 works the same over curl.
@@ -45,10 +55,29 @@ Two traps. The endpoint is on the **`mcp.` subdomain** — the documented
 ## Scope
 
 **Every `required` and `recommended` item, in all categories except `i18n`** — the site is German
-only, so i18n's 1 required + 7 recommended items are out of scope by decision. That is 109 items.
+only, so i18n's items are out of scope by decision. `i18n/lang-attribute` and
+`accessibility/document-language` are still real here (`<html lang="de">`).
 
-`optional` and `avoid` are not audited. Revisit that if the site ever grows a second language, a
-feed, a form, or cookies — several current N/A verdicts hang on their absence.
+`optional` and `avoid` are not audited unless a `get_changes` entry promoted one. Revisit that if the
+site ever grows a second language, a form, or cookies — several current N/A verdicts hang on their
+absence.
+
+### Which layer owns a finding
+
+Production sits **behind Cloudflare**. A finding is only fixable in this repo if Astro or
+`public/_headers` produced it:
+
+| signal | Cloudflare (dashboard/DNS, not this repo) | This repo |
+| --- | --- | --- |
+| response headers | `server: cloudflare`, `cf-ray`, `cf-cache-status`, `nel`, `report-to`, `alt-svc: h3`, HSTS | `public/_headers` (CSP, `X-Content-Type-Options`, `X-Frame-Options`, `Permissions-Policy`, `Content-Type` overrides) |
+| `robots.txt` | the managed `Content-Signal: ai-train=no` block with per-bot `Disallow: /` | the `User-agent: *` group from `public/robots.txt` |
+| transport | TLS version, HTTP/3, Brotli/compression on the edge, DNS (`CAA`, DNSSEC) | — |
+| redirects | apex→www zone rule | `public/_redirects` (trailing-slash and `.html` → 308) |
+
+**Before filing any header, robots or transport finding, establish which layer produced it.** Compare
+the live response with `scripts/verify-live.sh`, which already asserts a lot of this. Cloudflare
+findings are real and get filed, but in their own issue labelled `cloudflare-zone` — no PR closes
+them and `verify.mjs` cannot see them.
 
 ## Running it
 
@@ -76,25 +105,28 @@ expensive to unpick:
    anything in the markup; the template is where the fix goes.
 3. **Read `scripts/verify.mjs` before reporting anything missing.** It already asserts a lot, and
    "missing" things that are actually guarded waste a whole issue.
-4. **Live checks need a browser UA.** Production 403s unusual user agents, so a bare `curl` sweep
+4. **Establish the layer before filing a header, robots or transport finding** — see the table
+   above. Verify every such claim against live with a browser UA (below).
+5. **Live checks need a browser UA.** Production 403s unusual user agents, so a bare `curl` sweep
    reads like a total outage:
    ```bash
    curl -sI -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15' https://www.talk-am-pegel.de/
    ```
    Everything header-shaped is only observable at the edge. `scripts/verify-live.sh` shows what is
    already asserted there.
-5. **Say what could not be measured.** No browser is available unless the Playwright MCP server is
+6. **Say what could not be measured.** No browser is available unless the Playwright MCP server is
    connected, so Core Web Vitals, real contrast rendering and forced-colours cannot be *measured* —
    an agent must identify the structural risk and say measurement is still required, never invent a
    number. Colour contrast is the exception: extract the OKLCH tokens from `src/styles/site.css` and
    compute the ratios arithmetically.
-6. **One compact row per item** — `category | slug | tier | PASS/FAIL/PARTIAL/N/A | evidence
+7. **One compact row per item** — `category | slug | tier | PASS/FAIL/PARTIAL/N/A | evidence
    (file:line or exact curl fact) | fix sketch | effort` — plus a closing note on which failures
    share a file or a fix. Ask for FAIL/PARTIAL rows first. N/A needs a reason.
 
-Then **re-verify every P0 and P1 by hand** before writing a single issue. Agents are good at
-finding candidates and occasionally wrong about them; a wrong P0 costs more credibility than a
-missed P2.
+Second opinions: hand agent 2's high/medium accessibility candidates to a subagent for independent
+review before writing them up — contrast, alt text and keyboard claims especially. Then **re-verify
+every P0 and P1 by hand** before writing a single issue. Agents are good at finding candidates and
+occasionally wrong about them; a wrong P0 costs more credibility than a missed P2.
 
 ## Deliberate, and not to be re-reported
 
@@ -169,12 +201,14 @@ get_changes(since: "2026-09-04")    # or the date of the last audit
 
 That reports `added`, `changed`, `status` (an item promoted or downgraded) and `removed` items. Then:
 
-1. Audit only the deltas, plus anything whose issue closed since — a closed issue is a claim, and
-   `verify.mjs`/`verify-live.sh` assertions are the evidence it is still true.
-2. A `status` change matters most: an item promoted from recommended to required moves its issue's
-   priority, and one that was `optional` may now be in scope.
+1. Audit the deltas, plus everything the last pass's children closed — a closed issue is a claim,
+   and `verify.mjs`/`verify-live.sh` assertions are the evidence it is still true. Run `pnpm verify`
+   for the structural checks and re-fetch production headers before believing any of them.
+2. A `status` change matters most: an item promoted from recommended to required raises its issue's
+   priority, and a formerly `optional` item may now be in scope.
 3. A `removed` item means closing its issue as no longer part of the standard, not as done.
-4. Update #1495 in place — its counts, its task list, its assessed-no-action table — rather than
-   opening a second tracking issue. One audit trail, extended.
+4. Once #1495 is closed, a re-audit opens **one new tracking issue** that links back to it in its
+   first line. While it is still open, update it in place rather than opening another.
 
-Record the new audit date in the master issue so the next `get_changes` has a floor.
+Record the new audit date and tracking issue number at the top of this file, so the next
+`get_changes` has a floor.
